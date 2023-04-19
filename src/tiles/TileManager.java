@@ -9,7 +9,7 @@ public class TileManager {
     private int[][] tileGrid;
     private int tileWidth;
     private int tileHeight;
-    BackgroundImages bgi = new BackgroundImages();
+    BackgroundImage bgi = new BackgroundImage();
 
     private final int[][] TILE_GRID = {{8, 1, 1, 9, 9, 9, 9, 9, 9, 5},
             {4, 3, 6, 8, 9, 9, 9, 1, 14, 10},
@@ -71,8 +71,8 @@ public class TileManager {
         return TILE_GRID;
     }
 
-    public void drawTiles(Graphics g) {
-        g.setColor(Color.BLACK);
+    public void drawTiles(Graphics2D g2d) {
+        g2d.setColor(Color.BLACK);
         int numRows = TILE_GRID.length;
         int numCols = TILE_GRID[0].length;
         //x & y top left corner of grid map.
@@ -91,16 +91,16 @@ public class TileManager {
             while(x < gridWidth) {
                 if (tileTypes[TILE_GRID[i][j]].isTop()) {
                     //x1, y1, x2, y2
-                    g.drawLine(x, y, x + tileWidth, y);
+                    g2d.drawLine(x, y, x + tileWidth, y);
                 }
                 if (tileTypes[TILE_GRID[i][j]].isBottom()) {
-                    g.drawLine(x, y + tileHeight, x + tileWidth, y + tileHeight);
+                    g2d.drawLine(x, y + tileHeight, x + tileWidth, y + tileHeight);
                 }
                 if (tileTypes[TILE_GRID[i][j]].isLeft()) {
-                    g.drawLine(x, y, x, y + tileHeight);
+                    g2d.drawLine(x, y, x, y + tileHeight);
                 }
                 if (tileTypes[TILE_GRID[i][j]].isRight()) {
-                    g.drawLine(x + tileWidth, y, x + tileWidth, y + tileHeight);
+                    g2d.drawLine(x + tileWidth, y, x + tileWidth, y + tileHeight);
                 }
                 x += tileWidth;
                 j++;
@@ -112,43 +112,6 @@ public class TileManager {
             i++;
         }
     }
-
-    //Selects the appropriate bg Image. See bgImageTable.txt
-    public ImageIcon getBackgroundImage(int tileType, char facing) {
-        // facing = String.valueOf(facing).toUpperCase().charAt(0);
-        if (facing == 'U' && (tileType == 0 || tileType == 3) || facing == 'D' && (tileType == 0 || tileType == 1) ||
-                facing == 'L' && (tileType == 0 || tileType == 2) || facing == 'R' && (tileType == 0 || tileType == 4)) {
-            return bgi.getBackgroundImage(0);
-        }
-        else if (facing == 'U' && (tileType == 1 || tileType == 9) || facing =='D'  && (tileType == 3 || tileType == 9)
-                || facing == 'L' && (tileType == 4 || tileType == 10) || facing == 'R' && (tileType == 2 || tileType == 10)) {
-            return bgi.getBackgroundImage(1);
-        }
-        else if (facing == 'U' && (tileType == 4 || tileType == 7) || facing =='D'  && (tileType == 2 || tileType == 5)
-                || facing == 'L' && (tileType == 3 || tileType == 6) || facing == 'R' && (tileType == 1 || tileType == 8)) {
-            return  bgi.getBackgroundImage(2);
-        }
-        else if (facing == 'U' && (tileType == 2 || tileType == 6) || facing =='D'  && (tileType == 4 || tileType == 8)
-                || facing == 'L' && (tileType == 1 || tileType == 5) || facing == 'R' && (tileType == 3 || tileType == 7)) {
-            return  bgi.getBackgroundImage(3);
-        }
-        else if (facing == 'U' && (tileType == 10 || tileType == 11) || facing =='D'  && (tileType == 10 || tileType == 13)
-                || facing == 'L' && (tileType == 9 || tileType == 14) || facing == 'R' && (tileType == 9 || tileType == 12)) {
-            return  bgi.getBackgroundImage(4);
-        }
-        else if (facing == 'U' && (tileType == 5 || tileType == 14) || facing =='D'  && (tileType == 7 || tileType == 12)
-                || facing == 'L' && (tileType == 8 || tileType == 13) || facing == 'R' && (tileType == 6 || tileType == 11)) {
-            return  bgi.getBackgroundImage(5);
-        }
-        else if (facing == 'U' && (tileType == 8 || tileType == 12) || facing =='D'  && (tileType == 6 || tileType == 14)
-                || facing == 'L' && (tileType == 7 || tileType == 11) || facing == 'R' && (tileType == 5 || tileType == 13)) {
-            return  bgi.getBackgroundImage(6);
-        }
-        else {
-            return bgi.getBackgroundImage(7);
-        }
-    }
-
 
 }
 

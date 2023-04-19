@@ -2,7 +2,7 @@ package tiles;
 
 import javax.swing.*;
 
-public class BackgroundImages {
+public class BackgroundImage {
 
     private ImageIcon[] backgroundImages = {new ImageIcon("src/res/backgrounds/All-Open.png"),
             new ImageIcon("src/res/backgrounds/Front-Only.png"), new ImageIcon("src/res/backgrounds/Left-Only.png"),
@@ -10,7 +10,7 @@ public class BackgroundImages {
             new ImageIcon("src/res/backgrounds/No-Left.png"), new ImageIcon("src/res/backgrounds/No-Right.png"),
             new ImageIcon("src/res/backgrounds/3-sides.png")};
 
-    public BackgroundImages() {
+    public BackgroundImage() {
 
     }
 

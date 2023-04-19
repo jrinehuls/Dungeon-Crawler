@@ -3,25 +3,22 @@ package panels;
 import inputs.KeyController;
 import tiles.TileManager;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.*;
 import javax.swing.*;
 
 public class MapPanel extends JPanel implements Runnable {
 	
 	static final int GRID_SIZE = 25;
 	public static final int SCREEN_EDGE_LENGTH = GRID_SIZE * 10 + 1;
-	final Dimension SCREEN_SIZE = new Dimension(SCREEN_EDGE_LENGTH, SCREEN_EDGE_LENGTH);
+	//final Dimension SCREEN_SIZE = new Dimension(SCREEN_EDGE_LENGTH, SCREEN_EDGE_LENGTH);
 	//Grid location to start at.
-	int xCord = 4;
-	int yCord = 4;
+	static int xCord = 4;
+	static int yCord = 4;
 	//Pixel location to start at.
 	int xLocation = 1 + xCord * GRID_SIZE;
 	int yLocation = 1 + yCord * GRID_SIZE;
 	//Initial direction arrow faces.
-	char facing = 'D';
-	JLabel locationLabel;
+	public static char facing = 'D';
 	//Collision check booleans
 	boolean topCollision;
 	boolean bottomCollision;
@@ -30,7 +27,6 @@ public class MapPanel extends JPanel implements Runnable {
 
 	KeyController keyC = new KeyController();
 	Thread gameThread;
-	GamePanel gamePanel;
 	
 	private static final String[][] MAP_GRID = {{"A1","A2","A3","A4","A5","A6","A7","A8","A9","A10"},
 								  {"B1","B2","B3","B4","B5","B6","B7","B8","B9","B10"},
@@ -44,24 +40,24 @@ public class MapPanel extends JPanel implements Runnable {
 						   		  {"J1","J2","J3","J4","J5","J6","J7","J8","J9","J10"}};
 
 
-	private String position = MAP_GRID[yCord][xCord];
-	TileManager tm = new TileManager(GRID_SIZE, GRID_SIZE);
+	private static String position = MAP_GRID[yCord][xCord];
+	static TileManager tm = new TileManager(GRID_SIZE, GRID_SIZE);
+	public static int tileType;
 
-	public MapPanel(GamePanel gamePanel) {
-		this.gamePanel = gamePanel;
+	public MapPanel() {
 		this.setBackground(new Color(225, 225, 225));
 		this.addKeyListener(keyC);
 		this.setFocusable(true);
 		this.setSize(SCREEN_EDGE_LENGTH, SCREEN_EDGE_LENGTH);
-		
-		locationLabel = new JLabel("Position: " + position);
-		locationLabel.setBounds(15, 250, 100, 50);
+
+		tileType = tm.getTileGrid()[yCord][xCord];
+		facing = 'D';
 
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
 
-	public String getPosition() {
+	public static String getPosition() {
 		return position;
 	}
 
@@ -74,40 +70,40 @@ public class MapPanel extends JPanel implements Runnable {
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		tm.drawTiles(g);
-		drawArrow(g);
+		Graphics2D g2d = (Graphics2D) g;
+		tm.drawTiles(g2d);
+		drawArrow(g2d);
 	}
 
-	public void drawArrow(Graphics g) {
-		//x array is array of 3 x-coordinate points of triangle. (3 dots in line)
-		//y array is array of 3 y-coordinate points of triangle. (3 dots in stack)
-		//Fill polygon pairs the x and y values as 3 points and fills it in.
-		g.setColor(new Color(0, 255, 0));
+	public void drawArrow(Graphics2D g2d) {
+		// x array is array of 3 x-coordinate points of triangle. (3 dots in line)
+		// y array is array of 3 y-coordinate points of triangle. (3 dots in stack)
+		// Fill polygon pairs the x and y values as 3 points and fills it in.
+		g2d.setColor(new Color(0, 255, 0));
 		if(facing == 'U') {
 			int[] x = {xLocation, xLocation + (GRID_SIZE-1)/2, xLocation + GRID_SIZE-1};
 			int[] y = {yLocation + GRID_SIZE-1, yLocation, yLocation + GRID_SIZE-1};
-			g.fillPolygon(x, y, 3);
+			g2d.fillPolygon(x, y, 3);
 		}
 		if(facing == 'D') {
 			int[] x = {xLocation, xLocation + (GRID_SIZE-1)/2, xLocation + GRID_SIZE-1};
 			int[] y = {yLocation, yLocation + GRID_SIZE-1, yLocation};
-			g.fillPolygon(x, y, 3);
+			g2d.fillPolygon(x, y, 3);
 		}
 		if(facing == 'R') {
 			int[] x = {xLocation, xLocation + GRID_SIZE-1, xLocation};
 			int[] y = {yLocation, yLocation + (GRID_SIZE-1)/2, yLocation + GRID_SIZE-1};
-			g.fillPolygon(x, y, 3);
+			g2d.fillPolygon(x, y, 3);
 		}
 		if(facing == 'L') {
 			int[] x = {xLocation + GRID_SIZE-1, xLocation, xLocation + GRID_SIZE-1};
 			int[] y = {yLocation, yLocation + (GRID_SIZE-1)/2, yLocation + GRID_SIZE-1};
-			g.fillPolygon(x, y, 3);
+			g2d.fillPolygon(x, y, 3);
 		}
 	}
 
 	public void updatePosition() {
-		ImageIcon backgroundImage;
-		int tileType = tm.getTileGrid()[yCord][xCord];
+		tileType = tm.getTileGrid()[yCord][xCord];
 		checkCollision();
 
 		if(keyC.upPressed) {
@@ -136,57 +132,30 @@ public class MapPanel extends JPanel implements Runnable {
 
 		if (keyC.downPressed) {
 			switch (facing) {
-				case 'U':
-					facing = 'D';
-					break;
-				case 'D':
-					facing = 'U';
-					break;
-				case 'L':
-					facing = 'R';
-					break;
-				case 'R':
-					facing = 'L';
-					break;
+				case 'U' -> facing = 'D';
+				case 'D' -> facing = 'U';
+				case 'L' -> facing = 'R';
+				case 'R' -> facing = 'L';
 			}
 		}
 
 		if (keyC.leftPressed) {
 			switch (facing) {
-				case 'U':
-					facing = 'L';
-					break;
-				case 'D':
-					facing = 'R';
-					break;
-				case 'L':
-					facing = 'D';
-					break;
-				case 'R':
-					facing = 'U';
-					break;
+				case 'U' -> facing = 'L';
+				case 'D' -> facing = 'R';
+				case 'L' -> facing = 'D';
+				case 'R' -> facing = 'U';
 			}
 		}
 
 		if (keyC.rightPressed) {
 			switch (facing) {
-				case 'U':
-					facing = 'R';
-					break;
-				case 'D':
-					facing = 'L';
-					break;
-				case 'L':
-					facing = 'U';
-					break;
-				case 'R':
-					facing = 'D';
-					break;
+				case 'U' -> facing = 'R';
+				case 'D' -> facing = 'L';
+				case 'L' -> facing = 'U';
+				case 'R' -> facing = 'D';
 			}
 		}
-
-		backgroundImage = tm.getBackgroundImage(tileType, facing);
-		gamePanel.backgroundLabel.setIcon(backgroundImage);
 
 	}
 
@@ -195,16 +164,15 @@ public class MapPanel extends JPanel implements Runnable {
 		//game loop
 		long lastTime = System.nanoTime();
 		long currentTime;
-		final int FPS = 6;
-		double drawInterval = 1_000_000_000 / FPS;
+		final double FPS = 6.0;
+		final double drawInterval = 1_000_000_000 / FPS;
 		double delta = 0;
-		while(true) {
+		while(gameThread != null) {
 			currentTime = System.nanoTime();
 			delta += (currentTime - lastTime) / drawInterval;
 			if(delta >= 1) {
 				updatePosition();
-				gamePanel.position = getPosition();
-				gamePanel.positionLabel.setText(position);
+				GamePanel.update();
 				repaint();
 				delta = 0.0;
 			}
