@@ -11,7 +11,7 @@ import javax.swing.*;
 public class MapPanel extends JPanel implements Runnable {
 	
 	static final int GRID_SIZE = 25;
-	public static final int SCREEN_EDGE_LENGTH = GRID_SIZE * 10 +1;
+	public static final int SCREEN_EDGE_LENGTH = GRID_SIZE * 10 + 1;
 	final Dimension SCREEN_SIZE = new Dimension(SCREEN_EDGE_LENGTH, SCREEN_EDGE_LENGTH);
 	//Grid location to start at.
 	int xCord = 4;
@@ -22,7 +22,6 @@ public class MapPanel extends JPanel implements Runnable {
 	//Initial direction arrow faces.
 	char facing = 'D';
 	JLabel locationLabel;
-	public final double FPS = 60.0;
 	//Collision check booleans
 	boolean topCollision;
 	boolean bottomCollision;
@@ -44,20 +43,6 @@ public class MapPanel extends JPanel implements Runnable {
 						   		  {"I1","I2","I3","I4","I5","I6","I7","I8","I9","I10"},
 						   		  {"J1","J2","J3","J4","J5","J6","J7","J8","J9","J10"}};
 
-	//adjust numbers in the grid to change map layout
-	/*
-	private final int[][] TILE_GRID = {{8, 1, 1, 9, 9, 9, 9, 9, 9, 5},
-									   {4, 3, 6, 8, 9, 9, 9, 1, 14, 10},
-									   {4, 1, 5, 10, 8, 9, 1, 6, 12, 2},
-									   {11, 10, 7, 2, 10, 12, 3, 1, 14, 10},
-									   {8, 0, 5, 11, 4, 5, 8, 2, 8, 2},
-									   {4, 0, 0, 9, 3, 2, 10, 11, 4, 6},
-									   {10, 7, 6, 8, 14, 10, 7, 5, 7, 5},
-									   {7, 9, 1, 6, 12, 3, 5, 4, 5, 10},
-									   {8, 14, 4, 1, 1, 1, 2, 4, 6, 10},
-									   {7, 9, 3, 6, 7, 3, 3, 6, 12, 6}};
-
-	 */
 
 	private String position = MAP_GRID[yCord][xCord];
 	TileManager tm = new TileManager(GRID_SIZE, GRID_SIZE);
@@ -68,7 +53,6 @@ public class MapPanel extends JPanel implements Runnable {
 		this.addKeyListener(keyC);
 		this.setFocusable(true);
 		this.setSize(SCREEN_EDGE_LENGTH, SCREEN_EDGE_LENGTH);
-		this.setPreferredSize(SCREEN_SIZE);
 		
 		locationLabel = new JLabel("Position: " + position);
 		locationLabel.setBounds(15, 250, 100, 50);
@@ -203,30 +187,28 @@ public class MapPanel extends JPanel implements Runnable {
 
 		backgroundImage = tm.getBackgroundImage(tileType, facing);
 		gamePanel.backgroundLabel.setIcon(backgroundImage);
+
 	}
 
 	@Override
 	public void run() {
 		//game loop
 		long lastTime = System.nanoTime();
-		double timeUntilUpdate = 1_000_000_000 / FPS;
-		double delta = 0.0;
+		long currentTime;
+		final int FPS = 6;
+		double drawInterval = 1_000_000_000 / FPS;
+		double delta = 0;
 		while(true) {
-			long now = System.nanoTime();
-			delta += (now - lastTime) / timeUntilUpdate;
-			lastTime = now;
+			currentTime = System.nanoTime();
+			delta += (currentTime - lastTime) / drawInterval;
 			if(delta >= 1) {
 				updatePosition();
 				gamePanel.position = getPosition();
 				gamePanel.positionLabel.setText(position);
-				try {
-					gameThread.sleep(150);
-				} catch (InterruptedException e) {
-					throw new RuntimeException(e);
-				}
 				repaint();
 				delta = 0.0;
 			}
+			lastTime = currentTime;
 		}
 	}
 

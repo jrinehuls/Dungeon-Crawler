@@ -115,7 +115,7 @@ public class TileManager {
 
     //Selects the appropriate bg Image. See bgImageTable.txt
     public ImageIcon getBackgroundImage(int tileType, char facing) {
-        facing = String.valueOf(facing).toUpperCase().charAt(0);
+        // facing = String.valueOf(facing).toUpperCase().charAt(0);
         if (facing == 'U' && (tileType == 0 || tileType == 3) || facing == 'D' && (tileType == 0 || tileType == 1) ||
                 facing == 'L' && (tileType == 0 || tileType == 2) || facing == 'R' && (tileType == 0 || tileType == 4)) {
             return bgi.getBackgroundImage(0);

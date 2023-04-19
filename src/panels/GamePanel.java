@@ -28,13 +28,12 @@ public class GamePanel extends JPanel{
 
 		backgroundLabel.setBounds(SCREEN_WIDTH/4, 0, SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
 		this.add(backgroundLabel);
-		// Dumb stuff to get rid of, probably.
+
 		positionLabel.setBounds(50, 50, 40, 20);
 		this.add(positionLabel);
 		this.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
+		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.setLayout(null);
-		this.setFocusable(true);
 
 	}
 
