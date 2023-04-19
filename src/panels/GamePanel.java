@@ -1,8 +1,10 @@
 package panels;
 
+import model.monster.Karen;
 import tiles.BackGroundImageManager;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
@@ -12,15 +14,14 @@ public class GamePanel extends JPanel{
 	public final int SCREEN_WIDTH = 600;
 	public final int SCREEN_HEIGHT = 600;
 
-	public static JLabel backgroundLabel = new JLabel();
-	public JLabel monsterLabel = new JLabel();
-	public static JLabel positionLabel = new JLabel();
+	private static JLabel backgroundLabel = new JLabel();
+	private JLabel monsterLabel = new JLabel();
+	private static JLabel positionLabel = new JLabel();
 
-	public ImageIcon monsterImage = new ImageIcon("src/res/monsters/Spaghetti.png");
-	public static ImageIcon backgroundImage;
+	private ImageIcon monsterImage = new Karen().getIcon();
+	private static ImageIcon backgroundImage;
 
-	public String position;
-	static BackGroundImageManager bgim = new BackGroundImageManager();
+	private static BackGroundImageManager bgim = new BackGroundImageManager();
 
 	public GamePanel(){
 
@@ -41,10 +42,8 @@ public class GamePanel extends JPanel{
 
 	public static void update() {
 		positionLabel.setText(MapPanel.getPosition());
-
 		backgroundImage = bgim.getBackgroundImage(MapPanel.tileType, MapPanel.facing);
 		backgroundLabel.setIcon(backgroundImage);
-
 	}
 
 }

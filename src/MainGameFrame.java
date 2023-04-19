@@ -4,7 +4,6 @@ import panels.PlayerPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
 public class MainGameFrame extends JFrame {
     GamePanel gamePanel = new GamePanel();

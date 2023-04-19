@@ -17,6 +17,7 @@ public class PlayerPanel extends JPanel {
         this.setLayout(null);
         this.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
         hpLabel = new JLabel("HP: " + player.getHp() + "/" + player.getMaxHP(), 0);
         hpLabel.setBounds(0, 10, SCREEN_WIDTH, 20);
         this.add(hpLabel);

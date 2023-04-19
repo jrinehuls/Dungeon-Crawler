@@ -2,11 +2,11 @@ package model;
 
 public abstract class Entity {
 
-    private int hp;
-    private int maxHP;
-    private int attack;
-    private int defense;
-    private int speed;
+    protected int hp;
+    protected int maxHP;
+    protected int attack;
+    protected int defense;
+    protected int speed;
 
     public Entity(int hp, int maxHP, int attack, int defense, int speed) {
         this.hp = hp;
