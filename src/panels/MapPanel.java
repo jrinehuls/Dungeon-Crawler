@@ -49,7 +49,7 @@ public class MapPanel extends JPanel implements Runnable {
 		this.setFocusable(true);
 		this.setSize(SCREEN_EDGE_LENGTH, SCREEN_EDGE_LENGTH);
 
-		tileType = TileManager.getTileGrid()[yCord][xCord];
+		tileType = TileManager.getFloorPlan()[yCord][xCord];
 		facing = 'D';
 
 		gameThread = new Thread(this);
@@ -61,10 +61,10 @@ public class MapPanel extends JPanel implements Runnable {
 	}
 
 	public void checkCollision() {
-		topCollision = TileManager.getTileTypes()[TileManager.getTileGrid()[yCord][xCord]].isTop();
-		bottomCollision = TileManager.getTileTypes()[TileManager.getTileGrid()[yCord][xCord]].isBottom();
-		leftCollision = TileManager.getTileTypes()[TileManager.getTileGrid()[yCord][xCord]].isLeft();
-		rightCollision = TileManager.getTileTypes()[TileManager.getTileGrid()[yCord][xCord]].isRight();
+		topCollision = TileManager.getTileTypes()[tileType].isTop();
+		bottomCollision = TileManager.getTileTypes()[tileType].isBottom();
+		leftCollision = TileManager.getTileTypes()[tileType].isLeft();
+		rightCollision = TileManager.getTileTypes()[tileType].isRight();
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -102,7 +102,7 @@ public class MapPanel extends JPanel implements Runnable {
 	}
 
 	public void updatePosition() {
-		tileType = TileManager.getTileGrid()[yCord][xCord];
+		tileType = TileManager.getFloorPlan()[yCord][xCord];
 		checkCollision();
 
 		if (GamePanel.getMonster() == null || GamePanel.getMonster() != null) {
