@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class MapPanel extends JPanel implements Runnable {
 	
-	static final int GRID_SIZE = 25;
+	public static final int GRID_SIZE = 25;
 	public static final int SCREEN_EDGE_LENGTH = GRID_SIZE * 10 + 1;
 	//final Dimension SCREEN_SIZE = new Dimension(SCREEN_EDGE_LENGTH, SCREEN_EDGE_LENGTH);
 	//Grid location to start at.
@@ -41,7 +41,6 @@ public class MapPanel extends JPanel implements Runnable {
 
 
 	private static String position = MAP_GRID[yCord][xCord];
-	static TileManager tm = new TileManager(GRID_SIZE, GRID_SIZE);
 	public static int tileType;
 
 	public MapPanel() {
@@ -50,7 +49,7 @@ public class MapPanel extends JPanel implements Runnable {
 		this.setFocusable(true);
 		this.setSize(SCREEN_EDGE_LENGTH, SCREEN_EDGE_LENGTH);
 
-		tileType = tm.getTileGrid()[yCord][xCord];
+		tileType = TileManager.getTileGrid()[yCord][xCord];
 		facing = 'D';
 
 		gameThread = new Thread(this);
@@ -62,16 +61,16 @@ public class MapPanel extends JPanel implements Runnable {
 	}
 
 	public void checkCollision() {
-		topCollision = tm.getTileTypes()[tm.getTileGrid()[yCord][xCord]].isTop();
-		bottomCollision = tm.getTileTypes()[tm.getTileGrid()[yCord][xCord]].isBottom();
-		leftCollision = tm.getTileTypes()[tm.getTileGrid()[yCord][xCord]].isLeft();
-		rightCollision = tm.getTileTypes()[tm.getTileGrid()[yCord][xCord]].isRight();
+		topCollision = TileManager.getTileTypes()[TileManager.getTileGrid()[yCord][xCord]].isTop();
+		bottomCollision = TileManager.getTileTypes()[TileManager.getTileGrid()[yCord][xCord]].isBottom();
+		leftCollision = TileManager.getTileTypes()[TileManager.getTileGrid()[yCord][xCord]].isLeft();
+		rightCollision = TileManager.getTileTypes()[TileManager.getTileGrid()[yCord][xCord]].isRight();
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
-		tm.drawTiles(g2d);
+		TileManager.drawTiles(g2d);
 		drawArrow(g2d);
 	}
 
@@ -103,60 +102,59 @@ public class MapPanel extends JPanel implements Runnable {
 	}
 
 	public void updatePosition() {
-		tileType = tm.getTileGrid()[yCord][xCord];
+		tileType = TileManager.getTileGrid()[yCord][xCord];
 		checkCollision();
 
-		if(keyC.upPressed) {
-			//Check the direction facing, if not at top of screen, and not a wall above.
-			if(facing == 'U' && yCord > 0 && !topCollision) {
-				yCord--;
-				position = MAP_GRID[yCord][xCord];
-				yLocation -= GRID_SIZE;
+		if (GamePanel.getMonster() == null || GamePanel.getMonster() != null) {
+			if (keyC.upPressed) {
+				//Check the direction facing, if not at top of screen, and not a wall above.
+				if (facing == 'U' && yCord > 0 && !topCollision) {
+					yCord--;
+					position = MAP_GRID[yCord][xCord];
+					yLocation -= GRID_SIZE;
+				} else if (facing == 'D' && yCord < 9 && !bottomCollision) {
+					yCord++;
+					position = MAP_GRID[yCord][xCord];
+					yLocation += GRID_SIZE;
+				} else if (facing == 'L' && xCord > 0 && !leftCollision) {
+					xCord--;
+					position = MAP_GRID[yCord][xCord];
+					xLocation -= GRID_SIZE;
+				} else if (facing == 'R' && xCord < 9 && !rightCollision) {
+					xCord++;
+					position = MAP_GRID[yCord][xCord];
+					xLocation += GRID_SIZE;
+				}
 			}
-			else if(facing == 'D' && yCord < 9 && !bottomCollision) {
-				yCord++;
-				position = MAP_GRID[yCord][xCord];
-				yLocation += GRID_SIZE;
+
+			if (keyC.downPressed) {
+				switch (facing) {
+					case 'U' -> facing = 'D';
+					case 'D' -> facing = 'U';
+					case 'L' -> facing = 'R';
+					case 'R' -> facing = 'L';
+				}
 			}
-			else if(facing == 'L' && xCord > 0 && !leftCollision) {
-				xCord--;
-				position = MAP_GRID[yCord][xCord];
-				xLocation -= GRID_SIZE;
+
+			if (keyC.leftPressed) {
+				switch (facing) {
+					case 'U' -> facing = 'L';
+					case 'D' -> facing = 'R';
+					case 'L' -> facing = 'D';
+					case 'R' -> facing = 'U';
+				}
 			}
-			else if(facing == 'R' && xCord < 9 && !rightCollision) {
-				xCord++;
-				position = MAP_GRID[yCord][xCord];
-				xLocation += GRID_SIZE;
+
+			if (keyC.rightPressed) {
+				switch (facing) {
+					case 'U' -> facing = 'R';
+					case 'D' -> facing = 'L';
+					case 'L' -> facing = 'U';
+					case 'R' -> facing = 'D';
+				}
 			}
 		}
-
-		if (keyC.downPressed) {
-			switch (facing) {
-				case 'U' -> facing = 'D';
-				case 'D' -> facing = 'U';
-				case 'L' -> facing = 'R';
-				case 'R' -> facing = 'L';
-			}
-		}
-
-		if (keyC.leftPressed) {
-			switch (facing) {
-				case 'U' -> facing = 'L';
-				case 'D' -> facing = 'R';
-				case 'L' -> facing = 'D';
-				case 'R' -> facing = 'U';
-			}
-		}
-
-		if (keyC.rightPressed) {
-			switch (facing) {
-				case 'U' -> facing = 'R';
-				case 'D' -> facing = 'L';
-				case 'L' -> facing = 'U';
-				case 'R' -> facing = 'D';
-			}
-		}
-
+		GamePanel.update();
 	}
 
 	@Override
@@ -172,7 +170,7 @@ public class MapPanel extends JPanel implements Runnable {
 			delta += (currentTime - lastTime) / drawInterval;
 			if(delta >= 1) {
 				updatePosition();
-				GamePanel.update();
+
 				repaint();
 				delta = 0.0;
 			}

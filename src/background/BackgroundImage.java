@@ -1,4 +1,4 @@
-package tiles;
+package background;
 
 import javax.swing.*;
 

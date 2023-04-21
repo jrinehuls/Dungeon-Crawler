@@ -1,17 +1,16 @@
 package tiles;
 
-import javax.swing.*;
+import panels.MapPanel;
+
 import java.awt.*;
 
 public class TileManager {
 
-    private Tile[] tileTypes;
-    private int[][] tileGrid;
-    private int tileWidth;
-    private int tileHeight;
-    BackgroundImage bgi = new BackgroundImage();
+    private static final int tileWidth = MapPanel.GRID_SIZE;
+    private static final int tileHeight = MapPanel.GRID_SIZE;
 
-    private final int[][] TILE_GRID = {{8, 1, 1, 9, 9, 9, 9, 9, 9, 5},
+    private static final int[][] TILE_GRID = {
+            {8, 1, 1, 9, 9, 9, 9, 9, 9, 5},
             {4, 3, 6, 8, 9, 9, 9, 1, 14, 10},
             {4, 1, 5, 10, 8, 9, 1, 6, 12, 2},
             {11, 10, 7, 2, 10, 12, 3, 1, 14, 10},
@@ -22,56 +21,26 @@ public class TileManager {
             {8, 14, 4, 1, 1, 1, 2, 4, 6, 10},
             {7, 9, 3, 6, 7, 3, 3, 6, 12, 6}};
 
-    public TileManager(int tileWidth, int tileHeight) {
-        this.tileWidth = tileWidth;
-        this.tileHeight = tileHeight;
+    private static final Tile[] tileTypes = {
+            new Tile(false, false, false, false),
+            new Tile(true, false, false, false),
+            new Tile(false, false, false, true),
+            new Tile(false, true, false, false),
+            new Tile(false, false, true, false),
+            new Tile(true, false, false, true),
+            new Tile(false, true, false, true),
+            new Tile(false, true, true, false),
+            new Tile(true, false, true, false),
+            new Tile(true, true, false, false),
+            new Tile(false, false, true, true),
+            new Tile(false, true, true, true),
+            new Tile(true, true, true, false),
+            new Tile(true, false, true, true),
+            new Tile(true, true, false, true),
+            new Tile(true, true, true, true)
+    };
 
-        tileTypes = new Tile[16];
-
-        //empty
-        tileTypes[0] = new Tile(false, false, false, false);
-        //top
-        tileTypes[1] = new Tile(true, false, false, false);
-        //right
-        tileTypes[2] = new Tile(false, false, false, true);
-        //bottom
-        tileTypes[3] = new Tile(false, true, false, false);
-        //left
-        tileTypes[4] = new Tile(false, false, true, false);
-        //top & right
-        tileTypes[5] = new Tile(true, false, false, true);
-        //right & bottom
-        tileTypes[6] = new Tile(false, true, false, true);
-        //bottom & left
-        tileTypes[7] = new Tile(false, true, true, false);
-        //left & top
-        tileTypes[8] = new Tile(true, false, true, false);
-        //top & bottom
-        tileTypes[9] = new Tile(true, true, false, false);
-        //left & right
-        tileTypes[10] = new Tile(false, false, true, true);
-        //not top
-        tileTypes[11] = new Tile(false, true, true, true);
-        //not right
-        tileTypes[12] = new Tile(true, true, true, false);
-        //not bottom
-        tileTypes[13] = new Tile(true, false, true, true);
-        //not left
-        tileTypes[14] = new Tile(true, true, false, true);
-        //filled
-        tileTypes[15] = new Tile(true, true, true, true);
-    }
-    // return array of all tile types. use getTileTypes[index] for a specific type.
-    // index should be TileManager.TILE_GRID[i][j].
-    public Tile[] getTileTypes() {
-        return tileTypes;
-    }
-
-    public int[][] getTileGrid() {
-        return TILE_GRID;
-    }
-
-    public void drawTiles(Graphics2D g2d) {
+    public static void drawTiles(Graphics2D g2d) {
         g2d.setColor(Color.BLACK);
         int numRows = TILE_GRID.length;
         int numCols = TILE_GRID[0].length;
@@ -111,6 +80,16 @@ public class TileManager {
             j=0;
             i++;
         }
+    }
+
+    // return array of all tile types. use getTileTypes[index] for a specific type.
+    // index should be TileManager.TILE_GRID[i][j].
+    public static Tile[] getTileTypes() {
+        return tileTypes;
+    }
+
+    public static int[][] getTileGrid() {
+        return TILE_GRID;
     }
 
 }
