@@ -1,5 +1,6 @@
 package view.panels;
 
+import collections.MonsterCollection;
 import model.monster.Karen;
 import model.monster.Monster;
 import background.BackGroundImageManager;
@@ -52,29 +53,24 @@ public class GamePanel extends JPanel{
 	public static void update() {
 		currentPosition = MapPanel.getPosition();
 		positionLabel.setText(currentPosition);
+		backgroundImage = backGroundImageManager.getBackgroundImage(MapPanel.tileType, MapPanel.facing);
+		backgroundLabel.setIcon(backgroundImage);
 		if (!lastPosition.equals(currentPosition)) {
-			randomNumber = Math.random();
+			monster = MonsterCollection.getMonster();
 			lastPosition = currentPosition;
 		}
-		System.out.println(randomNumber);
-
-		monster = getMonster();
-
+		// Set the icon for the monster that shows up
 		try {
 			monsterLabel.setIcon(monster.getIcon());
 		} catch (NullPointerException e) {
 			monsterLabel.setIcon(null);
 		}
 
-		backgroundImage = backGroundImageManager.getBackgroundImage(MapPanel.tileType, MapPanel.facing);
-		backgroundLabel.setIcon(backgroundImage);
 	}
 
+	// Invoked by MapPanel
 	static Monster getMonster() {
-		if (randomNumber >= 0.0 && randomNumber < 0.5) {
-			return new Karen();
-		}
-		else return null;
+		return monster;
 	}
 
 }

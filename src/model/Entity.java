@@ -16,10 +16,6 @@ public abstract class Entity {
         this.speed = speed;
     }
 
-    public Entity() {
-
-    }
-
     public int getHp() {
         return hp;
     }
