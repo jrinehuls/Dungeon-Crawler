@@ -12,7 +12,7 @@ import javax.swing.*;
 
 public class GamePanel extends JPanel{
 	//Height and width of the main panel
-	public final int SCREEN_WIDTH = 600;
+	public final int SCREEN_WIDTH = 800;
 	public final int SCREEN_HEIGHT = 600;
 
 	private static BackGroundImageManager backGroundImageManager = new BackGroundImageManager();
@@ -38,12 +38,11 @@ public class GamePanel extends JPanel{
 		// Position Label
 		positionLabel.setBounds(50, 50, 40, 20);
 		this.add(positionLabel);
-
 		// Monster Image Label
-		monsterLabel.setBounds(SCREEN_WIDTH/4 + 50, 50, 200, 200);
+		monsterLabel.setBounds((SCREEN_WIDTH - 200)/2, 50, 200, 200);
 		this.add(monsterLabel);
 		// Background Image
-		backgroundLabel.setBounds(SCREEN_WIDTH/4, 0, SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+		backgroundLabel.setBounds((SCREEN_WIDTH - 300)/2, 0, 300, 300);
 		this.add(backgroundLabel);
 
 		lastPosition = MapPanel.getPosition();

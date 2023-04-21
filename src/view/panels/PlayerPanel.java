@@ -7,8 +7,8 @@ import java.awt.*;
 
 public class PlayerPanel extends JPanel {
 
-    final int SCREEN_WIDTH = MapPanel.SCREEN_EDGE_LENGTH;
-    final int SCREEN_HEIGHT = 350;
+    public static final int SCREEN_WIDTH = MapPanel.SCREEN_EDGE_LENGTH;
+    public static final int SCREEN_HEIGHT = 350;
     Player player = new Player(0,1);
     JLabel hpLabel;
 

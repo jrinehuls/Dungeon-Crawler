@@ -18,9 +18,9 @@ public class MonsterCollection {
     public static Monster getMonster() {
         randomNumber = Math.random();
         System.out.println(randomNumber);
-        if (randomNumber >= 0.0 && randomNumber < 0.5) {
+        if (randomNumber >= 0.0 && randomNumber < 0.33) {
             return monsters[0];
-        } else if (randomNumber >= 0.5 && randomNumber < 0.75) {
+        } else if (randomNumber >= 0.33 && randomNumber < 0.67) {
             return monsters[1];
         }
         else return null;

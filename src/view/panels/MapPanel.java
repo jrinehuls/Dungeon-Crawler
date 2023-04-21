@@ -155,6 +155,7 @@ public class MapPanel extends JPanel implements Runnable {
 			}
 		}
 		GamePanel.update();
+		MonsterPanel.update();
 	}
 
 	@Override
