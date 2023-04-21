@@ -1,6 +1,8 @@
-import panels.GamePanel;
-import panels.MapPanel;
-import panels.PlayerPanel;
+package view;
+
+import view.panels.GamePanel;
+import view.panels.MapPanel;
+import view.panels.PlayerPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +14,7 @@ public class MainGameFrame extends JFrame {
     final int FRAME_WIDTH = MapPanel.SCREEN_EDGE_LENGTH + gamePanel.SCREEN_WIDTH + 16;
     final int FRAME_HEIGHT = gamePanel.SCREEN_HEIGHT + 39;
 
-    MainGameFrame() {
+    public MainGameFrame() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.ORANGE);
         this.setIconImage(new ImageIcon("src/res/monsters/Spaghetti.png").getImage());

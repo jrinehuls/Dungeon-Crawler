@@ -1,6 +1,6 @@
-package panels;
+package view.panels;
 
-import model.Player;
+import model.player.Player;
 
 import javax.swing.*;
 import java.awt.*;

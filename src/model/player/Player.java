@@ -1,4 +1,6 @@
-package model;
+package model.player;
+
+import model.Entity;
 
 public class Player extends Entity {
 

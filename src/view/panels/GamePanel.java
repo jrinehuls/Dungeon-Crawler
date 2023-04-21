@@ -1,4 +1,4 @@
-package panels;
+package view.panels;
 
 import model.monster.Karen;
 import model.monster.Monster;

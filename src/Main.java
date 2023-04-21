@@ -1,3 +1,4 @@
+import view.MainGameFrame;
 
 public class Main {
 

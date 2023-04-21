@@ -1,6 +1,6 @@
-package panels;
+package view.panels;
 
-import inputs.KeyController;
+import controller.KeyController;
 import tiles.TileManager;
 
 import java.awt.*;
