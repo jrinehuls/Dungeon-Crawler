@@ -9,7 +9,7 @@ public class PlayerPanel extends JPanel {
 
     public static final int SCREEN_WIDTH = MapPanel.SCREEN_EDGE_LENGTH;
     public static final int SCREEN_HEIGHT = 350;
-    static Player player = new Player();
+    private static Player player = new Player();
     private static JLabel levelLabel;
     private static JLabel expLabel;
     private static JLabel hpLabel;
@@ -51,6 +51,10 @@ public class PlayerPanel extends JPanel {
         goldLabel = new JLabel("Gold: " + player.getGold(), 0);
         goldLabel.setBounds(0, 190, SCREEN_WIDTH, 20);
         this.add(goldLabel);
+    }
+
+    public static Player getPlayer() {
+        return player;
     }
 
     public static void update() {

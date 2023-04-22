@@ -6,7 +6,7 @@ import model.player.Player;
 import javax.swing.*;
 import java.awt.*;
 
-public class MonsterPanel extends  JPanel{
+public class MonsterPanel extends JPanel implements Runnable {
 
     public final static int SCREEN_WIDTH = PlayerPanel.SCREEN_WIDTH;
     public final static int SCREEN_HEIGHT = PlayerPanel.SCREEN_HEIGHT;
@@ -16,7 +16,7 @@ public class MonsterPanel extends  JPanel{
     static JLabel attackLabel;
     static JLabel defenseLabel;
     static JLabel speedLabel;
-
+    Thread gameThread = new Thread(this);
 
     public MonsterPanel() {
         this.setLayout(null);
@@ -43,6 +43,7 @@ public class MonsterPanel extends  JPanel{
         speedLabel.setBounds(0, 130, SCREEN_WIDTH, 20);
         this.add(speedLabel);
 
+        gameThread.start();
     }
 
     public static void update() {
@@ -59,6 +60,25 @@ public class MonsterPanel extends  JPanel{
             attackLabel.setText("");
             defenseLabel.setText("");
             speedLabel.setText("");
+        }
+    }
+
+    @Override
+    public void run() {
+        //game loop
+        long lastTime = System.nanoTime();
+        long currentTime;
+        final double FPS = 30.0;
+        final double drawInterval = 1_000_000_000 / FPS;
+        double delta = 0;
+        while(gameThread != null) {
+            currentTime = System.nanoTime();
+            delta += (currentTime - lastTime) / drawInterval;
+            if(delta >= 1) {
+                update();
+                delta = 0.0;
+            }
+            lastTime = currentTime;
         }
     }
 }

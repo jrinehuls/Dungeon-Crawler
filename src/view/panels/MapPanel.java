@@ -101,7 +101,7 @@ public class MapPanel extends JPanel implements Runnable {
 		}
 	}
 
-	public void updatePosition() {
+	public void update() {
 		tileType = TileManager.getFloorPlan()[yCord][xCord];
 		checkCollision();
 
@@ -154,8 +154,7 @@ public class MapPanel extends JPanel implements Runnable {
 				}
 			}
 		}
-		GamePanel.update();
-		MonsterPanel.update();
+
 	}
 
 	@Override
@@ -170,8 +169,7 @@ public class MapPanel extends JPanel implements Runnable {
 			currentTime = System.nanoTime();
 			delta += (currentTime - lastTime) / drawInterval;
 			if(delta >= 1) {
-				updatePosition();
-
+				update();
 				repaint();
 				delta = 0.0;
 			}

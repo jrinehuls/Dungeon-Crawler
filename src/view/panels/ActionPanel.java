@@ -1,18 +1,27 @@
 package view.panels;
 
+import controller.ActionButtonController;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
-public class ActionPanel extends JPanel {
+public class ActionPanel extends JPanel implements Runnable{
 
     public static final int SCREEN_WIDTH = MapPanel.SCREEN_EDGE_LENGTH;
     public static final int SCREEN_HEIGHT = MapPanel.SCREEN_EDGE_LENGTH;
 
-    private JButton attackButton;
-    private JButton spellButton;
-    private JButton itemButton;
-    private JButton defendButton;
-    private JButton runButton;
+    public static JButton attackButton = new JButton("Attack");;
+    public static JButton spellButton = new JButton("Spell");
+    public static JButton itemButton = new JButton("Item");
+    public static JButton defendButton = new JButton("Defend");
+    public static JButton runButton = new JButton("Run");
+
+    static JButton[] buttons = {attackButton, spellButton, itemButton, defendButton, runButton};
+
+    ActionListener abc = new ActionButtonController(this);
+
+    Thread gameThread;
 
     public ActionPanel() {
         final int BUTTON_WIDTH = 120;
@@ -23,33 +32,55 @@ public class ActionPanel extends JPanel {
         this.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        attackButton = new JButton("Attack");
         attackButton.setBounds(BUTTON_X, 30, BUTTON_WIDTH, BUTTON_HEIGHT);
-        this.add(attackButton);
-
-        spellButton = new JButton("Spell");
         spellButton.setBounds(BUTTON_X, 70, BUTTON_WIDTH, BUTTON_HEIGHT);
-        this.add(spellButton);
-
-        itemButton = new JButton("Item");
         itemButton.setBounds(BUTTON_X, 110, BUTTON_WIDTH, BUTTON_HEIGHT);
-        this.add(itemButton);
-
-        defendButton = new JButton("Defend");
         defendButton.setBounds(BUTTON_X, 150, BUTTON_WIDTH, BUTTON_HEIGHT);
-        this.add(defendButton);
-
-        runButton = new JButton("Run");
         runButton.setBounds(BUTTON_X, 190, BUTTON_WIDTH, BUTTON_HEIGHT);
-        this.add(runButton);
 
-        runButton = new JButton("Run");
-        runButton.setBounds(BUTTON_X, 300, BUTTON_WIDTH, BUTTON_HEIGHT);
-        this.add(runButton);
+        for (JButton button : buttons) {
+            if (GamePanel.getMonster() == null) {
+                button.setEnabled(false);
+            }
+            button.addActionListener(abc);
+            button.setFocusable(false);
+            this.add(button);
+        }
 
+
+        gameThread = new Thread(this);
+        gameThread.start();
     }
 
 
+    public static void update() {
+        for (JButton button : buttons) {
+            if (GamePanel.getMonster() == null) {
+                button.setEnabled(false);
+            } else {
+                button.setEnabled(true);
+            }
+        }
+    }
+
+    @Override
+    public void run() {
+        //game loop
+        long lastTime = System.nanoTime();
+        long currentTime;
+        final double FPS = 30.0;
+        final double drawInterval = 1_000_000_000 / FPS;
+        double delta = 0;
+        while(gameThread != null) {
+            currentTime = System.nanoTime();
+            delta += (currentTime - lastTime) / drawInterval;
+            if(delta >= 1) {
+                update();
+                delta = 0.0;
+            }
+            lastTime = currentTime;
+        }
+    }
 
 
 
