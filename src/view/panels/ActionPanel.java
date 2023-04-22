@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class ActionPanel extends JPanel implements Runnable{
+public class ActionPanel extends JPanel {
 
     public static final int SCREEN_WIDTH = MapPanel.SCREEN_EDGE_LENGTH;
     public static final int SCREEN_HEIGHT = MapPanel.SCREEN_EDGE_LENGTH;
@@ -20,8 +20,6 @@ public class ActionPanel extends JPanel implements Runnable{
     static JButton[] buttons = {attackButton, spellButton, itemButton, defendButton, runButton};
 
     ActionListener abc = new ActionButtonController(this);
-
-    Thread gameThread;
 
     public ActionPanel() {
         final int BUTTON_WIDTH = 120;
@@ -48,8 +46,6 @@ public class ActionPanel extends JPanel implements Runnable{
         }
 
 
-        gameThread = new Thread(this);
-        gameThread.start();
     }
 
 
@@ -62,26 +58,5 @@ public class ActionPanel extends JPanel implements Runnable{
             }
         }
     }
-
-    @Override
-    public void run() {
-        //game loop
-        long lastTime = System.nanoTime();
-        long currentTime;
-        final double FPS = 30.0;
-        final double drawInterval = 1_000_000_000 / FPS;
-        double delta = 0;
-        while(gameThread != null) {
-            currentTime = System.nanoTime();
-            delta += (currentTime - lastTime) / drawInterval;
-            if(delta >= 1) {
-                update();
-                delta = 0.0;
-            }
-            lastTime = currentTime;
-        }
-    }
-
-
 
 }

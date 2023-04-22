@@ -20,8 +20,8 @@ public class ActionButtonController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == ap.attackButton) {
-            GamePanel.getMonster().setHp(5);
             System.out.println("Attack: " + PlayerPanel.getPlayer().getAttack());
+            GamePanel.getMonster().setHp(0);
         }
         if (e.getSource() == ap.spellButton) {
             System.out.println("Spell: " + "PlayerPanel.getPlayer().getSpell()");

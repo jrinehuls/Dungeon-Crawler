@@ -1,12 +1,11 @@
 package view.panels;
 
 import model.monster.Monster;
-import model.player.Player;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MonsterPanel extends JPanel implements Runnable {
+public class MonsterPanel extends JPanel {
 
     public final static int SCREEN_WIDTH = PlayerPanel.SCREEN_WIDTH;
     public final static int SCREEN_HEIGHT = PlayerPanel.SCREEN_HEIGHT;
@@ -16,7 +15,6 @@ public class MonsterPanel extends JPanel implements Runnable {
     static JLabel attackLabel;
     static JLabel defenseLabel;
     static JLabel speedLabel;
-    Thread gameThread = new Thread(this);
 
     public MonsterPanel() {
         this.setLayout(null);
@@ -43,7 +41,6 @@ public class MonsterPanel extends JPanel implements Runnable {
         speedLabel.setBounds(0, 130, SCREEN_WIDTH, 20);
         this.add(speedLabel);
 
-        gameThread.start();
     }
 
     public static void update() {
@@ -63,22 +60,5 @@ public class MonsterPanel extends JPanel implements Runnable {
         }
     }
 
-    @Override
-    public void run() {
-        //game loop
-        long lastTime = System.nanoTime();
-        long currentTime;
-        final double FPS = 30.0;
-        final double drawInterval = 1_000_000_000 / FPS;
-        double delta = 0;
-        while(gameThread != null) {
-            currentTime = System.nanoTime();
-            delta += (currentTime - lastTime) / drawInterval;
-            if(delta >= 1) {
-                update();
-                delta = 0.0;
-            }
-            lastTime = currentTime;
-        }
-    }
+
 }

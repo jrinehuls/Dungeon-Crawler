@@ -4,6 +4,7 @@ import controller.KeyController;
 import tiles.TileManager;
 
 import java.awt.*;
+import java.awt.font.GlyphMetrics;
 import javax.swing.*;
 
 public class MapPanel extends JPanel implements Runnable {
@@ -26,7 +27,7 @@ public class MapPanel extends JPanel implements Runnable {
 	boolean rightCollision;
 
 	KeyController keyC = new KeyController();
-	Thread gameThread;
+	Thread mapThread = new Thread(this);
 	
 	private static final String[][] MAP_GRID = {{"A1","A2","A3","A4","A5","A6","A7","A8","A9","A10"},
 								  {"B1","B2","B3","B4","B5","B6","B7","B8","B9","B10"},
@@ -52,8 +53,8 @@ public class MapPanel extends JPanel implements Runnable {
 		tileType = TileManager.getFloorPlan()[yCord][xCord];
 		facing = 'D';
 
-		gameThread = new Thread(this);
-		gameThread.start();
+
+		mapThread.start();
 	}
 
 	public static String getPosition() {
@@ -105,7 +106,7 @@ public class MapPanel extends JPanel implements Runnable {
 		tileType = TileManager.getFloorPlan()[yCord][xCord];
 		checkCollision();
 
-		if (!GamePanel.isMonster() || GamePanel.isMonster()) {
+		if (!GamePanel.isMonster()) {
 			if (keyC.upPressed) {
 				//Check the direction facing, if not at top of screen, and not a wall above.
 				if (facing == 'U' && yCord > 0 && !topCollision) {
@@ -165,11 +166,15 @@ public class MapPanel extends JPanel implements Runnable {
 		final double FPS = 6.0;
 		final double drawInterval = 1_000_000_000 / FPS;
 		double delta = 0;
-		while(gameThread != null) {
+		while(mapThread != null) {
 			currentTime = System.nanoTime();
 			delta += (currentTime - lastTime) / drawInterval;
 			if(delta >= 1) {
 				update();
+				GamePanel.update();
+				PlayerPanel.update();
+				ActionPanel.update();
+				MonsterPanel.update();
 				repaint();
 				delta = 0.0;
 			}

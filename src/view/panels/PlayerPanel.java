@@ -18,8 +18,8 @@ public class PlayerPanel extends JPanel {
     private static JLabel speedLabel;
     private static JLabel goldLabel;
 
-
     public PlayerPanel() {
+
         this.setLayout(null);
         this.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -51,6 +51,7 @@ public class PlayerPanel extends JPanel {
         goldLabel = new JLabel("Gold: " + player.getGold(), 0);
         goldLabel.setBounds(0, 190, SCREEN_WIDTH, 20);
         this.add(goldLabel);
+
     }
 
     public static Player getPlayer() {
@@ -66,4 +67,6 @@ public class PlayerPanel extends JPanel {
         speedLabel.setText("Speed: " + player.getSpeed());
         goldLabel.setText("Gold: " + player.getGold());
     }
+
+
 }
