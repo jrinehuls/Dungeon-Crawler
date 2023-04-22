@@ -1,9 +1,6 @@
 package view;
 
-import view.panels.GamePanel;
-import view.panels.MapPanel;
-import view.panels.MonsterPanel;
-import view.panels.PlayerPanel;
+import view.panels.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,8 +8,9 @@ import java.awt.*;
 public class MainGameFrame extends JFrame {
     GamePanel gamePanel = new GamePanel();
     MapPanel mapPanel = new MapPanel();
-    PlayerPanel playerPanel = new PlayerPanel();
     MonsterPanel monsterPanel = new MonsterPanel();
+    PlayerPanel playerPanel = new PlayerPanel();
+    ActionPanel actionPanel = new ActionPanel();
     final int FRAME_WIDTH = MapPanel.SCREEN_EDGE_LENGTH + gamePanel.SCREEN_WIDTH + MonsterPanel.SCREEN_WIDTH + 16;
     final int FRAME_HEIGHT = gamePanel.SCREEN_HEIGHT + 39;
 
@@ -25,10 +23,12 @@ public class MainGameFrame extends JFrame {
         this.add(mapPanel);
         gamePanel.setLocation(MapPanel.SCREEN_EDGE_LENGTH,0);
         this.add(gamePanel);
-        playerPanel.setLocation(0, MapPanel.SCREEN_EDGE_LENGTH);
+        playerPanel.setLocation(MapPanel.SCREEN_EDGE_LENGTH + gamePanel.SCREEN_WIDTH, MapPanel.SCREEN_EDGE_LENGTH);
         this.add(playerPanel);
-        monsterPanel.setLocation(MapPanel.SCREEN_EDGE_LENGTH + gamePanel.SCREEN_WIDTH, MapPanel.SCREEN_EDGE_LENGTH);
+        monsterPanel.setLocation(0, MapPanel.SCREEN_EDGE_LENGTH);
         this.add(monsterPanel);
+        actionPanel.setLocation(MapPanel.SCREEN_EDGE_LENGTH + gamePanel.SCREEN_WIDTH, 0);
+        this.add(actionPanel);
         this.setSize(FRAME_WIDTH ,FRAME_HEIGHT);
         this.setLocationRelativeTo(null);
         this.setVisible(true);

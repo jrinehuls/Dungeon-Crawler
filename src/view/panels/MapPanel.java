@@ -105,7 +105,7 @@ public class MapPanel extends JPanel implements Runnable {
 		tileType = TileManager.getFloorPlan()[yCord][xCord];
 		checkCollision();
 
-		if (GamePanel.getMonster() == null || GamePanel.getMonster() != null) {
+		if (!GamePanel.isMonster() || GamePanel.isMonster()) {
 			if (keyC.upPressed) {
 				//Check the direction facing, if not at top of screen, and not a wall above.
 				if (facing == 'U' && yCord > 0 && !topCollision) {

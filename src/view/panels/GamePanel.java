@@ -67,9 +67,18 @@ public class GamePanel extends JPanel{
 
 	}
 
-	// Invoked by MapPanel
-	static Monster getMonster() {
+	// Invoked bo MonsterPanel
+	public static Monster getMonster() {
 		return monster;
+	}
+
+	// Invoked by MapPanel
+	public static boolean isMonster() {
+		if (monster != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

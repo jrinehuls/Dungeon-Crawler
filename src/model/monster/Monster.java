@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public abstract class Monster extends Entity {
 
-    protected  String name;
+    protected String name;
     protected ImageIcon icon;
 
     public Monster(String name, int hp, int maxHP, int attack, int defense, int speed, ImageIcon icon) {

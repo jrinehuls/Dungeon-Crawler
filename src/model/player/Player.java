@@ -4,13 +4,13 @@ import model.Entity;
 
 public class Player extends Entity {
 
-    private int level;
-    private int exp;
+    private int level = 1;
+    private int exp = 0;
+    private int nextExp = 50;
+    private int gold = 0;
 
-    public Player(int exp, int level) {
+    public Player() {
         super(100, 100, 10, 10, 15);
-        this.exp = exp;
-        this.level = level;
     }
 
     public int getLevel() {
@@ -29,5 +29,20 @@ public class Player extends Entity {
         this.exp = exp;
     }
 
+    public int getNextExp() {
+        return nextExp;
+    }
+
+    public void setNextExp(int nextExp) {
+        this.nextExp = nextExp;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
 
 }
