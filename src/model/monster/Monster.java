@@ -1,7 +1,10 @@
 package model.monster;
 
 import model.Entity;
+import model.player.Player;
+import view.panels.GamePanel;
 import view.panels.MonsterPanel;
+import view.panels.PlayerPanel;
 
 import javax.swing.*;
 
@@ -9,14 +12,13 @@ public abstract class Monster extends Entity implements MonsterActions {
 
     protected String name;
     protected ImageIcon icon;
-    protected int progress;
+    Player player;
 
-    public Monster(String name, int hp, int maxHP, int attack, int defense, int speed, ImageIcon icon) {
-        super(hp, maxHP, attack, defense, speed);
+    public Monster(String name, int HP, int maxHP, int MP, int maxMP, int attack, int defense, int magicAttack, int magicDefense, int speed, ImageIcon icon) {
+        super(HP, maxHP, MP, maxMP, attack, defense, magicAttack, magicDefense, speed);
         this.icon = icon;
         this.name = name;
-        this.progress = 0;
-
+        player = PlayerPanel.getPlayer();
     }
 
     public String  getName() {
@@ -25,14 +27,6 @@ public abstract class Monster extends Entity implements MonsterActions {
 
     public ImageIcon getIcon() {
         return icon;
-    }
-
-    public int getProgress() {
-        return progress;
-    }
-
-    public void setProgress(int pprogress) {
-        this.progress = pprogress;
     }
 
 }

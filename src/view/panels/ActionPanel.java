@@ -19,7 +19,7 @@ public class ActionPanel extends JPanel {
 
     static JButton[] buttons = {attackButton, spellButton, itemButton, defendButton, runButton};
 
-    ActionListener abc = new ActionButtonController(this);
+    ActionButtonController abc = new ActionButtonController(this);
 
     public ActionPanel() {
         final int BUTTON_WIDTH = 120;
@@ -45,16 +45,14 @@ public class ActionPanel extends JPanel {
             this.add(button);
         }
 
-
     }
-
 
     public static void update() {
         for (JButton button : buttons) {
-            if (GamePanel.getMonster() == null) {
-                button.setEnabled(false);
-            } else {
+            if (GamePanel.getMonster() != null && PlayerPanel.getPlayer().getProgress() >= 100) {
                 button.setEnabled(true);
+            } else {
+                button.setEnabled(false);
             }
         }
     }

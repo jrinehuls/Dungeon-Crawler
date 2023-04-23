@@ -10,7 +10,7 @@ public class Player extends Entity {
     private int gold = 0;
 
     public Player() {
-        super(100, 100, 10, 10, 15);
+        super(100, 100, 10, 10, 20, 20, 10, 10, 25);
     }
 
     public int getLevel() {

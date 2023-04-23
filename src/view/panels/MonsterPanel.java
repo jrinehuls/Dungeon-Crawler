@@ -1,6 +1,5 @@
 package view.panels;
 
-import model.monster.Karen;
 import model.monster.Monster;
 
 import javax.swing.*;
@@ -11,12 +10,12 @@ public class MonsterPanel extends JPanel {
     public final static int SCREEN_WIDTH = PlayerPanel.SCREEN_WIDTH;
     public final static int SCREEN_HEIGHT = PlayerPanel.SCREEN_HEIGHT;
     static Monster monster = GamePanel.getMonster();
-    static JLabel nameLabel;
-    static JLabel hpLabel;
-    static JLabel attackLabel;
-    static JLabel defenseLabel;
-    static JLabel speedLabel;
-    static JProgressBar speedProgress = new JProgressBar();
+    private static JLabel nameLabel;
+    private static JLabel hpLabel;
+    private static JLabel attackLabel;
+    private static JLabel defenseLabel;
+    private static JLabel speedLabel;
+    private static JProgressBar speedProgress = new JProgressBar();
 
 
     public MonsterPanel() {
@@ -44,7 +43,7 @@ public class MonsterPanel extends JPanel {
         speedLabel.setBounds(0, 130, SCREEN_WIDTH, 20);
         this.add(speedLabel);
 
-        speedProgress.setBounds(0, 160, SCREEN_WIDTH, 20);
+        speedProgress.setBounds(10, 160, SCREEN_WIDTH - 20, 20);
         this.add(speedProgress);
         speedProgress.setVisible(false);
 
@@ -52,11 +51,11 @@ public class MonsterPanel extends JPanel {
 
     private static void setMonsterDetails() {
         nameLabel.setText("A wild " + monster.getName() + " appeared!");
-        hpLabel.setText("HP: " + monster.getHp() + "/" + monster.getMaxHP());
+        hpLabel.setText("HP: " + monster.getHP() + "/" + monster.getMaxHP());
         attackLabel.setText("Attack: " + monster.getAttack());
         defenseLabel.setText("Defense: " + monster.getDefense());
         speedLabel.setText("Speed: " + monster.getSpeed());
-        speedProgress.setValue(monster.getProgress());
+        speedProgress.setValue((int)monster.getProgress());
         speedProgress.setVisible(true);
     }
     private static void clearMonsterDetails() {
@@ -72,7 +71,7 @@ public class MonsterPanel extends JPanel {
         monster = GamePanel.getMonster();
         if (monster != null) {
             setMonsterDetails();
-            monster.setProgress(monster.getProgress() + 5);
+            monster.setProgress(monster.getProgress() + (monster.getSpeed()/10.0));
         } else {
             clearMonsterDetails();
         }

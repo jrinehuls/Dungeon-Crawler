@@ -1,7 +1,6 @@
 package view.panels;
 
 import collections.MonsterCollection;
-import model.monster.Karen;
 import model.monster.Monster;
 import background.BackGroundImageManager;
 
@@ -66,10 +65,11 @@ public class GamePanel extends JPanel {
 	}
 
 	public static void handleMonster() {
-		if (monster.getHp() <= 0) {
+		monsterLabel.setIcon(monster.getIcon());
+		if (monster.getHP() <= 0) {
+			monster.dropGold();
 			monster = null;
 		}
-		System.out.println(monster.getProgress());
 		monster.takeAction();
 	}
 
@@ -82,11 +82,9 @@ public class GamePanel extends JPanel {
 			monster = new MonsterCollection().getMonster();
 			lastPosition = currentPosition;
 		}
-		// Set the icon for the monster that shows up
-
+		// Handle monster related attributes and activities
 		try {
 			handleMonster();
-			monsterLabel.setIcon(monster.getIcon());
 		} catch (NullPointerException e) {
 			monsterLabel.setIcon(null);
 		}
