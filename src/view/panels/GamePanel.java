@@ -69,6 +69,8 @@ public class GamePanel extends JPanel {
 		if (monster.getHp() <= 0) {
 			monster = null;
 		}
+		System.out.println(monster.getProgress());
+		monster.takeAction();
 	}
 
 	public static void update() {
@@ -81,6 +83,7 @@ public class GamePanel extends JPanel {
 			lastPosition = currentPosition;
 		}
 		// Set the icon for the monster that shows up
+
 		try {
 			handleMonster();
 			monsterLabel.setIcon(monster.getIcon());

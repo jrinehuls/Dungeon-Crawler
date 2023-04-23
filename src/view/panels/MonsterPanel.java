@@ -1,5 +1,6 @@
 package view.panels;
 
+import model.monster.Karen;
 import model.monster.Monster;
 
 import javax.swing.*;
@@ -15,6 +16,8 @@ public class MonsterPanel extends JPanel {
     static JLabel attackLabel;
     static JLabel defenseLabel;
     static JLabel speedLabel;
+    static JProgressBar speedProgress = new JProgressBar();
+
 
     public MonsterPanel() {
         this.setLayout(null);
@@ -41,24 +44,37 @@ public class MonsterPanel extends JPanel {
         speedLabel.setBounds(0, 130, SCREEN_WIDTH, 20);
         this.add(speedLabel);
 
+        speedProgress.setBounds(0, 160, SCREEN_WIDTH, 20);
+        this.add(speedProgress);
+        speedProgress.setVisible(false);
+
+    }
+
+    private static void setMonsterDetails() {
+        nameLabel.setText("A wild " + monster.getName() + " appeared!");
+        hpLabel.setText("HP: " + monster.getHp() + "/" + monster.getMaxHP());
+        attackLabel.setText("Attack: " + monster.getAttack());
+        defenseLabel.setText("Defense: " + monster.getDefense());
+        speedLabel.setText("Speed: " + monster.getSpeed());
+        speedProgress.setValue(monster.getProgress());
+        speedProgress.setVisible(true);
+    }
+    private static void clearMonsterDetails() {
+        nameLabel.setText("");
+        hpLabel.setText("");
+        attackLabel.setText("");
+        defenseLabel.setText("");
+        speedLabel.setText("");
+        speedProgress.setVisible(false);
     }
 
     public static void update() {
         monster = GamePanel.getMonster();
         if (monster != null) {
-            nameLabel.setText("A wild " + monster.getName() + " appeared!");
-            hpLabel.setText("HP: " + monster.getHp() + "/" + monster.getMaxHP());
-            attackLabel.setText("Attack: " + monster.getAttack());
-            defenseLabel.setText("Defense: " + monster.getDefense());
-            speedLabel.setText("Speed: " + monster.getSpeed());
+            setMonsterDetails();
+            monster.setProgress(monster.getProgress() + 5);
         } else {
-            nameLabel.setText("");
-            hpLabel.setText("");
-            attackLabel.setText("");
-            defenseLabel.setText("");
-            speedLabel.setText("");
+            clearMonsterDetails();
         }
     }
-
-
 }
