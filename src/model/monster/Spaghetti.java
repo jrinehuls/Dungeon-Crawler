@@ -19,7 +19,8 @@ public class Spaghetti extends Monster{
 
     @Override
     public void attack() {
-        System.out.println("Now it's Spaghetti time");
+        player.setHP(player.getHP() - (attack/player.getDefense() + 10));
+        System.out.println("Spaghetti attacked!");
     }
 
     @Override
@@ -39,7 +40,10 @@ public class Spaghetti extends Monster{
 
     @Override
     public void dropGold() {
-
+        if (HP <= 0) {
+            player.setGold(player.getGold() + 20);
+            System.out.println("You got 20 gold!");
+        }
     }
 
     @Override

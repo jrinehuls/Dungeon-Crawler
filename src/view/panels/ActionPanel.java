@@ -48,8 +48,9 @@ public class ActionPanel extends JPanel {
     }
 
     public static void update() {
+        boolean enableable = GamePanel.getMonster() != null && PlayerPanel.getPlayer().getProgress() >= 100;
         for (JButton button : buttons) {
-            if (GamePanel.getMonster() != null && PlayerPanel.getPlayer().getProgress() >= 100) {
+            if (enableable) {
                 button.setEnabled(true);
             } else {
                 button.setEnabled(false);

@@ -1,5 +1,6 @@
 package view.panels;
 
+import model.monster.Monster;
 import model.player.Player;
 
 import javax.swing.*;
@@ -10,6 +11,7 @@ public class PlayerPanel extends JPanel {
     public static final int SCREEN_WIDTH = MapPanel.SCREEN_EDGE_LENGTH;
     public static final int SCREEN_HEIGHT = 350;
     private static Player player = new Player();
+    static Monster monster;
     private static JLabel levelLabel;
     private static JLabel expLabel;
     private static JLabel hpLabel;
@@ -23,6 +25,8 @@ public class PlayerPanel extends JPanel {
     static JProgressBar speedProgress = new JProgressBar();
 
     public PlayerPanel() {
+
+        monster = GamePanel.getMonster();
 
         this.setLayout(null);
         this.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -76,7 +80,7 @@ public class PlayerPanel extends JPanel {
         return player;
     }
 
-    public static void getPlayerDetails() {
+    public static void setPlayerDetails() {
         levelLabel.setText("Level: " + player.getLevel());
         expLabel.setText("Exp: " + player.getExp() + "/" + player.getNextExp());
         hpLabel.setText("HP: " + player.getHP() + "/" + player.getMaxHP());
@@ -91,8 +95,11 @@ public class PlayerPanel extends JPanel {
     }
 
     public static void update() {
-        getPlayerDetails();
-        player.setProgress(player.getProgress() + (player.getSpeed()/10.0));
+        setPlayerDetails();
+        monster = GamePanel.getMonster();
+        if (player.getProgress() < 100 && monster != null) {
+            player.setProgress(player.getProgress() + (player.getSpeed() / 10.0));
+        }
     }
 
 

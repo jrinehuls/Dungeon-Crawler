@@ -1,6 +1,7 @@
 package controller;
 
 import model.monster.Monster;
+import model.player.Player;
 import view.panels.ActionPanel;
 import view.panels.GamePanel;
 import view.panels.MonsterPanel;
@@ -13,7 +14,7 @@ public class ActionButtonController implements ActionListener {
 
     ActionPanel ap;
     Monster monster;
-    public boolean actionTaken;
+    Player player = PlayerPanel.getPlayer();
 
     public ActionButtonController(ActionPanel ap) {
         this.ap = ap;
@@ -25,20 +26,24 @@ public class ActionButtonController implements ActionListener {
         monster = GamePanel.getMonster();
         if (e.getSource() == ap.attackButton) {
             System.out.println("Attack: " + PlayerPanel.getPlayer().getAttack());
-            monster.setHP(0);
+            monster.setHP(monster.getHP() - (player.getAttack()/ monster.getDefense() + 10));
+            player.setProgress(0);
         }
         if (e.getSource() == ap.spellButton) {
             System.out.println("Spell: " + "PlayerPanel.getPlayer().getSpell()");
+            player.setProgress(0);
         }
         if (e.getSource() == ap.itemButton) {
             System.out.println("Item: " + "PlayerPanel.getPlayer().getItem()");
+            player.setProgress(0);
         }
         if (e.getSource() == ap.defendButton) {
             System.out.println("Defend: " + PlayerPanel.getPlayer().getDefense());
+            player.setProgress(0);
         }
         if (e.getSource() == ap.runButton) {
             System.out.println("Run: " + PlayerPanel.getPlayer().getSpeed());
+            player.setProgress(0);
         }
-        actionTaken = true;
     }
 }

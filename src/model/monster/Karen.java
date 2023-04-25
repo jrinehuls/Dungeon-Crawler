@@ -7,7 +7,7 @@ import javax.swing.*;
 public class Karen extends Monster{
 
     public Karen() {
-        super("Karen", 50, 50, 0, 0,  10, 10, 0, 0, 25, new ImageIcon("src/res/monsters/Karen.png"));
+        super("Karen", 50, 50, 0, 0,  10, 10, 0, 0, 20, new ImageIcon("src/res/monsters/Karen.png"));
     }
 
     @Override
@@ -20,7 +20,7 @@ public class Karen extends Monster{
 
     @Override
     public void attack() {
-        player.setHP(player.getHP() - (attack/player.getDefense() + 1));
+        player.setHP(player.getHP() - (attack/player.getDefense() + 10));
         System.out.println("Karen attacked!");
     }
 
