@@ -1,4 +1,4 @@
-package view;
+package view.frames;
 
 import view.panels.*;
 
@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainGameFrame extends JFrame {
+
     GamePanel gamePanel = new GamePanel();
     MapPanel mapPanel = new MapPanel();
     MonsterPanel monsterPanel = new MonsterPanel();

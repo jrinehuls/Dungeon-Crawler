@@ -2,11 +2,11 @@ package controller;
 
 import model.monster.Monster;
 import model.player.Player;
-import view.panels.ActionPanel;
-import view.panels.GamePanel;
-import view.panels.MonsterPanel;
-import view.panels.PlayerPanel;
+import model.spell.HealingSpell;
+import view.frames.SpellFrame;
+import view.panels.*;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,7 +14,8 @@ public class ActionButtonController implements ActionListener {
 
     ActionPanel ap;
     Monster monster;
-    Player player = PlayerPanel.getPlayer();
+    Player player;
+    public static SpellFrame spellFrame = new SpellFrame();
 
     public ActionButtonController(ActionPanel ap) {
         this.ap = ap;
@@ -23,6 +24,7 @@ public class ActionButtonController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        player = PlayerPanel.getPlayer();
         monster = GamePanel.getMonster();
         if (e.getSource() == ap.attackButton) {
             System.out.println("Attack: " + PlayerPanel.getPlayer().getAttack());
@@ -30,8 +32,9 @@ public class ActionButtonController implements ActionListener {
             player.setProgress(0);
         }
         if (e.getSource() == ap.spellButton) {
-            System.out.println("Spell: " + "PlayerPanel.getPlayer().getSpell()");
+            spellFrame.setVisible(true);
             player.setProgress(0);
+
         }
         if (e.getSource() == ap.itemButton) {
             System.out.println("Item: " + "PlayerPanel.getPlayer().getItem()");

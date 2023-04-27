@@ -1,10 +1,11 @@
-import view.MainGameFrame;
+import view.frames.MainGameFrame;
 
 public class Main {
 
+	public static MainGameFrame frame;
 	public static void main(String[] args) {
 
-		new MainGameFrame();
+		frame = new MainGameFrame();
 
 	}
 

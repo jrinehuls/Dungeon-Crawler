@@ -1,5 +1,6 @@
 package view.panels;
 
+import controller.ActionButtonController;
 import model.monster.Monster;
 import model.player.Player;
 
@@ -93,9 +94,10 @@ public class MonsterPanel extends JPanel {
 
     public static void update() {
         monster = GamePanel.getMonster();
+        boolean barIsProgressable = player.getProgress() < 100 && !ActionButtonController.spellFrame.isDisplayable();
         if (monster != null) {
             setMonsterDetails();
-            if (player.getProgress() < 100) {
+            if (barIsProgressable) {
                 monster.setProgress(monster.getProgress() + (monster.getSpeed() / 10.0));
             }
         } else {
