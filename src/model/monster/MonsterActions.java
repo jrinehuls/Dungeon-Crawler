@@ -1,5 +1,6 @@
 package model.monster;
 
+import model.spell.HealingSpell;
 import model.spell.Spell;
 
 public interface MonsterActions {
@@ -7,7 +8,7 @@ public interface MonsterActions {
     void takeAction();
     void attack();
 
-    void castHealingSpell(Spell spell);
+    void castHealingSpell(HealingSpell spell);
 
     void useItem();
 

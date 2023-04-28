@@ -1,5 +1,6 @@
 package model.monster;
 
+import model.spell.HealingSpell;
 import model.spell.Spell;
 
 import javax.swing.*;
@@ -19,16 +20,7 @@ public class Spaghetti extends Monster{
         }
     }
 
-    @Override
-    public void attack() {
-        player.setHP(player.getHP() - (attack/player.getDefense() + 10));
-        System.out.println("Spaghetti attacked!");
-    }
 
-    @Override
-    public void castHealingSpell(Spell spell) {
-        spell.cast(this);
-    }
 
     @Override
     public void useItem() {

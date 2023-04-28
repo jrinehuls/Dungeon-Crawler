@@ -44,6 +44,7 @@ public class SpellFrame extends JFrame implements ActionListener {
             if (spellMP > player.getMP()) {
                 spellButton.setEnabled(false);
             }
+            // I don't exactly know what this does, but it's used to identify which radio button is selected.
             spellButton.setActionCommand(spellButton.getText().split(":")[0]);
             spellButtonGroup.add(spellButton);
             radioPanel.add(spellButton);

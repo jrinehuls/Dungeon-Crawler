@@ -19,7 +19,7 @@ public class Player extends Entity {
 
     public Player() {
         super(100, 100, 10, 10, 20, 20, 10, 10, 25);
-        spells.put("First Aid", SpellCollection.spellMap.get("First Aid"));
+        spells.put("First Aid", SpellCollection.firstAid);
         spells.put("Flare", SpellCollection.spellMap.get("Flare"));
     }
 

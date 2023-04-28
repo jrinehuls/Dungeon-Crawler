@@ -21,7 +21,7 @@ public class AttackSpell extends Spell{
 
     @Override
     public void cast(Entity user, Entity enemy) {
-        enemy.setHP(enemy.getHP() - this.power * (user.getMagicAttack() / enemy.getMagicDefense() + 10));
+        enemy.setHP(enemy.getHP() - (this.power * (user.getMagicAttack() / enemy.getMagicDefense()) + 10));
         user.setMP(user.getMP() - MP);
     }
 }

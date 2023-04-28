@@ -2,9 +2,8 @@ package model.monster;
 
 import model.Entity;
 import model.player.Player;
+import model.spell.HealingSpell;
 import model.spell.Spell;
-import view.panels.GamePanel;
-import view.panels.MonsterPanel;
 import view.panels.PlayerPanel;
 
 import javax.swing.*;
@@ -23,6 +22,19 @@ public abstract class Monster extends Entity implements MonsterActions {
         this.name = name;
         player = PlayerPanel.getPlayer();
     }
+
+    @Override
+    public void attack() {
+        player.setHP(player.getHP() - (attack/player.getDefense() + 10));
+        System.out.println("Monster attacked!");
+    }
+
+    @Override
+    public void castHealingSpell(HealingSpell spell) {
+        spell.cast(this);
+    }
+
+
 
     public String  getName() {
         return name;
