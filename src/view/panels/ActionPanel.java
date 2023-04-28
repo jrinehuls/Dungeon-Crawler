@@ -19,7 +19,7 @@ public class ActionPanel extends JPanel {
 
     static JButton[] buttons = {attackButton, spellButton, itemButton, defendButton, runButton};
 
-    ActionButtonController abc = new ActionButtonController(this);
+    ActionButtonController abc = new ActionButtonController();
 
     public ActionPanel() {
         final int BUTTON_WIDTH = 120;

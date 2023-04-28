@@ -1,11 +1,13 @@
 package model.monster;
 
+import model.spell.Spell;
+
 import javax.swing.*;
 
 public class Spaghetti extends Monster{
 
     public Spaghetti() {
-        super("Flying Spaghetti Monster", 75, 75, 0, 0,  10, 10, 0, 0, 15, new ImageIcon("src/res/monsters/Spaghetti.png"));
+        super("Flying Spaghetti Monster", 75, 75, 10, 10,  10, 10, 10, 1, 15, new ImageIcon("src/res/monsters/Spaghetti.png"));
         // hp = 500;
     }
 
@@ -24,8 +26,8 @@ public class Spaghetti extends Monster{
     }
 
     @Override
-    public void castSpell() {
-
+    public void castHealingSpell(Spell spell) {
+        spell.cast(this);
     }
 
     @Override

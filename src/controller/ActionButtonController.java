@@ -12,39 +12,41 @@ import java.awt.event.ActionListener;
 
 public class ActionButtonController implements ActionListener {
 
-    ActionPanel ap;
+    //ActionPanel ap;
     Monster monster;
     Player player;
-    public static SpellFrame spellFrame = new SpellFrame();
+    public static SpellFrame spellFrame;
 
-    public ActionButtonController(ActionPanel ap) {
-        this.ap = ap;
+    public ActionButtonController() {
+        //this.ap = ap;
+        spellFrame = new SpellFrame();
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        spellFrame = new SpellFrame();
         player = PlayerPanel.getPlayer();
         monster = GamePanel.getMonster();
-        if (e.getSource() == ap.attackButton) {
+        if (e.getSource() == ActionPanel.attackButton) {
             System.out.println("Attack: " + PlayerPanel.getPlayer().getAttack());
             monster.setHP(monster.getHP() - (player.getAttack()/ monster.getDefense() + 10));
             player.setProgress(0);
         }
-        if (e.getSource() == ap.spellButton) {
+        if (e.getSource() == ActionPanel.spellButton) {
             spellFrame.setVisible(true);
-            player.setProgress(0);
+
 
         }
-        if (e.getSource() == ap.itemButton) {
+        if (e.getSource() == ActionPanel.itemButton) {
             System.out.println("Item: " + "PlayerPanel.getPlayer().getItem()");
             player.setProgress(0);
         }
-        if (e.getSource() == ap.defendButton) {
+        if (e.getSource() == ActionPanel.defendButton) {
             System.out.println("Defend: " + PlayerPanel.getPlayer().getDefense());
             player.setProgress(0);
         }
-        if (e.getSource() == ap.runButton) {
+        if (e.getSource() == ActionPanel.runButton) {
             System.out.println("Run: " + PlayerPanel.getPlayer().getSpeed());
             player.setProgress(0);
         }

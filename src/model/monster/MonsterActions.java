@@ -1,11 +1,13 @@
 package model.monster;
 
+import model.spell.Spell;
+
 public interface MonsterActions {
 
     void takeAction();
     void attack();
 
-    void castSpell();
+    void castHealingSpell(Spell spell);
 
     void useItem();
 

@@ -2,12 +2,17 @@ package model.monster;
 
 
 
+import model.spell.Spell;
+
 import javax.swing.*;
 
 public class Karen extends Monster{
 
+
+
+
     public Karen() {
-        super("Karen", 50, 50, 0, 0,  10, 10, 0, 0, 20, new ImageIcon("src/res/monsters/Karen.png"));
+        super("Karen", 50, 50, 10, 10,  10, 10, 5, 10, 20, new ImageIcon("src/res/monsters/Karen.png"));
     }
 
     @Override
@@ -25,8 +30,8 @@ public class Karen extends Monster{
     }
 
     @Override
-    public void castSpell() {
-
+    public void castHealingSpell(Spell spell) {
+        spell.cast(this);
     }
 
     @Override

@@ -2,6 +2,8 @@ package view.frames;
 
 import controller.ActionButtonController;
 import model.player.Player;
+import model.spell.AttackSpell;
+import model.spell.HealingSpell;
 import model.spell.Spell;
 import view.panels.PlayerPanel;
 
@@ -13,11 +15,12 @@ import java.util.Map;
 
 public class SpellFrame extends JFrame implements ActionListener {
 
-    Player player = PlayerPanel.getPlayer();
+    Player player;
+
+    JButton submitButton = new JButton("Submit");
+    JButton cancelButton = new JButton("Cancel");
 
     ButtonGroup spellButtonGroup = new ButtonGroup();
-    JButton submit = new JButton("Submit");
-
     JPanel radioPanel = new JPanel();
     JPanel buttonPanel = new JPanel();
 
@@ -26,16 +29,22 @@ public class SpellFrame extends JFrame implements ActionListener {
         this.setSize(300, 400);
         this.setLocationRelativeTo(null);
         this.setLayout(null);
+        this.setVisible(false);
+
+        player = PlayerPanel.getPlayer();
 
         radioPanel.setBounds(0, 0, 300, 300);
-        //radioPanel.setLayout(new GridLayout(0, 3));
-        radioPanel.setLayout(null);
-        radioPanel.setBackground(Color.BLUE);
-        radioPanel.setBorder(BorderFactory.createLineBorder(Color.ORANGE));
-
+        radioPanel.setLayout(new GridLayout(0, 3));
+        //radioPanel.setLayout(null);
+        radioPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         for (Map.Entry<String, Spell> spell: player.spells.entrySet()) {
-            JRadioButton spellButton = new JRadioButton(spell.getKey());
+            int spellMP = spell.getValue().MP;
+            JRadioButton spellButton = new JRadioButton(spell.getKey() + ": " + String.valueOf(spellMP));
+            if (spellMP > player.getMP()) {
+                spellButton.setEnabled(false);
+            }
+            spellButton.setActionCommand(spellButton.getText().split(":")[0]);
             spellButtonGroup.add(spellButton);
             radioPanel.add(spellButton);
         }
@@ -45,20 +54,34 @@ public class SpellFrame extends JFrame implements ActionListener {
         buttonPanel.setBounds(0,300,300,100);
         buttonPanel.setLayout(new FlowLayout());
 
-        submit.addActionListener(this);
-        submit.setFocusable(false);
-        buttonPanel.add(submit);
+        submitButton.addActionListener(this);
+        submitButton.setFocusable(false);
+        buttonPanel.add(submitButton);
+
+        cancelButton.addActionListener(this);
+        cancelButton.setFocusable(false);
+        buttonPanel.add(cancelButton);
 
         this.add(buttonPanel);
 
-
-        this.setVisible(false);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ActionButtonController.spellFrame.dispose();
-        spellButtonGroup.clearSelection();
+        if (e.getSource() == cancelButton) {
+            this.dispose();
+            spellButtonGroup.clearSelection();
+        } else if (e.getSource() == submitButton && spellButtonGroup.getSelection() != null) {
+            String key = spellButtonGroup.getSelection().getActionCommand();
+            if (player.spells.get(key) instanceof HealingSpell) {
+                player.castHealingSpell((HealingSpell) player.spells.get(key));
+            } else if (player.spells.get(key) instanceof AttackSpell) {
+                player.castAttackSpell((AttackSpell) player.spells.get(key));
+            }
+            this.dispose();
+            player.setProgress(0);
+            spellButtonGroup.clearSelection();
+        }
         /*
         if (spellList.getSelectedValue().equals("First Aid")) {
             player.castSpell(player.spells.get("First Aid"));

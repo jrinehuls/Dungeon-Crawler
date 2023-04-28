@@ -10,4 +10,5 @@ public abstract class Spell implements SpellAction{
         this.MP = mp;
     }
 
+
 }
