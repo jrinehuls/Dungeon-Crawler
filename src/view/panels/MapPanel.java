@@ -11,7 +11,8 @@ import javax.swing.*;
 public class MapPanel extends JPanel implements Runnable {
 	
 	public static final int GRID_SIZE = 25;
-	public static final int SCREEN_EDGE_LENGTH = GRID_SIZE * 10 + 1;
+	public static final int SCREEN_WIDTH = GRID_SIZE * 10 + 1;
+	public static final int SCREEN_HEIGHT = GRID_SIZE * 10 + 1;
 	//final Dimension SCREEN_SIZE = new Dimension(SCREEN_EDGE_LENGTH, SCREEN_EDGE_LENGTH);
 	//Grid location to start at.
 	static int xCord = 4;
@@ -49,7 +50,8 @@ public class MapPanel extends JPanel implements Runnable {
 		this.setBackground(new Color(225, 225, 225));
 		this.addKeyListener(keyC);
 		this.setFocusable(true);
-		this.setSize(SCREEN_EDGE_LENGTH, SCREEN_EDGE_LENGTH);
+		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
+		//this.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 		tileType = TileManager.getFloorPlan()[yCord][xCord];
 		facing = 'D';

@@ -11,8 +11,8 @@ import javax.swing.*;
 
 public class GamePanel extends JPanel {
 	//Height and width of the main panel
-	public final int SCREEN_WIDTH = 800;
-	public final int SCREEN_HEIGHT = 600;
+	public static final int SCREEN_WIDTH = 800;
+	public static final int SCREEN_HEIGHT = MonsterPanel.SCREEN_HEIGHT;
 
 	private static BackGroundImageManager backGroundImageManager = new BackGroundImageManager();
 	// Position Label
@@ -32,7 +32,7 @@ public class GamePanel extends JPanel {
 	public GamePanel(){
 
 		// Game Panel
-		this.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.setLayout(null);
 		// Position Label

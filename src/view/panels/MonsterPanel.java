@@ -10,7 +10,7 @@ import java.awt.*;
 public class MonsterPanel extends JPanel {
 
     public final static int SCREEN_WIDTH = PlayerPanel.SCREEN_WIDTH;
-    public final static int SCREEN_HEIGHT = PlayerPanel.SCREEN_HEIGHT;
+    public final static int SCREEN_HEIGHT = 350;
     static Monster monster = GamePanel.getMonster();
     static Player player = PlayerPanel.getPlayer();
     private static JLabel nameLabel;
@@ -26,7 +26,7 @@ public class MonsterPanel extends JPanel {
 
     public MonsterPanel() {
         this.setLayout(null);
-        this.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+        this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         nameLabel = new JLabel("", 0);

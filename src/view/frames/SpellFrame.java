@@ -1,6 +1,5 @@
 package view.frames;
 
-import controller.ActionButtonController;
 import model.player.Player;
 import model.spell.AttackSpell;
 import model.spell.HealingSpell;

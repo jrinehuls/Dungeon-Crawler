@@ -8,8 +8,8 @@ import java.awt.event.ActionListener;
 
 public class ActionPanel extends JPanel {
 
-    public static final int SCREEN_WIDTH = MapPanel.SCREEN_EDGE_LENGTH;
-    public static final int SCREEN_HEIGHT = MapPanel.SCREEN_EDGE_LENGTH;
+    public static final int SCREEN_WIDTH = MapPanel.SCREEN_WIDTH;
+    public static final int SCREEN_HEIGHT = MapPanel.SCREEN_HEIGHT;
 
     public static JButton attackButton = new JButton("Attack");;
     public static JButton spellButton = new JButton("Spell");
@@ -27,7 +27,7 @@ public class ActionPanel extends JPanel {
         final int BUTTON_X = (SCREEN_WIDTH - BUTTON_WIDTH) / 2;
 
         this.setLayout(null);
-        this.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+        this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         attackButton.setBounds(BUTTON_X, 30, BUTTON_WIDTH, BUTTON_HEIGHT);

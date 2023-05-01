@@ -9,8 +9,8 @@ import java.awt.*;
 
 public class PlayerPanel extends JPanel {
 
-    public static final int SCREEN_WIDTH = MapPanel.SCREEN_EDGE_LENGTH;
-    public static final int SCREEN_HEIGHT = 350;
+    public static final int SCREEN_WIDTH = MapPanel.SCREEN_WIDTH;
+    public static final int SCREEN_HEIGHT = MonsterPanel.SCREEN_HEIGHT;
     private static Player player = new Player();
     static Monster monster;
     private static JLabel levelLabel;
@@ -30,7 +30,7 @@ public class PlayerPanel extends JPanel {
         monster = GamePanel.getMonster();
 
         this.setLayout(null);
-        this.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+        this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         levelLabel = new JLabel("Level: " + player.getLevel(), 0);

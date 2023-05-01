@@ -7,30 +7,44 @@ import java.awt.*;
 
 public class MainGameFrame extends JFrame {
 
-    GamePanel gamePanel = new GamePanel();
-    MapPanel mapPanel = new MapPanel();
-    MonsterPanel monsterPanel = new MonsterPanel();
-    PlayerPanel playerPanel = new PlayerPanel();
-    ActionPanel actionPanel = new ActionPanel();
-    final int FRAME_WIDTH = MapPanel.SCREEN_EDGE_LENGTH + gamePanel.SCREEN_WIDTH + MonsterPanel.SCREEN_WIDTH + 16;
-    final int FRAME_HEIGHT = gamePanel.SCREEN_HEIGHT + 39;
+    // Set up vertical panels to add game panels to
+    JPanel leftPanel = new JPanel();
+    JPanel middlePanel = new JPanel();
+    JPanel rightPanel = new JPanel();
 
     public MainGameFrame() {
+
+        this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+
+        // ------------------------------<Left Panel Stuff>------------------------------------
+        leftPanel.setPreferredSize(new Dimension(MapPanel.SCREEN_WIDTH, MapPanel.SCREEN_HEIGHT + MonsterPanel.SCREEN_HEIGHT));
+        leftPanel.setBackground(Color.black);
+        leftPanel.setLayout(new FlowLayout(FlowLayout.TRAILING, 0, 0));
+        leftPanel.add(new MapPanel());
+        leftPanel.add(new MonsterPanel());
+        this.add(leftPanel);
+
+        // ------------------------------<Middle Panel Stuff>------------------------------------
+        middlePanel.setPreferredSize(new Dimension(GamePanel.SCREEN_WIDTH, GamePanel.SCREEN_HEIGHT + DisplayPanel.SCREEN_HEIGHT));
+        middlePanel.setBackground(Color.red);
+        middlePanel.setLayout(new FlowLayout(FlowLayout.TRAILING, 0, 0));
+        middlePanel.add(new GamePanel());
+        middlePanel.add(new DisplayPanel());
+        this.add(middlePanel);
+
+        // ------------------------------<Right Panel Stuff>------------------------------------
+        rightPanel.setPreferredSize(new Dimension(ActionPanel.SCREEN_WIDTH,ActionPanel.SCREEN_HEIGHT + PlayerPanel.SCREEN_HEIGHT));
+        rightPanel.setBackground(Color.GREEN);
+        rightPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        rightPanel.add(new ActionPanel());
+        rightPanel.add(new PlayerPanel());
+        this.add(rightPanel);
+
+        // ------------------------------<Frame Stuff>------------------------------------
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.ORANGE);
         this.setIconImage(new ImageIcon("src/res/monsters/Spaghetti.png").getImage());
-        this.setLayout(null);
-        mapPanel.setLocation(0,0);
-        this.add(mapPanel);
-        gamePanel.setLocation(MapPanel.SCREEN_EDGE_LENGTH,0);
-        this.add(gamePanel);
-        playerPanel.setLocation(MapPanel.SCREEN_EDGE_LENGTH + gamePanel.SCREEN_WIDTH, MapPanel.SCREEN_EDGE_LENGTH);
-        this.add(playerPanel);
-        monsterPanel.setLocation(0, MapPanel.SCREEN_EDGE_LENGTH);
-        this.add(monsterPanel);
-        actionPanel.setLocation(MapPanel.SCREEN_EDGE_LENGTH + gamePanel.SCREEN_WIDTH, 0);
-        this.add(actionPanel);
-        this.setSize(FRAME_WIDTH ,FRAME_HEIGHT);
+        this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
