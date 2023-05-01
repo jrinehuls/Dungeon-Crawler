@@ -94,7 +94,7 @@ public class MonsterPanel extends JPanel {
 
     public static void update() {
         monster = GamePanel.getMonster();
-        boolean barIsProgressable = player.getProgress() < 100 && !ActionButtonController.spellFrame.isDisplayable();
+        boolean barIsProgressable = player.getProgress() < 100; // && !ActionButtonController.spellFrame.isDisplayable();
         if (monster != null) {
             setMonsterDetails();
             if (barIsProgressable) {

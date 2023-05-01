@@ -23,7 +23,7 @@ public class GamePanel extends JPanel {
 	private static JLabel backgroundLabel = new JLabel();
 	private static ImageIcon backgroundImage;
 
-	static String lastPosition;
+	static String lastPosition = MapPanel.getPosition();
 	static String currentPosition;
 
 	// set by Monster Collection get monster
@@ -45,7 +45,7 @@ public class GamePanel extends JPanel {
 		backgroundLabel.setBounds((SCREEN_WIDTH - 300)/2, 0, 300, 300);
 		this.add(backgroundLabel);
 		// The position on the map before moving
-		lastPosition = MapPanel.getPosition();
+
 
 
 	}

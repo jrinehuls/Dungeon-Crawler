@@ -18,14 +18,14 @@ public class ActionButtonController implements ActionListener {
     public static SpellFrame spellFrame;
 
     public ActionButtonController() {
-        //this.ap = ap;
+
         spellFrame = new SpellFrame();
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        spellFrame = new SpellFrame();
+        //spellFrame = new SpellFrame();
         player = PlayerPanel.getPlayer();
         monster = GamePanel.getMonster();
         if (e.getSource() == ActionPanel.attackButton) {
@@ -34,6 +34,7 @@ public class ActionButtonController implements ActionListener {
             player.setProgress(0);
         }
         if (e.getSource() == ActionPanel.spellButton) {
+            spellFrame = new SpellFrame();
             spellFrame.setVisible(true);
 
 

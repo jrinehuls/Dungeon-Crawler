@@ -16,42 +16,46 @@ public class SpellFrame extends JFrame implements ActionListener {
 
     Player player;
 
+    JPanel radioPanel = new JPanel();
+    public static final int RADIO_PANEL_WIDTH = 300;
+    public static final int RADIO_PANEL_HEIGHT = 300;
+
+    JPanel buttonPanel = new JPanel();
+    public static final int Button_PANEL_WIDTH = RADIO_PANEL_WIDTH;
+    public static final int BUTTON_PANEL_HEIGHT = 100;
+
+    ButtonGroup spellButtonGroup = new ButtonGroup();
+
     JButton submitButton = new JButton("Submit");
     JButton cancelButton = new JButton("Cancel");
 
-    ButtonGroup spellButtonGroup = new ButtonGroup();
-    JPanel radioPanel = new JPanel();
-    JPanel buttonPanel = new JPanel();
-
     public SpellFrame() {
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setSize(300, 400);
-        this.setLocationRelativeTo(null);
-        this.setLayout(null);
-        this.setVisible(false);
-
         player = PlayerPanel.getPlayer();
 
-        radioPanel.setBounds(0, 0, 300, 300);
+        this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        this.setPreferredSize(new Dimension(RADIO_PANEL_WIDTH, RADIO_PANEL_HEIGHT + BUTTON_PANEL_HEIGHT));
+
+        // --------------Stuff for radio buttons------------------------------------
+        radioPanel.setPreferredSize(new Dimension(RADIO_PANEL_WIDTH, RADIO_PANEL_HEIGHT));
         radioPanel.setLayout(new GridLayout(0, 3));
-        //radioPanel.setLayout(null);
         radioPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         for (Map.Entry<String, Spell> spell: player.spells.entrySet()) {
             int spellMP = spell.getValue().MP;
             JRadioButton spellButton = new JRadioButton(spell.getKey() + ": " + String.valueOf(spellMP));
-            if (spellMP > player.getMP()) {
-                spellButton.setEnabled(false);
-            }
             // I don't exactly know what this does, but it's used to identify which radio button is selected.
             spellButton.setActionCommand(spellButton.getText().split(":")[0]);
             spellButtonGroup.add(spellButton);
             radioPanel.add(spellButton);
+            if (spellMP > player.getMP()) {
+                spellButton.setEnabled(false);
+            }
         }
 
         this.add(radioPanel);
 
-        buttonPanel.setBounds(0,300,300,100);
+        // -------------------------Stuff for buttons-------------------------------------
+        buttonPanel.setPreferredSize(new Dimension(Button_PANEL_WIDTH, BUTTON_PANEL_HEIGHT));
         buttonPanel.setLayout(new FlowLayout());
 
         submitButton.addActionListener(this);
@@ -64,6 +68,12 @@ public class SpellFrame extends JFrame implements ActionListener {
 
         this.add(buttonPanel);
 
+        //------------------------Frame stuff---------------------------------------------
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.pack();
+        this.setLocationRelativeTo(null);
+        //this.setLocationRelativeTo(MainGameFrame.getFrames()[0]);
+        this.setVisible(false);
     }
 
     @Override
@@ -78,15 +88,10 @@ public class SpellFrame extends JFrame implements ActionListener {
             } else if (player.spells.get(key) instanceof AttackSpell) {
                 player.castAttackSpell((AttackSpell) player.spells.get(key));
             }
-            this.dispose();
             player.setProgress(0);
+            this.dispose();
             spellButtonGroup.clearSelection();
         }
-        /*
-        if (spellList.getSelectedValue().equals("First Aid")) {
-            player.castSpell(player.spells.get("First Aid"));
-            ActionButtonController.spellFrame.dispose();
-        }
-        */
+
     }
 }
