@@ -4,26 +4,26 @@ import view.panels.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Map;
 
 public class MainGameFrame extends JFrame {
 
-    // Set up vertical panels to add game panels to
-    JPanel leftPanel = new JPanel();
-    JPanel middlePanel = new JPanel();
-    JPanel rightPanel = new JPanel();
-
-    // Set up sub panels
-    MapPanel mapPanel = new MapPanel();
-    MonsterPanel monsterPanel = new MonsterPanel();
-    GamePanel gamePanel = new GamePanel();
-    DisplayPanel displayPanel = new DisplayPanel();
-    ActionPanel actionPanel = new ActionPanel();
-    PlayerPanel playerPanel = new PlayerPanel();
 
     public MainGameFrame() {
 
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+
+        // Set up vertical panels to add game panels to
+        JPanel leftPanel = new JPanel();
+        JPanel middlePanel = new JPanel();
+        JPanel rightPanel = new JPanel();
+
+        // Set up sub panels. Leave map panel for last so other panels get started before game loop runs.
+        MonsterPanel monsterPanel = new MonsterPanel();
+        GamePanel gamePanel = new GamePanel();
+        DisplayPanel displayPanel = new DisplayPanel();
+        ActionPanel actionPanel = new ActionPanel();
+        PlayerPanel playerPanel = new PlayerPanel();
+        MapPanel mapPanel = new MapPanel();
 
         // ------------------------------<Left Panel Stuff>------------------------------------
         leftPanel.setPreferredSize(new Dimension(MapPanel.SCREEN_WIDTH, MapPanel.SCREEN_HEIGHT + MonsterPanel.SCREEN_HEIGHT));

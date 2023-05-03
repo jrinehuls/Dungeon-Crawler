@@ -1,10 +1,7 @@
 package model.monster;
 
-
-
 import collections.SpellCollection;
 import model.spell.HealingSpell;
-import model.spell.Spell;
 
 import javax.swing.*;
 

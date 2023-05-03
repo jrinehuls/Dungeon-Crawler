@@ -7,6 +7,8 @@ import model.spell.Spell;
 import view.panels.PlayerPanel;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.basic.BasicSplitPaneUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,27 +19,33 @@ public class SpellFrame extends JFrame implements ActionListener {
     Player player;
 
     JPanel radioPanel = new JPanel();
-    public static final int RADIO_PANEL_WIDTH = 300;
-    public static final int RADIO_PANEL_HEIGHT = 300;
+    private static final int RADIO_PANEL_WIDTH = 300;
+    private static final int RADIO_PANEL_HEIGHT = 300;
+    private static final int RADIO_PANEL_COLS = 3;
 
     JPanel buttonPanel = new JPanel();
-    public static final int Button_PANEL_WIDTH = RADIO_PANEL_WIDTH;
-    public static final int BUTTON_PANEL_HEIGHT = 100;
+    private static final int BUTTON_PANEL_WIDTH = RADIO_PANEL_WIDTH;
+    private static final int BUTTON_PANEL_HEIGHT = 50;
 
     ButtonGroup spellButtonGroup = new ButtonGroup();
 
     JButton submitButton = new JButton("Submit");
     JButton cancelButton = new JButton("Cancel");
 
+    JPanel spellPanel;
+
     public SpellFrame() {
+
         player = PlayerPanel.getPlayer();
 
-        this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
-        this.setPreferredSize(new Dimension(RADIO_PANEL_WIDTH, RADIO_PANEL_HEIGHT + BUTTON_PANEL_HEIGHT));
+        //--------------------Stuff for main panel---------------------------------------
+        spellPanel = new JPanel();
+        spellPanel.setLayout(new BoxLayout(spellPanel, BoxLayout.Y_AXIS));
+        spellPanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
 
-        // --------------Stuff for radio buttons------------------------------------
+        // --------------------Stuff for radio buttons------------------------------------
         radioPanel.setPreferredSize(new Dimension(RADIO_PANEL_WIDTH, RADIO_PANEL_HEIGHT));
-        radioPanel.setLayout(new GridLayout(0, 3));
+        radioPanel.setLayout(new GridLayout(player.spells.size()/RADIO_PANEL_COLS , RADIO_PANEL_COLS, 0, 0));
         radioPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         for (Map.Entry<String, Spell> spell: player.spells.entrySet()) {
@@ -52,11 +60,11 @@ public class SpellFrame extends JFrame implements ActionListener {
             }
         }
 
-        this.add(radioPanel);
+        spellPanel.add(radioPanel);
 
         // -------------------------Stuff for buttons-------------------------------------
-        buttonPanel.setPreferredSize(new Dimension(Button_PANEL_WIDTH, BUTTON_PANEL_HEIGHT));
-        buttonPanel.setLayout(new FlowLayout());
+        buttonPanel.setPreferredSize(new Dimension(BUTTON_PANEL_WIDTH, BUTTON_PANEL_HEIGHT));
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 15));
 
         submitButton.addActionListener(this);
         submitButton.setFocusable(false);
@@ -66,12 +74,14 @@ public class SpellFrame extends JFrame implements ActionListener {
         cancelButton.setFocusable(false);
         buttonPanel.add(cancelButton);
 
-        this.add(buttonPanel);
+        spellPanel.add(buttonPanel);
 
         //------------------------Frame stuff---------------------------------------------
+        this.add(spellPanel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         //this.setLocationRelativeTo(MainGameFrame.getFrames()[0]);
         this.setVisible(false);
     }
