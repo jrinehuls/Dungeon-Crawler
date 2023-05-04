@@ -1,7 +1,7 @@
 package view.panels;
 
 import collections.MonsterCollection;
-import model.monster.Monster;
+import model.entity.monster.Monster;
 import background.BackGroundImageManager;
 
 import java.awt.*;

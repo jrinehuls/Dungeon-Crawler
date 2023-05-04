@@ -1,6 +1,6 @@
 package view.frames;
 
-import model.player.Player;
+import model.entity.player.Player;
 import model.spell.AttackSpell;
 import model.spell.HealingSpell;
 import model.spell.Spell;
@@ -8,7 +8,6 @@ import view.panels.PlayerPanel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.basic.BasicSplitPaneUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -94,7 +93,7 @@ public class SpellFrame extends JFrame implements ActionListener {
         } else if (e.getSource() == submitButton && spellButtonGroup.getSelection() != null) {
             String key = spellButtonGroup.getSelection().getActionCommand();
             if (player.spells.get(key) instanceof HealingSpell) {
-                player.castHealingSpell((HealingSpell) player.spells.get(key));
+                player.castHealSpell((HealingSpell) player.spells.get(key));
             } else if (player.spells.get(key) instanceof AttackSpell) {
                 player.castAttackSpell((AttackSpell) player.spells.get(key));
             }

@@ -1,6 +1,6 @@
 package model.spell;
 
-import model.Entity;
+import model.entity.Entity;
 
 public class AttackSpell extends Spell{
 
@@ -15,13 +15,13 @@ public class AttackSpell extends Spell{
 
 
     @Override
-    public void cast(Entity entity) {
+    public void cast(Entity caster) {
         //Don't use
     }
 
     @Override
-    public void cast(Entity user, Entity enemy) {
-        enemy.setHP(enemy.getHP() - (this.power * (user.getMagicAttack() / enemy.getMagicDefense()) + 10));
-        user.setMP(user.getMP() - MP);
+    public void cast(Entity caster, Entity target) {
+        target.setHP(target.getHP() - (this.power * (caster.getMagicAttack() / target.getMagicDefense()) + 10));
+        caster.setMP(caster.getMP() - MP);
     }
 }

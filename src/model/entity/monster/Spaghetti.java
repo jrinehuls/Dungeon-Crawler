@@ -1,7 +1,4 @@
-package model.monster;
-
-import model.spell.HealingSpell;
-import model.spell.Spell;
+package model.entity.monster;
 
 import javax.swing.*;
 

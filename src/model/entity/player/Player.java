@@ -1,7 +1,8 @@
-package model.player;
+package model.entity.player;
 
 import collections.SpellCollection;
-import model.Entity;
+import model.entity.Entity;
+import model.entity.monster.Monster;
 import model.spell.AttackSpell;
 import model.spell.HealingSpell;
 import model.spell.Spell;
@@ -76,7 +77,7 @@ public class Player extends Entity {
         this.gold = gold;
     }
 
-    public void castHealingSpell(HealingSpell spell) {
+    public void castHealSpell(HealingSpell spell) {
         spell.cast(this);
     }
 
@@ -84,4 +85,8 @@ public class Player extends Entity {
         spell.cast(this, GamePanel.getMonster());
     }
 
+    public void attack() {
+        Monster monster = GamePanel.getMonster();
+        monster.setHP(monster.getHP() - (5 * this.getAttack() / monster.getDefense() + 10));
+    }
 }

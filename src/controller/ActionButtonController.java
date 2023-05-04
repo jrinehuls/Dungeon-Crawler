@@ -1,12 +1,10 @@
 package controller;
 
-import model.monster.Monster;
-import model.player.Player;
-import model.spell.HealingSpell;
+import model.entity.monster.Monster;
+import model.entity.player.Player;
 import view.frames.SpellFrame;
 import view.panels.*;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -30,7 +28,7 @@ public class ActionButtonController implements ActionListener {
         monster = GamePanel.getMonster();
         if (e.getSource() == ActionPanel.attackButton) {
             System.out.println("Attack: " + PlayerPanel.getPlayer().getAttack());
-            monster.setHP(monster.getHP() - (player.getAttack()/ monster.getDefense() + 10));
+            player.attack();
             player.setProgress(0);
         }
         if (e.getSource() == ActionPanel.spellButton) {

@@ -1,6 +1,8 @@
 package model.spell;
 
-import model.Entity;
+import model.entity.Entity;
+import model.entity.monster.Monster;
+import model.entity.player.Player;
 
 public class StealSpell extends Spell {
 
@@ -12,12 +14,18 @@ public class StealSpell extends Spell {
     }
 
     @Override
-    public void cast(Entity entity) {
-        
+    public void cast(Entity caster) {
+        // Don't use
     }
 
     @Override
-    public void cast(Entity user, Entity enemy) {
-
+    public void cast(Entity caster, Entity target) {
+        if (caster instanceof Monster && target instanceof Player) {
+            Player player = (Player) target;
+            player.setGold(player.getGold() - gold);
+        } else if (caster instanceof Player && target instanceof Monster) {
+            Player player = (Player) caster;
+            player.setGold(player.getGold() + gold);
+        }
     }
 }

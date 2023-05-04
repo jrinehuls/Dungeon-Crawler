@@ -1,9 +1,9 @@
 package model.spell;
 
-import model.Entity;
+import model.entity.Entity;
 
 public interface SpellAction {
-    public void cast(Entity entity);
+    public void cast(Entity caster);
 
-    public void cast(Entity user, Entity enemy);
+    public void cast(Entity caster, Entity target);
 }

@@ -1,8 +1,8 @@
 package collections;
 
-import model.monster.Karen;
-import model.monster.Monster;
-import model.monster.Spaghetti;
+import model.entity.monster.Karen;
+import model.entity.monster.Monster;
+import model.entity.monster.Spaghetti;
 
 public class MonsterCollection {
 

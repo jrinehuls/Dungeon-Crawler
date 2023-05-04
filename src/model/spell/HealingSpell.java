@@ -1,6 +1,6 @@
 package model.spell;
 
-import model.Entity;
+import model.entity.Entity;
 
 public class HealingSpell extends Spell {
 
@@ -12,13 +12,13 @@ public class HealingSpell extends Spell {
     }
 
     @Override
-    public void cast(Entity entity) {
-        entity.setHP(entity.getHP() + health);
-        entity.setMP(entity.getMP() - MP);
+    public void cast(Entity caster) {
+        caster.setHP(caster.getHP() + health);
+        caster.setMP(caster.getMP() - MP);
     }
 
     @Override
-    public void cast(Entity user, Entity enemy) {
+    public void cast(Entity caster, Entity target) {
         // Don't use
     }
 

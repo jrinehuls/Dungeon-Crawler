@@ -1,8 +1,7 @@
 package view.panels;
 
-import controller.ActionButtonController;
-import model.monster.Monster;
-import model.player.Player;
+import model.entity.monster.Monster;
+import model.entity.player.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +12,7 @@ public class MonsterPanel extends JPanel {
     public final static int SCREEN_HEIGHT = 350;
     static Monster monster = GamePanel.getMonster();
     static Player player = PlayerPanel.getPlayer();
+    private static JProgressBar speedProgress = new JProgressBar();
     private static JLabel nameLabel;
     private static JLabel hpLabel;
     private static JLabel mpLabel;
@@ -21,43 +21,43 @@ public class MonsterPanel extends JPanel {
     private static JLabel magicAttackLabel;
     private static JLabel magicDefenseLabel;
     private static JLabel speedLabel;
-    private static JProgressBar speedProgress = new JProgressBar();
-
 
     public MonsterPanel() {
-        this.setLayout(null);
+
+        //this.setLayout(null);
+        this.setLayout(new GridLayout(11,0, 0, 0));
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        nameLabel = new JLabel("", 0);
+        nameLabel = new JLabel("", JLabel.CENTER);
         nameLabel.setBounds(0, 10, SCREEN_WIDTH, 20);
         this.add(nameLabel);
 
-        hpLabel = new JLabel("", 0);
+        hpLabel = new JLabel("", JLabel.CENTER);
         hpLabel.setBounds(0, 40, SCREEN_WIDTH, 20);
         this.add(hpLabel);
 
-        mpLabel = new JLabel("", 0);
+        mpLabel = new JLabel("", JLabel.CENTER);
         mpLabel.setBounds(0, 70, SCREEN_WIDTH, 20);
         this.add(mpLabel);
 
-        attackLabel = new JLabel("", 0);
+        attackLabel = new JLabel("", JLabel.CENTER);
         attackLabel.setBounds(0, 100, SCREEN_WIDTH, 20);
         this.add(attackLabel);
 
-        defenseLabel = new JLabel("", 0);
+        defenseLabel = new JLabel("", JLabel.CENTER);
         defenseLabel.setBounds(0, 130, SCREEN_WIDTH, 20);
         this.add(defenseLabel);
 
-        magicAttackLabel = new JLabel("", 0);
+        magicAttackLabel = new JLabel("", JLabel.CENTER);
         magicAttackLabel.setBounds(0, 160, SCREEN_WIDTH, 20);
         this.add(magicAttackLabel);
 
-        magicDefenseLabel = new JLabel("", 0);
+        magicDefenseLabel = new JLabel("", JLabel.CENTER);
         magicDefenseLabel.setBounds(0, 190, SCREEN_WIDTH, 20);
         this.add(magicDefenseLabel);
 
-        speedLabel = new JLabel("", 0);
+        speedLabel = new JLabel("", JLabel.CENTER);
         speedLabel.setBounds(0, 220, SCREEN_WIDTH, 20);
         this.add(speedLabel);
 

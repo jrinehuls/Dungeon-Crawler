@@ -1,8 +1,7 @@
 package view.panels;
 
-import controller.ActionButtonController;
-import model.monster.Monster;
-import model.player.Player;
+import model.entity.monster.Monster;
+import model.entity.player.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +26,6 @@ public class PlayerPanel extends JPanel {
 
     public PlayerPanel() {
 
-        //this.setLayout(null);
         this.setLayout(new GridLayout(11,0, 0, 0));
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
