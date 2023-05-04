@@ -68,6 +68,7 @@ public class GamePanel extends JPanel {
 		monsterLabel.setIcon(monster.getIcon());
 		if (monster.getHP() <= 0) {
 			monster.dropGold();
+			monster.giveExp();
 			monster = null;
 		}
 		monster.takeAction();

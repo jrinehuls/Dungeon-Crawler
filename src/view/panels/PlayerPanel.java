@@ -27,7 +27,8 @@ public class PlayerPanel extends JPanel {
 
     public PlayerPanel() {
 
-        this.setLayout(null);
+        //this.setLayout(null);
+        this.setLayout(new GridLayout(11,0, 0, 0));
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
@@ -37,39 +38,39 @@ public class PlayerPanel extends JPanel {
         levelLabel.setBounds(0, 10, SCREEN_WIDTH, 20);
         this.add(levelLabel);
 
-        expLabel = new JLabel();
+        expLabel = new JLabel("", JLabel.CENTER);
         expLabel.setBounds(0, 40, SCREEN_WIDTH, 20);
         this.add(expLabel);
 
-        hpLabel = new JLabel();
+        hpLabel = new JLabel("", JLabel.CENTER);
         hpLabel.setBounds(0, 70, SCREEN_WIDTH, 20);
         this.add(hpLabel);
 
-        mpLabel = new JLabel();
+        mpLabel = new JLabel("", JLabel.CENTER);
         mpLabel.setBounds(0, 100, SCREEN_WIDTH, 20);
         this.add(mpLabel);
 
-        attackLabel = new JLabel();
+        attackLabel = new JLabel("", JLabel.CENTER);
         attackLabel.setBounds(0, 130, SCREEN_WIDTH, 20);
         this.add(attackLabel);
 
-        defenseLabel = new JLabel();
+        defenseLabel = new JLabel("", JLabel.CENTER);
         defenseLabel.setBounds(0, 160, SCREEN_WIDTH, 20);
         this.add(defenseLabel);
 
-        magicAttackLabel = new JLabel();
+        magicAttackLabel = new JLabel("", JLabel.CENTER);
         magicAttackLabel.setBounds(0, 190, SCREEN_WIDTH, 20);
         this.add(magicAttackLabel);
 
-        magicDefenseLabel = new JLabel();
+        magicDefenseLabel = new JLabel("", JLabel.CENTER);
         magicDefenseLabel.setBounds(0, 220, SCREEN_WIDTH, 20);
         this.add(magicDefenseLabel);
 
-        speedLabel = new JLabel();
+        speedLabel = new JLabel("", JLabel.CENTER);
         speedLabel.setBounds(0, 250, SCREEN_WIDTH, 20);
         this.add(speedLabel);
 
-        goldLabel = new JLabel();
+        goldLabel = new JLabel("", JLabel.CENTER);
         goldLabel.setBounds(0, 280, SCREEN_WIDTH, 20);
         this.add(goldLabel);
 
@@ -98,6 +99,7 @@ public class PlayerPanel extends JPanel {
     }
 
     public static void update() {
+        player.levelUp();
         setPlayerDetails();
         boolean barIsProgressable = player.getProgress() < 100 && monster != null; // && !ActionButtonController.spellFrame.isDisplayable();
         monster = GamePanel.getMonster();

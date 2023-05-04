@@ -24,8 +24,6 @@ public class Karen extends Monster {
         }
     }
 
-
-
     @Override
     public void useItem() {
 
@@ -46,7 +44,7 @@ public class Karen extends Monster {
 
     @Override
     public void giveExp() {
-
+        player.setExp(player.getExp() + 60);
     }
 
 }

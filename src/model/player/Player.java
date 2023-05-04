@@ -5,6 +5,7 @@ import model.Entity;
 import model.spell.AttackSpell;
 import model.spell.HealingSpell;
 import model.spell.Spell;
+import enums.Level;
 import view.panels.GamePanel;
 
 import java.util.HashMap;
@@ -12,9 +13,9 @@ import java.util.HashMap;
 public class Player extends Entity {
 
     private static int level = 1;
-    private int exp = 0;
-    private int nextExp = 50;
-    private int gold = 0;
+    private static int exp = 0;
+    private static int nextExp = 50;
+    private static int gold = 0;
     public HashMap<String, Spell> spells = new HashMap<>();
 
     public Player() {
@@ -27,8 +28,28 @@ public class Player extends Entity {
         return level;
     }
 
-    public void levelUp(int level) {
-        Player.level = level;
+    // This is a place-holder. Level up needs more functionality.
+    public void levelUp() {
+        if (exp >= nextExp) {
+            level++;
+            exp = exp - nextExp;
+            for (Level nextLevel : Level.values()) {
+                if (level == Integer.parseInt(nextLevel.name().substring(5))){
+                    System.out.println("You've reached " + nextLevel.name());
+                    System.out.println("You've reached " + level);
+                    nextExp += nextLevel.increaseNextExp;
+                    HP += nextLevel.increaseHP;
+                    maxHP += nextLevel.increaseHP;
+                    MP += nextLevel.increaseMP;
+                    maxMP += nextLevel.increaseMP;
+                    attack += nextLevel.increaseAttack;
+                    defense += nextLevel.increaseDefense;
+                    magicAttack += nextLevel.increaseMAttack;
+                    magicDefense += nextLevel.increaseMDefense;
+                    speed += nextLevel.increaseSpeed;
+                }
+            }
+        }
     }
 
     public int getExp() {

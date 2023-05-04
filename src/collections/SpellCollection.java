@@ -11,8 +11,7 @@ import static java.util.Map.entry;
 public class SpellCollection {
 
     public static HealingSpell firstAid = new HealingSpell("First Aid", 5, 20);
-
-
+    
     public static AttackSpell flare = new AttackSpell("Flare", 10, "Fire", 10);
     public static AttackSpell callManager = new AttackSpell("Call Manager", 3, "Normal", 10);
 
