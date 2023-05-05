@@ -2,8 +2,9 @@ package view.frames;
 
 import model.entity.player.Player;
 import model.spell.AttackSpell;
-import model.spell.HealingSpell;
+import model.spell.HealSpell;
 import model.spell.Spell;
+import model.spell.StealGoldSpell;
 import view.panels.PlayerPanel;
 
 import javax.swing.*;
@@ -92,10 +93,12 @@ public class SpellFrame extends JFrame implements ActionListener {
             spellButtonGroup.clearSelection();
         } else if (e.getSource() == submitButton && spellButtonGroup.getSelection() != null) {
             String key = spellButtonGroup.getSelection().getActionCommand();
-            if (player.spells.get(key) instanceof HealingSpell) {
-                player.castHealSpell((HealingSpell) player.spells.get(key));
+            if (player.spells.get(key) instanceof HealSpell) {
+                player.castHealSpell((HealSpell) player.spells.get(key));
             } else if (player.spells.get(key) instanceof AttackSpell) {
                 player.castAttackSpell((AttackSpell) player.spells.get(key));
+            } else if (player.spells.get(key) instanceof StealGoldSpell) {
+                player.castStealGoldSpell((StealGoldSpell) player.spells.get(key));
             }
             player.setProgress(0);
             this.dispose();

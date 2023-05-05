@@ -26,6 +26,7 @@ public class ActionPanel extends JPanel {
         final int BUTTON_HEIGHT = 30;
         final int BUTTON_X = (SCREEN_WIDTH - BUTTON_WIDTH) / 2;
 
+        // TODO: Set Layout Manager
         this.setLayout(null);
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));

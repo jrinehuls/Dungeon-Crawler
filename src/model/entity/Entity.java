@@ -1,5 +1,9 @@
 package model.entity;
 
+import model.spell.Spell;
+
+import java.util.HashMap;
+
 public abstract class Entity {
 
     protected int HP;
@@ -12,12 +16,13 @@ public abstract class Entity {
     protected int magicDefense;
     protected int speed;
     protected double progress;
+    public HashMap<String, Spell> spells = new HashMap<>();
 
-    public Entity(int HP, int maxHP, int MP, int maxMP, int attack, int defense, int magicAttack, int magicDefense, int speed) {
+    public Entity(int HP, int MP, int attack, int defense, int magicAttack, int magicDefense, int speed) {
         this.HP = HP;
-        this.maxHP = maxHP;
+        this.maxHP = HP;
         this.MP = MP;
-        this.maxMP = maxMP;
+        this.maxMP = MP;
         this.attack = attack;
         this.defense = defense;
         this.magicAttack = magicAttack;

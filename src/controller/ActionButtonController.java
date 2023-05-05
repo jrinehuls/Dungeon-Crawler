@@ -34,20 +34,18 @@ public class ActionButtonController implements ActionListener {
         if (e.getSource() == ActionPanel.spellButton) {
             spellFrame = new SpellFrame();
             spellFrame.setVisible(true);
-
-
         }
         if (e.getSource() == ActionPanel.itemButton) {
-            System.out.println("Item: " + "PlayerPanel.getPlayer().getItem()");
-            player.setProgress(0);
+            // System.out.println("Item: " + "PlayerPanel.getPlayer().getItem()");
+            // player.setProgress(0);
         }
         if (e.getSource() == ActionPanel.defendButton) {
-            System.out.println("Defend: " + PlayerPanel.getPlayer().getDefense());
-            player.setProgress(0);
+            //System.out.println("Defend: " + PlayerPanel.getPlayer().getDefense());
+            //player.setProgress(0);
         }
         if (e.getSource() == ActionPanel.runButton) {
-            System.out.println("Run: " + PlayerPanel.getPlayer().getSpeed());
-            player.setProgress(0);
+            // System.out.println("Run: " + PlayerPanel.getPlayer().getSpeed());
+            // player.setProgress(0);
         }
     }
 }
