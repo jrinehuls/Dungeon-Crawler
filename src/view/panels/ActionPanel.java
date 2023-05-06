@@ -4,7 +4,6 @@ import controller.ActionButtonController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class ActionPanel extends JPanel {
 
@@ -16,6 +15,7 @@ public class ActionPanel extends JPanel {
     public static JButton itemButton = new JButton("Item");
     public static JButton defendButton = new JButton("Defend");
     public static JButton runButton = new JButton("Run");
+    public static JButton equipButton = new JButton("Equipment");
 
     static JButton[] buttons = {attackButton, spellButton, itemButton, defendButton, runButton};
 
@@ -24,39 +24,39 @@ public class ActionPanel extends JPanel {
     public ActionPanel() {
         final int BUTTON_WIDTH = 120;
         final int BUTTON_HEIGHT = 30;
-        final int BUTTON_X = (SCREEN_WIDTH - BUTTON_WIDTH) / 2;
+        final int HGAP = (SCREEN_WIDTH - BUTTON_WIDTH) / 2;
+        final int VGAP = 10;
 
-        // TODO: Set Layout Manager
-        this.setLayout(null);
+        this.setLayout(new FlowLayout(FlowLayout.CENTER, HGAP, VGAP));
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
-        attackButton.setBounds(BUTTON_X, 30, BUTTON_WIDTH, BUTTON_HEIGHT);
-        spellButton.setBounds(BUTTON_X, 70, BUTTON_WIDTH, BUTTON_HEIGHT);
-        itemButton.setBounds(BUTTON_X, 110, BUTTON_WIDTH, BUTTON_HEIGHT);
-        defendButton.setBounds(BUTTON_X, 150, BUTTON_WIDTH, BUTTON_HEIGHT);
-        runButton.setBounds(BUTTON_X, 190, BUTTON_WIDTH, BUTTON_HEIGHT);
 
         for (JButton button : buttons) {
             if (GamePanel.getMonster() == null) {
                 button.setEnabled(false);
             }
+            button.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
             button.addActionListener(abc);
             button.setFocusable(false);
             this.add(button);
         }
-
+        // ----------------------------Special for equip button------------------------
+        if (GamePanel.getMonster() == null) {
+            equipButton.setEnabled(true);
+        }
+        equipButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+        equipButton.addActionListener(abc);
+        equipButton.setFocusable(false);
+        this.add(equipButton);
     }
 
     public static void update() {
-        boolean enableable = GamePanel.getMonster() != null && PlayerPanel.getPlayer().getProgress() >= 100;
+        boolean isMonster = GamePanel.getMonster() != null;
+        boolean progressFull = PlayerPanel.getPlayer().getProgress() >= 100;
         for (JButton button : buttons) {
-            if (enableable) {
-                button.setEnabled(true);
-            } else {
-                button.setEnabled(false);
-            }
+            button.setEnabled(isMonster && progressFull);
         }
+        equipButton.setEnabled(!isMonster);
     }
 
 }

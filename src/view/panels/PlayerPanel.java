@@ -11,69 +11,42 @@ public class PlayerPanel extends JPanel {
     public static final int SCREEN_WIDTH = MapPanel.SCREEN_WIDTH;
     public static final int SCREEN_HEIGHT = MonsterPanel.SCREEN_HEIGHT;
     private static Player player = new Player(); //Needs to be instantiated here because of other panel dependencies
-    private static Monster monster;
-    private static JLabel levelLabel;
-    private static JLabel expLabel;
-    private static JLabel hpLabel;
-    private static JLabel mpLabel;
-    private static JLabel attackLabel;
-    private static JLabel defenseLabel;
-    private static JLabel magicAttackLabel;
-    private static JLabel magicDefenseLabel;
-    private static JLabel speedLabel;
-    private static JLabel goldLabel;
+    private static Monster monster = GamePanel.getMonster();
+    private static JLabel levelLabel = new JLabel("", JLabel.CENTER);
+    private static JLabel expLabel = new JLabel("", JLabel.CENTER);
+    private static JLabel hpLabel = new JLabel("", JLabel.CENTER);
+    private static JLabel mpLabel = new JLabel("", JLabel.CENTER);
+    private static JLabel attackLabel = new JLabel("", JLabel.CENTER);
+    private static JLabel defenseLabel = new JLabel("", JLabel.CENTER);
+    private static JLabel magicAttackLabel = new JLabel("", JLabel.CENTER);
+    private static JLabel magicDefenseLabel = new JLabel("", JLabel.CENTER);
+    private static JLabel speedLabel = new JLabel("", JLabel.CENTER);
+    private static JLabel goldLabel = new JLabel("", JLabel.CENTER);
     private static JProgressBar speedProgress;
+
+    static JLabel[] labels = {levelLabel, expLabel, hpLabel, mpLabel, attackLabel, defenseLabel,
+                              magicAttackLabel, magicDefenseLabel, speedLabel, goldLabel};
 
     public PlayerPanel() {
 
-        this.setLayout(new GridLayout(11,0, 0, 0));
+        // monster = GamePanel.getMonster();
+
+        final int COMPONENT_WIDTH = SCREEN_WIDTH - 30;
+        final int LABEL_HEIGHT = 20;
+        final int HGAP = 30;
+        final int VGAP = 10;
+
+        this.setLayout(new FlowLayout(FlowLayout.CENTER, HGAP, VGAP));
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        monster = GamePanel.getMonster();
-
-        levelLabel = new JLabel("", JLabel.CENTER);
-        levelLabel.setBounds(0, 10, SCREEN_WIDTH, 20);
-        this.add(levelLabel);
-
-        expLabel = new JLabel("", JLabel.CENTER);
-        expLabel.setBounds(0, 40, SCREEN_WIDTH, 20);
-        this.add(expLabel);
-
-        hpLabel = new JLabel("", JLabel.CENTER);
-        hpLabel.setBounds(0, 70, SCREEN_WIDTH, 20);
-        this.add(hpLabel);
-
-        mpLabel = new JLabel("", JLabel.CENTER);
-        mpLabel.setBounds(0, 100, SCREEN_WIDTH, 20);
-        this.add(mpLabel);
-
-        attackLabel = new JLabel("", JLabel.CENTER);
-        attackLabel.setBounds(0, 130, SCREEN_WIDTH, 20);
-        this.add(attackLabel);
-
-        defenseLabel = new JLabel("", JLabel.CENTER);
-        defenseLabel.setBounds(0, 160, SCREEN_WIDTH, 20);
-        this.add(defenseLabel);
-
-        magicAttackLabel = new JLabel("", JLabel.CENTER);
-        magicAttackLabel.setBounds(0, 190, SCREEN_WIDTH, 20);
-        this.add(magicAttackLabel);
-
-        magicDefenseLabel = new JLabel("", JLabel.CENTER);
-        magicDefenseLabel.setBounds(0, 220, SCREEN_WIDTH, 20);
-        this.add(magicDefenseLabel);
-
-        speedLabel = new JLabel("", JLabel.CENTER);
-        speedLabel.setBounds(0, 250, SCREEN_WIDTH, 20);
-        this.add(speedLabel);
-
-        goldLabel = new JLabel("", JLabel.CENTER);
-        goldLabel.setBounds(0, 280, SCREEN_WIDTH, 20);
-        this.add(goldLabel);
+        for (JLabel label: labels) {
+            label.setPreferredSize(new Dimension(COMPONENT_WIDTH, LABEL_HEIGHT));
+            this.add(label);
+        }
 
         speedProgress = new JProgressBar();
-        speedProgress.setBounds(10, 310, SCREEN_WIDTH - 20, 20);
+        speedProgress.setPreferredSize(new Dimension(COMPONENT_WIDTH, 30));
         this.add(speedProgress);
 
     }
@@ -93,7 +66,7 @@ public class PlayerPanel extends JPanel {
         magicDefenseLabel.setText("Magic Defense: " + player.getMagicDefense());
         speedLabel.setText("Speed: " + player.getSpeed());
         goldLabel.setText("Gold: " + player.getGold());
-        speedProgress.setValue((int)player.getProgress());
+        speedProgress.setValue((int) player.getProgress());
     }
 
     public static void update() {

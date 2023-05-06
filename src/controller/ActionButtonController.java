@@ -47,5 +47,9 @@ public class ActionButtonController implements ActionListener {
             // System.out.println("Run: " + PlayerPanel.getPlayer().getSpeed());
             // player.setProgress(0);
         }
+        if (e.getSource() == ActionPanel.equipButton) {
+            // System.out.println("Run: " + PlayerPanel.getPlayer().getSpeed());
+            // player.setProgress(0);
+        }
     }
 }

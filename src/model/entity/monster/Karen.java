@@ -17,16 +17,13 @@ public class Karen extends Monster {
     @Override
     public void takeAction() {
         if (progress >= 100) {
-            if (HP <= maxHP - SpellCollection.firstAid.health && MP >= spells.get("First Aid").MP) {
+            double random = Math.random();
+            if (random <= 0.75 && HP <= maxHP - SpellCollection.firstAid.health && MP >= spells.get("First Aid").MP) {
                 castHealSpell((HealSpell) spells.get("First Aid"));
+            } else if (random <= 0.9 && MP >= spells.get("Call Manager").MP) {
+                castStealSpell((StealGoldSpell) spells.get("Call Manager"));
             } else {
-                // Add RNG to pick action
-                double random = Math.random();
-                if (random <= 0.9 && MP >= spells.get("Call Manager").MP) {
-                    castStealSpell((StealGoldSpell) spells.get("Call Manager"));
-                } else {
-                    attack();
-                }
+                attack();
             }
             progress = 0;
         }
