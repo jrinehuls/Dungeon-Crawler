@@ -1,6 +1,5 @@
 package view.panels;
 
-import model.entity.monster.Monster;
 import model.entity.player.Player;
 
 import javax.swing.*;
@@ -10,19 +9,18 @@ public class PlayerPanel extends JPanel {
 
     public static final int SCREEN_WIDTH = MapPanel.SCREEN_WIDTH;
     public static final int SCREEN_HEIGHT = MonsterPanel.SCREEN_HEIGHT;
-    private static Player player = new Player(); //Needs to be instantiated here because of other panel dependencies
-    private static Monster monster = GamePanel.getMonster();
-    private static JLabel levelLabel = new JLabel("", JLabel.CENTER);
-    private static JLabel expLabel = new JLabel("", JLabel.CENTER);
-    private static JLabel hpLabel = new JLabel("", JLabel.CENTER);
-    private static JLabel mpLabel = new JLabel("", JLabel.CENTER);
-    private static JLabel attackLabel = new JLabel("", JLabel.CENTER);
-    private static JLabel defenseLabel = new JLabel("", JLabel.CENTER);
-    private static JLabel magicAttackLabel = new JLabel("", JLabel.CENTER);
-    private static JLabel magicDefenseLabel = new JLabel("", JLabel.CENTER);
-    private static JLabel speedLabel = new JLabel("", JLabel.CENTER);
-    private static JLabel goldLabel = new JLabel("", JLabel.CENTER);
-    private static JProgressBar speedProgress = new JProgressBar();
+    private static final Player player = new Player(); //Needs to be instantiated here because of other panel dependencies
+    private static final JLabel levelLabel = new JLabel("", JLabel.CENTER);
+    private static final JLabel expLabel = new JLabel("", JLabel.CENTER);
+    private static final JLabel hpLabel = new JLabel("", JLabel.CENTER);
+    private static final JLabel mpLabel = new JLabel("", JLabel.CENTER);
+    private static final JLabel attackLabel = new JLabel("", JLabel.CENTER);
+    private static final JLabel defenseLabel = new JLabel("", JLabel.CENTER);
+    private static final JLabel magicAttackLabel = new JLabel("", JLabel.CENTER);
+    private static final JLabel magicDefenseLabel = new JLabel("", JLabel.CENTER);
+    private static final JLabel speedLabel = new JLabel("", JLabel.CENTER);
+    private static final JLabel goldLabel = new JLabel("", JLabel.CENTER);
+    private static final JProgressBar speedProgress = new JProgressBar();
 
     static JLabel[] labels = {levelLabel, expLabel, hpLabel, mpLabel, attackLabel, defenseLabel,
                               magicAttackLabel, magicDefenseLabel, speedLabel, goldLabel};
@@ -67,8 +65,7 @@ public class PlayerPanel extends JPanel {
     }
 
     public static void progress() {
-        monster = GamePanel.getMonster();
-        boolean barIsProgressable = player.getProgress() < 100 && monster != null;
+        boolean barIsProgressable = player.getProgress() < 100 && MonsterPanel.isMonster();
         if (barIsProgressable) {
             player.setProgress(player.getProgress() + (player.getSpeed() / 10.0));
         }

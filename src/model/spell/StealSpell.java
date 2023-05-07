@@ -9,22 +9,25 @@ public class StealSpell extends Spell {
     public final int gold;
 
     // TODO: Make overloaded constructor for items
-    public StealSpell(String name, int mp, int gold) {
-        super(name, mp);
+    public StealSpell(String name, int MP, int gold) {
+        super(name, MP);
         this.gold = gold;
     }
 
     @Override
     public void cast(Entity caster) {
-        if (caster instanceof Monster monster){
-            Player player = monster.getPlayer();
-            if (player.getGold() > gold) {
-                player.setGold(monster.getPlayer().getGold() - gold);
-            } else {
-                player.setGold(0);
+        if (caster.getMP() >= MP) {
+            caster.setMP(caster.getMP() - MP);
+            if (caster instanceof Monster monster) {
+                Player player = monster.getPlayer();
+                if (player.getGold() > gold) {
+                    player.setGold(monster.getPlayer().getGold() - gold);
+                } else {
+                    player.setGold(0);
+                }
+            } else if (caster instanceof Player player) {
+                player.setGold(player.getGold() + gold);
             }
-        } else if (caster instanceof Player player) {
-            player.setGold(player.getGold() + gold);
         }
     }
 

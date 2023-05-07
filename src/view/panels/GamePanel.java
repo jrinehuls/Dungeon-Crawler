@@ -23,15 +23,7 @@ public class GamePanel extends JPanel {
 	private static JLabel backgroundLabel = new JLabel();
 	private static ImageIcon backgroundImage;
 
-	// Handle these in map panel, not here.
-	static String lastPosition = MapPanel.getPosition();
-	static String currentPosition;
-
-	// Initially null, but set by Monster Collection get monster in update method
-	// Should handle monster in Monster Panel.
-	private static Monster monster;
-
-	// This class should only update to show bg, monster image, anf location.
+	// This class should only update to show bg, monster image, and location.
 	public GamePanel(){
 
 		// Game Panel
@@ -50,42 +42,14 @@ public class GamePanel extends JPanel {
 
 	}
 
-	// Invoked by MonsterPanel and ActionButtonController
-	public static Monster getMonster() {
-		return monster;
-	}
 
-	// Invoked by MapPanel to only allow movement if null monster
-	public static boolean isMonster() {
-		if (monster != null) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public static void handleMonster() {
-		monsterLabel.setIcon(monster.getIcon());
-		if (monster.getHP() <= 0) {
-			monster.dropGold();
-			monster.giveExp();
-			monster = null;
-		}
-		monster.takeAction();
-	}
 
 	public static void update() {
-		currentPosition = MapPanel.getPosition();
-		positionLabel.setText(currentPosition);
+		positionLabel.setText(MapPanel.getPosition());
 		backgroundImage = backGroundImageManager.getBackgroundImage(MapPanel.tileType, MapPanel.facing);
 		backgroundLabel.setIcon(backgroundImage);
-		if (!lastPosition.equals(currentPosition)) {
-			monster = new MonsterCollection().getMonster();
-			lastPosition = currentPosition;
-		}
-		// Handle monster related attributes and activities
 		try {
-			handleMonster();
+			monsterLabel.setIcon(MonsterPanel.getMonster().getIcon());
 		} catch (NullPointerException e) {
 			monsterLabel.setIcon(null);
 		}

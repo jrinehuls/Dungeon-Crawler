@@ -10,6 +10,7 @@ import model.spell.HealSpell;
 import enums.Level;
 import model.spell.StealSpell;
 import view.panels.GamePanel;
+import view.panels.MonsterPanel;
 
 public class Player extends Entity {
 
@@ -27,13 +28,13 @@ public class Player extends Entity {
 
     @Override
     public void attack() {
-        Monster monster = GamePanel.getMonster();
+        Monster monster = MonsterPanel.getMonster();
         monster.setHP(monster.getHP() - (5 * this.getAttack() / monster.getDefense() + 10));
     }
 
     @Override
     public void castAttackSpell(AttackSpell spell) {
-        spell.cast(this, GamePanel.getMonster());
+        spell.cast(this, MonsterPanel.getMonster());
     }
 
     @Override

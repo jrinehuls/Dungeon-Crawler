@@ -32,7 +32,7 @@ public class ActionPanel extends JPanel {
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         for (JButton button : buttons) {
-            if (GamePanel.getMonster() == null) {
+            if (!MonsterPanel.isMonster()) {
                 button.setEnabled(false);
             }
             button.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
@@ -41,7 +41,7 @@ public class ActionPanel extends JPanel {
             this.add(button);
         }
         // ----------------------------Special for equip button------------------------
-        if (GamePanel.getMonster() == null) {
+        if (!MonsterPanel.isMonster()) {
             equipButton.setEnabled(true);
         }
         equipButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
@@ -51,7 +51,7 @@ public class ActionPanel extends JPanel {
     }
 
     public static void update() {
-        boolean isMonster = GamePanel.getMonster() != null;
+        boolean isMonster = MonsterPanel.isMonster();
         boolean progressFull = PlayerPanel.getPlayer().getProgress() >= 100;
         for (JButton button : buttons) {
             button.setEnabled(isMonster && progressFull);

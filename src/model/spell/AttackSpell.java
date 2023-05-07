@@ -13,7 +13,6 @@ public class AttackSpell extends Spell{
         this.power = power;
     }
 
-
     @Override
     public void cast(Entity caster) {
         //Don't use
@@ -21,7 +20,9 @@ public class AttackSpell extends Spell{
 
     @Override
     public void cast(Entity caster, Entity target) {
-        target.setHP(target.getHP() - (this.power * (caster.getMagicAttack() / target.getMagicDefense()) + 10));
-        caster.setMP(caster.getMP() - MP);
+        if (caster.getMP() >= MP) {
+            caster.setMP(caster.getMP() - MP);
+            target.setHP(target.getHP() - (this.power * (caster.getMagicAttack() / target.getMagicDefense()) + 10));
+        }
     }
 }

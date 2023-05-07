@@ -1,7 +1,8 @@
 package view.panels;
 
+import collections.monster.MonsterCollection;
+import controller.MonsterController;
 import model.entity.monster.Monster;
-import model.entity.player.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,20 +11,25 @@ public class MonsterPanel extends JPanel {
 
     public final static int SCREEN_WIDTH = PlayerPanel.SCREEN_WIDTH;
     public final static int SCREEN_HEIGHT = 350;
-    static Monster monster = GamePanel.getMonster();
-    static Player player = PlayerPanel.getPlayer();
-    private static JProgressBar speedProgress = new JProgressBar();
-    private static JLabel nameLabel = new JLabel("", JLabel.CENTER);
-    private static JLabel hpLabel = new JLabel("", JLabel.CENTER);
-    private static JLabel mpLabel = new JLabel("", JLabel.CENTER);
-    private static JLabel attackLabel = new JLabel("", JLabel.CENTER);
-    private static JLabel defenseLabel = new JLabel("", JLabel.CENTER);
-    private static JLabel magicAttackLabel = new JLabel("", JLabel.CENTER);
-    private static JLabel magicDefenseLabel = new JLabel("", JLabel.CENTER);
-    private static JLabel speedLabel = new JLabel("", JLabel.CENTER);
+
+
+    private static final JLabel nameLabel = new JLabel("", JLabel.CENTER);
+    private static final JLabel hpLabel = new JLabel("", JLabel.CENTER);
+    private static final JLabel mpLabel = new JLabel("", JLabel.CENTER);
+    private static final JLabel attackLabel = new JLabel("", JLabel.CENTER);
+    private static final JLabel defenseLabel = new JLabel("", JLabel.CENTER);
+    private static final JLabel magicAttackLabel = new JLabel("", JLabel.CENTER);
+    private static final JLabel magicDefenseLabel = new JLabel("", JLabel.CENTER);
+    private static final JLabel speedLabel = new JLabel("", JLabel.CENTER);
+    private static final JProgressBar speedProgress = new JProgressBar();
 
     static JLabel[] labels = { nameLabel, hpLabel, mpLabel, attackLabel, defenseLabel,
             magicAttackLabel, magicDefenseLabel, speedLabel };
+
+    static String lastPosition = MapPanel.getPosition();
+    static String currentPosition;
+
+    static Monster monster;
 
     public MonsterPanel() {
 
@@ -73,15 +79,36 @@ public class MonsterPanel extends JPanel {
     }
 
     public static void update() {
-        monster = GamePanel.getMonster();
-        boolean barIsProgressable = player.getProgress() < 100; // && !ActionButtonController.spellFrame.isDisplayable();
-        if (monster != null) {
+        // If player moved, get a new monster
+        currentPosition = MapPanel.getPosition();
+        if (!lastPosition.equals(currentPosition)) {
+            monster = new MonsterCollection().getMonster();
+            lastPosition = currentPosition;
+        }
+
+        // Monster takes action or dies
+        MonsterController.handleMonster();
+
+        // Set info for labels and progress bar
+        if (isMonster()) {
             setMonsterDetails();
-            if (barIsProgressable) {
-                monster.setProgress(monster.getProgress() + (monster.getSpeed() / 10.0));
-            }
+            MonsterController.progress();
         } else {
             clearMonsterDetails();
         }
+
     }
+
+    public static boolean isMonster() {
+        return monster != null;
+    }
+
+    public static Monster getMonster() {
+        return monster;
+    }
+
+    public static void clearMonster() {
+        monster = null;
+    }
+
 }

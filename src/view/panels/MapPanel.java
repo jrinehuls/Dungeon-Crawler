@@ -154,7 +154,7 @@ public class MapPanel extends JPanel implements Runnable {
 	}
 
 	public void update() {
-		if (!GamePanel.isMonster()) {
+		if (!MonsterPanel.isMonster()) {
 			checkCollision();
 			move();
 			rotate();

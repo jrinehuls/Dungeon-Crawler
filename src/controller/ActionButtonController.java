@@ -25,7 +25,7 @@ public class ActionButtonController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         //spellFrame = new SpellFrame();
         player = PlayerPanel.getPlayer();
-        monster = GamePanel.getMonster();
+        monster = MonsterPanel.getMonster();
         if (e.getSource() == ActionPanel.attackButton) {
             System.out.println("Attack: " + PlayerPanel.getPlayer().getAttack());
             player.attack();

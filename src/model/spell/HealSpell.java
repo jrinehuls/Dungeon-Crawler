@@ -6,15 +6,21 @@ public class HealSpell extends Spell {
 
     public final int health;
 
-    public HealSpell(String name, int mp, int health) {
-        super(name, mp);
+    public HealSpell(String name, int MP, int health) {
+        super(name, MP);
         this.health = health;
     }
 
     @Override
     public void cast(Entity caster) {
-        caster.setHP(caster.getHP() + health);
-        caster.setMP(caster.getMP() - MP);
+        if (caster.getMP() >= MP) {
+            caster.setMP(caster.getMP() - MP);
+            if (caster.getMaxHP() - caster.getHP() <= health) {
+                caster.setHP(caster.getMaxHP());
+            } else {
+                caster.setHP(caster.getHP() + health);
+            }
+        }
     }
 
     @Override
