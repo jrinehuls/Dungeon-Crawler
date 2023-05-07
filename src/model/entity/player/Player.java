@@ -1,6 +1,8 @@
 package model.entity.player;
 
-import collections.SpellCollection;
+import collections.spell.AttackSpellCollection;
+import collections.spell.HealSpellCollection;
+import collections.spell.StealSpellCollection;
 import model.entity.Entity;
 import model.entity.monster.Monster;
 import model.spell.AttackSpell;
@@ -19,8 +21,8 @@ public class Player extends Entity {
 
     public Player() {
         super(100, 10,  20, 20, 10, 10, 25);
-        spells.put("First Aid", SpellCollection.firstAid);
-        spells.put("Flare", SpellCollection.spellMap.get("Flare"));
+        spells.put("First Aid", HealSpellCollection.FIRST_AID);
+        spells.put("Flare", AttackSpellCollection.FLARE);
     }
 
     @Override

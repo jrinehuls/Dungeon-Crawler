@@ -1,4 +1,4 @@
-package collections;
+package collections.monster;
 
 import model.entity.monster.Karen;
 import model.entity.monster.Monster;

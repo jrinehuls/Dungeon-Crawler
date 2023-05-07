@@ -1,6 +1,6 @@
 package view.panels;
 
-import collections.MonsterCollection;
+import collections.monster.MonsterCollection;
 import model.entity.monster.Monster;
 import background.BackGroundImageManager;
 
@@ -23,12 +23,15 @@ public class GamePanel extends JPanel {
 	private static JLabel backgroundLabel = new JLabel();
 	private static ImageIcon backgroundImage;
 
+	// Handle these in map panel, not here.
 	static String lastPosition = MapPanel.getPosition();
 	static String currentPosition;
 
 	// Initially null, but set by Monster Collection get monster in update method
+	// Should handle monster in Monster Panel.
 	private static Monster monster;
 
+	// This class should only update to show bg, monster image, anf location.
 	public GamePanel(){
 
 		// Game Panel

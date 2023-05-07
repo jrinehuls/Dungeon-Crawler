@@ -1,6 +1,7 @@
 package model.entity.monster;
 
-import collections.SpellCollection;
+import collections.spell.HealSpellCollection;
+import collections.spell.StealSpellCollection;
 import model.spell.HealSpell;
 import model.spell.StealSpell;
 
@@ -10,15 +11,15 @@ public class Karen extends Monster {
 
     public Karen() {
         super("Karen", 50, 12,  10, 10, 5, 10, 20, new ImageIcon("src/res/monsters/Karen.png"));
-        spells.put("First Aid", SpellCollection.firstAid);
-        spells.put("Call Manager", SpellCollection.callManager);
+        spells.put("First Aid", HealSpellCollection.FIRST_AID);
+        spells.put("Call Manager", StealSpellCollection.CALL_MANAGER);
     }
 
     @Override
     public void takeAction() {
         if (progress >= 100) {
             double random = Math.random();
-            if (random <= 0.75 && HP <= maxHP - SpellCollection.firstAid.health && MP >= spells.get("First Aid").MP) {
+            if (random <= 0.75 && HP <= maxHP - HealSpellCollection.FIRST_AID.health && MP >= spells.get("First Aid").MP) {
                 castHealSpell((HealSpell) spells.get("First Aid"));
             } else if (random <= 0.9 && MP >= spells.get("Call Manager").MP) {
                 castStealSpell((StealSpell) spells.get("Call Manager"));

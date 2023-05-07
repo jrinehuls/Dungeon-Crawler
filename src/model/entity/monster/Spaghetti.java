@@ -1,6 +1,6 @@
 package model.entity.monster;
 
-import collections.SpellCollection;
+import collections.spell.AttackSpellCollection;
 import model.spell.AttackSpell;
 
 import javax.swing.*;
@@ -9,7 +9,7 @@ public class Spaghetti extends Monster{
 
     public Spaghetti() {
         super("Flying Spaghetti Monster", 75,  10,  10, 10, 10, 1, 15, new ImageIcon("src/res/monsters/Spaghetti.png"));
-        spells.put("Flare", SpellCollection.flare);
+        spells.put("Flare", AttackSpellCollection.FLARE);
     }
 
     @Override
