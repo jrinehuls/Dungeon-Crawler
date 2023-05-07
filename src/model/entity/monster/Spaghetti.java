@@ -25,11 +25,6 @@ public class Spaghetti extends Monster{
     }
 
     @Override
-    public void useItem() {
-
-    }
-
-    @Override
     public void dropItem() {
 
     }

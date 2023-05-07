@@ -10,23 +10,23 @@ import javax.swing.*;
 
 
 public class GamePanel extends JPanel {
-	//Height and width of the main panel
+	//Height and width of the panel
 	public static final int SCREEN_WIDTH = 800;
 	public static final int SCREEN_HEIGHT = MonsterPanel.SCREEN_HEIGHT;
 
 	private static BackGroundImageManager backGroundImageManager = new BackGroundImageManager();
 	// Position Label
 	private static JLabel positionLabel = new JLabel();
-	// Monster Image Label
+	// Label to hold monster image
 	private static JLabel monsterLabel = new JLabel();
-	// Background Image
+	// Background Image for dungeon walls
 	private static JLabel backgroundLabel = new JLabel();
 	private static ImageIcon backgroundImage;
 
 	static String lastPosition = MapPanel.getPosition();
 	static String currentPosition;
 
-	// set by Monster Collection get monster
+	// Initially null, but set by Monster Collection get monster in update method
 	private static Monster monster;
 
 	public GamePanel(){
@@ -44,9 +44,6 @@ public class GamePanel extends JPanel {
 		// Background Image
 		backgroundLabel.setBounds((SCREEN_WIDTH - 300)/2, 0, 300, 300);
 		this.add(backgroundLabel);
-		// The position on the map before moving
-
-
 
 	}
 
@@ -55,7 +52,7 @@ public class GamePanel extends JPanel {
 		return monster;
 	}
 
-	// Invoked by MapPanel
+	// Invoked by MapPanel to only allow movement if null monster
 	public static boolean isMonster() {
 		if (monster != null) {
 			return true;

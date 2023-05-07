@@ -22,14 +22,12 @@ public class PlayerPanel extends JPanel {
     private static JLabel magicDefenseLabel = new JLabel("", JLabel.CENTER);
     private static JLabel speedLabel = new JLabel("", JLabel.CENTER);
     private static JLabel goldLabel = new JLabel("", JLabel.CENTER);
-    private static JProgressBar speedProgress;
+    private static JProgressBar speedProgress = new JProgressBar();
 
     static JLabel[] labels = {levelLabel, expLabel, hpLabel, mpLabel, attackLabel, defenseLabel,
                               magicAttackLabel, magicDefenseLabel, speedLabel, goldLabel};
 
     public PlayerPanel() {
-
-        // monster = GamePanel.getMonster();
 
         final int COMPONENT_WIDTH = SCREEN_WIDTH - 30;
         final int LABEL_HEIGHT = 20;
@@ -45,7 +43,6 @@ public class PlayerPanel extends JPanel {
             this.add(label);
         }
 
-        speedProgress = new JProgressBar();
         speedProgress.setPreferredSize(new Dimension(COMPONENT_WIDTH, 30));
         this.add(speedProgress);
 
@@ -69,14 +66,18 @@ public class PlayerPanel extends JPanel {
         speedProgress.setValue((int) player.getProgress());
     }
 
-    public static void update() {
-        player.levelUp();
-        setPlayerDetails();
-        boolean barIsProgressable = player.getProgress() < 100 && monster != null; // && !ActionButtonController.spellFrame.isDisplayable();
+    public static void progress() {
         monster = GamePanel.getMonster();
+        boolean barIsProgressable = player.getProgress() < 100 && monster != null;
         if (barIsProgressable) {
             player.setProgress(player.getProgress() + (player.getSpeed() / 10.0));
         }
+    }
+
+    public static void update() {
+        player.levelUp();
+        setPlayerDetails();
+        progress();
     }
 
 

@@ -4,8 +4,7 @@ import model.entity.Entity;
 import model.entity.player.Player;
 import model.spell.AttackSpell;
 import model.spell.HealSpell;
-import model.spell.StealGoldSpell;
-import view.panels.GamePanel;
+import model.spell.StealSpell;
 import view.panels.PlayerPanel;
 
 import javax.swing.*;
@@ -42,9 +41,14 @@ public abstract class Monster extends Entity implements MonsterActions {
     }
 
     @Override
-    public void castStealSpell(StealGoldSpell spell) {
+    public void castStealSpell(StealSpell spell) {
         spell.cast(this);
         System.out.println(this.getName() + " casted " + spell.NAME);
+    }
+
+    @Override
+    public void useItem() {
+
     }
 
     public String  getName() {

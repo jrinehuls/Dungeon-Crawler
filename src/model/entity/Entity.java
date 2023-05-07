@@ -4,7 +4,7 @@ import model.spell.Spell;
 
 import java.util.HashMap;
 
-public abstract class Entity {
+public abstract class Entity implements EntityActions {
 
     protected int HP;
     protected int maxHP;

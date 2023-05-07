@@ -6,7 +6,7 @@ import model.entity.monster.Monster;
 import model.spell.AttackSpell;
 import model.spell.HealSpell;
 import enums.Level;
-import model.spell.StealGoldSpell;
+import model.spell.StealSpell;
 import view.panels.GamePanel;
 
 public class Player extends Entity {
@@ -23,11 +23,31 @@ public class Player extends Entity {
         spells.put("Flare", SpellCollection.spellMap.get("Flare"));
     }
 
-    public int getLevel() {
-        return level;
+    @Override
+    public void attack() {
+        Monster monster = GamePanel.getMonster();
+        monster.setHP(monster.getHP() - (5 * this.getAttack() / monster.getDefense() + 10));
     }
 
-    // This is a place-holder. Level up needs more functionality.
+    @Override
+    public void castAttackSpell(AttackSpell spell) {
+        spell.cast(this, GamePanel.getMonster());
+    }
+
+    @Override
+    public void castStealSpell(StealSpell spell) {
+        spell.cast(this);
+    }
+
+    @Override
+    public void useItem() {
+
+    }
+
+    public void castHealSpell(HealSpell spell) {
+        spell.cast(this);
+    }
+
     public void levelUp() {
         if (exp >= nextExp) {
             level++;
@@ -46,9 +66,14 @@ public class Player extends Entity {
                     magicAttack += nextLevel.increaseMAttack;
                     magicDefense += nextLevel.increaseMDefense;
                     speed += nextLevel.increaseSpeed;
+                    // break;
                 }
             }
         }
+    }
+
+    public int getLevel() {
+        return level;
     }
 
     public int getExp() {
@@ -75,21 +100,5 @@ public class Player extends Entity {
         this.gold = gold;
     }
 
-    public void castHealSpell(HealSpell spell) {
-        spell.cast(this);
-    }
-
-    public void castAttackSpell(AttackSpell spell) {
-        spell.cast(this, GamePanel.getMonster());
-    }
-
-    public void castStealGoldSpell(StealGoldSpell spell) {
-        spell.cast(this);
-    }
-
-    public void attack() {
-        Monster monster = GamePanel.getMonster();
-        monster.setHP(monster.getHP() - (5 * this.getAttack() / monster.getDefense() + 10));
-    }
 
 }

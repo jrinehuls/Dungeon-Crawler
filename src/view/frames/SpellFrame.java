@@ -4,7 +4,7 @@ import model.entity.player.Player;
 import model.spell.AttackSpell;
 import model.spell.HealSpell;
 import model.spell.Spell;
-import model.spell.StealGoldSpell;
+import model.spell.StealSpell;
 import view.panels.PlayerPanel;
 
 import javax.swing.*;
@@ -97,8 +97,8 @@ public class SpellFrame extends JFrame implements ActionListener {
                 player.castHealSpell((HealSpell) player.spells.get(key));
             } else if (player.spells.get(key) instanceof AttackSpell) {
                 player.castAttackSpell((AttackSpell) player.spells.get(key));
-            } else if (player.spells.get(key) instanceof StealGoldSpell) {
-                player.castStealGoldSpell((StealGoldSpell) player.spells.get(key));
+            } else if (player.spells.get(key) instanceof StealSpell) {
+                player.castStealSpell((StealSpell) player.spells.get(key));
             }
             player.setProgress(0);
             this.dispose();

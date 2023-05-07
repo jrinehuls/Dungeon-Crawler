@@ -13,55 +13,35 @@ public class MonsterPanel extends JPanel {
     static Monster monster = GamePanel.getMonster();
     static Player player = PlayerPanel.getPlayer();
     private static JProgressBar speedProgress = new JProgressBar();
-    private static JLabel nameLabel;
-    private static JLabel hpLabel;
-    private static JLabel mpLabel;
-    private static JLabel attackLabel;
-    private static JLabel defenseLabel;
-    private static JLabel magicAttackLabel;
-    private static JLabel magicDefenseLabel;
-    private static JLabel speedLabel;
+    private static JLabel nameLabel = new JLabel("", JLabel.CENTER);
+    private static JLabel hpLabel = new JLabel("", JLabel.CENTER);
+    private static JLabel mpLabel = new JLabel("", JLabel.CENTER);
+    private static JLabel attackLabel = new JLabel("", JLabel.CENTER);
+    private static JLabel defenseLabel = new JLabel("", JLabel.CENTER);
+    private static JLabel magicAttackLabel = new JLabel("", JLabel.CENTER);
+    private static JLabel magicDefenseLabel = new JLabel("", JLabel.CENTER);
+    private static JLabel speedLabel = new JLabel("", JLabel.CENTER);
+
+    static JLabel[] labels = { nameLabel, hpLabel, mpLabel, attackLabel, defenseLabel,
+            magicAttackLabel, magicDefenseLabel, speedLabel };
 
     public MonsterPanel() {
 
-        //this.setLayout(null);
-        this.setLayout(new GridLayout(11,0, 0, 0));
+        final int COMPONENT_WIDTH = SCREEN_WIDTH - 30;
+        final int LABEL_HEIGHT = 20;
+        final int HGAP = 30;
+        final int VGAP = 10;
+
+        this.setLayout(new FlowLayout(FlowLayout.CENTER, HGAP, VGAP));
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        nameLabel = new JLabel("", JLabel.CENTER);
-        nameLabel.setBounds(0, 10, SCREEN_WIDTH, 20);
-        this.add(nameLabel);
+        for (JLabel label: labels) {
+            label.setPreferredSize(new Dimension(COMPONENT_WIDTH, LABEL_HEIGHT));
+            this.add(label);
+        }
 
-        hpLabel = new JLabel("", JLabel.CENTER);
-        hpLabel.setBounds(0, 40, SCREEN_WIDTH, 20);
-        this.add(hpLabel);
-
-        mpLabel = new JLabel("", JLabel.CENTER);
-        mpLabel.setBounds(0, 70, SCREEN_WIDTH, 20);
-        this.add(mpLabel);
-
-        attackLabel = new JLabel("", JLabel.CENTER);
-        attackLabel.setBounds(0, 100, SCREEN_WIDTH, 20);
-        this.add(attackLabel);
-
-        defenseLabel = new JLabel("", JLabel.CENTER);
-        defenseLabel.setBounds(0, 130, SCREEN_WIDTH, 20);
-        this.add(defenseLabel);
-
-        magicAttackLabel = new JLabel("", JLabel.CENTER);
-        magicAttackLabel.setBounds(0, 160, SCREEN_WIDTH, 20);
-        this.add(magicAttackLabel);
-
-        magicDefenseLabel = new JLabel("", JLabel.CENTER);
-        magicDefenseLabel.setBounds(0, 190, SCREEN_WIDTH, 20);
-        this.add(magicDefenseLabel);
-
-        speedLabel = new JLabel("", JLabel.CENTER);
-        speedLabel.setBounds(0, 220, SCREEN_WIDTH, 20);
-        this.add(speedLabel);
-
-        speedProgress.setBounds(10, 250, SCREEN_WIDTH - 20, 20);
+        speedProgress.setPreferredSize(new Dimension(COMPONENT_WIDTH, 30));
         this.add(speedProgress);
         speedProgress.setVisible(false);
 
