@@ -41,7 +41,6 @@ public class StealSpell extends Spell {
     }
 
     public void stealItem(Entity caster) {
-        // Base probability of success on speed stats
         if (caster.getMP() >= MP) {
             caster.setMP(caster.getMP() - MP);
             if (caster instanceof Monster monster) {
@@ -52,7 +51,10 @@ public class StealSpell extends Spell {
         }
     }
 
+    // Check if player has items, then steal if so
     private void stealPlayerItem(Monster monster) {
+        // TODO: Make stealing based on speed stat, not 100% of time.
+        // TODO: Make it so monsters can't steal equipped items.
         Player player = PlayerPanel.getPlayer();
         int numItems = player.getConsumableItems().size();
         if (numItems > 0) {
@@ -65,7 +67,9 @@ public class StealSpell extends Spell {
         }
     }
 
+    // Check if monster has items, then steal if so based on type of item
     private void stealMonsterItem(Player player) {
+        // TODO: Make stealing based on speed stat, not 100% of time.
         Monster monster = MonsterPanel.getMonster();
         int numItems = monster.getItems().size();
         if (numItems > 0) {

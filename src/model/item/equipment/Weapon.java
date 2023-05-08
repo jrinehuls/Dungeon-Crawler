@@ -2,15 +2,9 @@ package model.item.equipment;
 
 public class Weapon extends Equipment {
 
-    private final int attack;
-
-    public Weapon(String name,int attack, int cost, int salePrice) {
-        super(name, cost, salePrice);
-        this.attack = attack;
-    }
-
-    public int getAttack() {
-        return attack;
+    public Weapon(String name, int cost, int salePrice, int maxHP, int maxMP, int attack, int defense,
+                  int magicAttack, int magicDefense, int speed) {
+        super(name, cost, salePrice, maxHP, maxMP, attack, defense, magicAttack, magicDefense, speed);
     }
 
 }

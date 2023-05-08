@@ -2,6 +2,7 @@ package controller;
 
 import model.entity.monster.Monster;
 import model.entity.player.Player;
+import model.item.equipment.Weapon;
 import view.frames.SpellFrame;
 import view.panels.*;
 
@@ -48,8 +49,8 @@ public class ActionButtonController implements ActionListener {
             // player.setProgress(0);
         }
         if (e.getSource() == ActionPanel.equipButton) {
-            // System.out.println("Run: " + PlayerPanel.getPlayer().getSpeed());
-            // player.setProgress(0);
+            player.setWeapon((Weapon) player.getEquipment().get(0));
+            System.out.println("I equipped a dagger.");
         }
     }
 }

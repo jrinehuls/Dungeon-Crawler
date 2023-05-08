@@ -1,11 +1,13 @@
 package model.entity.player;
 
+import collections.equipment.WeaponCollection;
 import collections.spell.AttackSpellCollection;
 import collections.spell.HealSpellCollection;
 import model.entity.Entity;
 import model.entity.monster.Monster;
 import model.item.consumable.Consumable;
 import model.item.equipment.Equipment;
+import model.item.equipment.Weapon;
 import model.spell.AttackSpell;
 import model.spell.HealSpell;
 import enums.Level;
@@ -21,14 +23,18 @@ public class Player extends Entity {
     private static int nextExp = 50;
     private static int gold = 5;
 
+    // TODO: Pop from Equipment if item is equipped.
     private ArrayList<Equipment> equipment = new ArrayList<>();
     private ArrayList<Consumable> consumableItems = new ArrayList<>();
-
+    private Weapon weapon;
 
     public Player() {
         super(100, 10,  20, 20, 10, 10, 25);
         spells.put("First Aid", HealSpellCollection.FIRST_AID);
         spells.put("Flare", AttackSpellCollection.FLARE);
+        equipment.add(WeaponCollection.DAGGER);
+
+        this.weapon = WeaponCollection.NONE;
     }
 
     @Override
@@ -61,8 +67,6 @@ public class Player extends Entity {
 
     }
 
-
-
     public void levelUp() {
         if (exp >= nextExp) {
             level++;
@@ -81,7 +85,7 @@ public class Player extends Entity {
                     magicAttack += nextLevel.increaseMAttack;
                     magicDefense += nextLevel.increaseMDefense;
                     speed += nextLevel.increaseSpeed;
-                    // break;
+                    break;
                 }
             }
         }
@@ -109,6 +113,32 @@ public class Player extends Entity {
 
     public void removeConsumableItem(Consumable consumableItem) {
         this.consumableItems.remove(consumableItem);
+    }
+
+    public void removeWeapon() {
+        this.maxHP -= this.weapon.getMaxHP();
+        this.maxMP -= this.weapon.getMaxMP();
+        this.attack -= this.weapon.getAttack();
+        this.defense -= this.weapon.getDefense();
+        this.magicAttack -= this.weapon.getMagicAttack();
+        this.magicDefense -= this.weapon.getMagicDefense();
+        this.speed -= this.weapon.getSpeed();
+    }
+
+    public void setWeapon(Weapon weapon) {
+        // Remove current weapon
+        removeWeapon();
+
+        // Equip the weapon from the arraylist
+        this.weapon = weapon;
+
+        this.maxHP += weapon.getMaxHP();
+        this.maxMP += weapon.getMaxMP();
+        this.attack += weapon.getAttack();
+        this.defense += weapon.getDefense();
+        this.magicAttack += weapon.getMagicAttack();
+        this.magicDefense += weapon.getMagicDefense();
+        this.speed += weapon.getSpeed();
     }
 
     public int getLevel() {
