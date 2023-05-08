@@ -3,23 +3,32 @@ package model.spell;
 import model.entity.Entity;
 import model.entity.monster.Monster;
 import model.entity.player.Player;
+import model.item.Item;
+import model.item.consumable.Consumable;
+import model.item.equipment.Equipment;
+import view.panels.MapPanel;
+import view.panels.MonsterPanel;
+import view.panels.PlayerPanel;
 
 public class StealSpell extends Spell {
 
-    public final int gold;
+    private int gold;
+
+    public StealSpell(String name, int mp) {
+        super(name, mp);
+    }
 
     // TODO: Make overloaded constructor for items
-    public StealSpell(String name, int MP, int gold) {
-        super(name, MP);
+    public StealSpell(String name, int mp, int gold) {
+        super(name, mp);
         this.gold = gold;
     }
 
-    @Override
-    public void cast(Entity caster) {
+    public void stealGold(Entity caster) {
         if (caster.getMP() >= MP) {
             caster.setMP(caster.getMP() - MP);
             if (caster instanceof Monster monster) {
-                Player player = monster.getPlayer();
+                Player player = PlayerPanel.getPlayer();
                 if (player.getGold() > gold) {
                     player.setGold(monster.getPlayer().getGold() - gold);
                 } else {
@@ -31,9 +40,49 @@ public class StealSpell extends Spell {
         }
     }
 
-    @Override
-    public void cast(Entity caster, Entity target) {
-        // Can maybe steal an item with this overload
-
+    public void stealItem(Entity caster) {
+        // Base probability of success on speed stats
+        if (caster.getMP() >= MP) {
+            caster.setMP(caster.getMP() - MP);
+            if (caster instanceof Monster monster) {
+                stealPlayerItem(monster);
+            } else if (caster instanceof Player player) {
+                stealMonsterItem(player);
+            }
+        }
     }
+
+    private void stealPlayerItem(Monster monster) {
+        Player player = PlayerPanel.getPlayer();
+        int numItems = player.getConsumableItems().size();
+        if (numItems > 0) {
+            int index = (int) (Math.random() * numItems);
+            Consumable item = player.getConsumableItems().get(index);
+            monster.addItem(item);
+            player.removeConsumableItem(item);
+        } else {
+            monster.setProgress(100);
+        }
+    }
+
+    private void stealMonsterItem(Player player) {
+        Monster monster = MonsterPanel.getMonster();
+        int numItems = monster.getItems().size();
+        if (numItems > 0) {
+            int index = (int) (Math.random() * numItems);
+            Item item = monster.getItems().get(index);
+            if (item instanceof Consumable consumable) {
+                player.addConsumableItem(consumable);
+            } else if (item instanceof Equipment equipment) {
+                player.addEquipment(equipment);
+            }
+            monster.removeItem(item);
+        } else {
+            player.setProgress(100);
+        }
+    }
+
+
+
+
 }

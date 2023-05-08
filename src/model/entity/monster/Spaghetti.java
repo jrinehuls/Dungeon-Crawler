@@ -18,7 +18,7 @@ public class Spaghetti extends Monster{
             if (MP >= spells.get("Flare").MP) {
                 castAttackSpell((AttackSpell) spells.get("Flare"));
             } else {
-                attack();
+                attack(player);
             }
             progress = 0;
         }

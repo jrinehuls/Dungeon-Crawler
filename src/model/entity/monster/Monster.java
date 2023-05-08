@@ -2,18 +2,22 @@ package model.entity.monster;
 
 import model.entity.Entity;
 import model.entity.player.Player;
+import model.item.Item;
 import model.spell.AttackSpell;
 import model.spell.HealSpell;
 import model.spell.StealSpell;
 import view.panels.PlayerPanel;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public abstract class Monster extends Entity implements MonsterActions {
 
     protected String name;
     protected ImageIcon icon;
-    //public HashMap<String, Spell> spells = new HashMap<>();
+
+    protected ArrayList<Item> items = new ArrayList<>();
+
     Player player;
 
     public Monster(String name, int HP, int MP, int attack, int defense, int magicAttack, int magicDefense, int speed, ImageIcon icon) {
@@ -24,31 +28,49 @@ public abstract class Monster extends Entity implements MonsterActions {
     }
 
     @Override
-    public void attack() {
-        player.setHP(player.getHP() - (attack/player.getDefense() + 10));
+    public void attack(Entity player) {
+        super.attack(player);
         System.out.println(this.getName() + " attacked!");
     }
 
     @Override
-    public void castHealSpell(HealSpell spell) {
-        spell.cast(this);
-        System.out.println(this.getName() + " casted " + spell.NAME);
+    public void castHealSpell(HealSpell healSpell) {
+        healSpell.heal(this);
+        System.out.println(this.getName() + " casted " + healSpell.NAME);
     }
 
     @Override
-    public void castAttackSpell(AttackSpell spell) {
-        spell.cast(this, player);
+    public void castAttackSpell(AttackSpell attackSpell) {
+        attackSpell.cast(this, player);
+        System.out.println(this.getName() + " casted " + attackSpell.NAME);
     }
 
     @Override
-    public void castStealSpell(StealSpell spell) {
-        spell.cast(this);
-        System.out.println(this.getName() + " casted " + spell.NAME);
+    public void castStealGoldSpell(StealSpell stealSpell) {
+        stealSpell.stealGold(this);
+        System.out.println(this.getName() + " casted " + stealSpell.NAME);
+    }
+
+    @Override
+    public void castStealItemSpell(StealSpell stealSpell) {
+
     }
 
     @Override
     public void useItem() {
 
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public void addItem(Item item) {
+        this.items.add(item);
+    }
+
+    public void removeItem(Item item) {
+        this.items.remove(item);
     }
 
     public String  getName() {

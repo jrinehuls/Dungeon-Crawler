@@ -1,5 +1,6 @@
 package model.entity;
 
+import model.item.Item;
 import model.spell.Spell;
 
 import java.util.HashMap;
@@ -18,6 +19,7 @@ public abstract class Entity implements EntityActions {
     protected double progress;
     public HashMap<String, Spell> spells = new HashMap<>();
 
+
     public Entity(int HP, int MP, int attack, int defense, int magicAttack, int magicDefense, int speed) {
         this.HP = HP;
         this.maxHP = HP;
@@ -29,6 +31,11 @@ public abstract class Entity implements EntityActions {
         this.magicDefense = magicDefense;
         this.speed = speed;
         this.progress = 0;
+    }
+
+    @Override
+    public void attack(Entity target) {
+        target.setHP(target.getHP() - ((int) Math.pow(this.attack, 1.8)  / target.getDefense()));
     }
 
     public int getHP() {

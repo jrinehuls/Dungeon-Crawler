@@ -6,13 +6,15 @@ import model.spell.StealSpell;
 
 public interface EntityActions {
 
-    void attack();
+    void attack(Entity target);
 
-    void castHealSpell(HealSpell spell);
+    void castHealSpell(HealSpell healSpell);
 
-    void castAttackSpell(AttackSpell spell);
+    void castAttackSpell(AttackSpell attackSpell);
 
-    void castStealSpell(StealSpell spell);
+    void castStealGoldSpell(StealSpell stealSpell);
+
+    void castStealItemSpell(StealSpell stealSpell);
 
     void useItem();
 

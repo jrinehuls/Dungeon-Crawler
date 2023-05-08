@@ -2,6 +2,7 @@ package model.entity.monster;
 
 import collections.spell.HealSpellCollection;
 import collections.spell.StealSpellCollection;
+import model.entity.Entity;
 import model.spell.HealSpell;
 import model.spell.StealSpell;
 
@@ -19,12 +20,12 @@ public class Karen extends Monster {
     public void takeAction() {
         if (progress >= 100) {
             double random = Math.random();
-            if (random <= 0.75 && HP <= maxHP - HealSpellCollection.FIRST_AID.health && MP >= spells.get("First Aid").MP) {
+            if (random <= 0.75 && HP <= maxHP - HealSpellCollection.FIRST_AID.HEALTH && MP >= spells.get("First Aid").MP) {
                 castHealSpell((HealSpell) spells.get("First Aid"));
             } else if (random <= 0.9 && MP >= spells.get("Call Manager").MP) {
-                castStealSpell((StealSpell) spells.get("Call Manager"));
+                castStealGoldSpell((StealSpell) spells.get("Call Manager"));
             } else {
-                attack();
+                attack(player);
             }
             progress = 0;
         }
