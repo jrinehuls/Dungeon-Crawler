@@ -13,21 +13,22 @@ public class EquipmentFrame extends JFrame {
 
     private static final int SCREEN_WIDTH = 700;
     JPanel equipmentPanel;
-    String[] weapons = {"Dagger", "Sword"};
+    String[] weapons = {"Dagger", "Sword", "Dagger", "Sword", "Dagger", "Sword", "Dagger", "Sword", "Dagger", "Sword", "Dagger", "Sword"};
 
     //------------- TOP ------------------------------------------
     JPanel selectionPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
-    private static final int SELECTION_PANEL_HEIGHT = 300;
+    private static final int SELECTION_PANEL_HEIGHT = 200;
 
     JPanel equipButtonPanel = new JPanel(new GridLayout(6, 2, 0, 0));
 
     ButtonGroup equipButtons = new ButtonGroup();
-    JRadioButton weaponButton = new JRadioButton("Weapon");
-    JRadioButton headButton = new JRadioButton("Head");
-    JRadioButton bodyButton = new JRadioButton("Body");
-    JRadioButton armButton = new JRadioButton("Arm");
-    JRadioButton feetButton = new JRadioButton("Feet");
-    JRadioButton accessoryButton = new JRadioButton("Accessory");
+    JRadioButton weaponButton = new JRadioButton("Weapon: ");
+    JRadioButton headButton = new JRadioButton("Head: ");
+    JRadioButton bodyButton = new JRadioButton("Body: ");
+    JRadioButton armButton = new JRadioButton("Arm: ");
+    JRadioButton feetButton = new JRadioButton("Feet: ");
+    JRadioButton accessoryButton = new JRadioButton("Accessory: ");
+    private static final int JBUTTON_LEFT_INSET = 50;
 
     JLabel weaponLabel = new JLabel("None", JLabel.LEFT);
     JLabel headLabel = new JLabel("None", JLabel.LEFT);
@@ -36,14 +37,16 @@ public class EquipmentFrame extends JFrame {
     JLabel feetLabel = new JLabel("None", JLabel.LEFT);
     JLabel accessoryLabel = new JLabel("None", JLabel.LEFT);
 
-    JPanel equipListPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
+    Component[] equipButtonComponents = {weaponButton, weaponLabel, headButton, headLabel, bodyButton, bodyLabel,
+    armButton, armLabel, feetButton, feetLabel, accessoryButton, accessoryLabel};
 
+    JPanel equipListPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 25));
     JList<String> equipList = new JList<>(weapons);
     JScrollPane jsp = new JScrollPane(equipList);
 
     //------------- MIDDLE ---------------------------------------
     JPanel statsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
-    private static final int STATS_PANEL_HEIGHT = 200;
+    private static final int STATS_PANEL_HEIGHT = 150;
 
     JPanel currentStatsPanel = new JPanel(new GridLayout(5, 2, 0, 0));
 
@@ -57,6 +60,9 @@ public class EquipmentFrame extends JFrame {
     JLabel currentMagicDefenseLabel = new JLabel("Magic Defense: ");
     JLabel currentSpeedLabel = new JLabel("Speed: ");
 
+    JLabel[] currentStatsLabels = {currentStatsLabel, currentBlankLabel, currentMaxHPLabel, currentMaxMPLabel,
+            currentAttackLabel, currentDefenseLabel, currentMagicAttackLabel, currentMagicDefenseLabel, currentSpeedLabel};
+
     JPanel newStatsPanel = new JPanel(new GridLayout(5, 2, 0, 0));
 
     JLabel newStatsLabel = new JLabel("Current Stats: ");
@@ -68,6 +74,9 @@ public class EquipmentFrame extends JFrame {
     JLabel newMagicAttackLabel = new JLabel("Magic Attack: ");
     JLabel newMagicDefenseLabel = new JLabel("Magic Defense: ");
     JLabel newSpeedLabel = new JLabel("Speed: ");
+
+    JLabel[] mewStatsLabels = {newStatsLabel, newBlankLabel, newMaxHPLabel, newMaxMPLabel, newAttackLabel,
+            newDefenseLabel, newMagicAttackLabel, newMagicDefenseLabel, newSpeedLabel};
 
 
     //------------- BOTTOM ---------------------------------------
@@ -82,12 +91,12 @@ public class EquipmentFrame extends JFrame {
     // -------------Finally constructor time
     public EquipmentFrame() {
 
-        //--------------------Stuff for main panel---------------------------------------
+        // --------------------Stuff for main panel---------------------------------------
         equipmentPanel = new JPanel();
         equipmentPanel.setLayout(new BoxLayout(equipmentPanel, BoxLayout.Y_AXIS));
         // equipmentPanel.setBorder(new EmptyBorder(new Insets(20, 20, 20, 20)));
 
-        //--------------------Stuff for selection panel---------------------------------------
+        // --------------------Stuff for selection panel (TOP)---------------------------------------
         selectionPanel.setPreferredSize(new Dimension(SCREEN_WIDTH, SELECTION_PANEL_HEIGHT));
         equipButtonPanel.setPreferredSize(new Dimension(SCREEN_WIDTH/2, SELECTION_PANEL_HEIGHT));
         equipListPanel.setPreferredSize(new Dimension(SCREEN_WIDTH/2, SELECTION_PANEL_HEIGHT));
@@ -95,18 +104,57 @@ public class EquipmentFrame extends JFrame {
         equipListPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         equipButtonPanel.setBackground(Color.RED);
         equipListPanel.setBackground(Color.YELLOW);
+
+        // ------------------Add stuff to equip button panel----------------------------------------
+        for (Component component: equipButtonComponents) {
+            if (component instanceof JRadioButton button) {
+                button.setMargin(new Insets(0, JBUTTON_LEFT_INSET,0,0));
+                button.setOpaque(false);
+                button.setFocusable(false);
+                equipButtons.add(button);
+            }
+            equipButtonPanel.add(component);
+        }
+
+        // -----------------Add stuff to equip list panel------------------------------------------
+        equipList.setVisibleRowCount(6);
+        equipList.setFixedCellWidth(250);
+        equipList.setFixedCellHeight(25);
+        equipListPanel.add(jsp);
+
         selectionPanel.add(equipButtonPanel);
         selectionPanel.add(equipListPanel);
         equipmentPanel.add(selectionPanel);
 
-        //--------------------Stuff for stats panel---------------------------------------
+        //--------------------Stuff for stats panel (MIDDLE)---------------------------------------
         statsPanel.setPreferredSize(new Dimension(SCREEN_WIDTH, STATS_PANEL_HEIGHT));
         currentStatsPanel.setPreferredSize(new Dimension(SCREEN_WIDTH/2, STATS_PANEL_HEIGHT));
         newStatsPanel.setPreferredSize(new Dimension(SCREEN_WIDTH/2, STATS_PANEL_HEIGHT));
         currentStatsPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         newStatsPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         currentStatsPanel.setBackground(Color.GREEN);
-        newStatsPanel.setBackground(Color.BLUE);
+        newStatsPanel.setBackground(Color.ORANGE);
+
+        // TODO: add stuff to current stats panel
+        int currentStatsCounter = 0;
+        for (JLabel label: currentStatsLabels) {
+            if (currentStatsCounter % 2 ==0) {
+                label.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
+            }
+            currentStatsPanel.add(label);
+            currentStatsCounter++;
+        }
+
+        // TODO: add stuff to new stats panel
+        int newStatsCounter = 0;
+        for (JLabel label: mewStatsLabels) {
+            if (newStatsCounter % 2 ==0) {
+                label.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
+            }
+            newStatsPanel.add(label);
+            newStatsCounter++;
+        }
+
         statsPanel.add(currentStatsPanel);
         statsPanel.add(newStatsPanel);
         equipmentPanel.add(statsPanel);
@@ -114,7 +162,7 @@ public class EquipmentFrame extends JFrame {
         //--------------------Stuff for button panel---------------------------------------
         buttonPanel.setPreferredSize(new Dimension(SCREEN_WIDTH, BUTTON_PANEL_HEIGHT));
         buttonPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        buttonPanel.setBackground(Color.ORANGE);
+        buttonPanel.setBackground(Color.CYAN);
         submitButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
         cancelButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
         buttonPanel.add(submitButton);
