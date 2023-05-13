@@ -3,7 +3,7 @@ package controller;
 import model.entity.player.Player;
 import model.item.equipment.Weapon;
 import view.frames.EquipmentFrame;
-import view.panels.PlayerPanel;
+import view.panels.game.PlayerPanel;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;

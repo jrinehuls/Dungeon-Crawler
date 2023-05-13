@@ -2,10 +2,11 @@ package controller;
 
 import model.entity.monster.Monster;
 import model.entity.player.Player;
-import model.item.equipment.Weapon;
 import view.frames.EquipmentFrame;
 import view.frames.SpellFrame;
-import view.panels.*;
+import view.panels.game.ActionPanel;
+import view.panels.game.MonsterPanel;
+import view.panels.game.PlayerPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

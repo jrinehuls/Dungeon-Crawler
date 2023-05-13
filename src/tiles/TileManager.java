@@ -1,6 +1,6 @@
 package tiles;
 
-import view.panels.MapPanel;
+import view.panels.game.MapPanel;
 
 import java.awt.*;
 

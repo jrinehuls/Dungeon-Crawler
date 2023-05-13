@@ -5,7 +5,7 @@ import model.spell.AttackSpell;
 import model.spell.HealSpell;
 import model.spell.Spell;
 import model.spell.StealSpell;
-import view.panels.PlayerPanel;
+import view.panels.game.PlayerPanel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

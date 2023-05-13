@@ -1,7 +1,5 @@
-package view.panels;
+package view.panels.game;
 
-import collections.monster.MonsterCollection;
-import model.entity.monster.Monster;
 import background.BackGroundImageManager;
 
 import java.awt.*;

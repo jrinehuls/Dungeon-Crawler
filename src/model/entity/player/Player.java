@@ -4,7 +4,6 @@ import collections.equipment.WeaponCollection;
 import collections.spell.AttackSpellCollection;
 import collections.spell.HealSpellCollection;
 import model.entity.Entity;
-import model.entity.monster.Monster;
 import model.item.consumable.Consumable;
 import model.item.equipment.Equipment;
 import model.item.equipment.Weapon;
@@ -12,7 +11,7 @@ import model.spell.AttackSpell;
 import model.spell.HealSpell;
 import enums.Level;
 import model.spell.StealSpell;
-import view.panels.MonsterPanel;
+import view.panels.game.MonsterPanel;
 import java.util.ArrayList;
 
 

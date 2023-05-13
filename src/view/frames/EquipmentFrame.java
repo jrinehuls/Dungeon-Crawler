@@ -1,8 +1,5 @@
 package view.frames;
 
-import controller.EquipmentController;
-import model.entity.player.Player;
-import view.panels.PlayerPanel;
 import view.panels.equipment.*;
 
 import javax.swing.*;

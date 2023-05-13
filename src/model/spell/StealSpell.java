@@ -6,9 +6,8 @@ import model.entity.player.Player;
 import model.item.Item;
 import model.item.consumable.Consumable;
 import model.item.equipment.Equipment;
-import view.panels.MapPanel;
-import view.panels.MonsterPanel;
-import view.panels.PlayerPanel;
+import view.panels.game.MonsterPanel;
+import view.panels.game.PlayerPanel;
 
 public class StealSpell extends Spell {
 

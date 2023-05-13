@@ -6,7 +6,7 @@ import model.item.Item;
 import model.spell.AttackSpell;
 import model.spell.HealSpell;
 import model.spell.StealSpell;
-import view.panels.PlayerPanel;
+import view.panels.game.PlayerPanel;
 
 import javax.swing.*;
 import java.util.ArrayList;
