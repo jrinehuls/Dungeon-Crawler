@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class EquipRadioButtonPanel extends JPanel {
 
-    ButtonGroup equipButtons = new ButtonGroup();
+    public ButtonGroup equipButtons = new ButtonGroup();
     JRadioButton weaponButton = new JRadioButton("Weapon: ");
     JRadioButton headButton = new JRadioButton("Head: ");
     JRadioButton bodyButton = new JRadioButton("Body: ");

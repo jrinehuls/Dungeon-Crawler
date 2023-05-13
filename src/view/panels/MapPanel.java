@@ -1,8 +1,10 @@
 package view.panels;
 
 import controller.ActionButtonController;
+import controller.EquipmentController;
 import controller.KeyController;
 import tiles.TileManager;
+import view.frames.EquipmentFrame;
 
 import java.awt.*;
 import javax.swing.*;
@@ -154,7 +156,7 @@ public class MapPanel extends JPanel implements Runnable {
 	}
 
 	public void update() {
-		if (!MonsterPanel.isMonster()) {
+		if (!MonsterPanel.isMonster() && !ActionButtonController.equipmentFrame.isVisible()) {
 			checkCollision();
 			move();
 			rotate();

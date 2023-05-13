@@ -1,5 +1,7 @@
 package view.panels.equipment;
 
+import controller.ActionButtonController;
+import controller.EquipmentController;
 import view.frames.EquipmentFrame;
 
 import javax.swing.*;
@@ -15,17 +17,30 @@ public class ButtonPanel extends JPanel {
 
     JButton[] buttons = {submitButton, cancelButton};
 
+    EquipmentController ec;
+
     public ButtonPanel() {
         super(new FlowLayout(FlowLayout.CENTER, 100, 15));
+
+        ec = new EquipmentController();
 
         this.setPreferredSize(new Dimension(EquipmentFrame.SCREEN_WIDTH, EquipmentFrame.BUTTON_PANEL_HEIGHT));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.setBackground(Color.CYAN);
 
         for (JButton button: buttons) {
+            button.addActionListener(ec);
             button.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
             this.add(button);
         }
 
+    }
+
+    public JButton getSubmitButton() {
+        return submitButton;
+    }
+
+    public JButton getCancelButton() {
+        return cancelButton;
     }
 }

@@ -3,6 +3,7 @@ package controller;
 import model.entity.monster.Monster;
 import model.entity.player.Player;
 import model.item.equipment.Weapon;
+import view.frames.EquipmentFrame;
 import view.frames.SpellFrame;
 import view.panels.*;
 
@@ -14,17 +15,15 @@ public class ActionButtonController implements ActionListener {
     //ActionPanel ap;
     Monster monster;
     Player player;
-    public static SpellFrame spellFrame;
+    public static SpellFrame spellFrame = new SpellFrame();;
+    public static EquipmentFrame equipmentFrame = new EquipmentFrame();
 
     public ActionButtonController() {
 
-        spellFrame = new SpellFrame();
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //spellFrame = new SpellFrame();
         player = PlayerPanel.getPlayer();
         monster = MonsterPanel.getMonster();
         if (e.getSource() == ActionPanel.attackButton) {
@@ -33,7 +32,7 @@ public class ActionButtonController implements ActionListener {
             player.setProgress(0);
         }
         if (e.getSource() == ActionPanel.spellButton) {
-            spellFrame = new SpellFrame();
+            // spellFrame = new SpellFrame();
             spellFrame.setVisible(true);
         }
         if (e.getSource() == ActionPanel.itemButton) {
@@ -49,8 +48,8 @@ public class ActionButtonController implements ActionListener {
             // player.setProgress(0);
         }
         if (e.getSource() == ActionPanel.equipButton) {
-            player.setWeapon((Weapon) player.getEquipment().get(0));
-            System.out.println("I equipped a dagger.");
+            //equipmentFrame = new EquipmentFrame();
+            equipmentFrame.setVisible(true);
         }
     }
 }
