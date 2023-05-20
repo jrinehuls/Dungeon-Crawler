@@ -6,6 +6,7 @@ import model.entity.player.Player;
 import model.item.Item;
 import model.item.consumable.Consumable;
 import model.item.equipment.Equipment;
+import model.item.equipment.Weapon;
 import view.panels.game.MonsterPanel;
 import view.panels.game.PlayerPanel;
 
@@ -50,7 +51,7 @@ public class StealSpell extends Spell {
         }
     }
 
-    // Check if player has items, then steal if so
+    // Check if player has items, then steal if so. Only steal consumables.
     private void stealPlayerItem(Monster monster) {
         // TODO: Make stealing based on speed stat, not 100% of time.
         // TODO: Make it so monsters can't steal equipped items.
@@ -76,8 +77,8 @@ public class StealSpell extends Spell {
             Item item = monster.getItems().get(index);
             if (item instanceof Consumable consumable) {
                 player.addConsumableItem(consumable);
-            } else if (item instanceof Equipment equipment) {
-                player.addEquipment(equipment);
+            } else if (item instanceof Weapon weapon) {
+                player.addWeapon(weapon);
             }
             monster.removeItem(item);
         } else {

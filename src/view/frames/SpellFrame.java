@@ -51,6 +51,7 @@ public class SpellFrame extends JFrame implements ActionListener {
         for (Map.Entry<String, Spell> spell: player.spells.entrySet()) {
             int spellMP = spell.getValue().MP;
             JRadioButton spellButton = new JRadioButton(spell.getKey() + ": " + String.valueOf(spellMP));
+            spellButton.setFocusable(false);
             // I don't exactly know what this does, but it's used to identify which radio button is selected.
             spellButton.setActionCommand(spellButton.getText().split(":")[0]);
             spellButtonGroup.add(spellButton);

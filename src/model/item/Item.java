@@ -35,4 +35,9 @@ public abstract class Item {
     public void setSalePrice(int salePrice) {
         this.salePrice = salePrice;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
