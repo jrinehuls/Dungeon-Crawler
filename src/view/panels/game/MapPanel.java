@@ -60,7 +60,7 @@ public class MapPanel extends JPanel implements Runnable {
 	}
 
 	public void checkCollision() {
-		tileType = TileManager.getFloorPlan()[yCord][xCord];
+		//tileType = TileManager.getFloorPlan()[yCord][xCord];
 		topCollision = TileManager.getTileTypes()[tileType].isTop();
 		bottomCollision = TileManager.getTileTypes()[tileType].isBottom();
 		leftCollision = TileManager.getTileTypes()[tileType].isLeft();
@@ -121,6 +121,7 @@ public class MapPanel extends JPanel implements Runnable {
 				position = MAP_GRID[yCord][xCord];
 				xLocation += GRID_SIZE;
 			}
+			tileType = TileManager.getFloorPlan()[yCord][xCord];
 		}
 	}
 

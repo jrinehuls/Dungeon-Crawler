@@ -40,8 +40,6 @@ public class GamePanel extends JPanel {
 
 	}
 
-
-
 	public static void update() {
 		positionLabel.setText(MapPanel.getPosition());
 		backgroundImage = backGroundImageManager.getBackgroundImage(MapPanel.tileType, MapPanel.facing);
@@ -51,7 +49,6 @@ public class GamePanel extends JPanel {
 		} catch (NullPointerException e) {
 			monsterLabel.setIcon(null);
 		}
-
 	}
 
 
