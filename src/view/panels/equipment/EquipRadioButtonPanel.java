@@ -2,6 +2,8 @@ package view.panels.equipment;
 
 import controller.EquipmentController;
 import view.frames.EquipmentFrame;
+import view.panels.game.GamePanel;
+import view.panels.game.PlayerPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,12 +20,12 @@ public class EquipRadioButtonPanel extends JPanel {
     JRadioButton accessoryButton = new JRadioButton("Accessory: ");
     private static final int JBUTTON_LEFT_INSET = 50;
 
-    JLabel weaponLabel = new JLabel("None", JLabel.LEFT);
-    JLabel headLabel = new JLabel("None", JLabel.LEFT);
-    JLabel bodyLabel = new JLabel("None", JLabel.LEFT);
-    JLabel armLabel = new JLabel("None", JLabel.LEFT);
-    JLabel feetLabel = new JLabel("None", JLabel.LEFT);
-    JLabel accessoryLabel = new JLabel("None", JLabel.LEFT);
+    JLabel weaponLabel = new JLabel("", JLabel.LEFT);
+    JLabel headLabel = new JLabel("", JLabel.LEFT);
+    JLabel bodyLabel = new JLabel("", JLabel.LEFT);
+    JLabel armLabel = new JLabel("", JLabel.LEFT);
+    JLabel feetLabel = new JLabel("", JLabel.LEFT);
+    JLabel accessoryLabel = new JLabel("", JLabel.LEFT);
 
     Component[] equipButtonComponents = {weaponButton, weaponLabel, headButton, headLabel, bodyButton, bodyLabel,
             armButton, armLabel, feetButton, feetLabel, accessoryButton, accessoryLabel};
@@ -47,5 +49,13 @@ public class EquipRadioButtonPanel extends JPanel {
             }
             this.add(component);
         }
+
+        weaponLabel.setText(PlayerPanel.getPlayer().getWeapon().getName());
+        headLabel.setText(PlayerPanel.getPlayer().getHeadGear().getName());
+        bodyLabel.setText(PlayerPanel.getPlayer().getArmor().getName());
+        armLabel.setText(PlayerPanel.getPlayer().getArm().getName());
+        feetLabel.setText(PlayerPanel.getPlayer().getFootwear().getName());
+        accessoryLabel.setText(PlayerPanel.getPlayer().getAccessory().getName());
+
     }
 }
