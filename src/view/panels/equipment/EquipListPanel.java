@@ -28,7 +28,7 @@ public class EquipListPanel extends JPanel {
             weaponsModel.addElement(weapon);
         }
 
-        equipmentJList = new JList<>(emptyModel); // weaponsList.setModel(); to change DefaultListModel.
+        equipmentJList = new JList<>(emptyModel); // equipmentJList.setModel(); to change DefaultListModel.
         equipmentJList.setVisibleRowCount(6);
         equipmentJList.setFixedCellWidth(250);
         equipmentJList.setFixedCellHeight(25);

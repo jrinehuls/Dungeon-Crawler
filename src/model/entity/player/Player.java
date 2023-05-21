@@ -5,8 +5,7 @@ import collections.spell.AttackSpellCollection;
 import collections.spell.HealSpellCollection;
 import model.entity.Entity;
 import model.item.consumable.Consumable;
-import model.item.equipment.Equipment;
-import model.item.equipment.Weapon;
+import model.item.equipment.*;
 import model.spell.AttackSpell;
 import model.spell.HealSpell;
 import enums.Level;
@@ -24,16 +23,28 @@ public class Player extends Entity {
 
     // TODO: Pop from Equipment if item is equipped.
     private ArrayList<Weapon> weapons = new ArrayList<>();
+    private ArrayList<Head> headGear = new ArrayList<>();
+    private ArrayList<Body> armor = new ArrayList<>();
+    private ArrayList<Arm> arm = new ArrayList<>();
+    private ArrayList<Feet> footWear = new ArrayList<>();
+    private ArrayList<Accessory> accessories = new ArrayList<>();
     private ArrayList<Consumable> consumableItems = new ArrayList<>();
     private Weapon weapon;
 
     public Player() {
         super(100, 10,  20, 20, 10, 10, 25);
+        // -----------------------------------Spells------------------------------------------------------
         spells.put("First Aid", HealSpellCollection.FIRST_AID);
         spells.put("Flare", AttackSpellCollection.FLARE);
+        // -------------------------------------Weapons-----------------------------------------------
+        weapons.add(WeaponCollection.NONE);
         weapons.add(WeaponCollection.DAGGER);
-
-        this.weapon = WeaponCollection.NONE;
+        this.weapon = weapons.get(weapons.indexOf(WeaponCollection.NONE));
+        // -------------------------------------Head Gear-----------------------------------------------
+        // -------------------------------------Armor-----------------------------------------------
+        // -------------------------------------Arm-----------------------------------------------
+        // -------------------------------------Foot Wear-----------------------------------------------
+        // -------------------------------------Accessories-----------------------------------------------
     }
 
     @Override

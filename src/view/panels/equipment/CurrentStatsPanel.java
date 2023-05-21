@@ -1,6 +1,8 @@
 package view.panels.equipment;
 
 import view.frames.EquipmentFrame;
+import view.panels.game.GamePanel;
+import view.panels.game.PlayerPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +11,7 @@ public class CurrentStatsPanel extends JPanel {
 
     JLabel currentStatsLabel = new JLabel("Current Stats: ");
     JLabel currentBlankLabel = new JLabel("");
-    JLabel currentMaxHPLabel = new JLabel("Max HP: ");
+    JLabel currentMaxHPLabel = new JLabel("Max HP: " + PlayerPanel.getPlayer().getMaxHP());
     JLabel currentMaxMPLabel = new JLabel("Max MP: ");
     JLabel currentAttackLabel = new JLabel("Attack: ");
     JLabel currentDefenseLabel = new JLabel("Defense: ");

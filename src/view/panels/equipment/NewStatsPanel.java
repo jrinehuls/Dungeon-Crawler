@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class NewStatsPanel extends JPanel {
 
-    JLabel newStatsLabel = new JLabel("Current Stats: ");
+    JLabel newStatsLabel = new JLabel("New Stats: ");
     JLabel newBlankLabel = new JLabel("");
     JLabel newMaxHPLabel = new JLabel("Max HP: ");
     JLabel newMaxMPLabel = new JLabel("Max MP: ");
@@ -17,7 +17,7 @@ public class NewStatsPanel extends JPanel {
     JLabel newMagicDefenseLabel = new JLabel("Magic Defense: ");
     JLabel newSpeedLabel = new JLabel("Speed: ");
 
-    JLabel[] mewStatsLabels = {newStatsLabel, newBlankLabel, newMaxHPLabel, newMaxMPLabel, newAttackLabel,
+    JLabel[] newStatsLabels = {newStatsLabel, newBlankLabel, newMaxHPLabel, newMaxMPLabel, newAttackLabel,
             newDefenseLabel, newMagicAttackLabel, newMagicDefenseLabel, newSpeedLabel};
 
     public NewStatsPanel() {
@@ -30,7 +30,7 @@ public class NewStatsPanel extends JPanel {
 
         // TODO: add stuff to new stats panel
         int newStatsCounter = 0;
-        for (JLabel label: mewStatsLabels) {
+        for (JLabel label: newStatsLabels) {
             if (newStatsCounter % 2 ==0) {
                 label.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
             }
