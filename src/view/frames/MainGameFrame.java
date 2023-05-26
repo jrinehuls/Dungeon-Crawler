@@ -52,7 +52,7 @@ public class MainGameFrame extends JFrame {
         // ------------------------------<Frame Stuff>------------------------------------
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.ORANGE);
-        this.setIconImage(new ImageIcon("src/res/monsters/Spaghetti.png").getImage());
+        this.setIconImage(new ImageIcon("res/icons/Icon.png").getImage());
         this.setResizable(false);
         this.pack();
         this.setLocationRelativeTo(null);

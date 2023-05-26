@@ -80,9 +80,10 @@ public class SpellFrame extends JFrame implements ActionListener {
         //------------------------Frame stuff---------------------------------------------
         this.add(spellPanel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setIconImage(new ImageIcon("res/icons/Icon.png").getImage());
+        this.setResizable(false);
         this.pack();
         this.setLocationRelativeTo(null);
-        this.setResizable(false);
         //this.setLocationRelativeTo(MainGameFrame.getFrames()[0]);
         this.setVisible(false);
     }

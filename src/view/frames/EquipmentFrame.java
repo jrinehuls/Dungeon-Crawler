@@ -66,9 +66,10 @@ public class EquipmentFrame extends JFrame {
         this.add(equipmentPanel);
         // TODO: Clear list selection
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setIconImage(new ImageIcon("res/icons/Icon.png").getImage());
+        this.setResizable(true);
         this.pack();
         this.setLocationRelativeTo(null);
-        this.setResizable(true);
         // this.setLocationRelativeTo(MainGameFrame.getFrames()[0]);
         // this.setVisible(false);
         this.setVisible(false);

@@ -18,14 +18,15 @@ public class EquipRadioButtonPanel extends JPanel {
     public final JRadioButton armButton = new JRadioButton("Arm: ");
     public final JRadioButton feetButton = new JRadioButton("Feet: ");
     public final JRadioButton accessoryButton = new JRadioButton("Accessory: ");
-    private static final int JBUTTON_LEFT_INSET = 50;
 
-    JLabel weaponLabel = new JLabel("", JLabel.LEFT);
-    JLabel headLabel = new JLabel("", JLabel.LEFT);
-    JLabel bodyLabel = new JLabel("", JLabel.LEFT);
-    JLabel armLabel = new JLabel("", JLabel.LEFT);
-    JLabel feetLabel = new JLabel("", JLabel.LEFT);
-    JLabel accessoryLabel = new JLabel("", JLabel.LEFT);
+    public JLabel weaponLabel = new JLabel("", JLabel.LEFT);
+    public JLabel headLabel = new JLabel("", JLabel.LEFT);
+    public JLabel bodyLabel = new JLabel("", JLabel.LEFT);
+    public JLabel armLabel = new JLabel("", JLabel.LEFT);
+    public JLabel feetLabel = new JLabel("", JLabel.LEFT);
+    public JLabel accessoryLabel = new JLabel("", JLabel.LEFT);
+
+    private static final int JBUTTON_LEFT_INSET = 50;
 
     Component[] equipButtonComponents = {weaponButton, weaponLabel, headButton, headLabel, bodyButton, bodyLabel,
             armButton, armLabel, feetButton, feetLabel, accessoryButton, accessoryLabel};
