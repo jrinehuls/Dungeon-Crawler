@@ -420,7 +420,7 @@ public class Player extends Entity {
         return this.weapon;
     }
 
-    public ArrayList<Head> getHeadgears() {
+    public ArrayList<Head> getHeadGears() {
         return this.headGears;
     }
 
