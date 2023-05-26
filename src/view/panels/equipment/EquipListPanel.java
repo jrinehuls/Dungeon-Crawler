@@ -10,12 +10,12 @@ import java.awt.*;
 
 public class EquipListPanel extends JPanel {
 
-    public DefaultListModel<Equipment> weaponsModel = new DefaultListModel<>();
-    public DefaultListModel<Equipment> headGearsModel = new DefaultListModel<>();
-    public DefaultListModel<Equipment> armorsModel = new DefaultListModel<>();
-    public DefaultListModel<Equipment> armsModel = new DefaultListModel<>();
-    public DefaultListModel<Equipment> footWearsModel = new DefaultListModel<>();
-    public DefaultListModel<Equipment> accessoriesModel = new DefaultListModel<>();
+    private DefaultListModel<Equipment> weaponsModel = new DefaultListModel<>();
+    private DefaultListModel<Equipment> headGearsModel = new DefaultListModel<>();
+    private DefaultListModel<Equipment> armorsModel = new DefaultListModel<>();
+    private DefaultListModel<Equipment> armsModel = new DefaultListModel<>();
+    private DefaultListModel<Equipment> footWearsModel = new DefaultListModel<>();
+    private DefaultListModel<Equipment> accessoriesModel = new DefaultListModel<>();
 
     public JList<Equipment> equipmentJList;
 
@@ -52,6 +52,32 @@ public class EquipListPanel extends JPanel {
         // -------------------------- this.remove(equipmentJSP); --------------------------------------------
     }
 
+    // --------------------------------------------- Getters ---------------------------------------------
+    public DefaultListModel<Equipment> getWeaponsModel() {
+        return weaponsModel;
+    }
+
+    public DefaultListModel<Equipment> getHeadGearsModel() {
+        return headGearsModel;
+    }
+
+    public DefaultListModel<Equipment> getArmorsModel() {
+        return armorsModel;
+    }
+
+    public DefaultListModel<Equipment> getArmsModel() {
+        return armsModel;
+    }
+
+    public DefaultListModel<Equipment> getFootWearsModel() {
+        return footWearsModel;
+    }
+
+    public DefaultListModel<Equipment> getAccessoriesModel() {
+        return accessoriesModel;
+    }
+
+    // --------------------------------------------- Setters ---------------------------------------------
     public void loadWeaponsModel() {
         weaponsModel.clear();
         for (Weapon weapon: PlayerPanel.getPlayer().getWeapons()) {

@@ -38,7 +38,33 @@ public class NewStatsPanel extends JPanel {
         }
     }
 
-    public void setNewMaxHPLabel() {
-        newMaxHPLabel.setText("Max HP: " + PlayerPanel.getPlayer().getHP() + " Update Me");
+    public void setNewMaxHPLabel(int maxHP) {
+        newMaxHPLabel.setText("Max HP: " + (PlayerPanel.getPlayer().getHP() + maxHP));
     }
+
+    public void setNewMaxMPLabel(int maxMP) {
+        newMaxMPLabel.setText("Max MP: " + (PlayerPanel.getPlayer().getMP() + maxMP));
+    }
+
+    public void setNewAttackLabel(int attack) {
+        newAttackLabel.setText("Attack: " + (PlayerPanel.getPlayer().getAttack() + attack));
+    }
+
+    public void setNewDefenseLabel(int defense) {
+        newDefenseLabel.setText("Defense: " + (PlayerPanel.getPlayer().getDefense() + defense));
+    }
+
+    public void setNewMagicAttackLabel(int magicAttack) {
+        newMagicAttackLabel.setText("Magic Attack: " + (PlayerPanel.getPlayer().getMagicAttack() + magicAttack));
+    }
+
+    public void setNewMagicDefenseLabel(int magicDefense) {
+        newMagicAttackLabel.setText("Magic Defense: " + (PlayerPanel.getPlayer().getMagicDefense() + magicDefense));
+    }
+
+    public void setNewSpeedLabel(int speed) {
+        newSpeedLabel.setText("Speed: " + (PlayerPanel.getPlayer().getSpeed() + speed));
+    }
+
+
 }

@@ -53,7 +53,7 @@ public class EquipmentController implements ActionListener, ListSelectionListene
         // --------------------- Radio Buttons ------------------------------------
         } if (radioPanel.weaponButton.isSelected()) {
             listPanel.loadWeaponsModel();
-            listPanel.equipmentJList.setModel(listPanel.weaponsModel);
+            listPanel.equipmentJList.setModel(listPanel.getWeaponsModel());
             /*
             System.out.println("Weapon Picked!!");
             player.equipWeapon(player.getWeapons().get(player.getWeapons().indexOf(WeaponCollection.DAGGER)));
@@ -61,19 +61,23 @@ public class EquipmentController implements ActionListener, ListSelectionListene
             */
         } if (radioPanel.headButton.isSelected()) {
             listPanel.loadHeadGearsModel();
-            listPanel.equipmentJList.setModel(listPanel.headGearsModel);
+            listPanel.equipmentJList.setModel(listPanel.getHeadGearsModel());
+
         } if (radioPanel.bodyButton.isSelected()) {
             listPanel.loadArmorsModel();
-            listPanel.equipmentJList.setModel(listPanel.armorsModel);
+            listPanel.equipmentJList.setModel(listPanel.getArmorsModel());
+
         } if (radioPanel.armButton.isSelected()) {
             listPanel.loadArmsModel();
-            listPanel.equipmentJList.setModel(listPanel.armsModel);
+            listPanel.equipmentJList.setModel(listPanel.getArmsModel());
+
         } if (radioPanel.feetButton.isSelected()) {
             listPanel.loadFootWearsModel();
-            listPanel.equipmentJList.setModel(listPanel.footWearsModel);
+            listPanel.equipmentJList.setModel(listPanel.getFootWearsModel());
+
         } if (radioPanel.accessoryButton.isSelected()) {
             listPanel.loadAccessoriesModel();
-            listPanel.equipmentJList.setModel(listPanel.accessoriesModel);
+            listPanel.equipmentJList.setModel(listPanel.getAccessoriesModel());
         }
     }
 
@@ -87,7 +91,13 @@ public class EquipmentController implements ActionListener, ListSelectionListene
         if (e.getValueIsAdjusting()) {
             System.out.println(listPanel.equipmentJList.getSelectedValue());
             // TODO: Set stats for new stats panel
-            newStatsPanel.setNewMaxHPLabel();
+            newStatsPanel.setNewMaxHPLabel(listPanel.equipmentJList.getSelectedValue().getMaxHP());
+            newStatsPanel.setNewMaxMPLabel(listPanel.equipmentJList.getSelectedValue().getMaxMP());
+            newStatsPanel.setNewAttackLabel(listPanel.equipmentJList.getSelectedValue().getAttack());
+            newStatsPanel.setNewDefenseLabel(listPanel.equipmentJList.getSelectedValue().getDefense());
+            newStatsPanel.setNewMagicAttackLabel(listPanel.equipmentJList.getSelectedValue().getMagicAttack());
+            newStatsPanel.setNewMagicDefenseLabel(listPanel.equipmentJList.getSelectedValue().getMagicDefense());
+            newStatsPanel.setNewSpeedLabel(listPanel.equipmentJList.getSelectedValue().getSpeed());
         }
 
     }
