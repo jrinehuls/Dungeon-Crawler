@@ -13,7 +13,7 @@ public class ButtonPanel extends JPanel {
     private static final int BUTTON_HEIGHT = 50;
 
     JButton submitButton = new JButton("Submit");
-    JButton cancelButton = new JButton("Cancel");
+    JButton cancelButton = new JButton("Cancel"); // Might not need cancel button
 
     JButton[] buttons = {submitButton, cancelButton};
 

@@ -64,6 +64,7 @@ public class EquipmentFrame extends JFrame {
 
         //------------------------Frame stuff---------------------------------------------
         this.add(equipmentPanel);
+        // TODO: Clear list selection
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();
         this.setLocationRelativeTo(null);

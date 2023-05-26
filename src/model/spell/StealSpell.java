@@ -5,7 +5,6 @@ import model.entity.monster.Monster;
 import model.entity.player.Player;
 import model.item.Item;
 import model.item.consumable.Consumable;
-import model.item.equipment.Equipment;
 import model.item.equipment.Weapon;
 import view.panels.game.MonsterPanel;
 import view.panels.game.PlayerPanel;
@@ -70,6 +69,7 @@ public class StealSpell extends Spell {
     // Check if monster has items, then steal if so based on type of item
     private void stealMonsterItem(Player player) {
         // TODO: Make stealing based on speed stat, not 100% of time.
+        // TODO: Check other instances of for types of items.
         Monster monster = MonsterPanel.getMonster();
         int numItems = monster.getItems().size();
         if (numItems > 0) {
