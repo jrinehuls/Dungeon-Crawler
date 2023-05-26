@@ -1,4 +1,4 @@
-package view.panels;
+package view.panels.game;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,7 +1,5 @@
 package view.frames;
 
-import model.entity.player.Player;
-import view.panels.PlayerPanel;
 import view.panels.equipment.*;
 
 import javax.swing.*;
@@ -11,27 +9,30 @@ public class EquipmentFrame extends JFrame {
 
     // Player player; Instantiate in constructor
 
+
     public static final int SCREEN_WIDTH = 700;
     JPanel equipmentPanel;
 
     //------------- TOP ------------------------------------------
     JPanel selectionPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
     public static final int SELECTION_PANEL_HEIGHT = 200;
-    EquipRadioButtonPanel equipRadioButtonPanel;
-    EquipListPanel equipListPanel;
+    public EquipRadioButtonPanel equipRadioButtonPanel;
+    public EquipListPanel equipListPanel;
 
     //------------- MIDDLE ---------------------------------------
     JPanel statsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
     public static final int STATS_PANEL_HEIGHT = 150;
-    CurrentStatsPanel currentStatsPanel;
-    NewStatsPanel newStatsPanel;
+    public CurrentStatsPanel currentStatsPanel;
+    public NewStatsPanel newStatsPanel;
 
     //------------- BOTTOM ---------------------------------------
     public static final int BUTTON_PANEL_HEIGHT = 80;
-    ButtonPanel buttonPanel;
+    public ButtonPanel buttonPanel;
 
 
     public EquipmentFrame() {
+
+        // EquipmentController ec = new EquipmentController(this);
 
         // --------------------Stuff for main panel---------------------------------------
         equipmentPanel = new JPanel();
@@ -69,7 +70,12 @@ public class EquipmentFrame extends JFrame {
         this.setResizable(true);
         // this.setLocationRelativeTo(MainGameFrame.getFrames()[0]);
         // this.setVisible(false);
-        this.setVisible(true);
+        this.setVisible(false);
     }
+
+    public void sayHi() {
+        System.out.println("hi");
+    }
+
 
 }

@@ -1,7 +1,5 @@
-package view.panels;
+package view.panels.game;
 
-import collections.monster.MonsterCollection;
-import model.entity.monster.Monster;
 import background.BackGroundImageManager;
 
 import java.awt.*;
@@ -42,8 +40,6 @@ public class GamePanel extends JPanel {
 
 	}
 
-
-
 	public static void update() {
 		positionLabel.setText(MapPanel.getPosition());
 		backgroundImage = backGroundImageManager.getBackgroundImage(MapPanel.tileType, MapPanel.facing);
@@ -53,7 +49,6 @@ public class GamePanel extends JPanel {
 		} catch (NullPointerException e) {
 			monsterLabel.setIcon(null);
 		}
-
 	}
 
 

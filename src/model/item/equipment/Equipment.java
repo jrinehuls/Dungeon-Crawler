@@ -51,4 +51,6 @@ public abstract class Equipment extends Item {
     public int getSpeed() {
         return speed;
     }
+
+
 }

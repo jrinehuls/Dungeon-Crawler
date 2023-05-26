@@ -1,8 +1,8 @@
 package controller;
 
 import model.entity.monster.Monster;
-import view.panels.MonsterPanel;
-import view.panels.PlayerPanel;
+import view.panels.game.MonsterPanel;
+import view.panels.game.PlayerPanel;
 
 public class MonsterController {
 

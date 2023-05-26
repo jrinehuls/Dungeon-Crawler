@@ -1,6 +1,6 @@
 package view.frames;
 
-import view.panels.*;
+import view.panels.game.*;
 
 import javax.swing.*;
 import java.awt.*;
