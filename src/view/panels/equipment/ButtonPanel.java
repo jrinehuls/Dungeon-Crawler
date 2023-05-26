@@ -9,13 +9,10 @@ import java.awt.*;
 
 public class ButtonPanel extends JPanel {
 
-    private static final int BUTTON_WIDTH = 100;
+    private static final int BUTTON_WIDTH = 150;
     private static final int BUTTON_HEIGHT = 50;
 
-    JButton submitButton = new JButton("Submit");
-    JButton cancelButton = new JButton("Cancel"); // Might not need cancel button
-
-    JButton[] buttons = {submitButton, cancelButton};
+    JButton submitButton = new JButton("Completed");
 
     EquipmentController ec;
 
@@ -28,19 +25,14 @@ public class ButtonPanel extends JPanel {
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.setBackground(Color.CYAN);
 
-        for (JButton button: buttons) {
-            button.addActionListener(ec);
-            button.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
-            this.add(button);
-        }
+        submitButton.addActionListener(ec);
+        submitButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+        submitButton.setFocusable(false);
+        this.add(submitButton);
 
     }
 
     public JButton getSubmitButton() {
         return submitButton;
-    }
-
-    public JButton getCancelButton() {
-        return cancelButton;
     }
 }
