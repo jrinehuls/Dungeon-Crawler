@@ -46,8 +46,9 @@ public class EquipListPanel extends JPanel {
         equipmentJSP = new JScrollPane(equipmentJList);
         this.add(equipmentJSP);
 
-        equipButton.setPreferredSize(new Dimension(100, 30));
         equipButton.addActionListener(ec);
+        equipButton.setPreferredSize(new Dimension(100, 30));
+        equipButton.setFocusable(false);
         this.add(equipButton);
         // -------------------------- this.remove(equipmentJSP); --------------------------------------------
     }
