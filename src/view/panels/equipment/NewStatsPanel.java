@@ -39,11 +39,11 @@ public class NewStatsPanel extends JPanel {
     }
 
     public void setNewMaxHPLabel(int maxHP) {
-        newMaxHPLabel.setText("Max HP: " + (PlayerPanel.getPlayer().getHP() + maxHP));
+        newMaxHPLabel.setText("Max HP: " + (PlayerPanel.getPlayer().getMaxHP() + maxHP));
     }
 
     public void setNewMaxMPLabel(int maxMP) {
-        newMaxMPLabel.setText("Max MP: " + (PlayerPanel.getPlayer().getMP() + maxMP));
+        newMaxMPLabel.setText("Max MP: " + (PlayerPanel.getPlayer().getMaxMP() + maxMP));
     }
 
     public void setNewAttackLabel(int attack) {
