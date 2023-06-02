@@ -5,6 +5,7 @@ import model.spell.AttackSpell;
 import model.spell.HealSpell;
 import model.spell.Spell;
 import model.spell.StealSpell;
+import view.panels.game.MonsterPanel;
 import view.panels.game.PlayerPanel;
 
 import javax.swing.*;
@@ -58,6 +59,8 @@ public class SpellFrame extends JFrame implements ActionListener {
             radioPanel.add(spellButton);
             if (spellMP > player.getMP()) {
                 spellButton.setEnabled(false);
+            } else if (!MonsterPanel.isMonster() && !(spell.getValue() instanceof HealSpell)) {
+                spellButton.setEnabled(false);
             }
         }
 
@@ -106,6 +109,6 @@ public class SpellFrame extends JFrame implements ActionListener {
             this.dispose();
             spellButtonGroup.clearSelection();
         }
-
     }
+
 }

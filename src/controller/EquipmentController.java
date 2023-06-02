@@ -29,7 +29,6 @@ public class EquipmentController implements ActionListener, ListSelectionListene
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO: Add functions for other radio buttons
         player = PlayerPanel.getPlayer();
         equipmentFrame = ActionButtonController.equipmentFrame;
         radioPanel = equipmentFrame.equipRadioButtonPanel;
@@ -45,10 +44,9 @@ public class EquipmentController implements ActionListener, ListSelectionListene
         }
         // --------------------- Radio Buttons ------------------------------------
         if (e.getSource() instanceof JRadioButton) {
-            System.out.println("hello");
             resetNewStats();
+            populateJList();
         }
-        populateJList();
     }
 
     @Override
@@ -75,6 +73,7 @@ public class EquipmentController implements ActionListener, ListSelectionListene
         }
     }
 
+    // Equips player with selected item in list
     private void equipSelection() {
         if (radioPanel.weaponButton.isSelected()) {
             radioPanel.weaponLabel.setText(listPanel.equipmentJList.getSelectedValue().toString());
@@ -103,6 +102,7 @@ public class EquipmentController implements ActionListener, ListSelectionListene
         }
     }
 
+    // Sets the items in the JList based on the selected radio button
     private void populateJList() {
         if (radioPanel.weaponButton.isSelected()) {
             listPanel.loadWeaponsModel();
@@ -125,6 +125,7 @@ public class EquipmentController implements ActionListener, ListSelectionListene
         }
     }
 
+    // When a selection is highlighted, shows what the stats will be if that item is equipped
     private void updateNewStats(Equipment equipment) {
         newStatsPanel.setNewMaxHPLabel(listPanel.equipmentJList.getSelectedValue().getMaxHP() - equipment.getMaxHP());
         newStatsPanel.setNewMaxMPLabel(listPanel.equipmentJList.getSelectedValue().getMaxMP() - equipment.getMaxMP());
@@ -135,6 +136,7 @@ public class EquipmentController implements ActionListener, ListSelectionListene
         newStatsPanel.setNewSpeedLabel(listPanel.equipmentJList.getSelectedValue().getSpeed() - equipment.getSpeed());
     }
 
+    // If a selection is highlighted, then player clicks another radio without equipping, set new stats to the same as player stats
     private void resetNewStats() {
         newStatsPanel.setNewMaxHPLabel(0);
         newStatsPanel.setNewMaxMPLabel(0);
