@@ -39,4 +39,15 @@ public class CurrentStatsPanel extends JPanel {
             currentStatsCounter++;
         }
     }
+
+    public void updateLabels() {
+        currentMaxHPLabel.setText("Max HP: " + PlayerPanel.getPlayer().getMaxHP());
+        currentMaxMPLabel.setText("Max MP: " + PlayerPanel.getPlayer().getMaxMP());
+        currentAttackLabel.setText("Attack: " + PlayerPanel.getPlayer().getAttack());
+        currentDefenseLabel.setText("Defense: " + PlayerPanel.getPlayer().getDefense());
+        currentMagicAttackLabel.setText("Magic Attack: " + PlayerPanel.getPlayer().getMagicAttack());
+        currentMagicDefenseLabel.setText("Magic Defense: " + PlayerPanel.getPlayer().getMagicDefense());
+        currentSpeedLabel.setText("Speed: " + PlayerPanel.getPlayer().getSpeed());
+    }
+
 }

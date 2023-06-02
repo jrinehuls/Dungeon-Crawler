@@ -59,12 +59,11 @@ public class NewStatsPanel extends JPanel {
     }
 
     public void setNewMagicDefenseLabel(int magicDefense) {
-        newMagicAttackLabel.setText("Magic Defense: " + (PlayerPanel.getPlayer().getMagicDefense() + magicDefense));
+        newMagicDefenseLabel.setText("Magic Defense: " + (PlayerPanel.getPlayer().getMagicDefense() + magicDefense));
     }
 
     public void setNewSpeedLabel(int speed) {
         newSpeedLabel.setText("Speed: " + (PlayerPanel.getPlayer().getSpeed() + speed));
     }
-
 
 }
