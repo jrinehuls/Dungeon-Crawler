@@ -60,7 +60,7 @@ public class StealSpell extends Spell {
             int index = (int) (Math.random() * numItems);
             Consumable item = player.getConsumableItems().get(index);
             monster.addItem(item);
-            player.removeConsumableItem(item);
+            player.disposeConsumableItem(item);
         } else {
             monster.setProgress(100);
         }
