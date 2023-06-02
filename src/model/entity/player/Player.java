@@ -1,5 +1,6 @@
 package model.entity.player;
 
+import collections.consumable.HealingItemCollection;
 import collections.equipment.*;
 import collections.spell.AttackSpellCollection;
 import collections.spell.HealSpellCollection;
@@ -22,7 +23,6 @@ public class Player extends Entity {
     private int nextExp = 50;
     private int gold = 5;
 
-    // TODO: Pop from Equipment if item is equipped.
     private ArrayList<Weapon> weapons = new ArrayList<>();
     private ArrayList<Head> headGears = new ArrayList<>();
     private ArrayList<Body> armors = new ArrayList<>();
@@ -61,6 +61,8 @@ public class Player extends Entity {
         // ------------------------------------------- Accessories -----------------------------------------------------
         this.accessory = AccessoryCollection.NONE;
         accessories.add(AccessoryCollection.SPELL_TOME);
+        // ------------------------------------------- Consumables -----------------------------------------------------
+        consumableItems.add(HealingItemCollection.HEALING_HERB);
     }
 
     // --------------------------------------------- Player Actions ----------------------------------------------------
@@ -345,15 +347,13 @@ public class Player extends Entity {
     }
 
     // ------------------------------------------ Consumable Item Methods ----------------------------------------------
-    public ArrayList<Consumable> getConsumableItems() {
-        return consumableItems;
-    }
+
 
     public void addConsumableItem(Consumable consumableItem) {
         this.consumableItems.add(consumableItem);
     }
 
-    public void removeConsumableItem(Consumable consumableItem) {
+    public void disposeConsumableItem(Consumable consumableItem) {
         this.consumableItems.remove(consumableItem);
     }
 
@@ -460,5 +460,8 @@ public class Player extends Entity {
         return this.accessory;
     }
 
+    public ArrayList<Consumable> getConsumableItems() {
+        return consumableItems;
+    }
 
 }

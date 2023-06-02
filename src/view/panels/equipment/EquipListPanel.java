@@ -17,6 +17,8 @@ public class EquipListPanel extends JPanel {
     private DefaultListModel<Equipment> footWearsModel = new DefaultListModel<>();
     private DefaultListModel<Equipment> accessoriesModel = new DefaultListModel<>();
 
+    private final int PANEL_WIDTH = EquipmentFrame.SCREEN_WIDTH/2;
+
     public JList<Equipment> equipmentJList;
 
     public JScrollPane equipmentJSP;
@@ -30,7 +32,7 @@ public class EquipListPanel extends JPanel {
 
         ec = new EquipmentController();
 
-        this.setPreferredSize(new Dimension(EquipmentFrame.SCREEN_WIDTH/2, EquipmentFrame.SELECTION_PANEL_HEIGHT));
+        this.setPreferredSize(new Dimension(PANEL_WIDTH, EquipmentFrame.SELECTION_PANEL_HEIGHT));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.setBackground(Color.YELLOW);
 
@@ -38,7 +40,7 @@ public class EquipListPanel extends JPanel {
 
         equipmentJList = new JList<>(weaponsModel); // equipmentJList.setModel(); to change DefaultListModel.
         equipmentJList.setVisibleRowCount(5);
-        equipmentJList.setFixedCellWidth(250);
+        equipmentJList.setFixedCellWidth(PANEL_WIDTH - 100);
         equipmentJList.setFixedCellHeight(25);
         equipmentJList.setFocusable(false);
         equipmentJList.addListSelectionListener(ec);
@@ -50,7 +52,6 @@ public class EquipListPanel extends JPanel {
         equipButton.setPreferredSize(new Dimension(100, 30));
         equipButton.setFocusable(false);
         this.add(equipButton);
-        // -------------------------- this.remove(equipmentJSP); --------------------------------------------
     }
 
     // --------------------------------------------- Getters ---------------------------------------------

@@ -75,9 +75,6 @@ public class EquipmentFrame extends JFrame {
         this.setVisible(false);
     }
 
-    public void sayHi() {
-        System.out.println("hi");
-    }
 
 
 }
