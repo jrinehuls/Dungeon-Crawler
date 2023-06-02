@@ -16,8 +16,8 @@ public class ActionButtonController implements ActionListener {
     //ActionPanel ap;
     Monster monster;
     Player player;
-    public static SpellFrame spellFrame = new SpellFrame();;
-    public static EquipmentFrame equipmentFrame = new EquipmentFrame();
+    public static SpellFrame spellFrame;// = new SpellFrame();
+    public static EquipmentFrame equipmentFrame = new EquipmentFrame(); // Needed here or NPE at Map Panel
 
     public ActionButtonController() {
 
@@ -33,7 +33,7 @@ public class ActionButtonController implements ActionListener {
             player.setProgress(0);
         }
         if (e.getSource() == ActionPanel.spellButton) {
-            // spellFrame = new SpellFrame();
+            spellFrame = new SpellFrame();
             spellFrame.setVisible(true);
         }
         if (e.getSource() == ActionPanel.itemButton) {
@@ -49,7 +49,7 @@ public class ActionButtonController implements ActionListener {
             // player.setProgress(0);
         }
         if (e.getSource() == ActionPanel.equipButton) {
-            //equipmentFrame = new EquipmentFrame();
+            equipmentFrame = new EquipmentFrame(); // Needed here to populate EF with updated equipment
             equipmentFrame.setVisible(true);
         }
     }
