@@ -3,6 +3,7 @@ package controller;
 import model.entity.monster.Monster;
 import model.entity.player.Player;
 import view.frames.EquipmentFrame;
+import view.frames.ItemFrame;
 import view.frames.SpellFrame;
 import view.panels.game.ActionPanel;
 import view.panels.game.MonsterPanel;
@@ -18,6 +19,7 @@ public class ActionButtonController implements ActionListener {
     Player player;
     public static SpellFrame spellFrame;// = new SpellFrame();
     public static EquipmentFrame equipmentFrame = new EquipmentFrame(); // Needed here or NPE at Map Panel
+    public static ItemFrame itemFrame;
 
     public ActionButtonController() {
 
@@ -37,6 +39,8 @@ public class ActionButtonController implements ActionListener {
             spellFrame.setVisible(true);
         }
         if (e.getSource() == ActionPanel.itemButton) {
+            itemFrame = new ItemFrame();
+            itemFrame.setVisible(true);
             // System.out.println("Item: " + "PlayerPanel.getPlayer().getItem()");
             // player.setProgress(0);
         }
