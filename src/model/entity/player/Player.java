@@ -45,7 +45,7 @@ public class Player extends Entity {
         spells.put("Flare", AttackSpellCollection.FLARE);
         // -------------------------------------------- Weapons --------------------------------------------------------
         this.weapon = WeaponCollection.NONE;
-        weapons.add(WeaponCollection.DAGGER);
+        weapons.add(WeaponCollection.WOODEN_DAGGER);
         // ------------------------------------------- Head Gear -------------------------------------------------------
         this.headGear = HeadCollection.NONE;
         headGears.add(HeadCollection.STRAW_CAP);
