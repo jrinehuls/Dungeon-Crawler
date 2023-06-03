@@ -97,7 +97,7 @@ public class Player extends Entity {
         this.weapons.add(weapon);
     }
 
-    public void unequipWeapon() {
+    private void unequipWeapon() {
         // -------------- remove stats -------------------
         this.maxHP -= this.weapon.getMaxHP();
         this.maxMP -= this.weapon.getMaxMP();
@@ -139,7 +139,7 @@ public class Player extends Entity {
         this.headGears.add(headGear);
     }
 
-    public void unequipHeadgear() {
+    private void unequipHeadgear() {
         // -------------- remove stats -------------------
         this.maxHP -= this.headGear.getMaxHP();
         this.maxMP -= this.headGear.getMaxMP();
@@ -183,7 +183,7 @@ public class Player extends Entity {
         this.armors.add(armor);
     }
 
-    public void unequipArmor() {
+    private void unequipArmor() {
         // -------------- remove stats -------------------
         this.maxHP -= this.armor.getMaxHP();
         this.maxMP -= this.armor.getMaxMP();
@@ -225,7 +225,7 @@ public class Player extends Entity {
         this.arms.add(arm);
     }
 
-    public void unequipArm() {
+    private void unequipArm() {
         // -------------- remove stats -------------------
         this.maxHP -= this.arm.getMaxHP();
         this.maxMP -= this.arm.getMaxMP();
@@ -267,7 +267,7 @@ public class Player extends Entity {
         this.footWears.add(footwear);
     }
 
-    public void unequipFootwear() {
+    private void unequipFootwear() {
         // -------------- remove stats -------------------
         this.maxHP -= this.footwear.getMaxHP();
         this.maxMP -= this.footwear.getMaxMP();
@@ -309,7 +309,7 @@ public class Player extends Entity {
         this.accessories.add(accessory);
     }
 
-    public void unequipAccessory() {
+    private void unequipAccessory() {
         // -------------- remove stats -------------------
         this.maxHP -= this.accessory.getMaxHP();
         this.maxMP -= this.accessory.getMaxMP();
