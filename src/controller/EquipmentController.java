@@ -1,6 +1,5 @@
 package controller;
 
-import collections.equipment.WeaponCollection;
 import model.entity.player.Player;
 import model.item.equipment.*;
 import view.frames.EquipmentFrame;
@@ -21,7 +20,7 @@ public class EquipmentController implements ActionListener, ListSelectionListene
     EquipListPanel listPanel;
     CurrentStatsPanel currentStatsPanel;
     NewStatsPanel newStatsPanel;
-    ButtonPanel buttonPanel;
+    EquipButtonPanel equipButtonPanel;
 
     public EquipmentController() {
 
@@ -35,9 +34,9 @@ public class EquipmentController implements ActionListener, ListSelectionListene
         listPanel = equipmentFrame.equipListPanel;
         currentStatsPanel = equipmentFrame.currentStatsPanel;
         newStatsPanel = ActionButtonController.equipmentFrame.newStatsPanel;
-        buttonPanel = equipmentFrame.buttonPanel;
+        equipButtonPanel = equipmentFrame.equipButtonPanel;
         // ------------------------- JButtons ------------------------------------
-        if (e.getSource() == buttonPanel.getSubmitButton()) {
+        if (e.getSource() == equipButtonPanel.getSubmitButton()) {
             equipmentFrame.dispose();
         } else if (!listPanel.equipmentJList.isSelectionEmpty() && e.getSource() == listPanel.equipButton) {
             equipSelection();

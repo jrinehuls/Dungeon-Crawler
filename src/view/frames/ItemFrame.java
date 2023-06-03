@@ -1,6 +1,6 @@
 package view.frames;
 
-import view.panels.item.ButtonPanel;
+import view.panels.item.ItemButtonPanel;
 import view.panels.item.ItemListPanel;
 import view.panels.item.ItemRadioButtonPanel;
 
@@ -20,7 +20,7 @@ public class ItemFrame extends JFrame {
 
     //------------- BOTTOM ---------------------------------------
     public static final int BUTTON_PANEL_HEIGHT = 80;
-    public ButtonPanel buttonPanel;
+    public ItemButtonPanel itemButtonPanel;
 
 
     public ItemFrame() {
@@ -40,8 +40,8 @@ public class ItemFrame extends JFrame {
         itemPanel.add(selectionPanel);
 
         //--------------------Stuff for button panel (BOTTOM)---------------------------------------
-        buttonPanel = new ButtonPanel();
-        itemPanel.add(buttonPanel);
+        itemButtonPanel = new ItemButtonPanel();
+        itemPanel.add(itemButtonPanel);
 
         //------------------------Frame stuff---------------------------------------------
         this.add(itemPanel);

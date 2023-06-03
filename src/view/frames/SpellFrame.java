@@ -49,20 +49,7 @@ public class SpellFrame extends JFrame implements ActionListener {
         radioPanel.setLayout(new GridLayout(player.spells.size()/RADIO_PANEL_COLS , RADIO_PANEL_COLS, 0, 0));
         radioPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        for (Map.Entry<String, Spell> spell: player.spells.entrySet()) {
-            int spellMP = spell.getValue().MP;
-            JRadioButton spellButton = new JRadioButton(spell.getKey() + ": " + String.valueOf(spellMP));
-            spellButton.setFocusable(false);
-            // I don't exactly know what this does, but it's used to identify which radio button is selected.
-            spellButton.setActionCommand(spellButton.getText().split(":")[0]);
-            spellButtonGroup.add(spellButton);
-            radioPanel.add(spellButton);
-            if (spellMP > player.getMP()) {
-                spellButton.setEnabled(false);
-            } else if (!MonsterPanel.isMonster() && !(spell.getValue() instanceof HealSpell)) {
-                spellButton.setEnabled(false);
-            }
-        }
+        setSpells();
 
         spellPanel.add(radioPanel);
 
@@ -89,6 +76,23 @@ public class SpellFrame extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         //this.setLocationRelativeTo(MainGameFrame.getFrames()[0]);
         this.setVisible(false);
+    }
+
+    private void setSpells() {
+        for (Map.Entry<String, Spell> spell: player.spells.entrySet()) {
+            int spellMP = spell.getValue().MP;
+            JRadioButton spellButton = new JRadioButton(spell.getKey() + ": " + String.valueOf(spellMP));
+            spellButton.setFocusable(false);
+            // I don't exactly know what this does, but it's used to identify which radio button is selected.
+            spellButton.setActionCommand(spellButton.getText().split(":")[0]);
+            spellButtonGroup.add(spellButton);
+            radioPanel.add(spellButton);
+            if (spellMP > player.getMP()) {
+                spellButton.setEnabled(false);
+            } else if (!MonsterPanel.isMonster() && !(spell.getValue() instanceof HealSpell)) {
+                spellButton.setEnabled(false);
+            }
+        }
     }
 
     @Override

@@ -27,7 +27,7 @@ public class EquipmentFrame extends JFrame {
 
     //------------- BOTTOM ---------------------------------------
     public static final int BUTTON_PANEL_HEIGHT = 80;
-    public ButtonPanel buttonPanel;
+    public EquipButtonPanel equipButtonPanel;
 
 
     public EquipmentFrame() {
@@ -59,15 +59,15 @@ public class EquipmentFrame extends JFrame {
         equipmentPanel.add(statsPanel);
 
         //--------------------Stuff for button panel (BOTTOM)---------------------------------------
-        buttonPanel = new ButtonPanel();
-        equipmentPanel.add(buttonPanel);
+        equipButtonPanel = new EquipButtonPanel();
+        equipmentPanel.add(equipButtonPanel);
 
         //------------------------Frame stuff---------------------------------------------
         this.add(equipmentPanel);
         // TODO: Clear list selection
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setIconImage(new ImageIcon("res/icons/Icon.png").getImage());
-        this.setResizable(true);
+        this.setResizable(false);
         this.pack();
         this.setLocationRelativeTo(null);
         // this.setLocationRelativeTo(MainGameFrame.getFrames()[0]);

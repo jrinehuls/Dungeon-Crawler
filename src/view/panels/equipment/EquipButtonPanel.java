@@ -1,13 +1,12 @@
 package view.panels.equipment;
 
-import controller.ActionButtonController;
 import controller.EquipmentController;
 import view.frames.EquipmentFrame;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ButtonPanel extends JPanel {
+public class EquipButtonPanel extends JPanel {
 
     private static final int BUTTON_WIDTH = 150;
     private static final int BUTTON_HEIGHT = 50;
@@ -16,7 +15,7 @@ public class ButtonPanel extends JPanel {
 
     EquipmentController ec;
 
-    public ButtonPanel() {
+    public EquipButtonPanel() {
         super(new FlowLayout(FlowLayout.CENTER, 100, 15));
 
         ec = new EquipmentController();

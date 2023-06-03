@@ -11,4 +11,18 @@ public abstract class Consumable extends Item {
         quantity = 1;
     }
 
+    public void increaseQty() {
+        this.quantity += 1;
+    }
+
+    public void decreaseQty() {
+        if (this.quantity > 0) {
+            this.quantity -= 1;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return (this.getName() + " - Qty: " + this.quantity);
+    }
 }

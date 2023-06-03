@@ -5,14 +5,14 @@ import view.frames.ItemFrame;
 import javax.swing.*;
 import java.awt.*;
 
-public class ButtonPanel extends JPanel {
+public class ItemButtonPanel extends JPanel {
 
     private static final int BUTTON_WIDTH = 150;
     private static final int BUTTON_HEIGHT = 50;
 
     JButton useButton = new JButton("Use Item");
 
-    public ButtonPanel() {
+    public ItemButtonPanel() {
         super(new FlowLayout(FlowLayout.CENTER, 100, 15));
 
         this.setPreferredSize(new Dimension(ItemFrame.SCREEN_WIDTH, ItemFrame.BUTTON_PANEL_HEIGHT));
