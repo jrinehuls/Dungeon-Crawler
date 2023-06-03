@@ -17,7 +17,8 @@ public class ActionPanel extends JPanel {
     public static JButton runButton = new JButton("Run");
     public static JButton equipButton = new JButton("Equipment");
 
-    static JButton[] buttons = {attackButton, spellButton, itemButton, defendButton, runButton};
+    static JButton[] battleButtons = {attackButton, defendButton, runButton};
+    static JButton[] anyTimeButtons = {spellButton, itemButton};
 
     ActionButtonController abc = new ActionButtonController();
 
@@ -31,7 +32,8 @@ public class ActionPanel extends JPanel {
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        for (JButton button : buttons) {
+        // ------------------------------- Battle only buttons --------------------------
+        for (JButton button: battleButtons) {
             if (!MonsterPanel.isMonster()) {
                 button.setEnabled(false);
             }
@@ -40,7 +42,15 @@ public class ActionPanel extends JPanel {
             button.setFocusable(false);
             this.add(button);
         }
-        // ----------------------------Special for equip button------------------------
+        // -------------------------------- Any time buttons ----------------------------
+        for (JButton button: anyTimeButtons) {
+            button.setEnabled(true);
+            button.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+            button.addActionListener(abc);
+            button.setFocusable(false);
+            this.add(button);
+        }
+        // ---------------------------- Special for equip button ------------------------
         if (!MonsterPanel.isMonster()) {
             equipButton.setEnabled(true);
         }
@@ -53,8 +63,11 @@ public class ActionPanel extends JPanel {
     public static void update() {
         boolean isMonster = MonsterPanel.isMonster();
         boolean progressFull = PlayerPanel.getPlayer().getProgress() >= 100;
-        for (JButton button : buttons) {
+        for (JButton button: battleButtons) {
             button.setEnabled(isMonster && progressFull);
+        }
+        for (JButton button: anyTimeButtons) {
+            button.setEnabled(!isMonster || progressFull);
         }
         equipButton.setEnabled(!isMonster);
     }

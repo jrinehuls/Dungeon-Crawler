@@ -3,6 +3,7 @@ package controller;
 import model.entity.monster.Monster;
 import model.entity.player.Player;
 import view.frames.EquipmentFrame;
+import view.frames.ItemFrame;
 import view.frames.SpellFrame;
 import view.panels.game.ActionPanel;
 import view.panels.game.MonsterPanel;
@@ -16,8 +17,9 @@ public class ActionButtonController implements ActionListener {
     //ActionPanel ap;
     Monster monster;
     Player player;
-    public static SpellFrame spellFrame = new SpellFrame();;
-    public static EquipmentFrame equipmentFrame = new EquipmentFrame();
+    public static SpellFrame spellFrame;// = new SpellFrame();
+    public static EquipmentFrame equipmentFrame = new EquipmentFrame(); // Needed here or NPE at Map Panel
+    public static ItemFrame itemFrame;
 
     public ActionButtonController() {
 
@@ -33,10 +35,12 @@ public class ActionButtonController implements ActionListener {
             player.setProgress(0);
         }
         if (e.getSource() == ActionPanel.spellButton) {
-            // spellFrame = new SpellFrame();
+            spellFrame = new SpellFrame();
             spellFrame.setVisible(true);
         }
         if (e.getSource() == ActionPanel.itemButton) {
+            itemFrame = new ItemFrame();
+            itemFrame.setVisible(true);
             // System.out.println("Item: " + "PlayerPanel.getPlayer().getItem()");
             // player.setProgress(0);
         }
@@ -49,7 +53,7 @@ public class ActionButtonController implements ActionListener {
             // player.setProgress(0);
         }
         if (e.getSource() == ActionPanel.equipButton) {
-            //equipmentFrame = new EquipmentFrame();
+            equipmentFrame = new EquipmentFrame(); // Needed here to populate EF with updated equipment
             equipmentFrame.setVisible(true);
         }
     }
