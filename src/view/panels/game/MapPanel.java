@@ -155,7 +155,8 @@ public class MapPanel extends JPanel implements Runnable {
 	}
 
 	public void update() {
-		if (!MonsterPanel.isMonster() && !ActionButtonController.equipmentFrame.isVisible()) {
+		if (!MonsterPanel.isMonster() && !ActionButtonController.equipmentFrame.isVisible()
+				&& !ActionButtonController.itemFrame.isVisible() && !ActionButtonController.spellFrame.isVisible()) {
 			checkCollision();
 			move();
 			rotate();

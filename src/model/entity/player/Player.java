@@ -359,7 +359,7 @@ public class Player extends Entity {
 
     // ------------------------------------- Generic Getters and Setters -----------------------------------------------
     public void levelUp() {
-        // TODO: Don't loop. Just find next level when I have time.
+        // TODO: Don't loop. Just find next level when I have time. Possibly stack or queue.
         if (exp >= nextExp) {
             level++;
             exp = exp - nextExp;
