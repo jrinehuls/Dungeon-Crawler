@@ -1,5 +1,6 @@
 package view.panels.item;
 
+import controller.ItemController;
 import view.frames.ItemFrame;
 
 import javax.swing.*;
@@ -10,10 +11,13 @@ public class ItemRadioButtonPanel extends JPanel {
     public ButtonGroup consumableButtonGroup = new ButtonGroup();
 
     public final JRadioButton healingItemsButton = new JRadioButton("Healing Items");
+    public final JRadioButton attackItemsButton = new JRadioButton("Attack Items");
 
     private static final int JBUTTON_LEFT_INSET = 50;
 
-    JRadioButton[] consumableButtons = {healingItemsButton};
+    JRadioButton[] consumableButtons = {healingItemsButton, attackItemsButton};
+
+    ItemController ic = new ItemController();
 
     public ItemRadioButtonPanel() {
         super(new GridLayout(6, 1, 0, 0));
@@ -28,11 +32,11 @@ public class ItemRadioButtonPanel extends JPanel {
             button.setOpaque(false);
             button.setFocusable(false);
             consumableButtonGroup.add(button);
-            // button.addActionListener(action listener);
+            button.addActionListener(ic);
             this.add(button);
         }
 
-        // Default to weapon radio button being selected
+        // Default to healing radio button being selected
         healingItemsButton.setSelected(true);
 
 

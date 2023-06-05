@@ -6,6 +6,7 @@ import collections.spell.AttackSpellCollection;
 import collections.spell.HealSpellCollection;
 import model.entity.Entity;
 import model.item.consumable.Consumable;
+import model.item.consumable.HealingItem;
 import model.item.equipment.*;
 import model.spell.AttackSpell;
 import model.spell.HealSpell;
@@ -62,7 +63,9 @@ public class Player extends Entity {
         this.accessory = AccessoryCollection.NONE;
         accessories.add(AccessoryCollection.SPELL_TOME);
         // ------------------------------------------- Consumables -----------------------------------------------------
-        consumableItems.add(HealingItemCollection.HEALING_HERB);
+        this.addConsumableItem(HealingItemCollection.HEALING_HERB);
+        this.addConsumableItem(HealingItemCollection.HEALING_HERB);
+        // consumableItems.add(HealingItemCollection.HEALING_HERB);
     }
 
     // --------------------------------------------- Player Actions ----------------------------------------------------
@@ -90,7 +93,11 @@ public class Player extends Entity {
     public void castStealItemSpell(StealSpell stealSpell) {}
 
     @Override
-    public void useItem() {}
+    public void useHealingItem(HealingItem healingItem) {
+        // TODO: don't go over max HP
+        this.setHP(this.getHP() + healingItem.getHP());
+        this.disposeConsumableItem(healingItem);
+    }
 
     // ---------------------------------------------- Weapon Methods ---------------------------------------------------
     public void addWeapon(Weapon weapon) {
@@ -348,13 +355,20 @@ public class Player extends Entity {
 
     // ------------------------------------------ Consumable Item Methods ----------------------------------------------
 
-
     public void addConsumableItem(Consumable consumableItem) {
-        this.consumableItems.add(consumableItem);
+        if (consumableItems.contains(consumableItem)) {
+            consumableItem.increaseQty();
+        } else {
+            this.consumableItems.add(consumableItem);
+        }
     }
 
     public void disposeConsumableItem(Consumable consumableItem) {
-        this.consumableItems.remove(consumableItem);
+        if (consumableItem.getQty() > 1) {
+            consumableItem.decreaseQty();
+        } else {
+            this.consumableItems.remove(consumableItem);
+        }
     }
 
     // ------------------------------------- Generic Getters and Setters -----------------------------------------------
@@ -460,6 +474,7 @@ public class Player extends Entity {
         return this.accessory;
     }
 
+    // --------------------------------------- Item related getters -----------------------------------------------
     public ArrayList<Consumable> getConsumableItems() {
         return consumableItems;
     }

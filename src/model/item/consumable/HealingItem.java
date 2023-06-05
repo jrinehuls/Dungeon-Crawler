@@ -9,4 +9,8 @@ public class HealingItem extends Consumable{
         this.HP = HP;
     }
 
+    public int getHP() {
+        return this.HP;
+    }
+
 }

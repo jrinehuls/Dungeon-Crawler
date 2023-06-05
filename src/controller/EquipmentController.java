@@ -39,6 +39,8 @@ public class EquipmentController implements ActionListener, ListSelectionListene
         if (e.getSource() == equipButtonPanel.getSubmitButton()) {
             equipmentFrame.dispose();
         } else if (!listPanel.equipmentJList.isSelectionEmpty() && e.getSource() == listPanel.equipButton) {
+            /* TODO: Fix bug for when button clicked, list not updated until another radio selected.
+            *   Maybe call populateJList() or something similar and probably clear selection*/
             equipSelection();
         }
         // --------------------- Radio Buttons ------------------------------------
@@ -102,7 +104,6 @@ public class EquipmentController implements ActionListener, ListSelectionListene
     }
 
     // Sets the items in the JList based on the selected radio button
-    // TODO: Fix bug for when button clicked, list not updated until another radio selected.
     private void populateJList() {
         if (radioPanel.weaponButton.isSelected()) {
             listPanel.loadWeaponsModel();

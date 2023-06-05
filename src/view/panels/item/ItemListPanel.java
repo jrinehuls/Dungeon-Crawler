@@ -12,6 +12,7 @@ import java.awt.*;
 public class ItemListPanel extends JPanel {
 
     private DefaultListModel<Consumable> healingItemsModel = new DefaultListModel<>();
+    private DefaultListModel<Consumable> attackItemsModel = new DefaultListModel<>();
     public JList<Consumable> itemJList;
 
     private final int PANEL_WIDTH = ItemFrame.SCREEN_WIDTH/2;
@@ -47,6 +48,9 @@ public class ItemListPanel extends JPanel {
     public DefaultListModel<Consumable> getHealingItemsModel() {
         return healingItemsModel;
     }
+    public DefaultListModel<Consumable> getAttackItemsModel() {
+        return attackItemsModel;
+    }
 
     // --------------------------------------------- Setters ---------------------------------------------
     public void loadHealingItemsModel() {
@@ -57,6 +61,18 @@ public class ItemListPanel extends JPanel {
                 healingItemsModel.addElement(item);
             }
         }
+    }
+
+    public void loadAttackItemsModel() {
+        attackItemsModel.clear();
+        // Add healing items in player's consumable items list to the model
+        /* Need to make attack items and give to player
+        for (Consumable item: PlayerPanel.getPlayer().getConsumableItems()) {
+            if (item instanceof AttackItem) {
+                attackItemsModel.addElement(item);
+            }
+        }
+        */
     }
 
 }

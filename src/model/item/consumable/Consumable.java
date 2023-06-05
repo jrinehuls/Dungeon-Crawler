@@ -11,6 +11,10 @@ public abstract class Consumable extends Item {
         quantity = 1;
     }
 
+    public int getQty() {
+        return this.quantity;
+    }
+
     public void increaseQty() {
         this.quantity += 1;
     }
