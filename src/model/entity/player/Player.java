@@ -376,11 +376,27 @@ public class Player extends Entity {
 
     // ------------------------------------- Generic Getters and Setters -----------------------------------------------
     public void levelUp() {
-        // TODO: Don't loop. Just find next level when I have time. Possibly stack or queue.
-        if (exp >= nextExp) {
+        if (exp >= nextExp && level <= Level.values().length) {
             level++;
             exp = exp - nextExp;
+            Level nextLevel = Level.valueOf(String.format("LEVEL%d", level));
+            System.out.println("You've reached " + nextLevel.name());
+            nextExp += nextLevel.increaseNextExp;
+            HP += nextLevel.increaseHP;
+            maxHP += nextLevel.increaseHP;
+            MP += nextLevel.increaseMP;
+            maxMP += nextLevel.increaseMP;
+            attack += nextLevel.increaseAttack;
+            defense += nextLevel.increaseDefense;
+            magicAttack += nextLevel.increaseMAttack;
+            magicDefense += nextLevel.increaseMDefense;
+            speed += nextLevel.increaseSpeed;
+        } else if (exp >= nextExp) {
+            exp = nextExp;
+        }
+            /*
             for (Level nextLevel : Level.values()) {
+                System.out.println("WOAH " + Level.valueOf(String.valueOf(nextLevel)).increaseAttack);
                 if (level == Integer.parseInt(nextLevel.name().substring(5))){
                     System.out.println("You've reached " + nextLevel.name());
                     System.out.println("You've reached " + level);
@@ -397,7 +413,8 @@ public class Player extends Entity {
                     break;
                 }
             }
-        }
+            */
+
     }
 
     public int getLevel() {
