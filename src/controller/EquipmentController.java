@@ -39,9 +39,8 @@ public class EquipmentController implements ActionListener, ListSelectionListene
         if (e.getSource() == equipButtonPanel.getSubmitButton()) {
             equipmentFrame.dispose();
         } else if (!listPanel.equipmentJList.isSelectionEmpty() && e.getSource() == listPanel.equipButton) {
-            /* TODO: Fix bug for when button clicked, list not updated until another radio selected.
-            *   Maybe call populateJList() or something similar and probably clear selection*/
             equipSelection();
+            populateJList();
         }
         // --------------------- Radio Buttons ------------------------------------
         if (e.getSource() instanceof JRadioButton) {

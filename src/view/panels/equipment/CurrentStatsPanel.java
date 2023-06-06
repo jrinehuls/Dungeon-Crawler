@@ -29,7 +29,7 @@ public class CurrentStatsPanel extends JPanel {
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.setBackground(Color.GREEN);
 
-        // TODO: add stuff to current stats panel
+        // Add stuff to current stats panel
         int currentStatsCounter = 0;
         for (JLabel label: currentStatsLabels) {
             if (currentStatsCounter % 2 ==0) {

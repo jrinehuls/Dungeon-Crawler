@@ -22,11 +22,10 @@ public class ItemController implements ActionListener, ListSelectionListener {
     ItemRadioButtonPanel itemRadioButtonPanel;
     ItemListPanel itemListPanel;
     ItemButtonPanel itemButtonPanel;
-    boolean itemUsed;
     static Consumable selectedItem = null;
 
     public ItemController() {
-        // TODO: maybe make itemUsed false here.
+
     }
 
     @Override
@@ -36,21 +35,19 @@ public class ItemController implements ActionListener, ListSelectionListener {
         itemRadioButtonPanel = itemFrame.itemRadioButtonPanel;
         itemListPanel = itemFrame.itemListPanel;
         itemButtonPanel = itemFrame.itemButtonPanel;
-
         // ------------------------- JButtons ------------------------------------
         if (e.getSource() == itemButtonPanel.getDoneButton()) {
-            if (MonsterPanel.isMonster() && itemUsed) {
-                player.setProgress(0);
-            }
             itemFrame.dispose();
         } if (e.getSource() == itemButtonPanel.getUseButton() && selectedItem != null) {
-            // TODO: if clicked and something used, set itemUsed to true.
-            System.out.println(selectedItem + " used");
             player.useHealingItem((HealingItem) selectedItem);
             itemListPanel.loadHealingItemsModel();
             itemListPanel.itemJList.setModel(itemListPanel.getHealingItemsModel());
+            selectedItem = null;
+            if (MonsterPanel.isMonster()) {
+                player.setProgress(0);
+                itemFrame.dispose();
+            }
         }
-
         // --------------------- Radio Buttons ------------------------------------
         if (e.getSource() == itemRadioButtonPanel.healingItemsButton) {
             itemListPanel.loadHealingItemsModel();
@@ -70,7 +67,6 @@ public class ItemController implements ActionListener, ListSelectionListener {
         if (e.getValueIsAdjusting()) {
             if (itemRadioButtonPanel.healingItemsButton.isSelected()) {
                 selectedItem = itemListPanel.itemJList.getSelectedValue();
-                System.out.println(selectedItem + " is selected");
             }
         }
     }

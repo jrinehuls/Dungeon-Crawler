@@ -45,7 +45,6 @@ public class ItemFrame extends JFrame {
 
         //------------------------Frame stuff---------------------------------------------
         this.add(itemPanel);
-        // TODO: Clear list selection
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setIconImage(new ImageIcon("res/icons/Icon.png").getImage());
         this.setResizable(false);

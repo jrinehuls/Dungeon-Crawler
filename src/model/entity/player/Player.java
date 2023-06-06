@@ -94,8 +94,11 @@ public class Player extends Entity {
 
     @Override
     public void useHealingItem(HealingItem healingItem) {
-        // TODO: don't go over max HP
-        this.setHP(this.getHP() + healingItem.getHP());
+        if (this.maxHP - this.HP > healingItem.getHP()) {
+            this.setHP(this.getHP() + healingItem.getHP());
+        } else {
+            this.setHP(this.getMaxHP());
+        }
         this.disposeConsumableItem(healingItem);
     }
 

@@ -30,19 +30,16 @@ public class ActionButtonController implements ActionListener {
         player = PlayerPanel.getPlayer();
         monster = MonsterPanel.getMonster();
         if (e.getSource() == ActionPanel.attackButton) {
-            System.out.println("Attack: " + PlayerPanel.getPlayer().getAttack());
             player.attack(monster);
             player.setProgress(0);
         }
         if (e.getSource() == ActionPanel.spellButton) {
-            spellFrame = new SpellFrame();
+            spellFrame = new SpellFrame(); // Needed here to populate Spell Frame with updated spells
             spellFrame.setVisible(true);
         }
         if (e.getSource() == ActionPanel.itemButton) {
-            itemFrame = new ItemFrame();
+            itemFrame = new ItemFrame(); // Needed here to populate Item Frame with updated items
             itemFrame.setVisible(true);
-            // System.out.println("Item: " + "PlayerPanel.getPlayer().getItem()");
-            // player.setProgress(0);
         }
         if (e.getSource() == ActionPanel.defendButton) {
             //System.out.println("Defend: " + PlayerPanel.getPlayer().getDefense());
