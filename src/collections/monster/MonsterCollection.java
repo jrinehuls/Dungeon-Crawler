@@ -3,6 +3,8 @@ package collections.monster;
 import model.entity.monster.Karen;
 import model.entity.monster.Monster;
 import model.entity.monster.Spaghetti;
+import view.panels.game.DisplayPanel;
+import view.panels.game.GamePanel;
 
 public class MonsterCollection {
 
@@ -19,10 +21,10 @@ public class MonsterCollection {
     // TODO: Set conditions for all monsters
     public Monster getMonster() {
         double randomNumber = Math.random();
-        System.out.println(randomNumber);
-        if (randomNumber < 0.50) {
+        DisplayPanel.appendConsoleModel(String.valueOf(randomNumber));
+        if (randomNumber < 0.10) { // 0.50
             return monsters[0];
-        } else if (randomNumber < 0.80) {
+        } else if (randomNumber < 0.20) { // 0.80
             return monsters[1];
         }
         else return null;
