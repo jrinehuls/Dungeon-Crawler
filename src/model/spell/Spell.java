@@ -11,4 +11,8 @@ public abstract class Spell {
     }
 
 
+    @Override
+    public String toString() {
+        return this.NAME + " - MP: " + this.MP;
+    }
 }
