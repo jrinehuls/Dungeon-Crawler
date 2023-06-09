@@ -1,10 +1,12 @@
 package model.entity.player;
 
+import collections.consumable.AttackItemCollection;
 import collections.consumable.HealingItemCollection;
 import collections.equipment.*;
 import collections.spell.AttackSpellCollection;
 import collections.spell.HealSpellCollection;
 import model.entity.Entity;
+import model.item.consumable.AttackItem;
 import model.item.consumable.Consumable;
 import model.item.consumable.HealingItem;
 import model.item.equipment.*;
@@ -65,7 +67,7 @@ public class Player extends Entity {
         // ------------------------------------------- Consumables -----------------------------------------------------
         this.addConsumableItem(HealingItemCollection.HEALING_HERB);
         this.addConsumableItem(HealingItemCollection.HEALING_HERB);
-        // consumableItems.add(HealingItemCollection.HEALING_HERB);
+        this.addConsumableItem(AttackItemCollection.BOMB);
     }
 
     // --------------------------------------------- Player Actions ----------------------------------------------------
@@ -100,6 +102,16 @@ public class Player extends Entity {
             this.setHP(this.getMaxHP());
         }
         this.disposeConsumableItem(healingItem);
+    }
+
+    @Override
+    public void useAttackItem(AttackItem attackItem) {
+        if (MonsterPanel.getMonster().getHP() > attackItem.getDamage()) {
+            MonsterPanel.getMonster().setHP(MonsterPanel.getMonster().getHP() - attackItem.getDamage());
+        } else {
+            MonsterPanel.getMonster().setHP(0);
+        }
+        this.disposeConsumableItem(attackItem);
     }
 
     // ---------------------------------------------- Weapon Methods ---------------------------------------------------

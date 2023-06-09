@@ -2,6 +2,7 @@ package view.panels.item;
 
 import controller.ItemController;
 import view.frames.ItemFrame;
+import view.panels.game.MonsterPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,6 +35,12 @@ public class ItemRadioButtonPanel extends JPanel {
             consumableButtonGroup.add(button);
             button.addActionListener(ic);
             this.add(button);
+        }
+
+        if (MonsterPanel.isMonster()) {
+            attackItemsButton.setEnabled(true);
+        } else {
+            attackItemsButton.setEnabled(false);
         }
 
         // Default to healing radio button being selected

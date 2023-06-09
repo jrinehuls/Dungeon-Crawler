@@ -3,6 +3,7 @@ package model.entity.monster;
 import model.entity.Entity;
 import model.entity.player.Player;
 import model.item.Item;
+import model.item.consumable.AttackItem;
 import model.item.consumable.HealingItem;
 import model.spell.AttackSpell;
 import model.spell.HealSpell;
@@ -59,6 +60,11 @@ public abstract class Monster extends Entity implements MonsterActions {
 
     @Override
     public void useHealingItem(HealingItem healingItem) {
+
+    }
+
+    @Override
+    public void useAttackItem(AttackItem attackItem) {
 
     }
 

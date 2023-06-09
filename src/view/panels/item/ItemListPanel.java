@@ -1,6 +1,7 @@
 package view.panels.item;
 
 import controller.ItemController;
+import model.item.consumable.AttackItem;
 import model.item.consumable.Consumable;
 import model.item.consumable.HealingItem;
 import view.frames.ItemFrame;
@@ -66,13 +67,11 @@ public class ItemListPanel extends JPanel {
     public void loadAttackItemsModel() {
         attackItemsModel.clear();
         // Add healing items in player's consumable items list to the model
-        /* Need to make attack items and give to player
         for (Consumable item: PlayerPanel.getPlayer().getConsumableItems()) {
             if (item instanceof AttackItem) {
                 attackItemsModel.addElement(item);
             }
         }
-        */
     }
 
 }

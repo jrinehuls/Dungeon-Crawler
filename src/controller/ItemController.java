@@ -1,8 +1,11 @@
 package controller;
 
 import model.entity.player.Player;
+import model.item.consumable.AttackItem;
 import model.item.consumable.Consumable;
 import model.item.consumable.HealingItem;
+import model.spell.AttackSpell;
+import model.spell.HealSpell;
 import view.frames.ItemFrame;
 import view.panels.game.MonsterPanel;
 import view.panels.game.PlayerPanel;
@@ -39,9 +42,7 @@ public class ItemController implements ActionListener, ListSelectionListener {
         if (e.getSource() == itemButtonPanel.getDoneButton()) {
             itemFrame.dispose();
         } if (e.getSource() == itemButtonPanel.getUseButton() && selectedItem != null) {
-            player.useHealingItem((HealingItem) selectedItem);
-            itemListPanel.loadHealingItemsModel();
-            itemListPanel.itemJList.setModel(itemListPanel.getHealingItemsModel());
+            useItem();
             selectedItem = null;
             if (MonsterPanel.isMonster()) {
                 player.setProgress(0);
@@ -65,9 +66,21 @@ public class ItemController implements ActionListener, ListSelectionListener {
         itemListPanel = itemFrame.itemListPanel;
 
         if (e.getValueIsAdjusting()) {
-            if (itemRadioButtonPanel.healingItemsButton.isSelected()) {
-                selectedItem = itemListPanel.itemJList.getSelectedValue();
-            }
+            // if (itemRadioButtonPanel.healingItemsButton.isSelected()) {
+            selectedItem = itemListPanel.itemJList.getSelectedValue();
+            // }
+        }
+    }
+
+    private void useItem() {
+        if (selectedItem instanceof AttackItem) {
+            player.useAttackItem((AttackItem) selectedItem);
+            itemListPanel.loadAttackItemsModel();
+            itemListPanel.itemJList.setModel(itemListPanel.getAttackItemsModel());
+        } else if (selectedItem instanceof HealingItem) {
+            player.useHealingItem((HealingItem) selectedItem);
+            itemListPanel.loadHealingItemsModel();
+            itemListPanel.itemJList.setModel(itemListPanel.getHealingItemsModel());
         }
     }
 }
