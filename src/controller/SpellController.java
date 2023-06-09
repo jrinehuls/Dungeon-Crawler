@@ -1,18 +1,12 @@
 package controller;
 
 import model.entity.player.Player;
-import model.item.consumable.Consumable;
-import model.item.consumable.HealingItem;
 import model.spell.AttackSpell;
 import model.spell.HealSpell;
 import model.spell.Spell;
-import view.frames.ItemFrame;
 import view.frames.SpellFrame;
 import view.panels.game.MonsterPanel;
 import view.panels.game.PlayerPanel;
-import view.panels.item.ItemButtonPanel;
-import view.panels.item.ItemListPanel;
-import view.panels.item.ItemRadioButtonPanel;
 import view.panels.spell.SpellButtonPanel;
 import view.panels.spell.SpellListPanel;
 import view.panels.spell.SpellRadioButtonPanel;
@@ -46,11 +40,7 @@ public class SpellController implements ActionListener, ListSelectionListener {
         if (e.getSource() == spellButtonPanel.getDoneButton()) {
             spellFrame.dispose();
         } if (e.getSource() == spellButtonPanel.getCastButton() && selectedSpell != null) {
-            if (selectedSpell instanceof HealSpell) {
-                useHealSpell();
-            } if (selectedSpell instanceof AttackSpell) {
-                useAttackSpell();
-            }
+            useSpell();
             selectedSpell = null;
             if (MonsterPanel.isMonster()) {
                 player.setProgress(0);
@@ -74,24 +64,21 @@ public class SpellController implements ActionListener, ListSelectionListener {
         spellListPanel = spellFrame.spellListPanel;
 
         if (e.getValueIsAdjusting()) {
-            // if (spellRadioButtonPanel.healingSpellButton.isSelected()) {
-                selectedSpell = spellListPanel.spellJList.getSelectedValue();
-            // }
+            selectedSpell = spellListPanel.spellJList.getSelectedValue();
         }
     }
 
-    private void useHealSpell() {
-        player.castHealSpell((HealSpell) selectedSpell);
-        spellListPanel.loadHealingSpellModel();
-        spellListPanel.spellJList.setModel(spellListPanel.getHealingSpellModel());
+    private void useSpell() {
+        if (selectedSpell instanceof AttackSpell) {
+            player.castAttackSpell((AttackSpell) selectedSpell);
+            spellListPanel.loadAttackSpellModel();
+            spellListPanel.spellJList.setModel(spellListPanel.getAttackSpellModel());
+        } else if (selectedSpell instanceof HealSpell) {
+            player.castHealSpell((HealSpell) selectedSpell);
+            spellListPanel.loadHealingSpellModel();
+            spellListPanel.spellJList.setModel(spellListPanel.getHealingSpellModel());
+        }
     }
-
-    private void useAttackSpell() {
-        player.castAttackSpell((AttackSpell) selectedSpell);
-        spellListPanel.loadAttackSpellModel();
-        spellListPanel.spellJList.setModel(spellListPanel.getAttackSpellModel());
-    }
-
 
 
 

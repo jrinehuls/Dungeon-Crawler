@@ -11,21 +11,17 @@ public class SpellButtonPanel extends JPanel {
     private static final int BUTTON_WIDTH = 150;
     private static final int BUTTON_HEIGHT = 50;
 
-    private JButton doneButton = new JButton("Done");
-    private JButton castButton = new JButton("Cast Spell");
-
-    private JButton buttons[] = {doneButton, castButton};
+    private final JButton doneButton = new JButton("Done");
+    private final JButton castButton = new JButton("Cast Spell");
 
     SpellController sc;
 
     public SpellButtonPanel() {
         super(new FlowLayout(FlowLayout.CENTER, 50, 15));
 
-        sc = new SpellController();
+        JButton[] buttons = {doneButton, castButton};
 
-        this.setPreferredSize(new Dimension(SpellFrame.SCREEN_WIDTH, SpellFrame.BUTTON_PANEL_HEIGHT));
-        this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        this.setBackground(Color.CYAN);
+        sc = new SpellController();
 
         for (JButton button: buttons) {
             button.addActionListener(sc);
@@ -34,6 +30,9 @@ public class SpellButtonPanel extends JPanel {
             this.add(button);
         }
 
+        this.setPreferredSize(new Dimension(SpellFrame.SCREEN_WIDTH, SpellFrame.BUTTON_PANEL_HEIGHT));
+        this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        this.setBackground(Color.CYAN);
     }
 
     public JButton getDoneButton() {

@@ -18,14 +18,14 @@ public class SpellListPanel extends JPanel {
     private DefaultListModel<Spell> attackSpellModel = new DefaultListModel<>();
     public JList<Spell> spellJList;
 
-    private final int PANEL_WIDTH = SpellFrame.SCREEN_WIDTH/2;
-
     public JScrollPane spellJSP;
 
     SpellController sc;
 
     public SpellListPanel() {
         super(new FlowLayout(FlowLayout.CENTER, 0, 35));
+
+        final int PANEL_WIDTH = SpellFrame.SCREEN_WIDTH/2;
 
         sc = new SpellController();
 
