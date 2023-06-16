@@ -4,6 +4,6 @@ import model.spell.StealSpell;
 
 public class StealSpellCollection {
 
-    public final static StealSpell CALL_MANAGER = new StealSpell("Call Manager", 2, 10);
+    public final static StealSpell CALL_MANAGER = new StealSpell("Call Manager", 12, 10);
 
 }

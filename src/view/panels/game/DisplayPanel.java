@@ -40,10 +40,10 @@ public class DisplayPanel extends JPanel {
 
     public static void appendConsoleModel(String text) {
         consoleModel.addElement(text);
-        consoleJSP.getVerticalScrollBar()
-                .addAdjustmentListener(e -> e.getAdjustable().setValue(e.getAdjustable().getMaximum()));
-        // /int index = consoleModel.getSize() - 1;
-        // /consoleJList.ensureIndexIsVisible(index);
+        int index = consoleModel.getSize() - 1;
+        consoleJList.ensureIndexIsVisible(index);
+        // /consoleJSP.getVerticalScrollBar()
+        //        .addAdjustmentListener(e -> e.getAdjustable().setValue(e.getAdjustable().getMaximum()));
     }
 
 }

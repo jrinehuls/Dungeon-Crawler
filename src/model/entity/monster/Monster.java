@@ -4,6 +4,7 @@ import model.entity.Entity;
 import model.entity.player.Player;
 import model.item.Item;
 import model.item.consumable.AttackItem;
+import model.item.consumable.Consumable;
 import model.item.consumable.HealingItem;
 import model.spell.AttackSpell;
 import model.spell.HealSpell;
@@ -41,25 +42,33 @@ public abstract class Monster extends Entity implements MonsterActions {
     @Override
     public void attack(Entity player) {
         super.attack(player);
-        DisplayPanel.appendConsoleModel(this.getName() + " attacked!");
     }
 
     @Override
     public void castHealSpell(HealSpell healSpell) {
+        int oldHP = this.HP;
         healSpell.heal(this);
-        DisplayPanel.appendConsoleModel(this.getName() + " casted " + healSpell.NAME + "!");
+        int newHP = this.HP;
+        DisplayPanel.appendConsoleModel(String.format("%s casted %s and healed %d HP!",
+                this.getName(), healSpell.NAME, newHP - oldHP));
     }
 
     @Override
     public void castAttackSpell(AttackSpell attackSpell) {
+        int oldHP = player.getHP();
         attackSpell.cast(this, player);
-        DisplayPanel.appendConsoleModel(this.getName() + " casted " + attackSpell.NAME + "!");
+        int newHP = player.getHP();
+        DisplayPanel.appendConsoleModel(String.format("%s casted %s and dealt %d HP of damage!",
+                this.getName(), attackSpell.NAME, oldHP - newHP));
     }
 
     @Override
     public void castStealGoldSpell(StealSpell stealSpell) {
+        int oldGold = player.getGold();
         stealSpell.stealGold(this);
-        DisplayPanel.appendConsoleModel(this.getName() + " casted " + stealSpell.NAME + "!");
+        int newGold = player.getGold();
+        DisplayPanel.appendConsoleModel(String.format("%s casted %s and stole %d gold!",
+                this.getName(), stealSpell.NAME, oldGold - newGold));
     }
 
     @Override
@@ -88,7 +97,7 @@ public abstract class Monster extends Entity implements MonsterActions {
 
     @Override
     public void giveExp() {
-        int exp = (int) (this.baseExp * random.nextDouble(0.5, 1.5));
+        int exp = (int) (this.baseExp * random.nextDouble(0.8, 1.2));
         player.setExp(player.getExp() + exp);
         DisplayPanel.appendConsoleModel(String.format("You got %d exp!", exp));
     }
@@ -96,7 +105,11 @@ public abstract class Monster extends Entity implements MonsterActions {
     @Override
     public void dropItem() {
         if (this.items.size() > 0 ) {
-            DisplayPanel.appendConsoleModel(this.name + " Dropped an item!");
+            Item droppedItem = removeItem(items.get(random.nextInt(items.size())));
+            DisplayPanel.appendConsoleModel(this.name + " Dropped " + droppedItem);
+            if (droppedItem instanceof Consumable consumableItem) {
+                player.addConsumableItem(consumableItem);
+            }
         }
     }
 
@@ -113,8 +126,10 @@ public abstract class Monster extends Entity implements MonsterActions {
         this.items.add(item);
     }
 
-    public void removeItem(Item item) {
+    public Item removeItem(Item item) {
+        Item returnableItem = items.get(getItems().indexOf(item));
         this.items.remove(item);
+        return returnableItem;
     }
 
     public String getName() {
@@ -124,10 +139,5 @@ public abstract class Monster extends Entity implements MonsterActions {
     public ImageIcon getIcon() {
         return icon;
     }
-
-    /*
-    public Player getPlayer() {
-        return player;
-    }*/
 
 }

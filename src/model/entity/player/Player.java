@@ -43,7 +43,7 @@ public class Player extends Entity {
     private Accessory accessory;
 
     public Player() {
-        super(100, 10,  20, 20, 10, 10, 25);
+        super(100, 10,  20, 15, 10, 10, 25);
         // -------------------------------------------- Spells ---------------------------------------------------------
         spells.put("First Aid", HealSpellCollection.FIRST_AID);
         spells.put("Flare", AttackSpellCollection.FLARE);
@@ -79,12 +79,20 @@ public class Player extends Entity {
 
     @Override
     public void castHealSpell(HealSpell healSpell) {
+        int oldHP = this.HP;
         healSpell.heal(this);
+        int newHP = this.HP;
+        DisplayPanel.appendConsoleModel(String.format("You casted %s and healed %d HP!",
+                healSpell.NAME, newHP - oldHP));
     }
 
     @Override
     public void castAttackSpell(AttackSpell attackSpell) {
+        int oldHP = MonsterPanel.getMonster().getHP();
         attackSpell.cast(this, MonsterPanel.getMonster());
+        int newHP = MonsterPanel.getMonster().getHP();
+        DisplayPanel.appendConsoleModel(String.format("You casted %s and dealt %d HP of damage!",
+                attackSpell.NAME, oldHP - newHP));
     }
 
     @Override
@@ -97,21 +105,29 @@ public class Player extends Entity {
 
     @Override
     public void useHealingItem(HealingItem healingItem) {
+        int oldHP = this.getHP();
         if (this.maxHP - this.HP > healingItem.getHP()) {
             this.setHP(this.getHP() + healingItem.getHP());
         } else {
             this.setHP(this.getMaxHP());
         }
+        int newHP = this.getHP();
+        DisplayPanel.appendConsoleModel(String.format("You used %s and healed %d HP!",
+                healingItem.getName(), newHP - oldHP));
         this.disposeConsumableItem(healingItem);
     }
 
     @Override
     public void useAttackItem(AttackItem attackItem) {
+        int oldHP = MonsterPanel.getMonster().getHP();
         if (MonsterPanel.getMonster().getHP() > attackItem.getDamage()) {
             MonsterPanel.getMonster().setHP(MonsterPanel.getMonster().getHP() - attackItem.getDamage());
         } else {
             MonsterPanel.getMonster().setHP(0);
         }
+        int newHP = MonsterPanel.getMonster().getHP();
+        DisplayPanel.appendConsoleModel(String.format("You used %s and dealt %d HP of damage!",
+                attackItem.getName(), oldHP - newHP));
         this.disposeConsumableItem(attackItem);
     }
 
@@ -393,17 +409,26 @@ public class Player extends Entity {
             level++;
             exp = exp - nextExp;
             Level nextLevel = Level.valueOf(String.format("LEVEL%d", level));
+            DisplayPanel.appendConsoleModel("------------------------------------------------------");
             DisplayPanel.appendConsoleModel("You've reached " + nextLevel + "!");
             nextExp += nextLevel.increaseNextExp;
             HP += nextLevel.increaseHP;
             maxHP += nextLevel.increaseHP;
+            DisplayPanel.appendConsoleModel("Your Max HP increased by " + nextLevel.increaseHP + "!");
             MP += nextLevel.increaseMP;
             maxMP += nextLevel.increaseMP;
+            DisplayPanel.appendConsoleModel("Your Max MP increased by " + nextLevel.increaseMP + "!");
             attack += nextLevel.increaseAttack;
+            DisplayPanel.appendConsoleModel("Your Attack increased by " + nextLevel.increaseAttack + "!");
             defense += nextLevel.increaseDefense;
+            DisplayPanel.appendConsoleModel("Your Defense increased by " + nextLevel.increaseDefense + "!");
             magicAttack += nextLevel.increaseMAttack;
+            DisplayPanel.appendConsoleModel("Your Magic Attack increased by " + nextLevel.increaseMAttack + "!");
             magicDefense += nextLevel.increaseMDefense;
+            DisplayPanel.appendConsoleModel("Your Magic Defense increased by " + nextLevel.increaseMDefense + "!");
             speed += nextLevel.increaseSpeed;
+            DisplayPanel.appendConsoleModel("Your Speed increased by " + nextLevel.increaseSpeed + "!");
+            DisplayPanel.appendConsoleModel("------------------------------------------------------");
         } else if (exp >= nextExp) {
             exp = nextExp;
         }

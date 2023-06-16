@@ -23,7 +23,7 @@ public class MonsterCollection {
         Monster monster;
         DisplayPanel.appendConsoleModel(String.valueOf(randomNumber));
         // Decide which monster
-        if (randomNumber < 0.30) { // 0.50
+        if (randomNumber < 0.69) { // 0.50
             monster = monsters[0];
         } else if (randomNumber < 0.70) { // 0.80
             monster = monsters[1];

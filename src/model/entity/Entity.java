@@ -1,7 +1,12 @@
 package model.entity;
 
+import model.entity.monster.Monster;
+import model.entity.player.Player;
 import model.item.Item;
 import model.spell.Spell;
+import view.panels.game.DisplayPanel;
+import view.panels.game.MonsterPanel;
+import view.panels.game.PlayerPanel;
 
 import java.util.HashMap;
 
@@ -37,6 +42,12 @@ public abstract class Entity implements EntityActions {
     public void attack(Entity target) {
         int damage = ((int) Math.pow(this.attack, 1.8)  / target.getDefense());
         target.setHP(target.getHP() - damage);
+        if (target instanceof Monster) {
+            DisplayPanel.appendConsoleModel("You attacked for " + damage + " damage!");
+        } else if (target instanceof Player) {
+            Monster monster = MonsterPanel.getMonster();
+            DisplayPanel.appendConsoleModel(monster.getName() + " attacked for " + damage + " damage!");
+        }
     }
 
     public int getHP() {
