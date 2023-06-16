@@ -22,10 +22,10 @@ public class DisplayPanel extends JPanel {
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        consoleJList = new JList<>(consoleModel); // itemJList.setModel(); to change DefaultListModel.
-        consoleJList.setVisibleRowCount(15);
+        consoleJList = new JList<>(consoleModel);
+        consoleJList.setVisibleRowCount(14);
         consoleJList.setFixedCellWidth(SCREEN_WIDTH - 25);
-        // consoleJList.setFixedCellHeight(16);
+        consoleJList.setFixedCellHeight(16);
         consoleJList.setFocusable(false);
         consoleJList.ensureIndexIsVisible(consoleJList.getModel().getSize() - 1);
 
@@ -40,9 +40,10 @@ public class DisplayPanel extends JPanel {
 
     public static void appendConsoleModel(String text) {
         consoleModel.addElement(text);
-        int index = consoleModel.getSize() - 1;
-        consoleJList.ensureIndexIsVisible(index);
-
+        consoleJSP.getVerticalScrollBar()
+                .addAdjustmentListener(e -> e.getAdjustable().setValue(e.getAdjustable().getMaximum()));
+        // /int index = consoleModel.getSize() - 1;
+        // /consoleJList.ensureIndexIsVisible(index);
     }
 
 }

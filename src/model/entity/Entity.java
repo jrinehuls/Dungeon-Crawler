@@ -35,7 +35,8 @@ public abstract class Entity implements EntityActions {
 
     @Override
     public void attack(Entity target) {
-        target.setHP(target.getHP() - ((int) Math.pow(this.attack, 1.8)  / target.getDefense()));
+        int damage = ((int) Math.pow(this.attack, 1.8)  / target.getDefense());
+        target.setHP(target.getHP() - damage);
     }
 
     public int getHP() {

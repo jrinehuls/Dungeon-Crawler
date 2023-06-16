@@ -8,9 +8,9 @@ public interface MonsterActions {
 
     void takeAction();
 
-    void dropItem();
-
     void dropGold();
 
     void giveExp();
+
+    void dropItem();
 }

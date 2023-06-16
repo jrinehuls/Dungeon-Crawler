@@ -2,13 +2,14 @@ package model.entity.monster;
 
 import collections.spell.AttackSpellCollection;
 import model.spell.AttackSpell;
+import view.panels.game.DisplayPanel;
 
 import javax.swing.*;
 
 public class Spaghetti extends Monster{
 
     public Spaghetti() {
-        super("Flying Spaghetti Monster", 75,  10,  10, 10, 10, 1, 15, new ImageIcon("res/monsters/Spaghetti.png"));
+        super("Flying Spaghetti Monster", 75,  10,  10, 10, 10, 1, 15, 20, 40, new ImageIcon("res/monsters/Spaghetti.png"));
         spells.put("Flare", AttackSpellCollection.FLARE);
     }
 
@@ -27,19 +28,6 @@ public class Spaghetti extends Monster{
     @Override
     public void dropItem() {
 
-    }
-
-    @Override
-    public void dropGold() {
-        if (HP <= 0) {
-            player.setGold(player.getGold() + 20);
-            System.out.println("You got 20 gold!");
-        }
-    }
-
-    @Override
-    public void giveExp() {
-        player.setExp(player.getExp() + 30);
     }
 
 }

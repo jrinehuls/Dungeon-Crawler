@@ -15,18 +15,25 @@ public class MonsterCollection {
     public MonsterCollection() {
         monsters[0] = new Karen();
         monsters[1] = new Spaghetti();
-
     }
 
     // TODO: Set conditions for all monsters
     public Monster getMonster() {
         double randomNumber = Math.random();
+        Monster monster;
         DisplayPanel.appendConsoleModel(String.valueOf(randomNumber));
-        if (randomNumber < 0.10) { // 0.50
-            return monsters[0];
-        } else if (randomNumber < 0.20) { // 0.80
-            return monsters[1];
+        // Decide which monster
+        if (randomNumber < 0.30) { // 0.50
+            monster = monsters[0];
+        } else if (randomNumber < 0.70) { // 0.80
+            monster = monsters[1];
+        } else {
+            monster = null;
         }
-        else return null;
+        // Display which monster appeared
+        if (monster != null) {
+            DisplayPanel.appendConsoleModel("A wild " + monster + " appeared!");
+        }
+        return monster;
     }
 }

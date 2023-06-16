@@ -4,13 +4,15 @@ import collections.spell.HealSpellCollection;
 import collections.spell.StealSpellCollection;
 import model.spell.HealSpell;
 import model.spell.StealSpell;
+import view.panels.game.DisplayPanel;
 
 import javax.swing.*;
 
 public class Karen extends Monster {
 
+
     public Karen() {
-        super("Karen", 50, 12,  10, 10, 5, 10, 20, new ImageIcon("res/monsters/Karen.png"));
+        super("Karen", 50, 12,  10, 6, 5, 10, 20, 10, 60, new ImageIcon("res/monsters/Karen.png"));
         spells.put("First Aid", HealSpellCollection.FIRST_AID);
         spells.put("Call Manager", StealSpellCollection.CALL_MANAGER);
     }
@@ -33,19 +35,6 @@ public class Karen extends Monster {
     @Override
     public void dropItem() {
 
-    }
-
-    @Override
-    public void dropGold() {
-        if (HP <= 0) {
-            player.setGold(player.getGold() + 10);
-            System.out.println("You got 10 gold!");
-        }
-    }
-
-    @Override
-    public void giveExp() {
-        player.setExp(player.getExp() + 60);
     }
 
 }

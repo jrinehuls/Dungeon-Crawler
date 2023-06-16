@@ -29,7 +29,7 @@ public class StealSpell extends Spell {
             if (caster instanceof Monster monster) {
                 Player player = PlayerPanel.getPlayer();
                 if (player.getGold() > gold) {
-                    player.setGold(monster.getPlayer().getGold() - gold);
+                    player.setGold(player.getGold() - gold);
                 } else {
                     player.setGold(0);
                 }

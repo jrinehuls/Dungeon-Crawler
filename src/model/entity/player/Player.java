@@ -14,6 +14,7 @@ import model.spell.AttackSpell;
 import model.spell.HealSpell;
 import enums.Level;
 import model.spell.StealSpell;
+import view.panels.game.DisplayPanel;
 import view.panels.game.MonsterPanel;
 import java.util.ArrayList;
 
@@ -392,7 +393,7 @@ public class Player extends Entity {
             level++;
             exp = exp - nextExp;
             Level nextLevel = Level.valueOf(String.format("LEVEL%d", level));
-            System.out.println("You've reached " + nextLevel.name());
+            DisplayPanel.appendConsoleModel("You've reached " + nextLevel + "!");
             nextExp += nextLevel.increaseNextExp;
             HP += nextLevel.increaseHP;
             maxHP += nextLevel.increaseHP;
@@ -406,26 +407,6 @@ public class Player extends Entity {
         } else if (exp >= nextExp) {
             exp = nextExp;
         }
-            /*
-            for (Level nextLevel : Level.values()) {
-                System.out.println("WOAH " + Level.valueOf(String.valueOf(nextLevel)).increaseAttack);
-                if (level == Integer.parseInt(nextLevel.name().substring(5))){
-                    System.out.println("You've reached " + nextLevel.name());
-                    System.out.println("You've reached " + level);
-                    nextExp += nextLevel.increaseNextExp;
-                    HP += nextLevel.increaseHP;
-                    maxHP += nextLevel.increaseHP;
-                    MP += nextLevel.increaseMP;
-                    maxMP += nextLevel.increaseMP;
-                    attack += nextLevel.increaseAttack;
-                    defense += nextLevel.increaseDefense;
-                    magicAttack += nextLevel.increaseMAttack;
-                    magicDefense += nextLevel.increaseMDefense;
-                    speed += nextLevel.increaseSpeed;
-                    break;
-                }
-            }
-            */
 
     }
 

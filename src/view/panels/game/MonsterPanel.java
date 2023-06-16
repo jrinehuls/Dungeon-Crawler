@@ -54,7 +54,7 @@ public class MonsterPanel extends JPanel {
     }
 
     private static void setMonsterDetails() {
-        nameLabel.setText("A wild " + monster.getName() + " appeared!");
+        nameLabel.setText(monster.getName());
         hpLabel.setText("HP: " + monster.getHP() + "/" + monster.getMaxHP());
         mpLabel.setText("MP: " + monster.getMP() + "/" + monster.getMaxMP());
         attackLabel.setText("Attack: " + monster.getAttack());

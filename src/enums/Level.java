@@ -1,5 +1,7 @@
 package enums;
 
+import java.util.Locale;
+
 public enum Level {
 
     LEVEL2(25, 20, 5, 3, 2, 1, 1, 2),
@@ -25,5 +27,16 @@ public enum Level {
         this.increaseMAttack = increaseMAttack;
         this.increaseMDefense = increaseMDefense;
         this.increaseSpeed = increaseSpeed;
+    }
+
+    @Override
+    public String toString() {
+        String oldName = this.name().toLowerCase();
+        String name = "L";
+        for (int i = 1; i < 5; i++) {
+            name += oldName.charAt(i);
+        }
+        name += (" " + oldName.substring(5));
+        return name;
     }
 }

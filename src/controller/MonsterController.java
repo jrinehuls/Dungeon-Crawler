@@ -1,6 +1,7 @@
 package controller;
 
 import model.entity.monster.Monster;
+import view.panels.game.DisplayPanel;
 import view.panels.game.MonsterPanel;
 import view.panels.game.PlayerPanel;
 
@@ -13,8 +14,10 @@ public class MonsterController {
         if (MonsterPanel.isMonster()) {
             monster.takeAction();
             if (monster.getHP() <= 0) {
+                DisplayPanel.appendConsoleModel("You killed " + monster + "!");
                 monster.dropGold();
                 monster.giveExp();
+                monster.dropItem();
                 MonsterPanel.clearMonster();
             }
         }
