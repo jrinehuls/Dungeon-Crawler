@@ -14,9 +14,7 @@ public class TileManager {
 
     private static int[][] floorPlan = FloorManager.getFloor(1).getFloorPlan();
     private static ImageTile[][] imageTiles = FloorManager.getFloor(1).getImageTiles();
-
-    private static ImageTile treasureTile = new ImageTile("/icons/BlackSquare.png");
-
+    
     public TileManager() {
 
     }
