@@ -132,10 +132,6 @@ public class Player extends Entity {
     }
 
     // ---------------------------------------------- Weapon Methods ---------------------------------------------------
-    public void addWeapon(Weapon weapon) {
-        this.weapons.add(weapon);
-    }
-
     private void unequipWeapon() {
         // -------------- remove stats -------------------
         this.maxHP -= this.weapon.getMaxHP();
@@ -146,7 +142,7 @@ public class Player extends Entity {
         this.magicDefense -= this.weapon.getMagicDefense();
         this.speed -= this.weapon.getSpeed();
         // ------------- put weapon in inventory -----------
-        weapons.add(this.weapon);
+        addWeapon(this.weapon);
         // ------------ no weapon is equipped --------------
         this.weapon = null;
     }
@@ -155,7 +151,7 @@ public class Player extends Entity {
         // ----------- Remove old weapon ---------------------
         unequipWeapon();
         // --------- remove weapon from inventory ------------
-        weapons.remove(weapon);
+        disposeWeapon(weapon);
         // --------------- Equip the weapon ------------------
         this.weapon = weapon;
         // ------- Update stats for new weapon ---------------
@@ -168,16 +164,24 @@ public class Player extends Entity {
         this.speed += weapon.getSpeed();
     }
 
+    public void addWeapon(Weapon weapon) {
+        if (weapons.contains(weapon)) {
+            weapon.increaseQty();
+        } else {
+            this.weapons.add(weapon);
+        }
+    }
+
     public void disposeWeapon(Weapon weapon) {
         // -------- For something like selling weapon----------
-        this.weapons.remove(weapon);
+        if (weapon.getQty() > 1) {
+            weapon.decreaseQty();
+        } else {
+            this.weapons.remove(weapon);
+        }
     }
 
     // ---------------------------------------------- Headgear Methods -------------------------------------------------
-    public void addHeadgear(Head headGear) {
-        this.headGears.add(headGear);
-    }
-
     private void unequipHeadgear() {
         // -------------- remove stats -------------------
         this.maxHP -= this.headGear.getMaxHP();
@@ -188,7 +192,7 @@ public class Player extends Entity {
         this.magicDefense -= this.headGear.getMagicDefense();
         this.speed -= this.headGear.getSpeed();
         // ------------- put headgear in inventory -----------
-        headGears.add(this.headGear);
+        addHeadgear(this.headGear);
         // ------------ no headgear is equipped --------------
         this.headGear = null;
     }
@@ -197,7 +201,7 @@ public class Player extends Entity {
         // ----------- Remove old headgear ---------------------
         unequipHeadgear();
         // --------- remove headgear from inventory ------------
-        headGears.remove(headgear);
+        disposeHeadgear(headgear);
         // --------------- Equip the headgear ------------------
         this.headGear = headgear;
         // ------- Update stats for new headgear ---------------
@@ -210,18 +214,24 @@ public class Player extends Entity {
         this.speed += headgear.getSpeed();
     }
 
+    public void addHeadgear(Head headGear) {
+        if (headGears.contains(headGear)) {
+            headGear.increaseQty();
+        } else {
+            this.headGears.add(headGear);
+        }
+    }
+
     public void disposeHeadgear(Head headGear) {
         // -------- For something like selling armor ----------
-        this.headGears.remove(headGear);
+        if (headGear.getQty() > 1) {
+            headGear.decreaseQty();
+        } else {
+            this.headGears.remove(headGear);
+        }
     }
-
-
 
     // --------------------------------------------- Armor Methods -----------------------------------------------------
-    public void addArmor(Body armor) {
-        this.armors.add(armor);
-    }
-
     private void unequipArmor() {
         // -------------- remove stats -------------------
         this.maxHP -= this.armor.getMaxHP();
@@ -232,7 +242,7 @@ public class Player extends Entity {
         this.magicDefense -= this.armor.getMagicDefense();
         this.speed -= this.armor.getSpeed();
         // ------------- put armor in inventory -----------
-        armors.add(this.armor);
+        addArmor(this.armor);
         // ------------ no armor is equipped --------------
         this.armor = null;
     }
@@ -241,7 +251,7 @@ public class Player extends Entity {
         // ----------- Remove old armor ---------------------
         unequipArmor();
         // --------- remove armor from inventory ------------
-        armors.remove(armor);
+        disposeArmor(armor);
         // --------------- Equip the armor ------------------
         this.armor = armor;
         // ------- Update stats for new armor ---------------
@@ -254,16 +264,24 @@ public class Player extends Entity {
         this.speed += armor.getSpeed();
     }
 
+    public void addArmor(Body armor) {
+        if (armors.contains(armor)) {
+            armor.increaseQty();
+        } else {
+            this.armors.add(armor);
+        }
+    }
+
     public void disposeArmor(Body armor) {
         // -------- For something like selling armor ----------
-        this.armors.remove(armor);
+        if (armor.getQty() > 1) {
+            armor.decreaseQty();
+        } else {
+            this.armors.remove(armor);
+        }
     }
 
     // ---------------------------------------------- Arm Methods ------------------------------------------------------
-    public void addArm(Arm arm) {
-        this.arms.add(arm);
-    }
-
     private void unequipArm() {
         // -------------- remove stats -------------------
         this.maxHP -= this.arm.getMaxHP();
@@ -274,7 +292,7 @@ public class Player extends Entity {
         this.magicDefense -= this.arm.getMagicDefense();
         this.speed -= this.arm.getSpeed();
         // ------------- put arm in inventory -----------
-        arms.add(this.arm);
+        addArm(this.arm);
         // ------------ no arm is equipped --------------
         this.arm = null;
     }
@@ -283,7 +301,7 @@ public class Player extends Entity {
         // ----------- Remove old arm ---------------------
         unequipArm();
         // --------- remove arm from inventory ------------
-        arms.remove(arm);
+        disposeArm(arm);
         // --------------- Equip the arm ------------------
         this.arm = arm;
         // ------- Update stats for new arm ---------------
@@ -296,16 +314,24 @@ public class Player extends Entity {
         this.speed += arm.getSpeed();
     }
 
+    public void addArm(Arm arm) {
+        if (arms.contains(arm)) {
+            arm.increaseQty();
+        } else {
+            this.arms.add(arm);
+        }
+    }
+
     public void disposeArm(Arm arm) {
         // -------- For something like selling arm ----------
-        this.arms.remove(arm);
+        if (arm.getQty() > 1) {
+            arm.decreaseQty();
+        } else {
+            this.arms.remove(arm);
+        }
     }
 
     // ------------------------------------------- Footwear Methods ----------------------------------------------------
-    public void addFootwear(Feet footwear) {
-        this.footWears.add(footwear);
-    }
-
     private void unequipFootwear() {
         // -------------- remove stats -------------------
         this.maxHP -= this.footwear.getMaxHP();
@@ -316,7 +342,7 @@ public class Player extends Entity {
         this.magicDefense -= this.footwear.getMagicDefense();
         this.speed -= this.footwear.getSpeed();
         // ------------- put footwear in inventory -----------
-        footWears.add(this.footwear);
+        addFootwear(this.footwear);
         // ------------ no footwear is equipped --------------
         this.footwear = null;
     }
@@ -325,7 +351,7 @@ public class Player extends Entity {
         // ----------- Remove old footwear ---------------------
         unequipFootwear();
         // --------- remove footwear from inventory ------------
-        footWears.remove(footwear);
+        disposeFootwear(footwear);
         // --------------- Equip the footwear ------------------
         this.footwear = footwear;
         // ------- Update stats for new footwear ---------------
@@ -338,16 +364,24 @@ public class Player extends Entity {
         this.speed += footwear.getSpeed();
     }
 
+    public void addFootwear(Feet footwear) {
+        if (footWears.contains(footwear)) {
+            footwear.increaseQty();
+        } else {
+            this.footWears.add(footwear);
+        }
+    }
+
     public void disposeFootwear(Feet footwear) {
         // -------- For something like selling footwear ----------
-        this.footWears.remove(footwear);
+        if (footwear.getQty() > 1) {
+            footwear.decreaseQty();
+        } else {
+            this.footWears.remove(footwear);
+        }
     }
 
     // ------------------------------------------- Accessory Methods ---------------------------------------------------
-    public void addAccessory(Accessory accessory) {
-        this.accessories.add(accessory);
-    }
-
     private void unequipAccessory() {
         // -------------- remove stats -------------------
         this.maxHP -= this.accessory.getMaxHP();
@@ -358,7 +392,7 @@ public class Player extends Entity {
         this.magicDefense -= this.accessory.getMagicDefense();
         this.speed -= this.accessory.getSpeed();
         // ------------- put accessory in inventory -----------
-        accessories.add(this.accessory);
+        addAccessory(this.accessory);
         // ------------ no accessory is equipped --------------
         this.accessory = null;
     }
@@ -367,7 +401,7 @@ public class Player extends Entity {
         // ----------- Remove old accessory ---------------------
         unequipAccessory();
         // --------- remove accessory from inventory ------------
-        accessories.remove(accessory);
+        disposeAccessory(accessory);
         // --------------- Equip the accessory ------------------
         this.accessory = accessory;
         // ------- Update stats for new accessory ---------------
@@ -380,9 +414,21 @@ public class Player extends Entity {
         this.speed += accessory.getSpeed();
     }
 
+    public void addAccessory(Accessory accessory) {
+        if (accessories.contains(accessory)) {
+            accessory.increaseQty();
+        } else {
+            this.accessories.add(accessory);
+        }
+    }
+
     public void disposeAccessory(Accessory accessory) {
         // -------- For something like selling footwear ----------
-        this.accessories.remove(accessory);
+        if (accessory.getQty() > 1) {
+            accessory.decreaseQty();
+        } else {
+            this.accessories.remove(accessory);
+        }
     }
 
     // ------------------------------------------ Consumable Item Methods ----------------------------------------------

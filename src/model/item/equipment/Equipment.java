@@ -52,5 +52,9 @@ public abstract class Equipment extends Item {
         return speed;
     }
 
+    @Override
+    public String toString() {
+        return (this.getName() + " - Qty: " + this.quantity);
+    }
 
 }

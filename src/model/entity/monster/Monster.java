@@ -6,6 +6,7 @@ import model.item.Item;
 import model.item.consumable.AttackItem;
 import model.item.consumable.Consumable;
 import model.item.consumable.HealingItem;
+import model.item.equipment.*;
 import model.spell.AttackSpell;
 import model.spell.HealSpell;
 import model.spell.StealSpell;
@@ -109,6 +110,18 @@ public abstract class Monster extends Entity implements MonsterActions {
             DisplayPanel.appendConsoleModel(this.name + " Dropped " + droppedItem);
             if (droppedItem instanceof Consumable consumableItem) {
                 player.addConsumableItem(consumableItem);
+            } else if (droppedItem instanceof Weapon weapon) {
+                player.addWeapon(weapon);
+            } else if (droppedItem instanceof Head headGear) {
+                player.addHeadgear(headGear);
+            } else if (droppedItem instanceof Body armor) {
+                player.addArmor(armor);
+            } else if (droppedItem instanceof Arm arm) {
+                player.addArm(arm);
+            } else if (droppedItem instanceof Feet footwear) {
+                player.addFootwear(footwear);
+            } else if (droppedItem instanceof Accessory accessory) {
+                player.addAccessory(accessory);
             }
         }
     }

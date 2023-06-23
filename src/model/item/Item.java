@@ -5,11 +5,13 @@ public abstract class Item {
     private String name;
     private int cost;
     private int salePrice;
+    protected int quantity;
 
     public Item(String name, int cost, int salePrice) {
         this.name = name;
         this.cost = cost;
         this.salePrice = salePrice;
+        this.quantity = 1;
     }
 
     public String getName() {
@@ -34,6 +36,20 @@ public abstract class Item {
 
     public void setSalePrice(int salePrice) {
         this.salePrice = salePrice;
+    }
+
+    public int getQty() {
+        return this.quantity;
+    }
+
+    public void increaseQty() {
+        this.quantity += 1;
+    }
+
+    public void decreaseQty() {
+        if (this.quantity > 0) {
+            this.quantity -= 1;
+        }
     }
 
     @Override
