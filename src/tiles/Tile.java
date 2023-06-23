@@ -1,6 +1,10 @@
 package tiles;
 
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
 public class Tile {
 
     private boolean top, bottom, left, right;
@@ -27,4 +31,5 @@ public class Tile {
     public boolean isRight() {
         return right;
     }
+
 }

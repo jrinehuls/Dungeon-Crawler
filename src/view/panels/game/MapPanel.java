@@ -2,6 +2,7 @@ package view.panels.game;
 
 import controller.ActionButtonController;
 import controller.KeyController;
+import tiles.Tile;
 import tiles.TileManager;
 
 import java.awt.*;

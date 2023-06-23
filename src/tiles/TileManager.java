@@ -2,7 +2,10 @@ package tiles;
 
 import view.panels.game.MapPanel;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class TileManager {
 
@@ -10,6 +13,13 @@ public class TileManager {
     private static final int tileHeight = MapPanel.GRID_SIZE;
 
     private static int[][] floorPlan = FloorManager.getFloor(1).getFloorPlan();
+    private static ImageTile[][] imageTiles = FloorManager.getFloor(1).getImageTiles();
+
+    private static ImageTile treasureTile = new ImageTile("/icons/BlackSquare.png");
+
+    public TileManager() {
+
+    }
 
     private static final Tile[] tileTypes = {
             new Tile(false, false, false, false),
@@ -42,6 +52,9 @@ public class TileManager {
         int j = 0;
         int gridWidth = tileWidth * numCols;
         int gridHeight = tileHeight * numRows;
+        int iconSize = 16;
+        int iconPadding = (tileWidth - iconSize + 1) / 2;
+
 
         while (y < gridHeight) {
             // start at row 0 col 0. get the value from the grid to use as index of the type of tile.
@@ -60,6 +73,9 @@ public class TileManager {
                 }
                 if (tileTypes[floorPlan[i][j]].isRight()) {
                     g2d.drawLine(x + tileWidth, y, x + tileWidth, y + tileHeight);
+                }
+                if (imageTiles[i][j] != null) {
+                    g2d.drawImage(imageTiles[i][j].getImage(), x+iconPadding, y+iconPadding, iconSize, iconSize, null);
                 }
                 x += tileWidth;
                 j++;

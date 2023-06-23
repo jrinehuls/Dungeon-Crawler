@@ -2,6 +2,8 @@ package tiles;
 
 public class FloorManager {
 
+    private static ImageTile treasure = new ImageTile("/icons/Treasure.png");
+
     private static int[][] floor1 = {
             {8, 1, 1, 9, 9, 9, 9, 9, 9, 5},
             {4, 3, 6, 8, 9, 9, 9, 1, 14, 10},
@@ -14,7 +16,19 @@ public class FloorManager {
             {8, 14, 4, 1, 1, 1, 2, 4, 6, 10},
             {7, 9, 3, 6, 7, 3, 3, 6, 12, 6}};
 
-    private static Floor[] floors = {new Floor(floor1)};
+    private static ImageTile[][] icons1 = {
+            {null, null, null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null, null, null},
+            {null, null, null, null, treasure, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null, null, null}};
+
+    private static Floor[] floors = {new Floor(floor1, icons1)};
 
     public static Floor getFloor(int floorNumber) {
         return floors[floorNumber - 1];
