@@ -1,5 +1,6 @@
 package view.panels.game;
 
+import controller.MonsterController;
 import model.entity.player.Player;
 
 import javax.swing.*;
@@ -67,7 +68,8 @@ public class PlayerPanel extends JPanel {
     public static void progress() {
         boolean barIsProgressable = player.getProgress() < 100 && MonsterPanel.isMonster();
         if (barIsProgressable) {
-            player.setProgress(player.getProgress() + (player.getSpeed() / 10.0));
+            player.setProgress(player.getProgress() + MonsterController.progressRateOfChange *
+                    (double) player.getSpeed() / (double) MonsterPanel.getMonster().getSpeed());
         }
     }
 

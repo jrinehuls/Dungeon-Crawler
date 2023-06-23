@@ -1,0 +1,25 @@
+
+Add treasure icon to mini map
+Add treasure icon to BG image
+
+Create second floor
+Add more player levels
+Create over world
+Create title screen
+
+Black out map until tile visited
+Add run functionality
+Maybe add defend functionality
+Create map icon for up and down stairs
+Create BG image for up and down stairs
+Rework how dungeon walls look
+Base monster collections on floor
+Monster define castStealItemSpell
+Monster define useHealingItem
+Monster define useAttackItem
+Create more monsters
+Create more equip items
+Create more consumable items
+Create more spells
+Make monster drops not 100%
+Prevent multiple instances of secondary frames, like equipment
