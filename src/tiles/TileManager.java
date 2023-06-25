@@ -2,41 +2,18 @@ package tiles;
 
 import view.panels.game.MapPanel;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class TileManager {
 
     private static final int tileWidth = MapPanel.GRID_SIZE;
     private static final int tileHeight = MapPanel.GRID_SIZE;
 
-    private static int[][] floorPlan = FloorManager.getFloor(1).getFloorPlan();
-    private static ImageTile[][] imageTiles = FloorManager.getFloor(1).getImageTiles();
-    
+    private static Tile[][] floorPlan = FloorCollection.getFloor(1).getFloorPlan();
+
     public TileManager() {
 
     }
-
-    private static final Tile[] tileTypes = {
-            new Tile(false, false, false, false),
-            new Tile(true, false, false, false),
-            new Tile(false, false, false, true),
-            new Tile(false, true, false, false),
-            new Tile(false, false, true, false),
-            new Tile(true, false, false, true),
-            new Tile(false, true, false, true),
-            new Tile(false, true, true, false),
-            new Tile(true, false, true, false),
-            new Tile(true, true, false, false),
-            new Tile(false, false, true, true),
-            new Tile(false, true, true, true),
-            new Tile(true, true, true, false),
-            new Tile(true, false, true, true),
-            new Tile(true, true, false, true),
-            new Tile(true, true, true, true)
-    };
 
     public static void drawTiles(Graphics2D g2d) {
         g2d.setColor(Color.BLACK);
@@ -59,22 +36,28 @@ public class TileManager {
             // for each side that tile type has, draw it using the coordinates. Move to the right
             // by the width of the tile to draw the next one. get the next value in the row of the grid table.
             while(x < gridWidth) {
-                if (tileTypes[floorPlan[i][j]].isTop()) {
+                if (floorPlan[i][j].isTop()) {
                     //x1, y1, x2, y2
                     g2d.drawLine(x, y, x + tileWidth, y);
                 }
-                if (tileTypes[floorPlan[i][j]].isBottom()) {
+                if (floorPlan[i][j].isBottom()) {
                     g2d.drawLine(x, y + tileHeight, x + tileWidth, y + tileHeight);
                 }
-                if (tileTypes[floorPlan[i][j]].isLeft()) {
+                if (floorPlan[i][j].isLeft()) {
                     g2d.drawLine(x, y, x, y + tileHeight);
                 }
-                if (tileTypes[floorPlan[i][j]].isRight()) {
+                if (floorPlan[i][j].isRight()) {
                     g2d.drawLine(x + tileWidth, y, x + tileWidth, y + tileHeight);
                 }
-                if (imageTiles[i][j] != null) {
-                    g2d.drawImage(imageTiles[i][j].getImage(), x+iconPadding, y+iconPadding, iconSize, iconSize, null);
+                if (floorPlan[i][j].getImage() != null) {
+                    g2d.drawImage(floorPlan[i][j].getImage(), x+iconPadding, y+iconPadding, iconSize, iconSize, null);
                 }
+                /*
+                if (floorPlan[i][j].isVisited()) {
+                    g2d.setColor(Color.ORANGE);
+                    g2d.fillRect(x,y,tileWidth,tileHeight);
+                }
+                */
                 x += tileWidth;
                 j++;
             }
@@ -88,16 +71,18 @@ public class TileManager {
 
     // return array of all tile types. use getTileTypes[index] for a specific type.
     // index should be TileManager.getFloorPlan[i][j].
+    /*
     public static Tile[] getTileTypes() {
         return tileTypes;
     }
+    */
 
-    public static int[][] getFloorPlan() {
+    public static Tile[][] getFloorPlan() {
         return floorPlan;
     }
 
-    public static void setFloorPlan(int[][] floorPlan) {
-        TileManager.floorPlan = floorPlan;
+    public static void setFloorPlan(int floorNumber) {
+        TileManager.floorPlan = FloorCollection.getFloor(floorNumber).getFloorPlan();
     }
 }
 

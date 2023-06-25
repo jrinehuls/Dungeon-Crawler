@@ -46,7 +46,7 @@ public class MapPanel extends JPanel implements Runnable {
 
 	private static String position = MAP_GRID[yCord][xCord];
 	// Needed by game panel for bg image
-	public static int tileType = TileManager.getFloorPlan()[yCord][xCord];
+	public static Tile tile = TileManager.getFloorPlan()[yCord][xCord];
 
 	public MapPanel() {
 		this.setBackground(new Color(225, 225, 225));
@@ -54,6 +54,7 @@ public class MapPanel extends JPanel implements Runnable {
 		this.setFocusable(true);
 		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		tile.setVisited(true);
 
 		mapThread.start();
 	}
@@ -63,11 +64,10 @@ public class MapPanel extends JPanel implements Runnable {
 	}
 
 	public void checkCollision() {
-		//tileType = TileManager.getFloorPlan()[yCord][xCord];
-		topCollision = TileManager.getTileTypes()[tileType].isTop();
-		bottomCollision = TileManager.getTileTypes()[tileType].isBottom();
-		leftCollision = TileManager.getTileTypes()[tileType].isLeft();
-		rightCollision = TileManager.getTileTypes()[tileType].isRight();
+		topCollision = tile.isTop();
+		bottomCollision = tile.isBottom();
+		leftCollision = tile.isLeft();
+		rightCollision = tile.isRight();
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -124,7 +124,8 @@ public class MapPanel extends JPanel implements Runnable {
 				position = MAP_GRID[yCord][xCord];
 				xLocation += GRID_SIZE;
 			}
-			tileType = TileManager.getFloorPlan()[yCord][xCord];
+			tile = TileManager.getFloorPlan()[yCord][xCord];
+			tile.setVisited(true);
 		}
 	}
 

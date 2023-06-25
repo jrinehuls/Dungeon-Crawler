@@ -1,8 +1,10 @@
 package view.panels.game;
 
 import background.BackGroundImageManager;
+import tiles.FloorCollection;
 
 import java.awt.*;
+import java.util.Arrays;
 
 import javax.swing.*;
 
@@ -42,7 +44,7 @@ public class GamePanel extends JPanel {
 
 	public static void update() {
 		positionLabel.setText(MapPanel.getPosition());
-		backgroundImage = backGroundImageManager.getBackgroundImage(MapPanel.tileType, MapPanel.facing);
+		backgroundImage = backGroundImageManager.getBackgroundImage(Arrays.asList(FloorCollection.tileWalls).indexOf(MapPanel.tile.getTileWalls()), MapPanel.facing);
 		backgroundLabel.setIcon(backgroundImage);
 		try {
 			monsterLabel.setIcon(MonsterPanel.getMonster().getIcon());
