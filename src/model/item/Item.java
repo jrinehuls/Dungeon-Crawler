@@ -54,6 +54,6 @@ public abstract class Item {
 
     @Override
     public String toString() {
-        return name;
+        return ((this.getName() + " - Qty: " + this.quantity));
     }
 }

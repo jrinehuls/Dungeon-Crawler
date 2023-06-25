@@ -107,7 +107,7 @@ public abstract class Monster extends Entity implements MonsterActions {
     public void dropItem() {
         if (this.items.size() > 0 ) {
             Item droppedItem = removeItem(items.get(random.nextInt(items.size())));
-            DisplayPanel.appendConsoleModel(this.name + " Dropped " + droppedItem);
+            DisplayPanel.appendConsoleModel(this.name + " Dropped " + droppedItem.getName());
             if (droppedItem instanceof Consumable consumableItem) {
                 player.addConsumableItem(consumableItem);
             } else if (droppedItem instanceof Weapon weapon) {

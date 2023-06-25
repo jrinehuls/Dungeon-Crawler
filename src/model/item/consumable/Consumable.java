@@ -8,8 +8,5 @@ public abstract class Consumable extends Item {
         super(name, cost, salePrice);
     }
 
-    @Override
-    public String toString() {
-        return (this.getName() + " - Qty: " + this.quantity);
-    }
+
 }

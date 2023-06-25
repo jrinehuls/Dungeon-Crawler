@@ -1,11 +1,6 @@
 
-Add treasure icon to mini map
 Add treasure icon to BG image
-
-Add treasure BG
-Make so you can get treasure
-
-Fix bug where karen drops 2 of something if dropped once
+Make it so that you can get treasure
 
 
 Create second floor

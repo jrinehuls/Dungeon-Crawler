@@ -38,9 +38,10 @@ public class EquipmentController implements ActionListener, ListSelectionListene
         // ------------------------- JButtons ------------------------------------
         if (e.getSource() == equipButtonPanel.getSubmitButton()) {
             equipmentFrame.dispose();
-        } else if (!listPanel.equipmentJList.isSelectionEmpty() && e.getSource() == listPanel.equipButton) {
+        } else if (e.getSource() == listPanel.equipButton && !listPanel.equipmentJList.isSelectionEmpty()) {
             equipSelection();
             populateJList();
+            resetNewStats();
         }
         // --------------------- Radio Buttons ------------------------------------
         if (e.getSource() instanceof JRadioButton) {
@@ -76,27 +77,27 @@ public class EquipmentController implements ActionListener, ListSelectionListene
     // Equips player with selected item in list
     private void equipSelection() {
         if (radioPanel.weaponButton.isSelected()) {
-            radioPanel.weaponLabel.setText(listPanel.equipmentJList.getSelectedValue().toString());
+            radioPanel.weaponLabel.setText(listPanel.equipmentJList.getSelectedValue().getName());
             player.equipWeapon((Weapon) listPanel.equipmentJList.getSelectedValue());
             currentStatsPanel.updateLabels();
         } else if (radioPanel.headButton.isSelected()) {
-            radioPanel.headLabel.setText(listPanel.equipmentJList.getSelectedValue().toString());
+            radioPanel.headLabel.setText(listPanel.equipmentJList.getSelectedValue().getName());
             player.equipHeadgear((Head) listPanel.equipmentJList.getSelectedValue());
             currentStatsPanel.updateLabels();
         } else if (radioPanel.bodyButton.isSelected()) {
-            radioPanel.bodyLabel.setText(listPanel.equipmentJList.getSelectedValue().toString());
+            radioPanel.bodyLabel.setText(listPanel.equipmentJList.getSelectedValue().getName());
             player.equipArmor((Body) listPanel.equipmentJList.getSelectedValue());
             currentStatsPanel.updateLabels();
         } else if (radioPanel.armButton.isSelected()) {
-            radioPanel.armLabel.setText(listPanel.equipmentJList.getSelectedValue().toString());
+            radioPanel.armLabel.setText(listPanel.equipmentJList.getSelectedValue().getName());
             player.equipArm((Arm) listPanel.equipmentJList.getSelectedValue());
             currentStatsPanel.updateLabels();
         } else if (radioPanel.feetButton.isSelected()) {
-            radioPanel.feetLabel.setText(listPanel.equipmentJList.getSelectedValue().toString());
+            radioPanel.feetLabel.setText(listPanel.equipmentJList.getSelectedValue().getName());
             player.equipFootwear((Feet) listPanel.equipmentJList.getSelectedValue());
             currentStatsPanel.updateLabels();
         } else if (radioPanel.accessoryButton.isSelected()) {
-            radioPanel.accessoryLabel.setText(listPanel.equipmentJList.getSelectedValue().toString());
+            radioPanel.accessoryLabel.setText(listPanel.equipmentJList.getSelectedValue().getName());
             player.equipAccessory((Accessory) listPanel.equipmentJList.getSelectedValue());
             currentStatsPanel.updateLabels();
         }
@@ -137,6 +138,7 @@ public class EquipmentController implements ActionListener, ListSelectionListene
     }
 
     // If a selection is highlighted, then player clicks another radio without equipping, set new stats to the same as player stats
+    // Also changes labe colors back to black when an item is equipped or another radio button is picked
     private void resetNewStats() {
         newStatsPanel.setNewMaxHPLabel(0);
         newStatsPanel.setNewMaxMPLabel(0);
