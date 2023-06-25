@@ -1,7 +1,7 @@
 package view.panels.game;
 
 import background.BackGroundImageManager;
-import tiles.FloorCollection;
+import collections.floor.FloorCollection;
 
 import java.awt.*;
 import java.util.Arrays;

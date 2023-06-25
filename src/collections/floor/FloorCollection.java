@@ -1,4 +1,7 @@
-package tiles;
+package collections.floor;
+
+import tiles.Floor;
+import tiles.Tile;
 
 public class FloorCollection {
 

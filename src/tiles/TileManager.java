@@ -1,5 +1,6 @@
 package tiles;
 
+import collections.floor.FloorCollection;
 import view.panels.game.MapPanel;
 
 import java.awt.*;
