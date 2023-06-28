@@ -1,11 +1,13 @@
 
-Add treasure icon to BG image
-Make it so that you can get treasure
 
+Make it so that you can get treasure (Create treasure, upstairs, and downstairs classes. Tile
+takes in super class as argument)
+
+Implement go upstairs and downstairs methods for upstairs and downstairs classes
 
 Create second floor
 Add more player levels
-Create over world
+Create over world to enter dungeon
 Create title screen
 
 Black out map until tile visited
