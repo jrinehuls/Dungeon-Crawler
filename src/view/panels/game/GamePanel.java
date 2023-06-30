@@ -2,6 +2,9 @@ package view.panels.game;
 
 import background.BackGroundImageManager;
 import collections.floor.FloorCollection;
+import controller.game.GamePanelController;
+import model.tileobject.AscendingStaircase;
+import model.tileobject.DescendingStaircase;
 import model.tileobject.InteractableTileObject;
 import model.tileobject.Treasure;
 import tiles.Tile;
@@ -14,7 +17,7 @@ import javax.swing.*;
 
 
 public class GamePanel extends JPanel {
-	//Height and width of the panel
+	// Height and width of the panel
 	public static final int SCREEN_WIDTH = 800;
 	public static final int SCREEN_HEIGHT = MonsterPanel.SCREEN_HEIGHT;
 
@@ -29,18 +32,28 @@ public class GamePanel extends JPanel {
 	private static JLabel backgroundLabel = new JLabel();
 	private static ImageIcon backgroundImage;
 
-	public static JButton treasureButton = new JButton("Treasure");
+	public static JButton treasureButton = new JButton("Open Treasure");
+	public static JButton ascendButton = new JButton("Go Up Stairs");
+	public static JButton descendButton = new JButton("Go Down Stairs");
 
-	// This class should only update to show bg, monster image, and location.
+	private static JButton[] buttons = {treasureButton, ascendButton, descendButton};
+
+	GamePanelController gpc = new GamePanelController();
+
+
 	public GamePanel(){
 
 		// Game Panel
 		this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.setLayout(null);
-		// Position Label
+
+		// ----------------------------------- Left Side ----------------------------------
 		positionLabel.setBounds(50, 50, 40, 20);
 		this.add(positionLabel);
+
+		// ----------------------------------- Middle ----------------------------------
+
 		// Monster Image Label
 		monsterLabel.setBounds((SCREEN_WIDTH - 200)/2, 50, 200, 200);
 		this.add(monsterLabel);
@@ -51,16 +64,17 @@ public class GamePanel extends JPanel {
 		backgroundLabel.setBounds((SCREEN_WIDTH - 300)/2, 0, 300, 300);
 		this.add(backgroundLabel);
 
-		treasureButton.setBounds(615, 20, 120, 30);
-		treasureButton.addActionListener((e) -> {
-			Tile tile = TileManager.getFloorPlan()[MapPanel.yCord][MapPanel.xCord];
-			Treasure treasure = (Treasure) tile.getTileObject();
-			treasure.awardItem();
-			tile.removeTileObject();
-		});
-		treasureButton.setEnabled(false);
-		treasureButton.setFocusable(false);
-		this.add(treasureButton);
+		// ----------------------------------- Right Side ----------------------------------
+
+		int buttonY = 20;
+		for (JButton button : buttons) {
+			button.setBounds(600, buttonY, 150, 30);
+			button.addActionListener(gpc);
+			button.setEnabled(false);
+			button.setFocusable(false);
+			this.add(button);
+			buttonY += 40;
+		}
 
 	}
 
@@ -84,14 +98,15 @@ public class GamePanel extends JPanel {
 	private static void setObjectIcon() {
 		try  {
 			InteractableTileObject tileObject = TileManager.getFloorPlan()[MapPanel.yCord][MapPanel.xCord].getTileObject();
-			if (tileObject instanceof Treasure && !MonsterPanel.isMonster()) {
-				treasureButton.setEnabled(true);
-			} else {
-				treasureButton.setEnabled(false);
-			}
 			objectLabel.setIcon(tileObject.getBackgroundImage());
+			treasureButton.setEnabled(tileObject instanceof Treasure && !MonsterPanel.isMonster());
+			ascendButton.setEnabled(tileObject instanceof AscendingStaircase && !MonsterPanel.isMonster());
+			descendButton.setEnabled(tileObject instanceof DescendingStaircase && !MonsterPanel.isMonster());
 		} catch (NullPointerException e){
 			objectLabel.setIcon(null);
+			for (JButton button : buttons) {
+				button.setEnabled(false);
+			}
 		}
 	}
 

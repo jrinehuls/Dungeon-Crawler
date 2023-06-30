@@ -1,5 +1,7 @@
 package model.tileobject;
 
+import tiles.TileManager;
+
 public class AscendingStaircase extends InteractableTileObject implements Ascendable{
 
 

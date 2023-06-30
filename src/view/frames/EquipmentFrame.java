@@ -7,9 +7,6 @@ import java.awt.*;
 
 public class EquipmentFrame extends JFrame {
 
-    // Player player; Instantiate in constructor
-
-
     public static final int SCREEN_WIDTH = 700;
     JPanel equipmentPanel;
 
@@ -31,8 +28,6 @@ public class EquipmentFrame extends JFrame {
 
 
     public EquipmentFrame() {
-
-        // EquipmentController ec = new EquipmentController(this);
 
         // --------------------Stuff for main panel---------------------------------------
         equipmentPanel = new JPanel();

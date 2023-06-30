@@ -1,20 +1,17 @@
 
-
-Make it so that you can get treasure (Create treasure, upstairs, and downstairs classes. Tile
-takes in super class as argument)
-
-Implement go upstairs and downstairs methods for upstairs and downstairs classes
-
 Create second floor
+Implement go upstairs and downstairs methods for upstairs and downstairs classes
+Create map icon for up and down stairs
+Create BG image for up and down stairs
+
 Add more player levels
 Create over world to enter dungeon
 Create title screen
 
-Black out map until tile visited
+Black out map until tile visited - Made, just commented out
 Add run functionality
 Maybe add defend functionality
-Create map icon for up and down stairs
-Create BG image for up and down stairs
+
 Rework how dungeon walls look
 Base monster collections on floor
 Monster define castStealItemSpell

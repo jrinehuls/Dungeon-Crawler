@@ -158,6 +158,14 @@ public class MapPanel extends JPanel implements Runnable {
 		}
 	}
 
+	public static int getXCord() {
+		return xCord;
+	}
+
+	public static int getYCord() {
+		return yCord;
+	}
+
 	public void update() {
 		if (!MonsterPanel.isMonster() && !ActionButtonController.equipmentFrame.isVisible()
 				&& !ActionButtonController.itemFrame.isVisible() && !ActionButtonController.spellFrame.isVisible()) {

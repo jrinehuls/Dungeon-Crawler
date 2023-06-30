@@ -1,6 +1,8 @@
 package collections.floor;
 
 import collections.consumable.AttackItemCollection;
+import collections.tileobject.TreasureCollection;
+import model.tileobject.AscendingStaircase;
 import model.tileobject.Treasure;
 import tiles.Floor;
 import tiles.Tile;
@@ -20,7 +22,7 @@ public class FloorCollection {
     {7, 9, 3, 6, 7, 3, 3, 6, 12, 6}
     */
 
-    public static final Treasure bombTreasure = new Treasure("/icons/Treasure.png", "res/backgrounds/Treasure.png", AttackItemCollection.BOMB);
+    public static final AscendingStaircase upstairs = new AscendingStaircase("/icons/Treasure.png", "res/backgrounds/Treasure.png");
 
     public static final boolean[][] tileWalls = {
             { false, false, false, false },
@@ -46,9 +48,9 @@ public class FloorCollection {
             new Tile(tileWalls[9]), new Tile(tileWalls[9]), new Tile(tileWalls[9]), new Tile(tileWalls[9]), new Tile(tileWalls[5]) },
         { new Tile(tileWalls[4]), new Tile(tileWalls[3]), new Tile(tileWalls[6]), new Tile(tileWalls[8]), new Tile(tileWalls[9]),
             new Tile(tileWalls[9]), new Tile(tileWalls[9]), new Tile(tileWalls[1]), new Tile(tileWalls[14]), new Tile(tileWalls[10]) },
-        { new Tile(tileWalls[4]), new Tile(tileWalls[1]), new Tile(tileWalls[5]), new Tile(tileWalls[10]), new Tile(tileWalls[8], bombTreasure),
+        { new Tile(tileWalls[4]), new Tile(tileWalls[1]), new Tile(tileWalls[5]), new Tile(tileWalls[10]), new Tile(tileWalls[8], TreasureCollection.BOMB_TREASURE),
             new Tile(tileWalls[9]), new Tile(tileWalls[1]), new Tile(tileWalls[6]), new Tile(tileWalls[12]), new Tile(tileWalls[2]) },
-        { new Tile(tileWalls[11]), new Tile(tileWalls[10]), new Tile(tileWalls[7]), new Tile(tileWalls[2]), new Tile(tileWalls[10]),
+        { new Tile(tileWalls[11]), new Tile(tileWalls[10]), new Tile(tileWalls[7]), new Tile(tileWalls[2]), new Tile(tileWalls[10], upstairs),
             new Tile(tileWalls[12]), new Tile(tileWalls[3]), new Tile(tileWalls[1]), new Tile(tileWalls[14]), new Tile(tileWalls[10]) },
         { new Tile(tileWalls[8]), new Tile(tileWalls[0]), new Tile(tileWalls[5]), new Tile(tileWalls[11]), new Tile(tileWalls[4]),
             new Tile(tileWalls[5]), new Tile(tileWalls[8]), new Tile(tileWalls[2]), new Tile(tileWalls[8]), new Tile(tileWalls[2]) },
