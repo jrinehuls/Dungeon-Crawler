@@ -1,11 +1,10 @@
 package controller;
 
+import controller.game.ActionButtonController;
 import model.entity.player.Player;
 import model.item.consumable.AttackItem;
 import model.item.consumable.Consumable;
 import model.item.consumable.HealingItem;
-import model.spell.AttackSpell;
-import model.spell.HealSpell;
 import view.frames.ItemFrame;
 import view.panels.game.MonsterPanel;
 import view.panels.game.PlayerPanel;

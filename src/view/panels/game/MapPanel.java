@@ -1,7 +1,7 @@
 package view.panels.game;
 
-import controller.ActionButtonController;
-import controller.KeyController;
+import controller.game.ActionButtonController;
+import controller.game.KeyController;
 import tiles.Tile;
 import tiles.TileManager;
 

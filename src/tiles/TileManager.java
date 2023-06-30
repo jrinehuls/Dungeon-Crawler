@@ -50,12 +50,12 @@ public class TileManager {
                 if (floorPlan[i][j].isRight()) {
                     g2d.drawLine(x + tileWidth, y, x + tileWidth, y + tileHeight);
                 }
-                if (floorPlan[i][j].getImage() != null) {
-                    g2d.drawImage(floorPlan[i][j].getImage(), x+iconPadding, y+iconPadding, iconSize, iconSize, null);
+                if (floorPlan[i][j].getTileObject() != null) {
+                    g2d.drawImage(floorPlan[i][j].getTileObject().getIconImage(), x+iconPadding, y+iconPadding, iconSize, iconSize, null);
                 }
-                /*
-                if (floorPlan[i][j].isVisited()) {
-                    g2d.setColor(Color.ORANGE);
+                /* To set color for tiles before being seen
+                if (!floorPlan[i][j].isVisited()) {
+                    g2d.setColor(Color.BLACK);
                     g2d.fillRect(x,y,tileWidth,tileHeight);
                 }
                 */

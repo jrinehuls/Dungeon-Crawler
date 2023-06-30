@@ -1,5 +1,7 @@
 package collections.floor;
 
+import collections.consumable.AttackItemCollection;
+import model.tileobject.Treasure;
 import tiles.Floor;
 import tiles.Tile;
 
@@ -18,7 +20,7 @@ public class FloorCollection {
     {7, 9, 3, 6, 7, 3, 3, 6, 12, 6}
     */
 
-    private static String treasure = "/icons/Treasure.png";
+    public static final Treasure bombTreasure = new Treasure("/icons/Treasure.png", "res/backgrounds/Treasure.png", AttackItemCollection.BOMB);
 
     public static final boolean[][] tileWalls = {
             { false, false, false, false },
@@ -44,7 +46,7 @@ public class FloorCollection {
             new Tile(tileWalls[9]), new Tile(tileWalls[9]), new Tile(tileWalls[9]), new Tile(tileWalls[9]), new Tile(tileWalls[5]) },
         { new Tile(tileWalls[4]), new Tile(tileWalls[3]), new Tile(tileWalls[6]), new Tile(tileWalls[8]), new Tile(tileWalls[9]),
             new Tile(tileWalls[9]), new Tile(tileWalls[9]), new Tile(tileWalls[1]), new Tile(tileWalls[14]), new Tile(tileWalls[10]) },
-        { new Tile(tileWalls[4]), new Tile(tileWalls[1]), new Tile(tileWalls[5]), new Tile(tileWalls[10]), new Tile(tileWalls[8], treasure),
+        { new Tile(tileWalls[4]), new Tile(tileWalls[1]), new Tile(tileWalls[5]), new Tile(tileWalls[10]), new Tile(tileWalls[8], bombTreasure),
             new Tile(tileWalls[9]), new Tile(tileWalls[1]), new Tile(tileWalls[6]), new Tile(tileWalls[12]), new Tile(tileWalls[2]) },
         { new Tile(tileWalls[11]), new Tile(tileWalls[10]), new Tile(tileWalls[7]), new Tile(tileWalls[2]), new Tile(tileWalls[10]),
             new Tile(tileWalls[12]), new Tile(tileWalls[3]), new Tile(tileWalls[1]), new Tile(tileWalls[14]), new Tile(tileWalls[10]) },

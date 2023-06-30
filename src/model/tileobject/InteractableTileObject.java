@@ -8,19 +8,19 @@ import java.io.IOException;
 public abstract class InteractableTileObject {
 
     protected String iconPath;
-    protected String backgroundPath;
+    protected String backgroundFileName;
     protected BufferedImage iconImage;
     protected ImageIcon backgroundImage;
 
 
-    public InteractableTileObject(String iconPath, String backgroundPath) {
+    public InteractableTileObject(String iconPath, String backgroundFileName) {
         this.iconPath = iconPath;
-        this.backgroundPath = backgroundPath;
+        this.backgroundFileName = backgroundFileName;
     }
 
-    private BufferedImage getIconImage(String imagePath) {
+    public BufferedImage getIconImage() {
         try {
-            this.iconImage = ImageIO.read(getClass().getResourceAsStream(imagePath));
+            this.iconImage = ImageIO.read(getClass().getResourceAsStream(this.iconPath));
         } catch (IOException e) {
             System.out.println(e.getMessage());
             this.iconImage = null;
@@ -30,8 +30,8 @@ public abstract class InteractableTileObject {
         return this.iconImage;
     }
 
-    private ImageIcon getBackgroundImage(String backgroundPath) {
-        this.backgroundImage = new ImageIcon(backgroundPath);
+    public ImageIcon getBackgroundImage() {
+        this.backgroundImage = new ImageIcon(this.backgroundFileName);
         return this.backgroundImage;
     }
 

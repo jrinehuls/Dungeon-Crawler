@@ -1,6 +1,6 @@
 package view.panels.game;
 
-import controller.MonsterController;
+import controller.game.MonsterController;
 import model.entity.player.Player;
 
 import javax.swing.*;

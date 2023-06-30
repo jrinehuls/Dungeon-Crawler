@@ -6,17 +6,17 @@ import model.item.equipment.*;
 import view.panels.game.DisplayPanel;
 import view.panels.game.PlayerPanel;
 
-public class Treasure extends InteractableTileObject implements Awardable{
+public class Treasure extends InteractableTileObject implements Awardable {
 
     private Item item;
 
-    public Treasure(String iconPath, String backgroundPath, Item item) {
-        super(iconPath, backgroundPath);
+    public Treasure(String iconPath, String backgroundFileName, Item item) {
+        super(iconPath, backgroundFileName);
         this.item = item;
     }
 
     @Override
-    public void awardItem(Item item) {
+    public void awardItem() {
         DisplayPanel.appendConsoleModel("You received " + item.getName());
         if (item instanceof Weapon weapon) {
             PlayerPanel.getPlayer().addWeapon(weapon);

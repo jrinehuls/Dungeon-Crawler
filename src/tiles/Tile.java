@@ -1,16 +1,14 @@
 package tiles;
 
+import model.tileobject.InteractableTileObject;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Tile {
 
     private boolean top, bottom, left, right;
     private boolean[] tileWalls;
-    private BufferedImage image = null;
     private boolean visited;
+    private InteractableTileObject tileObject = null;
 
     public Tile(boolean[] tileWalls) {
         this.top = tileWalls[0];
@@ -20,13 +18,13 @@ public class Tile {
         this.tileWalls = tileWalls;
     }
 
-    public Tile(boolean[] tileWalls, String filePath) {
+    public Tile(boolean[] tileWalls, InteractableTileObject tileObject) {
         this.top = tileWalls[0];
         this.bottom = tileWalls[1];
         this.left = tileWalls[2];
         this.right = tileWalls[3];
         this.tileWalls = tileWalls;
-        setImage(filePath);
+        this.tileObject =tileObject;
     }
 
     public boolean isTop() {
@@ -49,19 +47,12 @@ public class Tile {
         return this.tileWalls;
     }
 
-    private void setImage(String imagePath) {
-        try {
-            this.image = ImageIO.read(getClass().getResourceAsStream(imagePath));
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            this.image = null;
-        } catch (IllegalArgumentException e) {
-            System.out.println("Bad file path");
-        }
+    public InteractableTileObject getTileObject () {
+        return this.tileObject;
     }
 
-    public BufferedImage getImage () {
-        return image;
+    public void removeTileObject() {
+        this.tileObject = null;
     }
 
     public boolean isVisited() {
@@ -71,4 +62,5 @@ public class Tile {
     public void setVisited(boolean visited) {
         this.visited = visited;
     }
+
 }

@@ -1,6 +1,6 @@
 package view.panels.game;
 
-import controller.ActionButtonController;
+import controller.game.ActionButtonController;
 
 import javax.swing.*;
 import java.awt.*;

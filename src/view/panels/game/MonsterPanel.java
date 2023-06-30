@@ -1,7 +1,7 @@
 package view.panels.game;
 
 import collections.monster.MonsterCollection;
-import controller.MonsterController;
+import controller.game.MonsterController;
 import model.entity.monster.Monster;
 
 import javax.swing.*;

@@ -3,8 +3,8 @@ package model.tileobject;
 public class AscendingStaircase extends InteractableTileObject implements Ascendable{
 
 
-    public AscendingStaircase(String iconPath, String backgroundPath) {
-        super(iconPath, backgroundPath);
+    public AscendingStaircase(String iconPath, String backgroundFileName) {
+        super(iconPath, backgroundFileName);
     }
 
     @Override

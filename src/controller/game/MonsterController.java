@@ -1,4 +1,4 @@
-package controller;
+package controller.game;
 
 import model.entity.monster.Monster;
 import view.panels.game.DisplayPanel;
