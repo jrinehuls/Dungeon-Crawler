@@ -22,7 +22,7 @@ public class FloorCollection {
     {7, 9, 3, 6, 7, 3, 3, 6, 12, 6}
     */
 
-    public static final AscendingStaircase upstairs = new AscendingStaircase("/icons/Treasure.png", "res/backgrounds/Treasure.png");
+    public static final AscendingStaircase upstairs = new AscendingStaircase("/icons/Downstairs.png", "res/backgrounds/Treasure.png");
 
     public static final boolean[][] tileWalls = {
             { false, false, false, false },
