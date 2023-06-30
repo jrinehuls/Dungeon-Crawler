@@ -1,4 +1,4 @@
-package model.tile;
+package model.tileobject;
 
 public class AscendingStaircase extends InteractableTileObject implements Ascendable{
 

@@ -1,4 +1,4 @@
-package model.tile;
+package model.tileobject;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

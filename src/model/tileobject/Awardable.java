@@ -1,4 +1,4 @@
-package model.tile;
+package model.tileobject;
 
 import model.item.Item;
 

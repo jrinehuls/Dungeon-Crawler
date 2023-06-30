@@ -1,4 +1,4 @@
-package model.tile;
+package model.tileobject;
 
 public interface Descendable {
     void goDownstairs();
