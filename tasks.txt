@@ -3,21 +3,26 @@ Prevent multiple instances of secondary frames, like equipment
 
 ---------------------------------------------------------------------------------
 
-Add more player levels
-Create over world to enter dungeon
-Create title screen
+Base monster collections on floor
 
-Black out map until tile visited - Made, just commented out
 Add run functionality
 Maybe add defend functionality
 
-Rework how dungeon walls look
-Base monster collections on floor
 Monster define castStealItemSpell
 Monster define useHealingItem
 Monster define useAttackItem
+
 Create more monsters
 Create more equip items
 Create more consumable items
 Create more spells
+Create more player levels
+
 Make monster drops not 100%
+
+Create over world to enter dungeon
+Create title screen
+
+Rework how dungeon walls look
+
+Black out map until tile visited - Made, just commented out
