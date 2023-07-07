@@ -1,8 +1,7 @@
 
-Create second floor map
+Prevent multiple instances of secondary frames, like equipment
 
 ---------------------------------------------------------------------------------
-Prevent multiple instances of secondary frames, like equipment
 
 Add more player levels
 Create over world to enter dungeon
