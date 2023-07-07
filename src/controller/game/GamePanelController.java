@@ -1,5 +1,7 @@
 package controller.game;
 
+import model.tileobject.AscendingStaircase;
+import model.tileobject.DescendingStaircase;
 import model.tileobject.Treasure;
 import tiles.Tile;
 import tiles.TileManager;
@@ -24,9 +26,9 @@ public class GamePanelController implements ActionListener {
             treasure.awardItem();
             tile.removeTileObject();
         } else if (e.getSource() == GamePanel.ascendButton) {
-            // set floor
+            AscendingStaircase.goUpstairs();
         } else if (e.getSource() == GamePanel.descendButton) {
-            // set floor
+            DescendingStaircase.goDownstairs();
         }
 
     }

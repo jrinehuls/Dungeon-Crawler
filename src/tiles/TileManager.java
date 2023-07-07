@@ -10,7 +10,7 @@ public class TileManager {
     private static final int tileWidth = MapPanel.GRID_SIZE;
     private static final int tileHeight = MapPanel.GRID_SIZE;
 
-    private static Tile[][] floorPlan = FloorCollection.getFloor(1).getFloorPlan();
+    private static Tile[][] floorPlan = FloorCollection.getFloor().getFloorPlan();
 
     public TileManager() {
 
@@ -70,20 +70,17 @@ public class TileManager {
         }
     }
 
-    // return array of all tile types. use getTileTypes[index] for a specific type.
-    // index should be TileManager.getFloorPlan[i][j].
-    /*
-    public static Tile[] getTileTypes() {
-        return tileTypes;
-    }
-    */
-
     public static Tile[][] getFloorPlan() {
         return floorPlan;
     }
 
-    public static void setFloorPlan(int floorNumber) {
-        TileManager.floorPlan = FloorCollection.getFloor(floorNumber).getFloorPlan();
+    public static void updateFloorPlan(boolean goingUp) {
+        if (goingUp) {
+            FloorCollection.currentFloorNumber--;
+        } else {
+            FloorCollection.currentFloorNumber++;
+        }
+        TileManager.floorPlan = FloorCollection.getFloor().getFloorPlan();
     }
 }
 

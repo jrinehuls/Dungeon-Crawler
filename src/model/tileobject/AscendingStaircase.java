@@ -2,15 +2,14 @@ package model.tileobject;
 
 import tiles.TileManager;
 
-public class AscendingStaircase extends InteractableTileObject implements Ascendable{
-
+public class AscendingStaircase extends InteractableTileObject {
 
     public AscendingStaircase(String iconPath, String backgroundFileName) {
         super(iconPath, backgroundFileName);
     }
 
-    @Override
-    public void goUpstairs() {
-
+    public static void goUpstairs() {
+        TileManager.updateFloorPlan(true);
     }
+
 }

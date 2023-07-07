@@ -24,6 +24,8 @@ public class FloorCollection {
     public static final DescendingStaircase downstairs = new DescendingStaircase("/icons/Downstairs.png", "res/backgrounds/Downstairs.png");
     public static final AscendingStaircase upstairs = new AscendingStaircase("/icons/Upstairs.png", "res/backgrounds/Upstairs.png");
 
+    public static int currentFloorNumber = 1;
+
     public static final boolean[][] tileWalls = {
             { false, false, false, false },
             { true, false, false, false },
@@ -66,10 +68,37 @@ public class FloorCollection {
             new Tile(tileWalls[3]), new Tile(tileWalls[3]), new Tile(tileWalls[6]), new Tile(tileWalls[12]), new Tile(tileWalls[6]) }
     };
 
-    private static Floor[] floors = { new Floor(floor1) };
+    private static Tile[][] floor2 = {
+            { new Tile(tileWalls[8]), new Tile(tileWalls[1]), new Tile(tileWalls[1]), new Tile(tileWalls[9]), new Tile(tileWalls[9]),
+                    new Tile(tileWalls[9]), new Tile(tileWalls[9]), new Tile(tileWalls[9]), new Tile(tileWalls[9]), new Tile(tileWalls[5]) },
+            { new Tile(tileWalls[4]), new Tile(tileWalls[3]), new Tile(tileWalls[6]), new Tile(tileWalls[8]), new Tile(tileWalls[9]),
+                    new Tile(tileWalls[9]), new Tile(tileWalls[9]), new Tile(tileWalls[1]), new Tile(tileWalls[14]), new Tile(tileWalls[10]) },
+            { new Tile(tileWalls[4]), new Tile(tileWalls[1]), new Tile(tileWalls[5]), new Tile(tileWalls[10]), new Tile(tileWalls[8]),
+                    new Tile(tileWalls[9]), new Tile(tileWalls[1]), new Tile(tileWalls[6]), new Tile(tileWalls[12]), new Tile(tileWalls[2]) },
+            { new Tile(tileWalls[11]), new Tile(tileWalls[10]), new Tile(tileWalls[7]), new Tile(tileWalls[2]), new Tile(tileWalls[10], upstairs),
+                    new Tile(tileWalls[12]), new Tile(tileWalls[3]), new Tile(tileWalls[1]), new Tile(tileWalls[14]), new Tile(tileWalls[10]) },
+            { new Tile(tileWalls[8]), new Tile(tileWalls[0]), new Tile(tileWalls[5]), new Tile(tileWalls[11]), new Tile(tileWalls[4]),
+                    new Tile(tileWalls[5]), new Tile(tileWalls[8]), new Tile(tileWalls[2]), new Tile(tileWalls[8]), new Tile(tileWalls[2]) },
+            { new Tile(tileWalls[4]), new Tile(tileWalls[0]), new Tile(tileWalls[0]), new Tile(tileWalls[9]), new Tile(tileWalls[3]),
+                    new Tile(tileWalls[2]), new Tile(tileWalls[10]), new Tile(tileWalls[11]), new Tile(tileWalls[4]), new Tile(tileWalls[6]) },
+            { new Tile(tileWalls[10]), new Tile(tileWalls[7]), new Tile(tileWalls[6]), new Tile(tileWalls[8]), new Tile(tileWalls[14]),
+                    new Tile(tileWalls[10]), new Tile(tileWalls[7]), new Tile(tileWalls[5]), new Tile(tileWalls[7]), new Tile(tileWalls[5]) },
+            { new Tile(tileWalls[7]), new Tile(tileWalls[9]), new Tile(tileWalls[1]), new Tile(tileWalls[6]), new Tile(tileWalls[12]),
+                    new Tile(tileWalls[3]), new Tile(tileWalls[5]), new Tile(tileWalls[4]), new Tile(tileWalls[5]), new Tile(tileWalls[10]) },
+            { new Tile(tileWalls[8]), new Tile(tileWalls[14]), new Tile(tileWalls[4]), new Tile(tileWalls[1]), new Tile(tileWalls[1]),
+                    new Tile(tileWalls[1]), new Tile(tileWalls[2]), new Tile(tileWalls[4]), new Tile(tileWalls[6]), new Tile(tileWalls[10]) },
+            { new Tile(tileWalls[7]), new Tile(tileWalls[9]), new Tile(tileWalls[3]), new Tile(tileWalls[6]), new Tile(tileWalls[7]),
+                    new Tile(tileWalls[3]), new Tile(tileWalls[3]), new Tile(tileWalls[6]), new Tile(tileWalls[12]), new Tile(tileWalls[6]) }
+    };
 
-    public static Floor getFloor(int floorNumber) {
-        return floors[floorNumber - 1];
+    private static Floor[] floors = { new Floor(floor1), new Floor(floor2) };
+
+    public static Floor getFloor() {
+        return floors[currentFloorNumber - 1];
     }
+
+    // public static Floor getFloor(int floorNumber) {
+       // return floors[floorNumber - 1];
+    // }
 
 }
