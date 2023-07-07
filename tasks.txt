@@ -7,6 +7,8 @@ set stairs image paths in floor collection
 Create second floor
 Implement go upstairs and downstairs methods for upstairs and downstairs classes
 
+---------------------------------------------------------------------------------
+
 Add more player levels
 Create over world to enter dungeon
 Create title screen

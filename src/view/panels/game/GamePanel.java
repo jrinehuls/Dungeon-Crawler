@@ -58,7 +58,8 @@ public class GamePanel extends JPanel {
 		monsterLabel.setBounds((SCREEN_WIDTH - 200)/2, 50, 200, 200);
 		this.add(monsterLabel);
 		// Object Image
-		objectLabel.setBounds((SCREEN_WIDTH - 150)/2, 175, 150, 100);
+		// objectLabel.setBounds((SCREEN_WIDTH - 150)/2, 175, 150, 100);
+		objectLabel.setBounds((SCREEN_WIDTH - 300)/2, 0, 300, 300);
 		this.add(objectLabel);
 		// Background Image
 		backgroundLabel.setBounds((SCREEN_WIDTH - 300)/2, 0, 300, 300);
@@ -98,7 +99,7 @@ public class GamePanel extends JPanel {
 	private static void setObjectIcon() {
 		try  {
 			InteractableTileObject tileObject = TileManager.getFloorPlan()[MapPanel.yCord][MapPanel.xCord].getTileObject();
-			objectLabel.setIcon(tileObject.getBackgroundImage());
+			objectLabel.setIcon(tileObject.getBackgroundImage()); // Null if no tile object
 			treasureButton.setEnabled(tileObject instanceof Treasure && !MonsterPanel.isMonster());
 			ascendButton.setEnabled(tileObject instanceof AscendingStaircase && !MonsterPanel.isMonster());
 			descendButton.setEnabled(tileObject instanceof DescendingStaircase && !MonsterPanel.isMonster());
