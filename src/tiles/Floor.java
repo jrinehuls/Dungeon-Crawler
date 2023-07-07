@@ -9,7 +9,7 @@ public class Floor{
     }
 
     public Tile[][] getFloorPlan() {
-        return floorPlan;
+        return this.floorPlan;
     }
 
 }

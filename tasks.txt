@@ -1,8 +1,4 @@
 
-Prevent multiple instances of secondary frames, like equipment
-
----------------------------------------------------------------------------------
-
 Base monster collections on floor
 
 Add run functionality

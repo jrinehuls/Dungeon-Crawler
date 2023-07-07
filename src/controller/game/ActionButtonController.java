@@ -33,14 +33,6 @@ public class ActionButtonController implements ActionListener {
             player.attack(monster);
             player.setProgress(0);
         }
-        if (e.getSource() == ActionPanel.spellButton) {
-            spellFrame = new SpellFrame(); // Needed here to populate Spell Frame with updated spells
-            spellFrame.setVisible(true);
-        }
-        if (e.getSource() == ActionPanel.itemButton) {
-            itemFrame = new ItemFrame(); // Needed here to populate Item Frame with updated items
-            itemFrame.setVisible(true);
-        }
         if (e.getSource() == ActionPanel.defendButton) {
             //System.out.println("Defend: " + PlayerPanel.getPlayer().getDefense());
             //player.setProgress(0);
@@ -49,9 +41,22 @@ public class ActionButtonController implements ActionListener {
             // System.out.println("Run: " + PlayerPanel.getPlayer().getSpeed());
             // player.setProgress(0);
         }
-        if (e.getSource() == ActionPanel.equipButton) {
+        if (e.getSource() == ActionPanel.spellButton && !isWindowVisible()) {
+            spellFrame = new SpellFrame(); // Needed here to populate Spell Frame with updated spells
+            spellFrame.setVisible(true);
+        }
+        if (e.getSource() == ActionPanel.itemButton && !isWindowVisible()) {
+            itemFrame = new ItemFrame(); // Needed here to populate Item Frame with updated items
+            itemFrame.setVisible(true);
+        }
+        if (e.getSource() == ActionPanel.equipButton && !isWindowVisible()) {
             equipmentFrame = new EquipmentFrame(); // Needed here to populate Equipment Frame with updated equipment
             equipmentFrame.setVisible(true);
         }
+    }
+
+    private boolean isWindowVisible() {
+        return (ActionButtonController.spellFrame.isVisible() || ActionButtonController.itemFrame.isVisible()
+                || ActionButtonController.equipmentFrame.isVisible());
     }
 }
