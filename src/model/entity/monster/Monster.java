@@ -105,7 +105,7 @@ public abstract class Monster extends Entity implements MonsterActions {
 
     @Override
     public void dropItem() {
-        if (this.items.size() > 0 ) {
+        if (this.items.size() > 0 && Math.random() < 0.75) {
             Item droppedItem = removeItem(items.get(random.nextInt(items.size())));
             DisplayPanel.appendConsoleModel(this.name + " Dropped " + droppedItem.getName());
             if (droppedItem instanceof Consumable consumableItem) {

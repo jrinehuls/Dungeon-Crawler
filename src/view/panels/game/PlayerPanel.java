@@ -74,11 +74,11 @@ public class PlayerPanel extends JPanel {
     }
 
     public static void update() {
-        // TODO: Only call level up when monster dies
-        player.levelUp();
         setPlayerDetails();
         progress();
+        if (player.getProgress() >= 100) {
+            player.stopDefending();
+        }
     }
-
 
 }

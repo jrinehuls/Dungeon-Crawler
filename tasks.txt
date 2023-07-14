@@ -1,9 +1,4 @@
 
-
-
-Add run functionality
-Maybe add defend functionality
-
 Monster define castStealItemSpell
 Monster define useHealingItem
 Monster define useAttackItem
@@ -13,8 +8,7 @@ Create more equip items
 Create more consumable items
 Create more spells
 Create more player levels
-
-Make monster drops not 100%
+Create more floors
 
 Create over world to enter dungeon
 Create title screen

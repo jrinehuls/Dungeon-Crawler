@@ -42,6 +42,8 @@ public class Player extends Entity {
     private Feet footwear;
     private Accessory accessory;
 
+    private boolean defending = false;
+
     public Player() {
         super(100, 10,  20, 15, 10, 10, 25);
         // -------------------------------------------- Spells ---------------------------------------------------------
@@ -129,6 +131,26 @@ public class Player extends Entity {
         DisplayPanel.appendConsoleModel(String.format("You used %s and dealt %d HP of damage!",
                 attackItem.getName(), oldHP - newHP));
         this.disposeConsumableItem(attackItem);
+    }
+
+    public boolean isDefending() {
+        return this.defending;
+    }
+
+    public void defend() {
+        if (!isDefending()) {
+            this.defense *= 2;
+            this.magicDefense *= 2;
+        }
+        this.defending = true;
+    }
+
+    public void stopDefending() {
+        if (isDefending()) {
+            this.defense /= 2;
+            this.magicDefense /= 2;
+        }
+        this.defending = false;
     }
 
     // ---------------------------------------------- Weapon Methods ---------------------------------------------------
@@ -478,7 +500,6 @@ public class Player extends Entity {
         } else if (exp >= nextExp) {
             exp = nextExp;
         }
-
     }
 
     public int getLevel() {

@@ -6,6 +6,7 @@ import view.frames.EquipmentFrame;
 import view.frames.ItemFrame;
 import view.frames.SpellFrame;
 import view.panels.game.ActionPanel;
+import view.panels.game.DisplayPanel;
 import view.panels.game.MonsterPanel;
 import view.panels.game.PlayerPanel;
 
@@ -34,12 +35,20 @@ public class ActionButtonController implements ActionListener {
             player.setProgress(0);
         }
         if (e.getSource() == ActionPanel.defendButton) {
-            //System.out.println("Defend: " + PlayerPanel.getPlayer().getDefense());
-            //player.setProgress(0);
+            player.defend();
+            player.setProgress(0);
+            DisplayPanel.appendConsoleModel("Your defense and magic defense temporarily doubled.");
         }
         if (e.getSource() == ActionPanel.runButton) {
-            // System.out.println("Run: " + PlayerPanel.getPlayer().getSpeed());
-            // player.setProgress(0);
+            double escapeChance = Math.pow((double) player.getSpeed() / (double) monster.getSpeed(), 2);
+            if (escapeChance > Math.random()) {
+                MonsterPanel.clearMonster();
+                player.setProgress(0);
+                DisplayPanel.appendConsoleModel("You got away safely.");
+            } else {
+                player.setProgress(0);
+                DisplayPanel.appendConsoleModel("You were too slow.");
+            }
         }
         if (e.getSource() == ActionPanel.spellButton && !isWindowVisible()) {
             spellFrame = new SpellFrame(); // Needed here to populate Spell Frame with updated spells
