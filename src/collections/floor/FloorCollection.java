@@ -35,7 +35,7 @@ public class FloorCollection {
             { true, true, true, true }
     };
 
-    private static Tile[][] floor1 = {
+    private static Tile[][] floor1Layout = {
         { new Tile(tileWalls[8]), new Tile(tileWalls[1]), new Tile(tileWalls[1]), new Tile(tileWalls[9]), new Tile(tileWalls[9]),
             new Tile(tileWalls[9]), new Tile(tileWalls[9]), new Tile(tileWalls[9]), new Tile(tileWalls[9]), new Tile(tileWalls[5]) },
         { new Tile(tileWalls[4]), new Tile(tileWalls[3]), new Tile(tileWalls[6]), new Tile(tileWalls[8]), new Tile(tileWalls[9]),
@@ -58,7 +58,7 @@ public class FloorCollection {
             new Tile(tileWalls[3]), new Tile(tileWalls[3]), new Tile(tileWalls[6]), new Tile(tileWalls[12]), new Tile(tileWalls[6]) }
     };
 
-    private static Tile[][] floor2 = {
+    private static Tile[][] floor2Layout = {
             { new Tile(tileWalls[8]), new Tile(tileWalls[5]), new Tile(tileWalls[8]), new Tile(tileWalls[1]), new Tile(tileWalls[9]),
                     new Tile(tileWalls[9]), new Tile(tileWalls[1]), new Tile(tileWalls[5]), new Tile(tileWalls[13]), new Tile(tileWalls[13]) },
             { new Tile(tileWalls[11]), new Tile(tileWalls[10]), new Tile(tileWalls[4]), new Tile(tileWalls[2]), new Tile(tileWalls[8]),
@@ -82,7 +82,7 @@ public class FloorCollection {
     };
 
 
-    private static Floor[] floors = { new Floor(floor1), new Floor(floor2) };
+    private static Floor[] floors = { new Floor(floor1Layout), new Floor(floor2Layout) };
 
     public static Floor getFloor() {
         return floors[currentFloorNumber - 1];

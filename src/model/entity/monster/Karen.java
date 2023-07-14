@@ -1,14 +1,10 @@
 package model.entity.monster;
 
-import collections.consumable.AttackItemCollection;
-import collections.consumable.HealingItemCollection;
 import collections.equipment.WeaponCollection;
 import collections.spell.HealSpellCollection;
 import collections.spell.StealSpellCollection;
-import model.item.consumable.HealingItem;
 import model.spell.HealSpell;
 import model.spell.StealSpell;
-import view.panels.game.DisplayPanel;
 
 import javax.swing.*;
 
@@ -19,9 +15,9 @@ public class Karen extends Monster {
         super("Karen", 50, 12,  10, 7, 5, 10, 20, 10, 60, new ImageIcon("res/monsters/Karen.png"));
         spells.put("First Aid", HealSpellCollection.FIRST_AID);
         spells.put("Call Manager", StealSpellCollection.CALL_MANAGER);
-        //items.add(AttackItemCollection.BOMB);
-        //items.add(HealingItemCollection.HEALING_HERB);
         items.add(WeaponCollection.WOODEN_DAGGER);
+        // items.add(AttackItemCollection.BOMB);
+        // items.add(HealingItemCollection.HEALING_HERB);
     }
 
     @Override

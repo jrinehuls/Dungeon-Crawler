@@ -4,7 +4,6 @@ import collections.consumable.AttackItemCollection;
 import collections.consumable.HealingItemCollection;
 import collections.spell.AttackSpellCollection;
 import model.spell.AttackSpell;
-import view.panels.game.DisplayPanel;
 
 import javax.swing.*;
 
@@ -20,7 +19,8 @@ public class Spaghetti extends Monster{
     @Override
     public void takeAction() {
         if (progress >= 100) {
-            if (MP >= spells.get("Flare").MP) {
+            double random = Math.random();
+            if (MP >= spells.get("Flare").MP && random < 0.9) {
                 castAttackSpell((AttackSpell) spells.get("Flare"));
             } else {
                 attack(player);
