@@ -32,11 +32,6 @@ public enum Level {
     @Override
     public String toString() {
         String oldName = this.name().toLowerCase();
-        String name = "L";
-        for (int i = 1; i < 5; i++) {
-            name += oldName.charAt(i);
-        }
-        name += (" " + oldName.substring(5));
-        return name;
+        return "L" + oldName.substring(1, 5) + " " + oldName.substring(5);
     }
 }
