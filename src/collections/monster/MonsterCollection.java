@@ -1,24 +1,27 @@
 package collections.monster;
 
 import collections.floor.FloorCollection;
-import model.entity.monster.Flatwoods;
-import model.entity.monster.Karen;
-import model.entity.monster.Monster;
-import model.entity.monster.Spaghetti;
+import model.entity.monster.*;
 import tiles.Floor;
 import view.panels.game.DisplayPanel;
 
 
 
 public class MonsterCollection {
-
-    private final Monster KAREN = new Karen();
-    private final Monster SPAGHETTI = new Spaghetti();
+    
+    private final Monster ELDER = new Elder();
     private final Monster FLATWOODS = new Flatwoods();
+    private final Monster FROGMAN = new Frogman();
+    private final Monster KAREN = new Karen();
+    private final Monster METALMAN = new Metalman();
+    private final Monster MOTHMAN = new Mothman();
+    private final Monster NIGHTCRAWLER = new Nightcrawler();
+    private final Monster SHOGGOTH = new Shoggoth();
+    private final Monster SPAGHETTI = new Spaghetti();
 
     // TODO: Add all monsters to this array
-    private Monster[] floor1Monsters = {KAREN, FLATWOODS};
-    private Monster[] floor2Monsters = {KAREN, SPAGHETTI};
+    private Monster[] floor1Monsters = { KAREN, FLATWOODS };
+    private Monster[] floor2Monsters = { KAREN, SPAGHETTI };
     private Monster[][] allMonsters = {floor1Monsters, floor2Monsters};
 
     private Floor floor;
