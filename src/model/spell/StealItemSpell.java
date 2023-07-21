@@ -67,8 +67,7 @@ public class StealItemSpell extends StealSpell{
             } else if (item instanceof Weapon weapon) {
                 player.addWeapon(weapon);
             }
-            monster.removeItem(item);
-            return item;
+            return monster.removeItem(item);
         } else {
             DisplayPanel.appendConsoleModel(monster.getName() + " doesn't have any items.");
             return null;

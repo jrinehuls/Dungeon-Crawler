@@ -20,10 +20,12 @@ public class Spaghetti extends Monster{
     public void takeAction() {
         if (progress >= 100) {
             double random = Math.random();
-            if (MP >= spells.get("Flare").MP && random < 0.9) {
-                castAttackSpell((AttackSpell) spells.get("Flare"));
+            if (random < 0.50 && !items.isEmpty()) {
+                this.useRandomItem();
+            } else if (MP >= spells.get("Flare").MP && random < 0.9) {
+                this.castAttackSpell((AttackSpell) spells.get("Flare"));
             } else {
-                attack(player);
+                this.attack(player);
             }
             progress = 0;
         }

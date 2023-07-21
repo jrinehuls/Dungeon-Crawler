@@ -4,7 +4,7 @@ import model.item.consumable.AttackItem;
 import model.item.consumable.HealingItem;
 import model.spell.*;
 
-public interface EntityActions {
+interface EntityActions {
 
     void attack(Entity target);
 

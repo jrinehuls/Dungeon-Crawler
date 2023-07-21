@@ -9,6 +9,7 @@ import model.item.consumable.HealingItem;
 import model.item.equipment.*;
 import model.spell.*;
 import view.panels.game.DisplayPanel;
+import view.panels.game.MonsterPanel;
 import view.panels.game.PlayerPanel;
 
 import javax.swing.*;
@@ -83,12 +84,30 @@ public abstract class Monster extends Entity implements MonsterActions {
 
     @Override
     public void useHealingItem(HealingItem healingItem) {
-
+        int oldHP = this.getHP();
+        if (this.maxHP - this.HP > healingItem.getHP()) {
+            this.setHP(this.getHP() + healingItem.getHP());
+        } else {
+            this.setHP(this.getMaxHP());
+        }
+        int newHP = this.getHP();
+        DisplayPanel.appendConsoleModel(String.format(this.getName() + " used %s and healed %d HP!",
+                healingItem.getName(), newHP - oldHP));
+        this.items.remove(healingItem);
     }
 
     @Override
     public void useAttackItem(AttackItem attackItem) {
-
+        int oldHP = MonsterPanel.getMonster().getHP();
+        if (MonsterPanel.getMonster().getHP() > attackItem.getDamage()) {
+            MonsterPanel.getMonster().setHP(MonsterPanel.getMonster().getHP() - attackItem.getDamage());
+        } else {
+            MonsterPanel.getMonster().setHP(0);
+        }
+        int newHP = MonsterPanel.getMonster().getHP();
+        DisplayPanel.appendConsoleModel(String.format("You used %s and dealt %d HP of damage!",
+                attackItem.getName(), oldHP - newHP));
+        this.items.remove(attackItem);
     }
 
     @Override
@@ -139,12 +158,21 @@ public abstract class Monster extends Entity implements MonsterActions {
         return items;
     }
 
+    protected void useRandomItem() {
+        Item item = items.remove(0);
+        if (item instanceof AttackItem attackItem) {
+            this.useAttackItem(attackItem);
+        } else if (item instanceof HealingItem healingItem) {
+            this.useHealingItem(healingItem);
+        }
+    }
+
     public void addItem(Item item) {
         this.items.add(item);
     }
 
     public Item removeItem(Item item) {
-        Item returnableItem = items.get(getItems().indexOf(item));
+        Item returnableItem = items.get(this.getItems().indexOf(item));
         this.items.remove(item);
         return returnableItem;
     }

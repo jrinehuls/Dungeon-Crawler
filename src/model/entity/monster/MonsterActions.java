@@ -4,7 +4,7 @@ import model.spell.AttackSpell;
 import model.spell.HealSpell;
 import model.spell.StealSpell;
 
-public interface MonsterActions {
+interface MonsterActions {
 
     void takeAction();
 

@@ -1,12 +1,11 @@
 
 
-Monster define useHealingItem
-Monster define useAttackItem
-
-Create more monsters
 Create more equip items
 Create more consumable items
 Create more spells
+
+Modify monster stats, spells, items, and actions
+
 Create more player levels
 Create more floors
 
