@@ -2,9 +2,7 @@ package controller;
 
 import controller.game.ActionButtonController;
 import model.entity.player.Player;
-import model.spell.AttackSpell;
-import model.spell.HealSpell;
-import model.spell.Spell;
+import model.spell.*;
 import view.frames.SpellFrame;
 import view.panels.game.MonsterPanel;
 import view.panels.game.PlayerPanel;
@@ -55,6 +53,9 @@ public class SpellController implements ActionListener, ListSelectionListener {
         } if (e.getSource() == spellRadioButtonPanel.attackSpellButton) {
             spellListPanel.loadAttackSpellModel();
             spellListPanel.spellJList.setModel(spellListPanel.getAttackSpellModel());
+        } if (e.getSource() == spellRadioButtonPanel.stealSpellButton) {
+            spellListPanel.loadStealSpellModel();
+            spellListPanel.spellJList.setModel(spellListPanel.getStealSpellModel());
         }
     }
 
@@ -78,6 +79,14 @@ public class SpellController implements ActionListener, ListSelectionListener {
             player.castHealSpell((HealSpell) selectedSpell);
             spellListPanel.loadHealingSpellModel();
             spellListPanel.spellJList.setModel(spellListPanel.getHealingSpellModel());
+        } else if (selectedSpell instanceof StealItemSpell) {
+            player.castStealItemSpell((StealItemSpell) selectedSpell);
+            spellListPanel.loadStealSpellModel();
+            spellListPanel.spellJList.setModel(spellListPanel.getStealSpellModel());
+        } else if (selectedSpell instanceof StealGoldSpell) {
+            player.castStealGoldSpell((StealGoldSpell) selectedSpell);
+            spellListPanel.loadStealSpellModel();
+            spellListPanel.spellJList.setModel(spellListPanel.getStealSpellModel());
         }
     }
 

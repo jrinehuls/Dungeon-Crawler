@@ -5,15 +5,15 @@ import collections.consumable.HealingItemCollection;
 import collections.equipment.*;
 import collections.spell.AttackSpellCollection;
 import collections.spell.HealSpellCollection;
+import collections.spell.StealSpellCollection;
 import model.entity.Entity;
+import model.item.Item;
 import model.item.consumable.AttackItem;
 import model.item.consumable.Consumable;
 import model.item.consumable.HealingItem;
 import model.item.equipment.*;
-import model.spell.AttackSpell;
-import model.spell.HealSpell;
+import model.spell.*;
 import enums.Level;
-import model.spell.StealSpell;
 import view.panels.game.DisplayPanel;
 import view.panels.game.MonsterPanel;
 import java.util.ArrayList;
@@ -49,6 +49,7 @@ public class Player extends Entity {
         // -------------------------------------------- Spells ---------------------------------------------------------
         spells.put("First Aid", HealSpellCollection.FIRST_AID);
         spells.put("Flare", AttackSpellCollection.FLARE);
+        spells.put("Mug", StealSpellCollection.MUG);
         // -------------------------------------------- Weapons --------------------------------------------------------
         this.weapon = WeaponCollection.NONE;
         weapons.add(WeaponCollection.WOODEN_DAGGER);
@@ -98,12 +99,24 @@ public class Player extends Entity {
     }
 
     @Override
-    public void castStealGoldSpell(StealSpell stealSpell) {
+    public void castStealGoldSpell(StealGoldSpell stealSpell) {
+        int oldGold = this.getGold();
         stealSpell.stealGold(this);
+        int newGold = this.getGold();
+        if (newGold > oldGold) {
+            DisplayPanel.appendConsoleModel(String.format("You casted %s and stole %d gold!",
+                    stealSpell.NAME, newGold - oldGold));
+        }
     }
 
     @Override
-    public void castStealItemSpell(StealSpell stealSpell) {}
+    public void castStealItemSpell(StealItemSpell stealSpell) {
+        Item item = stealSpell.stealItem(this);
+        if (item != null) {
+            DisplayPanel.appendConsoleModel(String.format("You casted %s and stole %s!",
+                    stealSpell.NAME, item.getName()));
+        }
+    }
 
     @Override
     public void useHealingItem(HealingItem healingItem) {

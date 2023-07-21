@@ -13,10 +13,11 @@ public class SpellRadioButtonPanel extends JPanel {
 
     public final JRadioButton healingSpellButton = new JRadioButton("Healing Spells");
     public final JRadioButton attackSpellButton = new JRadioButton("Attack Spells");
+    public final JRadioButton stealSpellButton = new JRadioButton("Steal Spells");
 
     private static final int JBUTTON_LEFT_INSET = 50;
 
-    JRadioButton[] spellButtons = {healingSpellButton, attackSpellButton};
+    JRadioButton[] spellButtons = {healingSpellButton, attackSpellButton, stealSpellButton};
 
     SpellController sc = new SpellController();
 
@@ -39,8 +40,10 @@ public class SpellRadioButtonPanel extends JPanel {
 
         if (MonsterPanel.isMonster()) {
             attackSpellButton.setEnabled(true);
+            stealSpellButton.setEnabled(true);
         } else {
             attackSpellButton.setEnabled(false);
+            stealSpellButton.setEnabled(false);
         }
         // Default to healing radio button being selected
         healingSpellButton.setSelected(true);

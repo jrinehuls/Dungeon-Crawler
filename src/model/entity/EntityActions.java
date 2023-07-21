@@ -2,9 +2,7 @@ package model.entity;
 
 import model.item.consumable.AttackItem;
 import model.item.consumable.HealingItem;
-import model.spell.AttackSpell;
-import model.spell.HealSpell;
-import model.spell.StealSpell;
+import model.spell.*;
 
 public interface EntityActions {
 
@@ -14,9 +12,9 @@ public interface EntityActions {
 
     void castAttackSpell(AttackSpell attackSpell);
 
-    void castStealGoldSpell(StealSpell stealSpell);
+    void castStealGoldSpell(StealGoldSpell stealSpell);
 
-    void castStealItemSpell(StealSpell stealSpell);
+    void castStealItemSpell(StealItemSpell stealSpell);
 
     void useHealingItem(HealingItem healingItem);
 

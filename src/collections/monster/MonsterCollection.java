@@ -20,8 +20,8 @@ public class MonsterCollection {
     private final Monster SPAGHETTI = new Spaghetti();
 
     // TODO: Add all monsters to this array
-    private Monster[] floor1Monsters = { KAREN, FLATWOODS };
-    private Monster[] floor2Monsters = { KAREN, SPAGHETTI };
+    private Monster[] floor1Monsters = { KAREN };
+    private Monster[] floor2Monsters = { SPAGHETTI, FROGMAN, MOTHMAN, SHOGGOTH, ELDER, FLATWOODS, METALMAN, NIGHTCRAWLER };
     private Monster[][] allMonsters = {floor1Monsters, floor2Monsters};
 
     private Floor floor;

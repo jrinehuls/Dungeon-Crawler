@@ -1,9 +1,6 @@
 package collections.floor;
 
 import collections.tileobject.TreasureCollection;
-import model.entity.monster.Karen;
-import model.entity.monster.Monster;
-import model.entity.monster.Spaghetti;
 import model.tileobject.AscendingStaircase;
 import model.tileobject.DescendingStaircase;
 import tiles.Floor;

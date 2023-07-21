@@ -4,6 +4,7 @@ import controller.SpellController;
 import model.spell.AttackSpell;
 import model.spell.HealSpell;
 import model.spell.Spell;
+import model.spell.StealSpell;
 import view.frames.SpellFrame;
 import view.panels.game.PlayerPanel;
 
@@ -16,6 +17,7 @@ public class SpellListPanel extends JPanel {
 
     private DefaultListModel<Spell> healingSpellModel = new DefaultListModel<>();
     private DefaultListModel<Spell> attackSpellModel = new DefaultListModel<>();
+    private DefaultListModel<Spell> stealSpellModel = new DefaultListModel<>();
     public JList<Spell> spellJList;
 
     public JScrollPane spellJSP;
@@ -54,6 +56,9 @@ public class SpellListPanel extends JPanel {
     public DefaultListModel<Spell> getAttackSpellModel() {
         return attackSpellModel;
     }
+    public DefaultListModel<Spell> getStealSpellModel() {
+        return stealSpellModel;
+    }
 
     // --------------------------------------------- Setters ---------------------------------------------
     public void loadHealingSpellModel() {
@@ -70,11 +75,23 @@ public class SpellListPanel extends JPanel {
 
     public void loadAttackSpellModel() {
         attackSpellModel.clear();
-        // Add healing spells from player's spells hashmap to the list model
+        // Add attack spells from player's spells hashmap to the list model
         for (Map.Entry<String, Spell> spell: PlayerPanel.getPlayer().spells.entrySet()) {
             if (spell.getValue() instanceof AttackSpell attackSpell) {
                 if (attackSpell.MP <= PlayerPanel.getPlayer().getMP()) {
                     attackSpellModel.addElement(attackSpell);
+                }
+            }
+        }
+    }
+
+    public void loadStealSpellModel() {
+        stealSpellModel.clear();
+        // Add stealing spells from player's spells hashmap to the list model
+        for (Map.Entry<String, Spell> spell: PlayerPanel.getPlayer().spells.entrySet()) {
+            if (spell.getValue() instanceof StealSpell stealSpell) {
+                if (stealSpell.MP <= PlayerPanel.getPlayer().getMP()) {
+                    stealSpellModel.addElement(stealSpell);
                 }
             }
         }

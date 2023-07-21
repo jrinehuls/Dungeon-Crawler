@@ -7,9 +7,7 @@ import model.item.consumable.AttackItem;
 import model.item.consumable.Consumable;
 import model.item.consumable.HealingItem;
 import model.item.equipment.*;
-import model.spell.AttackSpell;
-import model.spell.HealSpell;
-import model.spell.StealSpell;
+import model.spell.*;
 import view.panels.game.DisplayPanel;
 import view.panels.game.PlayerPanel;
 
@@ -64,17 +62,23 @@ public abstract class Monster extends Entity implements MonsterActions {
     }
 
     @Override
-    public void castStealGoldSpell(StealSpell stealSpell) {
+    public void castStealGoldSpell(StealGoldSpell stealSpell) {
         int oldGold = player.getGold();
         stealSpell.stealGold(this);
         int newGold = player.getGold();
-        DisplayPanel.appendConsoleModel(String.format("%s casted %s and stole %d gold!",
-                this.getName(), stealSpell.NAME, oldGold - newGold));
+        if (newGold < oldGold) {
+            DisplayPanel.appendConsoleModel(String.format("%s casted %s and stole %d gold!",
+                    this.getName(), stealSpell.NAME, oldGold - newGold));
+        }
     }
 
     @Override
-    public void castStealItemSpell(StealSpell stealSpell) {
-
+    public void castStealItemSpell(StealItemSpell stealSpell) {
+        Item item = stealSpell.stealItem(this);
+        if (item != null){
+            DisplayPanel.appendConsoleModel(String.format("%s casted %s and stole %s!",
+                    this.getName(), stealSpell.NAME, item.getName()));
+        }
     }
 
     @Override

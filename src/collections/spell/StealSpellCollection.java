@@ -1,9 +1,11 @@
 package collections.spell;
 
-import model.spell.StealSpell;
+import model.spell.StealGoldSpell;
+import model.spell.StealItemSpell;
 
 public class StealSpellCollection {
 
-    public final static StealSpell CALL_MANAGER = new StealSpell("Call Manager", 12, 10);
+    public static final StealGoldSpell CALL_MANAGER = new StealGoldSpell("Call Manager", 5, 10);
+    public static final StealItemSpell MUG = new StealItemSpell("Mug", 1);
 
 }
