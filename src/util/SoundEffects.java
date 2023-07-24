@@ -13,7 +13,7 @@ public class SoundEffects {
 
     // Static theme song stuff
     private static Clip themeMusicClip;
-    private static final String gameThemePath = "";
+    private static final String gameThemePath = "/sounds/CantinaBand3.wav";
     private static URL gameThemeUrl = SoundEffects.class.getResource(gameThemePath);
 
     public SoundEffects(){
