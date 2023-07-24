@@ -13,7 +13,7 @@ public class SoundEffects {
 
     // Static theme song stuff
     private static Clip themeMusicClip;
-    private static final String gameThemePath = "/sounds/CantinaBand3.wav";
+    private static final String gameThemePath = "/sounds/Theme.wav";
     private static URL gameThemeUrl = SoundEffects.class.getResource(gameThemePath);
 
     public SoundEffects(){
@@ -28,7 +28,7 @@ public class SoundEffects {
             this.clip = AudioSystem.getClip();
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundEffectUrls[i]);
             this.clip.open(ais);
-        } catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {
+        } catch (IOException | UnsupportedAudioFileException | NullPointerException | LineUnavailableException e) {
             System.out.println(SoundEffects.class + "setSoundFile threw an exception. Probably a problem with file path.");
         } catch (ArrayIndexOutOfBoundsException e) {
             // TODO: Make dialogue box show up instead
@@ -57,7 +57,7 @@ public class SoundEffects {
             themeMusicClip = AudioSystem.getClip();
             AudioInputStream ais = AudioSystem.getAudioInputStream(gameThemeUrl);
             themeMusicClip.open(ais);
-        } catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {
+        } catch (IOException | UnsupportedAudioFileException | NullPointerException | LineUnavailableException e) {
             System.out.println(SoundEffects.class + "setMusicClip threw an exception. Probably a problem with file path.");
         }
     }
