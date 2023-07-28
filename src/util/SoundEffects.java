@@ -6,19 +6,20 @@ import java.net.URL;
 
 public class SoundEffects {
 
+    // Sound effect stuff
     private Clip clip;
     private URL[] soundEffectUrls = new URL[1];
-    public static final  int MONSTER_DIE = 0;
-    private final String monsterDieUrl = "";
+    public static final int MONSTER_DIE = 0;
+    private final String monsterDiePath = "";
 
     // Static theme song stuff
     private static Clip themeMusicClip;
-    private static final String gameThemePath = "/sounds/Theme.wav";
+    private static final String gameThemePath = "/sounds/Lilium.wav";
     private static URL gameThemeUrl = SoundEffects.class.getResource(gameThemePath);
 
-    public SoundEffects(){
+    public SoundEffects() {
 
-        soundEffectUrls[0] = getClass().getResource(monsterDieUrl);
+        soundEffectUrls[0] = getClass().getResource(monsterDiePath);
 
     }
 
