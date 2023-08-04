@@ -84,6 +84,7 @@ public class Player extends Entity {
 
     @Override
     public void castHealSpell(HealSpell healSpell) {
+        this.se.playSE(SoundEffects.HEAL_SPELL);
         int oldHP = this.HP;
         healSpell.heal(this);
         int newHP = this.HP;
@@ -93,6 +94,7 @@ public class Player extends Entity {
 
     @Override
     public void castAttackSpell(AttackSpell attackSpell) {
+        this.se.playSE(SoundEffects.ATTACK_SPELL);
         int oldHP = MonsterPanel.getMonster().getHP();
         attackSpell.cast(this, MonsterPanel.getMonster());
         int newHP = MonsterPanel.getMonster().getHP();
@@ -106,6 +108,7 @@ public class Player extends Entity {
         stealSpell.stealGold(this);
         int newGold = this.getGold();
         if (newGold > oldGold) {
+            this.se.playSE(SoundEffects.STEAL_SPELL);
             DisplayPanel.appendConsoleModel(String.format("You casted %s and stole %d gold!",
                     stealSpell.NAME, newGold - oldGold));
         }
@@ -115,6 +118,7 @@ public class Player extends Entity {
     public void castStealItemSpell(StealItemSpell stealSpell) {
         Item item = stealSpell.stealItem(this);
         if (item != null) {
+            this.se.playSE(SoundEffects.STEAL_SPELL);
             DisplayPanel.appendConsoleModel(String.format("You casted %s and stole %s!",
                     stealSpell.NAME, item.getName()));
         }
@@ -122,6 +126,7 @@ public class Player extends Entity {
 
     @Override
     public void useHealingItem(HealingItem healingItem) {
+        this.se.playSE(SoundEffects.HEAL_ITEM);
         int oldHP = this.getHP();
         if (this.maxHP - this.HP > healingItem.getHP()) {
             this.setHP(this.getHP() + healingItem.getHP());
@@ -136,6 +141,7 @@ public class Player extends Entity {
 
     @Override
     public void useAttackItem(AttackItem attackItem) {
+        this.se.playSE(SoundEffects.ATTACK_ITEM);
         int oldHP = MonsterPanel.getMonster().getHP();
         if (MonsterPanel.getMonster().getHP() > attackItem.getDamage()) {
             MonsterPanel.getMonster().setHP(MonsterPanel.getMonster().getHP() - attackItem.getDamage());

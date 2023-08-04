@@ -48,6 +48,7 @@ public abstract class Monster extends Entity implements MonsterActions {
 
     @Override
     public void castHealSpell(HealSpell healSpell) {
+        this.se.playSE(SoundEffects.HEAL_SPELL);
         int oldHP = this.HP;
         healSpell.heal(this);
         int newHP = this.HP;
@@ -57,6 +58,7 @@ public abstract class Monster extends Entity implements MonsterActions {
 
     @Override
     public void castAttackSpell(AttackSpell attackSpell) {
+        this.se.playSE(SoundEffects.ATTACK_SPELL);
         int oldHP = player.getHP();
         attackSpell.cast(this, player);
         int newHP = player.getHP();
@@ -70,6 +72,7 @@ public abstract class Monster extends Entity implements MonsterActions {
         stealSpell.stealGold(this);
         int newGold = player.getGold();
         if (newGold < oldGold) {
+            this.se.playSE(SoundEffects.STEAL_SPELL);
             DisplayPanel.appendConsoleModel(String.format("%s casted %s and stole %d gold!",
                     this.getName(), stealSpell.NAME, oldGold - newGold));
         }
@@ -79,6 +82,7 @@ public abstract class Monster extends Entity implements MonsterActions {
     public void castStealItemSpell(StealItemSpell stealSpell) {
         Item item = stealSpell.stealItem(this);
         if (item != null){
+            this.se.playSE(SoundEffects.STEAL_SPELL);
             DisplayPanel.appendConsoleModel(String.format("%s casted %s and stole %s!",
                     this.getName(), stealSpell.NAME, item.getName()));
         }
@@ -86,6 +90,7 @@ public abstract class Monster extends Entity implements MonsterActions {
 
     @Override
     public void useHealingItem(HealingItem healingItem) {
+        this.se.playSE(SoundEffects.HEAL_ITEM);
         int oldHP = this.getHP();
         if (this.maxHP - this.HP > healingItem.getHP()) {
             this.setHP(this.getHP() + healingItem.getHP());
@@ -93,20 +98,21 @@ public abstract class Monster extends Entity implements MonsterActions {
             this.setHP(this.getMaxHP());
         }
         int newHP = this.getHP();
-        DisplayPanel.appendConsoleModel(String.format(this.getName() + " used %s and healed %d HP!",
-                healingItem.getName(), newHP - oldHP));
+        DisplayPanel.appendConsoleModel(String.format("%s used %s and healed %d HP!",
+                this.getName(), healingItem.getName(), newHP - oldHP));
         this.items.remove(healingItem);
     }
 
     @Override
     public void useAttackItem(AttackItem attackItem) {
-        int oldHP = MonsterPanel.getMonster().getHP();
-        if (MonsterPanel.getMonster().getHP() > attackItem.getDamage()) {
-            MonsterPanel.getMonster().setHP(MonsterPanel.getMonster().getHP() - attackItem.getDamage());
+        this.se.playSE(SoundEffects.ATTACK_ITEM);
+        int oldHP = PlayerPanel.getPlayer().getHP();
+        if (PlayerPanel.getPlayer().getHP() > attackItem.getDamage()) {
+            PlayerPanel.getPlayer().setHP(PlayerPanel.getPlayer().getHP() - attackItem.getDamage());
         } else {
-            MonsterPanel.getMonster().setHP(0);
+            PlayerPanel.getPlayer().setHP(0);
         }
-        int newHP = MonsterPanel.getMonster().getHP();
+        int newHP = PlayerPanel.getPlayer().getHP();
         DisplayPanel.appendConsoleModel(String.format("%s used %s and dealt %d HP of damage!",
                 this.getName(), attackItem.getName(), oldHP - newHP));
         this.items.remove(attackItem);
