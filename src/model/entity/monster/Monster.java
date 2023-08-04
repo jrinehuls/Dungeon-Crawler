@@ -8,6 +8,7 @@ import model.item.consumable.Consumable;
 import model.item.consumable.HealingItem;
 import model.item.equipment.*;
 import model.spell.*;
+import util.SoundEffects;
 import view.panels.game.DisplayPanel;
 import view.panels.game.MonsterPanel;
 import view.panels.game.PlayerPanel;
@@ -41,6 +42,7 @@ public abstract class Monster extends Entity implements MonsterActions {
 
     @Override
     public void attack(Entity player) {
+        this.se.playSE(SoundEffects.MONSTER_ATTACK);
         super.attack(player);
     }
 
@@ -105,8 +107,8 @@ public abstract class Monster extends Entity implements MonsterActions {
             MonsterPanel.getMonster().setHP(0);
         }
         int newHP = MonsterPanel.getMonster().getHP();
-        DisplayPanel.appendConsoleModel(String.format("You used %s and dealt %d HP of damage!",
-                attackItem.getName(), oldHP - newHP));
+        DisplayPanel.appendConsoleModel(String.format("%s used %s and dealt %d HP of damage!",
+                this.getName(), attackItem.getName(), oldHP - newHP));
         this.items.remove(attackItem);
     }
 
@@ -150,12 +152,16 @@ public abstract class Monster extends Entity implements MonsterActions {
     }
 
     @Override
-    public String toString() {
-        return this.name;
+    public void die() {
+        this.se.playSE(SoundEffects.MONSTER_DIE);
+        this.dropGold();
+        this.giveExp();
+        this.dropItem();
     }
 
-    public ArrayList<Item> getItems() {
-        return items;
+    @Override
+    public String toString() {
+        return this.name;
     }
 
     protected void useRandomItem() {
@@ -175,6 +181,10 @@ public abstract class Monster extends Entity implements MonsterActions {
         Item returnableItem = items.get(this.getItems().indexOf(item));
         this.items.remove(item);
         return returnableItem;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
     }
 
     public String getName() {

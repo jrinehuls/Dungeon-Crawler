@@ -14,6 +14,7 @@ import model.item.consumable.HealingItem;
 import model.item.equipment.*;
 import model.spell.*;
 import enums.Level;
+import util.SoundEffects;
 import view.panels.game.DisplayPanel;
 import view.panels.game.MonsterPanel;
 import java.util.ArrayList;
@@ -77,6 +78,7 @@ public class Player extends Entity {
     // --------------------------------------------- Player Actions ----------------------------------------------------
     @Override
     public void attack(Entity monster) {
+        this.se.playSE(SoundEffects.PLAYER_ATTACK);
         super.attack(monster);
     }
 

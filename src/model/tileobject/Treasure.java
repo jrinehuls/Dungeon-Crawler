@@ -3,20 +3,24 @@ package model.tileobject;
 import model.item.Item;
 import model.item.consumable.Consumable;
 import model.item.equipment.*;
+import util.SoundEffects;
 import view.panels.game.DisplayPanel;
 import view.panels.game.PlayerPanel;
 
 public class Treasure extends InteractableTileObject implements Awardable {
 
     private Item item;
+    SoundEffects se;
 
     public Treasure(String iconPath, String backgroundFileName, Item item) {
         super(iconPath, backgroundFileName);
         this.item = item;
+        se = new SoundEffects();
     }
 
     @Override
     public void awardItem() {
+        se.playSE(SoundEffects.OPEN_CHEST);
         DisplayPanel.appendConsoleModel("You received " + item.getName());
         if (item instanceof Weapon weapon) {
             PlayerPanel.getPlayer().addWeapon(weapon);

@@ -5,6 +5,7 @@ import model.tileobject.DescendingStaircase;
 import model.tileobject.Treasure;
 import tiles.Tile;
 import tiles.TileManager;
+import util.SoundEffects;
 import view.panels.game.GamePanel;
 import view.panels.game.MapPanel;
 
@@ -13,13 +14,13 @@ import java.awt.event.ActionListener;
 
 public class GamePanelController implements ActionListener {
 
-
     public GamePanelController() {
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if (e.getSource() == GamePanel.treasureButton) {
             Tile tile = TileManager.getFloorPlan()[MapPanel.getYCord()][MapPanel.getXCord()];
             Treasure treasure = (Treasure) tile.getTileObject();

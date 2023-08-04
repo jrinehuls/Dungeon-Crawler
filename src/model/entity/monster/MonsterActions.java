@@ -13,4 +13,7 @@ interface MonsterActions {
     void giveExp();
 
     void dropItem();
+
+    void die();
+
 }

@@ -19,11 +19,9 @@ public class MonsterController {
         if (MonsterPanel.isMonster()) {
             monster.takeAction();
             if (monster.getHP() <= 0) {
+                monster.die();
                 DisplayPanel.appendConsoleModel("You killed " + monster + "!");
                 player.stopDefending();
-                monster.dropGold();
-                monster.giveExp();
-                monster.dropItem();
                 player.levelUp();
                 MonsterPanel.clearMonster();
             }

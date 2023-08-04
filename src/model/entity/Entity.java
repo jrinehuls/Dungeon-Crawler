@@ -4,6 +4,7 @@ import model.entity.monster.Monster;
 import model.entity.player.Player;
 import model.item.Item;
 import model.spell.Spell;
+import util.SoundEffects;
 import view.panels.game.DisplayPanel;
 import view.panels.game.MonsterPanel;
 import view.panels.game.PlayerPanel;
@@ -23,6 +24,7 @@ public abstract class Entity implements EntityActions {
     protected int speed;
     protected double progress;
     public HashMap<String, Spell> spells = new HashMap<>();
+    protected SoundEffects se = new SoundEffects();
 
 
     public Entity(int HP, int MP, int attack, int defense, int magicAttack, int magicDefense, int speed) {
@@ -36,6 +38,7 @@ public abstract class Entity implements EntityActions {
         this.magicDefense = magicDefense;
         this.speed = speed;
         this.progress = 0;
+
     }
 
     @Override
