@@ -22,11 +22,11 @@ public class SoundEffects {
 
     // Static theme song stuff
     private static Clip themeMusicClip;
-    private static final URL gameThemeUrl = SoundEffects.class.getResource("/sounds/Lilium.wav");
+    private static final URL gameThemeUrl = SoundEffects.class.getResource("/sounds/songs/Lilium.wav");
 
     // Static battle song stuff
     private static Clip battleMusicClip;
-    private static final URL gameBattleUrl = SoundEffects.class.getResource("/sounds/Boogie.wav");
+    private static final URL gameBattleUrl = SoundEffects.class.getResource("/sounds/songs/Boogie.wav");
     private static boolean isBattleMusicPlaying;
 
     public SoundEffects() {
