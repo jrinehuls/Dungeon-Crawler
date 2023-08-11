@@ -1,6 +1,5 @@
 package view.frames;
 
-import view.panels.game.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +14,7 @@ public class GameOverFrame extends JFrame {
         this.setSize(new Dimension(400, 300));
         this.setVisible(true);
         JLabel label = new JLabel("GET REKT!!");
-        label.setForeground(Color.BLACK);
+        label.setForeground(Color.RED);
         label.setFont(new Font(null, Font.BOLD, 50));
         label.setBounds(100, 100, 100, 100);
         this.getContentPane().add(label);

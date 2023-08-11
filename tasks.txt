@@ -4,7 +4,7 @@ Create more equip items
 Create more consumable items
 Create more spells
 
-Modify monster stats, spells, items, and actions
+Modify monster spells, items, and actions
 
 Create more player levels
 Create more floors

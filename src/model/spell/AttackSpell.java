@@ -2,7 +2,7 @@ package model.spell;
 
 import model.entity.Entity;
 
-public class AttackSpell extends Spell{
+public class AttackSpell extends Spell {
 
     public final String TYPE;
     public final int POWER;

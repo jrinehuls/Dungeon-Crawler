@@ -21,8 +21,6 @@ import view.panels.game.MapPanel;
 import view.panels.game.MonsterPanel;
 import main.Main;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 
