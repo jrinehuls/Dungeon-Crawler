@@ -14,7 +14,7 @@ public class Karen extends Monster {
 
 
     public Karen() {
-        super("Karen", 50, 12,  10, 7, 5, 10, 20, 10, 60, new ImageIcon("res/monsters/Karen.png"));
+        super("Karen", 40, 8,  6, 8, 5, 6, 16, 10, 20, new ImageIcon("res/monsters/Karen.png"));
         spells.put("First Aid", HealSpellCollection.FIRST_AID);
         spells.put("Mug", StealSpellCollection.MUG);
         spells.put("Call Manager", StealSpellCollection.CALL_MANAGER);

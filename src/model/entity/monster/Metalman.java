@@ -10,7 +10,7 @@ import javax.swing.*;
 public class Metalman extends Monster {
 
     public Metalman() {
-        super("Alabama Metal Man", 55,  15,  8, 8, 15, 8, 10, 10, 30, new ImageIcon("res/monsters/Metal-Man.png"));
+        super("Alabama Metal Man", 75,  15,  8, 18, 6, 15, 10, 30, 60, new ImageIcon("res/monsters/Metal-Man.png"));
         spells.put("Flare", AttackSpellCollection.FLARE);
         items.add(AttackItemCollection.BOMB);
         items.add(HealingItemCollection.HEALING_HERB);
