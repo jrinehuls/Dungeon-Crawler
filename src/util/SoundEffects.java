@@ -24,6 +24,11 @@ public class SoundEffects {
     private static Clip themeMusicClip;
     private static final URL gameThemeUrl = SoundEffects.class.getResource("/sounds/Lilium.wav");
 
+    // Static battle song stuff
+    private static Clip battleMusicClip;
+    private static final URL gameBattleUrl = SoundEffects.class.getResource("/sounds/Boogie.wav");
+    private static boolean isBattleMusicPlaying;
+
     public SoundEffects() {
 
         soundEffectUrls[MONSTER_ATTACK] = getClass().getResource("/sounds/basic/Monster-attack.wav");
@@ -67,27 +72,50 @@ public class SoundEffects {
         this.play();
     }
 
-    /* Might not use
-    private void stop() {
-        this.clip.stop();
-    }
-    */
-
     // -------------------------------- Theme Music ------------------------------------------------------------
-    private static void setMusicClip () {
+    private static void setThemeClip() {
         try {
             AudioInputStream ais = AudioSystem.getAudioInputStream(gameThemeUrl);
             themeMusicClip = AudioSystem.getClip();
             themeMusicClip.open(ais);
         } catch (IOException | UnsupportedAudioFileException | NullPointerException | LineUnavailableException e) {
-            System.out.println(SoundEffects.class + "setMusicClip threw an exception. Probably a problem with file path.");
+            System.out.println(SoundEffects.class + "setThemeClip threw an exception. Probably a problem with file path.");
         }
     }
 
-    public static void playMusic() {
-        setMusicClip();
+    public static void playThemeMusic() {
+        setThemeClip();
         themeMusicClip.start();
         themeMusicClip.loop(Clip.LOOP_CONTINUOUSLY);
+    }
+
+    // -------------------------------- Theme Music ------------------------------------------------------------
+    private static void setBattleClip() {
+        try {
+            AudioInputStream ais = AudioSystem.getAudioInputStream(gameBattleUrl);
+            battleMusicClip = AudioSystem.getClip();
+            battleMusicClip.open(ais);
+        } catch (IOException | UnsupportedAudioFileException | NullPointerException | LineUnavailableException e) {
+            System.out.println(SoundEffects.class + "setBattleClip threw an exception. Probably a problem with file path.");
+        }
+    }
+
+    public static boolean isBattleMusicPlaying() {
+        return isBattleMusicPlaying;
+    }
+
+    public static void playBattleMusic() {
+        setBattleClip();
+        themeMusicClip.stop();
+        battleMusicClip.start();
+        isBattleMusicPlaying = true;
+        battleMusicClip.loop(Clip.LOOP_CONTINUOUSLY);
+    }
+
+    public static void endBattleMusic () {
+        battleMusicClip.stop();
+        isBattleMusicPlaying = false;
+        playThemeMusic();
     }
 
 }

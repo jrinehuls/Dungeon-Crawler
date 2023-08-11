@@ -2,6 +2,7 @@ package controller.game;
 
 import model.entity.monster.Monster;
 import model.entity.player.Player;
+import util.SoundEffects;
 import view.frames.EquipmentFrame;
 import view.frames.ItemFrame;
 import view.frames.SpellFrame;
@@ -43,6 +44,7 @@ public class ActionButtonController implements ActionListener {
             double escapeChance = Math.pow((double) player.getSpeed() / (double) monster.getSpeed(), 2);
             if (escapeChance > Math.random()) {
                 MonsterPanel.clearMonster();
+                SoundEffects.endBattleMusic();
                 player.setProgress(0);
                 DisplayPanel.appendConsoleModel("You got away safely.");
             } else {

@@ -5,7 +5,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		SoundEffects.playMusic();
+		SoundEffects.playThemeMusic();
 		new MainGameFrame();
 
 	}

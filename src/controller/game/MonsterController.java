@@ -2,6 +2,7 @@ package controller.game;
 
 import model.entity.monster.Monster;
 import model.entity.player.Player;
+import util.SoundEffects;
 import view.panels.game.DisplayPanel;
 import view.panels.game.MapPanel;
 import view.panels.game.MonsterPanel;
@@ -18,8 +19,12 @@ public class MonsterController {
         Player player = PlayerPanel.getPlayer();
         if (MonsterPanel.isMonster()) {
             monster.takeAction();
+            if (!SoundEffects.isBattleMusicPlaying()) {
+                SoundEffects.playBattleMusic();
+            }
             if (monster.getHP() <= 0) {
                 monster.die();
+                SoundEffects.endBattleMusic();
                 DisplayPanel.appendConsoleModel("You killed " + monster + "!");
                 player.stopDefending();
                 player.levelUp();
