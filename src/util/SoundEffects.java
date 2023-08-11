@@ -89,6 +89,10 @@ public class SoundEffects {
         themeMusicClip.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
+    public static void stopThemeMusic() {
+        themeMusicClip.stop();
+    }
+
     // -------------------------------- Theme Music ------------------------------------------------------------
     private static void setBattleClip() {
         try {
@@ -100,10 +104,6 @@ public class SoundEffects {
         }
     }
 
-    public static boolean isBattleMusicPlaying() {
-        return isBattleMusicPlaying;
-    }
-
     public static void playBattleMusic() {
         setBattleClip();
         themeMusicClip.stop();
@@ -112,10 +112,13 @@ public class SoundEffects {
         battleMusicClip.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
-    public static void endBattleMusic () {
+    public static void stopBattleMusic () {
         battleMusicClip.stop();
         isBattleMusicPlaying = false;
-        playThemeMusic();
+    }
+
+    public static boolean isBattleMusicPlaying() {
+        return isBattleMusicPlaying;
     }
 
 }

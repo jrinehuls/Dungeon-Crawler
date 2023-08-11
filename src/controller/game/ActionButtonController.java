@@ -44,7 +44,8 @@ public class ActionButtonController implements ActionListener {
             double escapeChance = Math.pow((double) player.getSpeed() / (double) monster.getSpeed(), 2);
             if (escapeChance > Math.random()) {
                 MonsterPanel.clearMonster();
-                SoundEffects.endBattleMusic();
+                SoundEffects.stopBattleMusic();
+                SoundEffects.playThemeMusic();
                 player.setProgress(0);
                 DisplayPanel.appendConsoleModel("You got away safely.");
             } else {

@@ -28,6 +28,7 @@ public class MapPanel extends JPanel implements Runnable {
 	boolean rightCollision;
 	// Set Frames per second
 	public static final double FPS = 6.0;
+	public static boolean loopRunning = true;
 
 	KeyController keyC = new KeyController();
 	Thread mapThread = new Thread(this);
@@ -182,15 +183,15 @@ public class MapPanel extends JPanel implements Runnable {
 		long currentTime;
 		final double drawInterval = 1_000_000_000 / FPS;
 		double delta = 0;
-		while(mapThread != null) {
+		while(loopRunning) {
 			currentTime = System.nanoTime();
 			delta += (currentTime - lastTime) / drawInterval;
 			if(delta >= 1) {
 				update();
 				GamePanel.update();
-				PlayerPanel.update();
 				ActionPanel.update();
 				MonsterPanel.update();
+				PlayerPanel.update();
 				repaint();
 				delta = 0.0;
 			}

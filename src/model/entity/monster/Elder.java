@@ -10,7 +10,7 @@ import javax.swing.*;
 public class Elder extends Monster {
 
     public Elder() {
-        super("Elder Thing", 80,  15,  15, 9, 12, 10, 15, 30, 40, new ImageIcon("res/monsters/Elder-Thing.png"));
+        super("Elder Thing", 80,  15,  14, 9, 12, 10, 15, 30, 40, new ImageIcon("res/monsters/Elder-Thing.png"));
         spells.put("Flare", AttackSpellCollection.FLARE);
         items.add(AttackItemCollection.BOMB);
         items.add(HealingItemCollection.HEALING_HERB);

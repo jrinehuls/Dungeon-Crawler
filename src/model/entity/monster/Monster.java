@@ -138,7 +138,7 @@ public abstract class Monster extends Entity implements MonsterActions {
     public void dropItem() {
         if (this.items.size() > 0 && Math.random() < 0.75) {
             Item droppedItem = removeItem(items.get(random.nextInt(items.size())));
-            DisplayPanel.appendConsoleModel(this.name + " Dropped " + droppedItem.getName());
+            DisplayPanel.appendConsoleModel(this.name + " dropped " + droppedItem.getName() + "!");
             if (droppedItem instanceof Consumable consumableItem) {
                 player.addConsumableItem(consumableItem);
             } else if (droppedItem instanceof Weapon weapon) {
@@ -159,6 +159,7 @@ public abstract class Monster extends Entity implements MonsterActions {
 
     @Override
     public void die() {
+        DisplayPanel.appendConsoleModel("You killed " + this + "!");
         this.se.playSE(SoundEffects.MONSTER_DIE);
         this.dropGold();
         this.giveExp();

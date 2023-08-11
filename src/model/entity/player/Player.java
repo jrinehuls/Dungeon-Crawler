@@ -15,8 +15,14 @@ import model.item.equipment.*;
 import model.spell.*;
 import enums.Level;
 import util.SoundEffects;
+import view.frames.GameOverFrame;
 import view.panels.game.DisplayPanel;
+import view.panels.game.MapPanel;
 import view.panels.game.MonsterPanel;
+import main.Main;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 
@@ -46,7 +52,7 @@ public class Player extends Entity {
     private boolean defending = false;
 
     public Player() {
-        super(100, 10,  20, 15, 10, 10, 25);
+        super(100, 10,  15, 15, 10, 7, 15);
         // -------------------------------------------- Spells ---------------------------------------------------------
         spells.put("First Aid", HealSpellCollection.FIRST_AID);
         spells.put("Flare", AttackSpellCollection.FLARE);
@@ -172,6 +178,14 @@ public class Player extends Entity {
             this.magicDefense /= 2;
         }
         this.defending = false;
+    }
+
+    public void die() {
+        Main.gameFrame.dispose();
+        SoundEffects.stopBattleMusic();
+        SoundEffects.stopThemeMusic();
+        MapPanel.loopRunning = false;
+        new GameOverFrame();
     }
 
     // ---------------------------------------------- Weapon Methods ---------------------------------------------------

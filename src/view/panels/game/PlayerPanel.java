@@ -78,6 +78,8 @@ public class PlayerPanel extends JPanel {
         progress();
         if (player.getProgress() >= 100) {
             player.stopDefending();
+        } if (player.getHP() <= 0) {
+            player.die();
         }
     }
 
