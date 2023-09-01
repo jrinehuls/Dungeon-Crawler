@@ -60,7 +60,7 @@ public class Player extends Entity {
         weapons.add(WeaponCollection.WOODEN_DAGGER);
         // ------------------------------------------- Head Gear -------------------------------------------------------
         this.headGear = HeadCollection.NONE;
-        headGears.add(HeadCollection.STRAW_CAP);
+        headGears.add(HeadCollection.STRAW_HAT);
         // --------------------------------------------- Armor ---------------------------------------------------------
         this.armor = BodyCollection.NONE;
         armors.add(BodyCollection.LEATHER_VEST);

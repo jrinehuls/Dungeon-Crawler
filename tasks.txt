@@ -1,15 +1,18 @@
 
+Add more treasure to treasure collection
 
-Create more equip items
-Create more consumable items
-Create more spells
+Have player learn spell on a level up
 
-Modify monster spells, items, and actions
+Modify monster spells
+Modify monster items
+Modify monster actions
+Modify monster drops
 
 Create more player levels
 Create more floors
 
 Create over world to enter dungeon
+Create shop in over world
 Create title screen
 
 Rework how dungeon walls look
