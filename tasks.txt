@@ -1,5 +1,4 @@
 
-Add more treasure to treasure collection
 
 Have player learn spell on a level up
 
@@ -7,6 +6,8 @@ Modify monster spells
 Modify monster items
 Modify monster actions
 Modify monster drops
+
+Add more treasure to treasure collection
 
 Create more player levels
 Create more floors
