@@ -31,13 +31,12 @@ public abstract class Monster extends Entity implements MonsterActions {
 
     Player player;
 
-    public Monster(String name, int HP, int MP, int attack, int defense, int magicAttack, int magicDefense, int speed, int baseGold, int baseExp, String iconFilename) {
+    public Monster(String name, int HP, int MP, int attack, int defense, int magicAttack, int magicDefense, int speed, int baseGold, int baseExp, ImageIcon icon) {
         super(HP, MP, attack, defense, magicAttack, magicDefense, speed);
-        //this.icon = icon;
+        this.icon = icon;
         this.name = name;
         this.baseGold = baseGold;
         this.baseExp = baseExp;
-        setIcon(iconFilename);
         random = new Random();
         player = PlayerPanel.getPlayer();
     }
@@ -198,15 +197,6 @@ public abstract class Monster extends Entity implements MonsterActions {
 
     public String getName() {
         return name;
-    }
-
-    protected void setIcon(String filename) {
-        try {
-            this.icon = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(filename))));
-        } catch (IOException e) {
-            DisplayPanel.appendConsoleModel(this.getName() + " " + e.getMessage());
-            throw new RuntimeException(e);
-        }
     }
 
     public ImageIcon getIcon() {

@@ -10,7 +10,7 @@ import javax.swing.*;
 public class Spaghetti extends Monster{
 
     public Spaghetti() {
-        super("Flying Spaghetti Monster", 75,  10,  18, 18, 18, 18, 16, 40, 70, "/monsters/Spaghetti.png");
+        super("Flying Spaghetti Monster", 75,  10,  18, 18, 18, 18, 16, 40, 70, new ImageIcon("res/monsters/Spaghetti.png"));
         spells.put("Flare", AttackSpellCollection.FLARE);
         items.add(AttackItemCollection.BOMB);
         items.add(HealingItemCollection.HEALING_HERB);

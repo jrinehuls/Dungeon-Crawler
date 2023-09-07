@@ -10,7 +10,7 @@ import javax.swing.*;
 public class Nightcrawler extends Monster {
 
     public Nightcrawler() {
-        super("Fresno Nightcrawler", 50,  10,  8, 10, 10, 12, 15, 15, 25, "/monsters/Nightcrawler.png");
+        super("Fresno Nightcrawler", 50,  10,  8, 10, 10, 12, 15, 15, 25, new ImageIcon("res/monsters/Nightcrawler.png"));
         spells.put("Flare", AttackSpellCollection.FLARE);
         items.add(AttackItemCollection.BOMB);
         items.add(HealingItemCollection.HEALING_HERB);

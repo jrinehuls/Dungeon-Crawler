@@ -34,13 +34,7 @@ public abstract class InteractableTileObject {
     }
 
     public ImageIcon getBackgroundImage() {
-        // this.backgroundImage = new ImageIcon(this.backgroundFileName);
-        try {
-            this.backgroundImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(this.backgroundFileName))));
-        } catch (IOException e) {
-            DisplayPanel.appendConsoleModel(e.getMessage());
-            throw new RuntimeException(e);
-        }
+        this.backgroundImage = new ImageIcon(this.backgroundFileName);
         return this.backgroundImage;
     }
 
