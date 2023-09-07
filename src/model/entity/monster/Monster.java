@@ -12,8 +12,11 @@ import util.SoundEffects;
 import view.panels.game.DisplayPanel;
 import view.panels.game.PlayerPanel;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public abstract class Monster extends Entity implements MonsterActions {
@@ -28,12 +31,13 @@ public abstract class Monster extends Entity implements MonsterActions {
 
     Player player;
 
-    public Monster(String name, int HP, int MP, int attack, int defense, int magicAttack, int magicDefense, int speed, int baseGold, int baseExp, ImageIcon icon) {
+    public Monster(String name, int HP, int MP, int attack, int defense, int magicAttack, int magicDefense, int speed, int baseGold, int baseExp, String iconFilename) {
         super(HP, MP, attack, defense, magicAttack, magicDefense, speed);
-        this.icon = icon;
+        //this.icon = icon;
         this.name = name;
         this.baseGold = baseGold;
         this.baseExp = baseExp;
+        setIcon(iconFilename);
         random = new Random();
         player = PlayerPanel.getPlayer();
     }
@@ -194,6 +198,15 @@ public abstract class Monster extends Entity implements MonsterActions {
 
     public String getName() {
         return name;
+    }
+
+    protected void setIcon(String filename) {
+        try {
+            this.icon = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(filename))));
+        } catch (IOException e) {
+            DisplayPanel.appendConsoleModel(this.getName() + " " + e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 
     public ImageIcon getIcon() {
