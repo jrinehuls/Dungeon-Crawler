@@ -1,9 +1,12 @@
 package model.tileobject;
 
+import view.panels.game.DisplayPanel;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 public abstract class InteractableTileObject {
 
@@ -20,7 +23,7 @@ public abstract class InteractableTileObject {
 
     public BufferedImage getIconImage() {
         try {
-            this.iconImage = ImageIO.read(getClass().getResourceAsStream(this.iconPath));
+            this.iconImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(this.iconPath)));
         } catch (IOException e) {
             System.out.println(e.getMessage());
             this.iconImage = null;
@@ -31,7 +34,13 @@ public abstract class InteractableTileObject {
     }
 
     public ImageIcon getBackgroundImage() {
-        this.backgroundImage = new ImageIcon(this.backgroundFileName);
+        // this.backgroundImage = new ImageIcon(this.backgroundFileName);
+        try {
+            this.backgroundImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(this.backgroundFileName))));
+        } catch (IOException e) {
+            DisplayPanel.appendConsoleModel(e.getMessage());
+            throw new RuntimeException(e);
+        }
         return this.backgroundImage;
     }
 

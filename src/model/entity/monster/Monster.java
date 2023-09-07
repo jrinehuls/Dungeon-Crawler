@@ -10,13 +10,11 @@ import model.item.equipment.*;
 import model.spell.*;
 import util.SoundEffects;
 import view.panels.game.DisplayPanel;
-import view.panels.game.MonsterPanel;
 import view.panels.game.PlayerPanel;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.random.RandomGenerator;
 
 public abstract class Monster extends Entity implements MonsterActions {
 

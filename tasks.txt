@@ -1,4 +1,6 @@
 
+Make constructor empty for InteractableTileObject and child classes.
+Hard code image paths in InteractableTileObject and child classes.
 
 Have player learn spell on a level up
 
