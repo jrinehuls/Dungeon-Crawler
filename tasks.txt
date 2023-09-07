@@ -1,4 +1,7 @@
 
+Add res to beginning of paths for image icons for monsters and ITOs.
+* It worked when just one bg tile was a resource stream. Isolate problem.
+
 Make constructor empty for InteractableTileObject and child classes.
 Hard code image paths in InteractableTileObject and child classes.
 
