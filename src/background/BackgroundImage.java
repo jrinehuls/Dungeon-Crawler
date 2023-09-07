@@ -14,14 +14,15 @@ public class BackgroundImage {
     {
         try {
             backgroundImages = new ImageIcon[]{
-                    new ImageIcon("res/backgrounds/All-Open.png"),
-                    new ImageIcon("res/backgrounds/Front-Only.png"),
-                    new ImageIcon("res/backgrounds/Left-Only.png"),
+                    new ImageIcon(ImageIO.read((getClass().getResourceAsStream("/backgrounds/All-Open.png")))),
+                    new ImageIcon(ImageIO.read((getClass().getResourceAsStream("/backgrounds/Front-Only.png")))),
+                    new ImageIcon(ImageIO.read((getClass().getResourceAsStream("/backgrounds/Left-Only.png")))),
                     new ImageIcon(ImageIO.read((getClass().getResourceAsStream("/backgrounds/Right-Only.png")))),
-                    new ImageIcon("res/backgrounds/No-Front.png"),
-                    new ImageIcon("res/backgrounds/No-Left.png"),
-                    new ImageIcon("res/backgrounds/No-Right.png"),
-                    new ImageIcon("res/backgrounds/3-sides.png")
+                    new ImageIcon(ImageIO.read((getClass().getResourceAsStream("/backgrounds/No-Front.png")))),
+                    new ImageIcon(ImageIO.read((getClass().getResourceAsStream("/backgrounds/No-Left.png")))),
+                    new ImageIcon(ImageIO.read((getClass().getResourceAsStream("/backgrounds/No-Right.png")))),
+                    new ImageIcon(ImageIO.read((getClass().getResourceAsStream("/backgrounds/All-Sides.png"))))
+                    //new ImageIcon("res/backgrounds/3-sides.png")
             };
         } catch (IOException e) {
             // DisplayPanel.appendConsoleModel(e.getMessage());
