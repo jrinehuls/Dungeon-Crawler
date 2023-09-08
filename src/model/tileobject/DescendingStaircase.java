@@ -7,8 +7,8 @@ public class DescendingStaircase extends InteractableTileObject {
 
     static SoundEffects se;
 
-    public DescendingStaircase(String iconPath, String backgroundFileName) {
-        super(iconPath, backgroundFileName);
+    public DescendingStaircase() {
+        super("/icons/Downstairs.png", "/backgrounds/Downstairs.png");
         se = new SoundEffects();
     }
 

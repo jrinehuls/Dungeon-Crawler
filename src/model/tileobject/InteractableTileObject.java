@@ -10,31 +10,39 @@ import java.util.Objects;
 
 public abstract class InteractableTileObject {
 
-    protected String iconPath;
-    protected String backgroundFileName;
     protected BufferedImage iconImage;
     protected ImageIcon backgroundImage;
 
-
     public InteractableTileObject(String iconPath, String backgroundFileName) {
-        this.iconPath = iconPath;
-        this.backgroundFileName = backgroundFileName;
+        setIconImage(iconPath);
+        setBackgroundImage(backgroundFileName);
+    }
+
+    private void setIconImage(String iconPath) {
+        try {
+            this.iconImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(iconPath)));
+        } catch (IOException e) {
+            DisplayPanel.appendConsoleModel(e.getMessage());
+            this.iconImage = null;
+            System.out.println("Bad file path");
+        }
     }
 
     public BufferedImage getIconImage() {
-        try {
-            this.iconImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(this.iconPath)));
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            this.iconImage = null;
-        } catch (IllegalArgumentException e) {
-            System.out.println("Bad file path");
-        }
         return this.iconImage;
     }
 
+    private void setBackgroundImage(String backgroundFileName) {
+        try {
+            this.backgroundImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(backgroundFileName))));
+        } catch (IOException e) {
+            DisplayPanel.appendConsoleModel(e.getMessage());
+            this.iconImage = null;
+            System.out.println("Bad file path");
+        }
+    }
+
     public ImageIcon getBackgroundImage() {
-        this.backgroundImage = new ImageIcon(this.backgroundFileName);
         return this.backgroundImage;
     }
 

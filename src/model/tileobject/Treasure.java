@@ -12,8 +12,8 @@ public class Treasure extends InteractableTileObject implements Awardable {
     private Item item;
     SoundEffects se;
 
-    public Treasure(String iconPath, String backgroundFileName, Item item) {
-        super(iconPath, backgroundFileName);
+    public Treasure(Item item) {
+        super("/icons/Treasure.png", "/backgrounds/Treasure.png");
         this.item = item;
         se = new SoundEffects();
     }

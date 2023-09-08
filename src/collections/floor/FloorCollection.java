@@ -8,8 +8,8 @@ import tiles.Tile;
 
 public class FloorCollection {
 
-    private static final DescendingStaircase downstairs = new DescendingStaircase("/icons/Downstairs.png", "res/backgrounds/Downstairs.png");
-    private static final AscendingStaircase upstairs = new AscendingStaircase("/icons/Upstairs.png", "res/backgrounds/Upstairs.png");
+    private static final DescendingStaircase downstairs = new DescendingStaircase();
+    private static final AscendingStaircase upstairs = new AscendingStaircase();
 
     public static int currentFloorNumber = 1;
 
