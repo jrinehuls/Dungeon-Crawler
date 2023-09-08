@@ -1,6 +1,4 @@
 
-Have player learn spell on a level up
-
 Modify monster spells
 Modify monster items
 Modify monster actions

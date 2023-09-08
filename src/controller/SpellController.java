@@ -90,12 +90,4 @@ public class SpellController implements ActionListener, ListSelectionListener {
         }
     }
 
-
-
-
-
-
-
-
-
 }

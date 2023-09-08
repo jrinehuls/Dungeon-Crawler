@@ -25,7 +25,6 @@ public class MonsterController {
             if (monster.getHP() <= 0) {
                 SoundEffects.stopBattleMusic();
                 SoundEffects.playThemeMusic();
-                // DisplayPanel.appendConsoleModel("You killed " + monster + "!");
                 monster.die();
                 player.stopDefending();
                 player.levelUp();

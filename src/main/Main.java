@@ -5,10 +5,11 @@ import view.frames.MainGameFrame;
 
 public class Main {
 
+	public static MainGameFrame gameFrame;
+
 	public Main () {
 
 	}
-	public static MainGameFrame gameFrame;
 
 	public static void main(String[] args) {
 

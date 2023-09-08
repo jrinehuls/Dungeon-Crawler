@@ -93,7 +93,7 @@ public class SoundEffects {
         themeMusicClip.stop();
     }
 
-    // -------------------------------- Theme Music ------------------------------------------------------------
+    // -------------------------------- Battle Music ------------------------------------------------------------
     private static void setBattleClip() {
         try {
             AudioInputStream ais = AudioSystem.getAudioInputStream(gameBattleUrl);

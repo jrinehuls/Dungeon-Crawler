@@ -52,9 +52,8 @@ public class Player extends Entity {
     public Player() {
         super(100, 10,  15, 15, 10, 7, 15);
         // -------------------------------------------- Spells ---------------------------------------------------------
-        spells.put("First Aid", HealSpellCollection.FIRST_AID);
-        spells.put("Flare", AttackSpellCollection.FLARE);
-        spells.put("Mug", StealSpellCollection.MUG);
+        this.addSpell(HealSpellCollection.FIRST_AID);
+        this.addSpell(AttackSpellCollection.FLARE);
         // -------------------------------------------- Weapons --------------------------------------------------------
         this.weapon = WeaponCollection.NONE;
         weapons.add(WeaponCollection.WOODEN_DAGGER);
@@ -504,7 +503,7 @@ public class Player extends Entity {
         }
     }
 
-    // ------------------------------------- Generic Getters and Setters -----------------------------------------------
+    // ----------------------------------------------- Level Up --------------------------------------------------------
     public void levelUp() {
         if (exp >= nextExp && level <= Level.values().length) {
             level++;
@@ -529,12 +528,16 @@ public class Player extends Entity {
             DisplayPanel.appendConsoleModel("Your Magic Defense increased by " + nextLevel.increaseMDefense + "!");
             speed += nextLevel.increaseSpeed;
             DisplayPanel.appendConsoleModel("Your Speed increased by " + nextLevel.increaseSpeed + "!");
+            if (nextLevel.spell != null) {
+                this.addSpell(nextLevel.spell);
+                DisplayPanel.appendConsoleModel("Your learned " + nextLevel.spell.NAME + "!");
+            }
             DisplayPanel.appendConsoleModel("------------------------------------------------------");
         } else if (exp >= nextExp) {
             exp = nextExp;
         }
     }
-
+    // ------------------------------------- Generic Getters and Setters -----------------------------------------------
     public int getLevel() {
         return level;
     }
@@ -561,6 +564,10 @@ public class Player extends Entity {
 
     public void setGold(int gold) {
         this.gold = gold;
+    }
+
+    public void addSpell(Spell spell) {
+        this.spells.put(spell.NAME, spell);
     }
 
     // --------------------------------------- Equipment related getters -----------------------------------------------
