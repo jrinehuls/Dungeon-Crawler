@@ -10,7 +10,7 @@ import javax.swing.*;
 public class Flatwoods extends Monster{
 
     public Flatwoods() {
-        super("Flatwoods Monster", 65,  15,  12, 8, 10, 8, 11, 15, 30, new ImageIcon("res/monsters/Flatwoods.png"));
+        super("Flatwoods Monster", 65,  15,  12, 8, 10, 8, 11, 15, 30, "/monsters/Flatwoods.png");
         spells.put("Flare", AttackSpellCollection.FLARE);
         items.add(AttackItemCollection.BOMB);
         items.add(HealingItemCollection.HEALING_HERB);

@@ -22,9 +22,9 @@ public abstract class InteractableTileObject {
         try {
             this.iconImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(iconPath)));
         } catch (IOException e) {
-            DisplayPanel.appendConsoleModel(e.getMessage());
+            DisplayPanel.appendConsoleModel("ITO " + e.getMessage());
             this.iconImage = null;
-            System.out.println("Bad file path");
+            System.out.println("ITO Bad file path");
         }
     }
 
@@ -36,9 +36,9 @@ public abstract class InteractableTileObject {
         try {
             this.backgroundImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(backgroundFileName))));
         } catch (IOException e) {
-            DisplayPanel.appendConsoleModel(e.getMessage());
+            DisplayPanel.appendConsoleModel("ITO " + e.getMessage());
             this.iconImage = null;
-            System.out.println("Bad file path");
+            System.out.println("ITO Bad file path");
         }
     }
 

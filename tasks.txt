@@ -1,10 +1,4 @@
 
-Add Objects.requireNonNull in bgimage, monster, and ITOs.
-Make ImageIO for monsters and ITOs.
-
-Make constructor empty for InteractableTileObject and child classes.
-Hard code image paths in InteractableTileObject and child classes.
-
 Have player learn spell on a level up
 
 Modify monster spells

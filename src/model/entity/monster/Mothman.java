@@ -10,7 +10,7 @@ import javax.swing.*;
 public class Mothman extends Monster {
 
     public Mothman() {
-        super("Mothman", 100,  20,  20, 15, 10, 15, 22, 50, 70, new ImageIcon("res/monsters/Mothman.png"));
+        super("Mothman", 100,  20,  20, 15, 10, 15, 22, 50, 70, "/monsters/Mothman.png");
         spells.put("Flare", AttackSpellCollection.FLARE);
         items.add(AttackItemCollection.BOMB);
         items.add(HealingItemCollection.HEALING_HERB);

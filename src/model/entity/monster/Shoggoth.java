@@ -10,7 +10,7 @@ import javax.swing.*;
 public class Shoggoth extends Monster {
 
     public Shoggoth() {
-        super("Shoggoth", 120,  10,  35, 8, 5, 8, 5, 40, 50, new ImageIcon("res/monsters/Shoggoth.png"));
+        super("Shoggoth", 120,  10,  35, 8, 5, 8, 5, 40, 50, "/monsters/Shoggoth.png");
         spells.put("Flare", AttackSpellCollection.FLARE);
         items.add(AttackItemCollection.BOMB);
         items.add(HealingItemCollection.HEALING_HERB);
