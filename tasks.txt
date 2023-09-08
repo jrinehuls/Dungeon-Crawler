@@ -4,8 +4,6 @@ Modify monster items
 Modify monster actions
 Modify monster drops
 
-Add more treasure to treasure collection
-
 Create more player levels
 Create more floors
 
