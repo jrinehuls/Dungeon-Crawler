@@ -530,7 +530,7 @@ public class Player extends Entity {
             DisplayPanel.appendConsoleModel("Your Speed increased by " + nextLevel.increaseSpeed + "!");
             if (nextLevel.spell != null) {
                 this.addSpell(nextLevel.spell);
-                DisplayPanel.appendConsoleModel("Your learned " + nextLevel.spell.NAME + "!");
+                DisplayPanel.appendConsoleModel("You learned " + nextLevel.spell.NAME + "!");
             }
             DisplayPanel.appendConsoleModel("------------------------------------------------------");
         } else if (exp >= nextExp) {
