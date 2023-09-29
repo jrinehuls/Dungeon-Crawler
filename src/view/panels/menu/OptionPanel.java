@@ -50,6 +50,10 @@ public class OptionPanel extends JPanel {
         }
     }
 
+    public JButton getButton() {
+        return this.button;
+    }
+
 
 
 

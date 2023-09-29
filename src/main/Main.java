@@ -7,6 +7,7 @@ import view.frames.MenuFrame;
 public class Main {
 
 	public static MainGameFrame gameFrame;
+	public static MenuFrame menuFrame;
 
 	public Main () {
 
@@ -14,9 +15,9 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		// SoundEffects.playThemeMusic();
+		SoundEffects.playThemeMusic();
 		// gameFrame = new MainGameFrame();
-		new MenuFrame();
+		menuFrame = new MenuFrame();
 
 	}
 

@@ -1,5 +1,6 @@
 package view.frames;
 
+import controller.MenuController;
 import view.panels.menu.OptionPanel;
 import view.panels.menu.TitlePanel;
 
@@ -27,7 +28,11 @@ public class MenuFrame extends JFrame {
 
     private final int BORDER_THICKNESS = 1;
 
+    private MenuController controller;
+
     public MenuFrame() {
+
+        controller = new MenuController(this);
 
         menuPanel = new JPanel();
         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
@@ -35,21 +40,30 @@ public class MenuFrame extends JFrame {
         // ------------------------------------- Top Panel Stuff ----------------------------------------
         topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
         topPanel.setPreferredSize(new Dimension(TitlePanel.PANEL_WIDTH + 2 * BORDER_THICKNESS, TitlePanel.PANEL_HEIGHT + 2 * BORDER_THICKNESS));
+        topPanel.setBorder(new LineBorder(Color.BLACK, BORDER_THICKNESS));
+
         this.titlePanel = new TitlePanel(MENU_TITLE);
         topPanel.add(titlePanel);
-        topPanel.setBorder(new LineBorder(Color.BLACK, BORDER_THICKNESS));
+
         menuPanel.add(topPanel);
 
         // ------------------------------------ Bottom Panel Stuff --------------------------------------
         bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
         bottomPanel.setPreferredSize(new Dimension(TitlePanel.PANEL_WIDTH + 2 * BORDER_THICKNESS, OptionPanel.PANEL_HEIGHT + 2 * BORDER_THICKNESS));
-        this.innPanel = new OptionPanel("INN", INN_ICON_FILE_NAME);
-        bottomPanel.add(innPanel);
-        this.shopPanel = new OptionPanel("SHOP",SHOP_ICON_FILE_NAME);
-        bottomPanel.add(shopPanel);
-        this.dungeonPanel = new OptionPanel("DUNGEON",DUNGEON_ICON_FILE_NAME);
-        bottomPanel.add(dungeonPanel);
         bottomPanel.setBorder(new LineBorder(Color.BLACK, BORDER_THICKNESS));
+
+        this.innPanel = new OptionPanel("INN", INN_ICON_FILE_NAME);
+        this.innPanel.getButton().addActionListener(controller);
+        bottomPanel.add(innPanel);
+
+        this.shopPanel = new OptionPanel("SHOP",SHOP_ICON_FILE_NAME);
+        this.shopPanel.getButton().addActionListener(controller);
+        bottomPanel.add(shopPanel);
+
+        this.dungeonPanel = new OptionPanel("DUNGEON",DUNGEON_ICON_FILE_NAME);
+        this.dungeonPanel.getButton().addActionListener(controller);
+        bottomPanel.add(dungeonPanel);
+
         menuPanel.add(bottomPanel);
 
         // ------------------------------------ Set Frame Up --------------------------------------
@@ -61,6 +75,18 @@ public class MenuFrame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
+    }
+
+    public OptionPanel getInnPanel() {
+        return this.innPanel;
+    }
+
+    public OptionPanel getShopPanel() {
+        return this.shopPanel;
+    }
+
+    public OptionPanel getDungeonPanel() {
+        return this.dungeonPanel;
     }
 
 }

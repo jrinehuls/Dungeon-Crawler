@@ -1,4 +1,11 @@
 package view.frames;
 
-public class WelcomeFrame {
+import javax.swing.*;
+
+public class WelcomeFrame extends JFrame {
+
+    public WelcomeFrame() {
+
+    }
+
 }
