@@ -6,6 +6,7 @@ import java.awt.*;
 
 public class GameOverFrame extends JFrame {
 
+    // TODO: Make panel and add panel to this. This is just a place holder for now.
     public GameOverFrame() {
         super("GET REKT!!");
 

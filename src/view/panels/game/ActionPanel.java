@@ -10,7 +10,7 @@ public class ActionPanel extends JPanel {
     public static final int SCREEN_WIDTH = MapPanel.SCREEN_WIDTH;
     public static final int SCREEN_HEIGHT = MapPanel.SCREEN_HEIGHT;
 
-    public static JButton attackButton = new JButton("Attack");;
+    public static JButton attackButton = new JButton("Attack");
     public static JButton spellButton = new JButton("Spell");
     public static JButton itemButton = new JButton("Item");
     public static JButton defendButton = new JButton("Defend");

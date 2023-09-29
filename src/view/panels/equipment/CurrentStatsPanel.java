@@ -22,7 +22,7 @@ public class CurrentStatsPanel extends JPanel {
     JLabel[] currentStatsLabels = {currentStatsLabel, currentBlankLabel, currentMaxHPLabel, currentMaxMPLabel,
             currentAttackLabel, currentDefenseLabel, currentMagicAttackLabel, currentMagicDefenseLabel, currentSpeedLabel};
 
-    public  CurrentStatsPanel() {
+    public CurrentStatsPanel() {
         super(new GridLayout(5, 2, 0, 0));
 
         this.setPreferredSize(new Dimension(EquipmentFrame.SCREEN_WIDTH/2, EquipmentFrame.STATS_PANEL_HEIGHT));
@@ -32,7 +32,7 @@ public class CurrentStatsPanel extends JPanel {
         // Add stuff to current stats panel
         int currentStatsCounter = 0;
         for (JLabel label: currentStatsLabels) {
-            if (currentStatsCounter % 2 ==0) {
+            if (currentStatsCounter % 2 == 0) {
                 label.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
             }
             this.add(label);

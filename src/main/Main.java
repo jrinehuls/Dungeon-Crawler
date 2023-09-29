@@ -2,6 +2,7 @@ package main;
 
 import util.SoundEffects;
 import view.frames.MainGameFrame;
+import view.frames.MenuFrame;
 
 public class Main {
 
@@ -13,8 +14,9 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		SoundEffects.playThemeMusic();
-		gameFrame = new MainGameFrame();
+		// SoundEffects.playThemeMusic();
+		// gameFrame = new MainGameFrame();
+		new MenuFrame();
 
 	}
 
