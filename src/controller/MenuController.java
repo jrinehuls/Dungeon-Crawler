@@ -40,7 +40,6 @@ public class MenuController implements ActionListener {
 
     private void goToDungeon() {
         Main.menuFrame.dispose();
-
         Main.gameFrame = new MainGameFrame();
     }
 

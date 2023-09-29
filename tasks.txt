@@ -7,9 +7,12 @@ Modify monster drops
 Create more player levels
 Create more floors
 
+Make ITO for exiting dungeon
+
+Create title screen
 Create over world to enter dungeon
 Create shop in over world
-Create title screen
+Create inn in over world
 
 Rework how dungeon walls look
 
