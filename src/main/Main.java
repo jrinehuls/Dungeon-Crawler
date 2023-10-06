@@ -18,6 +18,7 @@ public class Main {
 		// gameFrame = new MainGameFrame();
 		SoundEffects.playThemeMusic();
 		menuFrame = new MenuFrame();
+		// new BuyFrame();
 
 	}
 
