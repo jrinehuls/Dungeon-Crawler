@@ -23,7 +23,7 @@ public class BuyFrame extends JFrame {
     BuyRadioButtonPanel radioButtonPanel = new BuyRadioButtonPanel();
 
     BuyButtonPanel buttonPanel = new BuyButtonPanel();
-    BuyTablePanel tablePanel = new BuyTablePanel();
+    BuyListPanel tablePanel = new BuyListPanel();
 
     JPanel leftPanel = new JPanel();
     JPanel rightPanel = new JPanel();

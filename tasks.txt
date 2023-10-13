@@ -1,4 +1,8 @@
 
+Create shop in over world
+Create inn in over world
+Create title screen
+
 Modify monster spells
 Modify monster items
 Modify monster actions
@@ -8,11 +12,6 @@ Create more player levels
 Create more floors
 
 Make ITO for exiting dungeon
-
-Create title screen
-Create over world to enter dungeon
-Create shop in over world
-Create inn in over world
 
 Rework how dungeon walls look
 
