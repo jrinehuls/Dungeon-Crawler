@@ -1,6 +1,7 @@
 package main;
 
 import util.SoundEffects;
+import view.frames.BuyFrame;
 import view.frames.MainGameFrame;
 import view.frames.MenuFrame;
 

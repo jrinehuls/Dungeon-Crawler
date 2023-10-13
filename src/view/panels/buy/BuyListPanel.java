@@ -1,32 +1,39 @@
 package view.panels.buy;
 
 import collections.equipment.WeaponCollection;
+import collections.shop.ShopCollection;
 import model.item.Item;
 import model.item.equipment.*;
+import model.spell.HealSpell;
+import model.spell.Spell;
 import view.frames.BuyFrame;
 import view.panels.game.PlayerPanel;
 
 import javax.swing.*;
 
 import java.awt.*;
+import java.util.Map;
 
 public class BuyListPanel extends JPanel {
 
-    private DefaultListModel<Item> weaponsModel = new DefaultListModel<>();
-    private DefaultListModel<Item> headGearsModel = new DefaultListModel<>();
-    private DefaultListModel<Item> armorsModel = new DefaultListModel<>();
-    private DefaultListModel<Item> armsModel = new DefaultListModel<>();
-    private DefaultListModel<Item> footWearsModel = new DefaultListModel<>();
-    private DefaultListModel<Item> accessoriesModel = new DefaultListModel<>();
+    private DefaultListModel<String> weaponsModel = new DefaultListModel<>();
+    private DefaultListModel<String> headGearsModel = new DefaultListModel<>();
+    private DefaultListModel<String> armorsModel = new DefaultListModel<>();
+    private DefaultListModel<String> armsModel = new DefaultListModel<>();
+    private DefaultListModel<String> footWearsModel = new DefaultListModel<>();
+    private DefaultListModel<String> accessoriesModel = new DefaultListModel<>();
+    private DefaultListModel<String> attackModel = new DefaultListModel<>();
+    private DefaultListModel<String> healModel = new DefaultListModel<>();
 
-    private final int PANEL_WIDTH = BuyFrame.RIGHT_PANEL_WIDTH;
+    public JList<String> itemJList;
+    public JScrollPane itemJSP;
 
-    public JList<Item> equipmentJList;
-
-    public JScrollPane equipmentJSP;
+    private ShopCollection shopCollection = new ShopCollection();
 
     public BuyListPanel() {
         super(new FlowLayout(FlowLayout.CENTER, 0, 0));
+
+        int PANEL_WIDTH = BuyFrame.RIGHT_PANEL_WIDTH;
 
         this.setPreferredSize(new Dimension(PANEL_WIDTH, BuyFrame.TABLE_PANEL_HEIGHT));
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -34,82 +41,69 @@ public class BuyListPanel extends JPanel {
 
         loadWeaponsModel(); // Since defaults to weapons button, have to populate before adding.
 
-        equipmentJList = new JList<>(weaponsModel); // equipmentJList.setModel(); to change DefaultListModel.
-        equipmentJList.setVisibleRowCount(5);
-        equipmentJList.setFixedCellWidth(PANEL_WIDTH - 100);
-        equipmentJList.setFixedCellHeight(25);
-        equipmentJList.setFocusable(false);
+        itemJList = new JList<>(weaponsModel); // equipmentJList.setModel(); to change DefaultListModel.
+        itemJList.setVisibleRowCount(5);
+        itemJList.setFixedCellWidth(PANEL_WIDTH - 100);
+        itemJList.setFixedCellHeight(25);
+        itemJList.setFocusable(false);
         //equipmentJList.addListSelectionListener(ec);
 
-        equipmentJSP = new JScrollPane(equipmentJList);
-        this.add(equipmentJSP);
+        itemJSP = new JScrollPane(itemJList);
+        this.add(itemJSP);
 
     }
 
 
     // --------------------------------------------- Getters ---------------------------------------------
-    public DefaultListModel<Item> getWeaponsModel() {
+    public DefaultListModel<String> getWeaponsModel() {
         return weaponsModel;
     }
 
-    public DefaultListModel<Item> getHeadGearsModel() {
+    public DefaultListModel<String> getHeadGearsModel() {
         return headGearsModel;
     }
 
-    public DefaultListModel<Item> getArmorsModel() {
+    public DefaultListModel<String> getArmorsModel() {
         return armorsModel;
     }
 
-    public DefaultListModel<Item> getArmsModel() {
+    public DefaultListModel<String> getArmsModel() {
         return armsModel;
     }
 
-    public DefaultListModel<Item> getFootWearsModel() {
+    public DefaultListModel<String> getFootWearsModel() {
         return footWearsModel;
     }
 
-    public DefaultListModel<Item> getAccessoriesModel() {
+    public DefaultListModel<String> getAccessoriesModel() {
         return accessoriesModel;
     }
 
     // --------------------------------------------- Setters ---------------------------------------------
     public void loadWeaponsModel() {
-        weaponsModel.addElement(WeaponCollection.WOODEN_DAGGER);
+        for (Item weapon: shopCollection.getWeaponsArray()) {
+            weaponsModel.addElement(shopCollection.generateKey(weapon));
+        }
     }
 
     public void loadHeadGearsModel() {
-        headGearsModel.clear();
-        for (Head head: PlayerPanel.getPlayer().getHeadGears()) {
-            headGearsModel.addElement(head);
-        }
+
     }
 
     public void loadArmorsModel() {
-        armorsModel.clear();
-        for (Body body: PlayerPanel.getPlayer().getArmors()) {
-            armorsModel.addElement(body);
-        }
+
     }
 
     public void loadArmsModel() {
-        armsModel.clear();
-        for (Arm arm: PlayerPanel.getPlayer().getArms()) {
-            armsModel.addElement(arm);
-        }
+
     }
 
     public void loadFootWearsModel() {
-        footWearsModel.clear();
-        for (Feet foot: PlayerPanel.getPlayer().getFootWears()) {
-            footWearsModel.addElement(foot);
-        }
+
     }
 
     public void loadAccessoriesModel() {
-        accessoriesModel.clear();
-        for (Accessory accessory: PlayerPanel.getPlayer().getAccessories()) {
-            accessoriesModel.addElement(accessory);
-        }
+
     }
 
 
