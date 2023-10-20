@@ -29,8 +29,8 @@ public class BuyListPanel extends JPanel {
     private DefaultListModel<String> healItemsModel = new DefaultListModel<>();
 
     private JList<String> itemJList;
-    public JScrollPane itemJSP;
-    public JButton buyButton = new JButton("Buy");
+    private JScrollPane itemJSP;
+    private JButton buyButton = new JButton("Buy");
 
     private ShopCollection shopCollection = new ShopCollection();
 
@@ -70,6 +70,10 @@ public class BuyListPanel extends JPanel {
 
     public JList<String> getItemJList() {
         return itemJList;
+    }
+
+    public JButton getBuyButton() {
+        return buyButton;
     }
 
     public DefaultListModel<String> getWeaponsModel() {

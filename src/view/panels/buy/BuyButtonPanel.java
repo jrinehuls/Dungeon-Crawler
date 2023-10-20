@@ -37,7 +37,7 @@ public class BuyButtonPanel extends JPanel {
         this.setBackground(Color.CYAN);
     }
 
-    public JButton getBuyButton() {
+    public JButton getSellButton() {
         return sellButton;
     }
 

@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class BuyRadioButtonPanel extends JPanel {
 
-    public ButtonGroup equipButtons = new ButtonGroup();
+    private ButtonGroup buttonGroup = new ButtonGroup();
 
     private final JRadioButton weaponButton = new JRadioButton("Weapons"); // If weaponButton.isSelected()
     private final JRadioButton headButton = new JRadioButton("Headgear");
@@ -21,8 +21,11 @@ public class BuyRadioButtonPanel extends JPanel {
 
     private static final int JBUTTON_LEFT_INSET = 20;
 
-    JRadioButton[] equipButtonComponents = {weaponButton, headButton, bodyButton, armButton, feetButton,
+    JRadioButton[] radioButtons = {weaponButton, headButton, bodyButton, armButton, feetButton,
             accessoryButton, attackButton, healingButton};
+
+    String [] commands = {"weaponButton", "headButton", "bodyButton", "armButton", "feetButton",
+            "accessoryButton", "attackButton", "healingButton"};
 
     public BuyRadioButtonPanel(BuyController bc) {
         super(new GridLayout(4, 2, 0, 0));
@@ -32,17 +35,24 @@ public class BuyRadioButtonPanel extends JPanel {
         this.setBackground(Color.PINK);
 
         // Add components to panel. If component is a radio, add margins and stuffs.
-        for (JRadioButton button: equipButtonComponents) {
+        int commandCounter = 0;
+        for (JRadioButton button: radioButtons) {
             button.addActionListener(bc);
             button.setMargin(new Insets(0, JBUTTON_LEFT_INSET,0,0));
             button.setOpaque(false);
             button.setFocusable(false);
-            equipButtons.add(button);
+            button.setActionCommand(commands[commandCounter]);
+            buttonGroup.add(button);
             this.add(button);
+            commandCounter++;
         }
 
         // Default to weapon radio button being selected
         weaponButton.setSelected(true);
+    }
+
+    public ButtonGroup getButtonGroup() {
+        return buttonGroup;
     }
 
     public JRadioButton getWeaponButton() {

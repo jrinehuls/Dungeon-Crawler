@@ -1,5 +1,9 @@
 
 Create shop in over world
+    Need buy item method to add item to player's inventory
+    Need buy item method to subtract gold from player
+    Need to disable buy button if cost is more than player can afford.
+
 Create inn in over world
 Create title screen
 
