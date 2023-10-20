@@ -139,7 +139,7 @@ public class EquipmentController implements ActionListener, ListSelectionListene
     }
 
     // If a selection is highlighted, then player clicks another radio without equipping, set new stats to the same as player stats
-    // Also changes labe colors back to black when an item is equipped or another radio button is picked
+    // Also changes label colors back to black when an item is equipped or another radio button is picked
     private void resetNewStats() {
         newStatsPanel.setNewMaxHPLabel(0);
         newStatsPanel.setNewMaxMPLabel(0);

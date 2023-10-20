@@ -17,9 +17,9 @@ public class Main {
 	public static void main(String[] args) {
 
 		// gameFrame = new MainGameFrame();
-		SoundEffects.playThemeMusic();
-		menuFrame = new MenuFrame();
-		// new BuyFrame();
+		// SoundEffects.playThemeMusic();
+		// menuFrame = new MenuFrame();
+		new BuyFrame();
 
 	}
 

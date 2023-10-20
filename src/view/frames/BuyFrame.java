@@ -1,5 +1,6 @@
 package view.frames;
 
+import controller.BuyController;
 import view.panels.buy.*;
 
 import javax.swing.*;
@@ -18,17 +19,25 @@ public class BuyFrame extends JFrame {
     public static final int TABLE_PANEL_HEIGHT = 400;
     public static final int BUTTON_PANEL_HEIGHT = SCREEN_HEIGHT - TABLE_PANEL_HEIGHT;
 
-    BuyCurrentStatsPanel currentStatsPanel = new BuyCurrentStatsPanel();
-    BuyNewStatsPanel newStatsPanel = new BuyNewStatsPanel();
-    BuyRadioButtonPanel radioButtonPanel = new BuyRadioButtonPanel();
+    private final BuyRadioButtonPanel radioButtonPanel;
+    private final BuyCurrentStatsPanel currentStatsPanel = new BuyCurrentStatsPanel();
+    private final BuyNewStatsPanel newStatsPanel = new BuyNewStatsPanel();
 
-    BuyButtonPanel buttonPanel = new BuyButtonPanel();
-    BuyListPanel tablePanel = new BuyListPanel();
+    private final BuyListPanel listPanel;
+    private final BuyButtonPanel buttonPanel;
 
     JPanel leftPanel = new JPanel();
     JPanel rightPanel = new JPanel();
 
+    BuyController bc;
+
     public BuyFrame() {
+        super("Buy Somethin', Will Ya?");
+
+        bc = new BuyController(this);
+        radioButtonPanel = new BuyRadioButtonPanel(bc);
+        listPanel = new BuyListPanel(bc);
+        buttonPanel = new BuyButtonPanel(bc);
 
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 
@@ -44,7 +53,7 @@ public class BuyFrame extends JFrame {
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
         rightPanel.setPreferredSize(new Dimension(RIGHT_PANEL_WIDTH, SCREEN_HEIGHT));
         rightPanel.setBackground(Color.RED);
-        rightPanel.add(tablePanel);
+        rightPanel.add(listPanel);
         rightPanel.add(buttonPanel);
         this.add(rightPanel);
 
@@ -56,6 +65,26 @@ public class BuyFrame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
+    }
+
+    public BuyRadioButtonPanel getRadioButtonPanel() {
+        return this.radioButtonPanel;
+    }
+
+    public BuyCurrentStatsPanel getCurrentStatsPanel() {
+        return this.currentStatsPanel;
+    }
+
+    public BuyNewStatsPanel getNewStatsPanel() {
+        return this.newStatsPanel;
+    }
+
+    public BuyListPanel getListPanel() {
+        return this.listPanel;
+    }
+
+    public BuyButtonPanel getButtonPanel() {
+        return this.buttonPanel;
     }
 
 }

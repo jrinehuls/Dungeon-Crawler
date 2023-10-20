@@ -1,6 +1,8 @@
 package collections.shop;
 
-import collections.equipment.WeaponCollection;
+import collections.consumable.AttackItemCollection;
+import collections.consumable.HealingItemCollection;
+import collections.equipment.*;
 import model.item.Item;
 import model.item.consumable.AttackItem;
 import model.item.consumable.HealingItem;
@@ -10,30 +12,37 @@ import java.util.HashMap;
 
 public class ShopCollection {
 
-    private final HashMap<String, Weapon> weaponsMap = new HashMap<>();
+    private final HashMap<String, Equipment> weaponsMap = new HashMap<>();
     private final Weapon[] weaponsArray = { WeaponCollection.WOODEN_DAGGER, WeaponCollection.BRONZE_DAGGER,
-            WeaponCollection.IRON_SWORD, WeaponCollection.MITHRIL_SWORD};
+            WeaponCollection.IRON_SWORD, WeaponCollection.MITHRIL_SWORD };
 
-    private final HashMap<String, Head> headGearsMap = new HashMap<>();
-    private final Head[] headGearsArray = {};
+    private final HashMap<String, Equipment> headGearsMap = new HashMap<>();
+    private final Head[] headGearsArray = { HeadCollection.STRAW_HAT, HeadCollection.LEATHER_CAP,
+            HeadCollection.COPPER_HELM, HeadCollection.MITHRIL_HELM };
 
-    private final HashMap<String, Body> armorMap = new HashMap<>();
-    private final Body[] armorArray = {};
+    private final HashMap<String, Equipment> armorMap = new HashMap<>();
+    private final Body[] armorArray = { BodyCollection.LEATHER_VEST, BodyCollection.CHAIN_MAIL,
+            BodyCollection.PLATE_MAIL, BodyCollection.MITHRIL_ARMOR };
 
-    private final HashMap<String, Arm> armMap = new HashMap<>();
-    private final Arm[] armArray = {};
+    private final HashMap<String, Equipment> armMap = new HashMap<>();
+    private final Arm[] armArray = { ArmCollection.RUBBER_BRACELET, ArmCollection.LEATHER_GLOVES,
+            ArmCollection.STEEL_VAMBRACE, ArmCollection.MITHRIL_VAMBRACE };
 
-    private final HashMap<String, Feet> footWearsMap = new HashMap<>();
-    private final Feet[] footWearsArray = {};
+    private final HashMap<String, Equipment> footWearsMap = new HashMap<>();
+    private final Feet[] footWearsArray = { FeetCollection.LEATHER_SANDALS, FeetCollection.LEATHER_BOOTS,
+            FeetCollection.IRON_GREAVES, FeetCollection.MITHRIL_GREAVES };
 
-    private final HashMap<String, Accessory> accessoriesMap = new HashMap<>();
-    private final Accessory[] accessoriesArray = {};
+    private final HashMap<String, Equipment> accessoriesMap = new HashMap<>();
+    private final Accessory[] accessoriesArray = { AccessoryCollection.SPELL_TOME, AccessoryCollection.RING_OF_VITALITY,
+            AccessoryCollection.NECKLACE_OF_WISDOM, AccessoryCollection.VEIL_OF_PROTECTION };
 
-    private final HashMap<String, AttackItem> attackItemsMap = new HashMap<>();
-    private final AttackItem[] attackItemsArray = {};
+    private final HashMap<String, Item> attackItemsMap = new HashMap<>();
+    private final AttackItem[] attackItemsArray = { AttackItemCollection.BOMB, AttackItemCollection.THROWING_KNIFE,
+            AttackItemCollection.LARGE_BOMB };
 
-    private final HashMap<String, HealingItem> healingItemsMap = new HashMap<>();
-    private final HealingItem[] healingItemsArray = {};
+    private final HashMap<String, Item> healingItemsMap = new HashMap<>();
+    private final HealingItem[] healingItemsArray = {HealingItemCollection.HEALING_HERB,
+            HealingItemCollection.VIAL_OF_REJUVENATION};
 
     public ShopCollection() {
         this.setWeaponsMap();
@@ -51,7 +60,7 @@ public class ShopCollection {
         return this.weaponsArray;
     }
 
-    public HashMap<String, Weapon> getWeaponsMap() {
+    public HashMap<String, Equipment> getWeaponsMap() {
         return this.weaponsMap;
     }
 
@@ -66,7 +75,7 @@ public class ShopCollection {
         return this.headGearsArray;
     }
 
-    public HashMap<String, Head> getHeadGearsMap() {
+    public HashMap<String, Equipment> getHeadGearsMap() {
         return this.headGearsMap;
     }
 
@@ -81,7 +90,7 @@ public class ShopCollection {
         return this.armorArray;
     }
 
-    public HashMap<String, Body> getArmorMap() {
+    public HashMap<String, Equipment> getArmorMap() {
         return this.armorMap;
     }
 
@@ -96,7 +105,7 @@ public class ShopCollection {
         return this.armArray;
     }
 
-    public HashMap<String, Arm> getArmMap() {
+    public HashMap<String, Equipment> getArmMap() {
         return this.armMap;
     }
 
@@ -111,7 +120,7 @@ public class ShopCollection {
         return this.footWearsArray;
     }
 
-    public HashMap<String, Feet> getFootWearsMap() {
+    public HashMap<String, Equipment> getFootWearsMap() {
         return this.footWearsMap;
     }
 
@@ -126,7 +135,7 @@ public class ShopCollection {
         return this.accessoriesArray;
     }
 
-    public HashMap<String, Accessory> getAccessoriesMap() {
+    public HashMap<String, Equipment> getAccessoriesMap() {
         return this.accessoriesMap;
     }
 
@@ -141,7 +150,7 @@ public class ShopCollection {
         return this.attackItemsArray;
     }
 
-    public HashMap<String, AttackItem> getAttackItemsMap() {
+    public HashMap<String, Item> getAttackItemsMap() {
         return this.attackItemsMap;
     }
 
@@ -156,7 +165,7 @@ public class ShopCollection {
         return this.healingItemsArray;
     }
 
-    public HashMap<String, HealingItem> getHealingItemsMap() {
+    public HashMap<String, Item> getHealingItemsMap() {
         return this.healingItemsMap;
     }
 
