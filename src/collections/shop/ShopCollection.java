@@ -5,6 +5,7 @@ import collections.consumable.HealingItemCollection;
 import collections.equipment.*;
 import model.item.Item;
 import model.item.consumable.AttackItem;
+import model.item.consumable.Consumable;
 import model.item.consumable.HealingItem;
 import model.item.equipment.*;
 
@@ -36,11 +37,11 @@ public class ShopCollection {
     private final Accessory[] accessoriesArray = { AccessoryCollection.SPELL_TOME, AccessoryCollection.RING_OF_VITALITY,
             AccessoryCollection.NECKLACE_OF_WISDOM, AccessoryCollection.VEIL_OF_PROTECTION };
 
-    private final HashMap<String, Item> attackItemsMap = new HashMap<>();
+    private final HashMap<String, Consumable> attackItemsMap = new HashMap<>();
     private final AttackItem[] attackItemsArray = { AttackItemCollection.BOMB, AttackItemCollection.THROWING_KNIFE,
             AttackItemCollection.LARGE_BOMB };
 
-    private final HashMap<String, Item> healingItemsMap = new HashMap<>();
+    private final HashMap<String, Consumable> healingItemsMap = new HashMap<>();
     private final HealingItem[] healingItemsArray = {HealingItemCollection.HEALING_HERB,
             HealingItemCollection.VIAL_OF_REJUVENATION};
 
@@ -150,7 +151,7 @@ public class ShopCollection {
         return this.attackItemsArray;
     }
 
-    public HashMap<String, Item> getAttackItemsMap() {
+    public HashMap<String, Consumable> getAttackItemsMap() {
         return this.attackItemsMap;
     }
 
@@ -165,7 +166,7 @@ public class ShopCollection {
         return this.healingItemsArray;
     }
 
-    public HashMap<String, Item> getHealingItemsMap() {
+    public HashMap<String, Consumable> getHealingItemsMap() {
         return this.healingItemsMap;
     }
 

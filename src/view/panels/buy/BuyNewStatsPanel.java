@@ -84,7 +84,7 @@ public class BuyNewStatsPanel extends JPanel {
     }
 
     public void setNewGoldLabel(int gold) {
-        setLabelColor(newSpeedLabel, gold);
-        newSpeedLabel.setText("Gold: " + (PlayerPanel.getPlayer().getGold() + gold));
+        setLabelColor(newGoldLabel, gold);
+        newGoldLabel.setText("Gold: " + (PlayerPanel.getPlayer().getGold() + gold));
     }
 }

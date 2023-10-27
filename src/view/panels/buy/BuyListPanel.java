@@ -1,21 +1,13 @@
 package view.panels.buy;
 
-import collections.equipment.WeaponCollection;
 import collections.shop.ShopCollection;
 import controller.BuyController;
-import model.item.Item;
 import model.item.consumable.AttackItem;
 import model.item.consumable.HealingItem;
 import model.item.equipment.*;
-import model.spell.HealSpell;
-import model.spell.Spell;
 import view.frames.BuyFrame;
-import view.panels.game.PlayerPanel;
-
 import javax.swing.*;
-
 import java.awt.*;
-import java.util.Map;
 
 public class BuyListPanel extends JPanel {
 

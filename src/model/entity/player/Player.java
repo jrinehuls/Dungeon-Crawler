@@ -30,7 +30,7 @@ public class Player extends Entity {
     private int level = 1;
     private int exp = 0;
     private int nextExp = 50;
-    private int gold = 5;
+    private int gold = 250;
 
     private ArrayList<Weapon> weapons = new ArrayList<>();
     private ArrayList<Head> headGears = new ArrayList<>();
