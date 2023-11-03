@@ -10,6 +10,7 @@ import model.item.consumable.HealingItem;
 import model.item.equipment.*;
 import view.frames.BuyFrame;
 import view.frames.MenuFrame;
+import view.frames.SellFrame;
 import view.panels.buy.*;
 import view.panels.game.PlayerPanel;
 
@@ -104,7 +105,8 @@ public class BuyController implements ActionListener, ListSelectionListener {
             this.buyItem(key, actionCommand);
             listPanel.getItemJList().clearSelection();
         } else if (e.getSource() == buttonPanel.getSellButton()) {
-            System.out.println("You need to do something with this button.");
+            Main.getBuyFrame().dispose();
+            Main.setSellFrame(new SellFrame());
         } else if (e.getSource() == buttonPanel.getExitButton()) {
             Main.getBuyFrame().dispose();
             Main.setMenuFrame(new MenuFrame());
