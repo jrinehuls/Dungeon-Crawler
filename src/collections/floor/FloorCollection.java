@@ -3,6 +3,7 @@ package collections.floor;
 import collections.tileobject.TreasureCollection;
 import model.tileobject.AscendingStaircase;
 import model.tileobject.DescendingStaircase;
+import model.tileobject.Exit;
 import tiles.Floor;
 import tiles.Tile;
 
@@ -10,6 +11,7 @@ public class FloorCollection {
 
     private static final DescendingStaircase downstairs = new DescendingStaircase();
     private static final AscendingStaircase upstairs = new AscendingStaircase();
+    private static final Exit exit = new Exit();
 
     public static int currentFloorNumber = 1;
 
@@ -41,7 +43,7 @@ public class FloorCollection {
             new Tile(tileWalls[9]), new Tile(tileWalls[1]), new Tile(tileWalls[6]), new Tile(tileWalls[12]), new Tile(tileWalls[2]) },
         { new Tile(tileWalls[11]), new Tile(tileWalls[10]), new Tile(tileWalls[7]), new Tile(tileWalls[2]), new Tile(tileWalls[10], downstairs),
             new Tile(tileWalls[12]), new Tile(tileWalls[3]), new Tile(tileWalls[1]), new Tile(tileWalls[14]), new Tile(tileWalls[10]) },
-        { new Tile(tileWalls[8]), new Tile(tileWalls[0]), new Tile(tileWalls[5]), new Tile(tileWalls[11]), new Tile(tileWalls[4]),
+        { new Tile(tileWalls[8]), new Tile(tileWalls[0]), new Tile(tileWalls[5]), new Tile(tileWalls[11]), new Tile(tileWalls[4], exit),
             new Tile(tileWalls[5]), new Tile(tileWalls[8]), new Tile(tileWalls[2]), new Tile(tileWalls[8]), new Tile(tileWalls[2]) },
         { new Tile(tileWalls[4]), new Tile(tileWalls[0]), new Tile(tileWalls[0]), new Tile(tileWalls[9]), new Tile(tileWalls[3]),
             new Tile(tileWalls[2]), new Tile(tileWalls[10]), new Tile(tileWalls[11]), new Tile(tileWalls[4]), new Tile(tileWalls[6]) },

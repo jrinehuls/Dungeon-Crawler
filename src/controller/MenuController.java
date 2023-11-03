@@ -36,14 +36,14 @@ public class MenuController implements ActionListener {
     }
 
     private void goToShop() {
-        Main.menuFrame.dispose();
-        Main.buyFrame = new BuyFrame();
+        Main.getMenuFrame().dispose();
+        Main.setBuyFrame(new BuyFrame());
     }
 
     private void goToDungeon() {
-        Main.menuFrame.dispose();
+        Main.getMenuFrame().dispose();
         SoundEffects.playThemeMusic();
-        Main.gameFrame.setVisible(true);
+        Main.getMainGameFrame().setVisible(true);
     }
 
 }

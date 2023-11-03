@@ -3,10 +3,7 @@ package view.panels.game;
 import background.BackGroundImageManager;
 import collections.floor.FloorCollection;
 import controller.game.GamePanelController;
-import model.tileobject.AscendingStaircase;
-import model.tileobject.DescendingStaircase;
-import model.tileobject.InteractableTileObject;
-import model.tileobject.Treasure;
+import model.tileobject.*;
 import tiles.Tile;
 import tiles.TileManager;
 
@@ -35,8 +32,9 @@ public class GamePanel extends JPanel {
 	public static JButton treasureButton = new JButton("Open Treasure");
 	public static JButton ascendButton = new JButton("Go Up Stairs");
 	public static JButton descendButton = new JButton("Go Down Stairs");
+	public static JButton exitButton = new JButton("Exit Dungeon");
 
-	private static JButton[] buttons = {treasureButton, ascendButton, descendButton};
+	private static JButton[] buttons = {treasureButton, ascendButton, descendButton, exitButton};
 
 	GamePanelController gpc = new GamePanelController();
 
@@ -103,6 +101,7 @@ public class GamePanel extends JPanel {
 			treasureButton.setEnabled(tileObject instanceof Treasure && !MonsterPanel.isMonster());
 			ascendButton.setEnabled(tileObject instanceof AscendingStaircase && !MonsterPanel.isMonster());
 			descendButton.setEnabled(tileObject instanceof DescendingStaircase && !MonsterPanel.isMonster());
+			exitButton.setEnabled(tileObject instanceof Exit && !MonsterPanel.isMonster());
 		} catch (NullPointerException e){
 			objectLabel.setIcon(null);
 			for (JButton button : buttons) {

@@ -106,8 +106,8 @@ public class BuyController implements ActionListener, ListSelectionListener {
         } else if (e.getSource() == buttonPanel.getSellButton()) {
             System.out.println("You need to do something with this button.");
         } else if (e.getSource() == buttonPanel.getExitButton()) {
-            Main.buyFrame.dispose();
-            Main.menuFrame = new MenuFrame();
+            Main.getBuyFrame().dispose();
+            Main.setMenuFrame(new MenuFrame());
         }
     }
 

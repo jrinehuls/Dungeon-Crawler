@@ -2,6 +2,7 @@ package controller.game;
 
 import model.tileobject.AscendingStaircase;
 import model.tileobject.DescendingStaircase;
+import model.tileobject.Exit;
 import model.tileobject.Treasure;
 import tiles.Tile;
 import tiles.TileManager;
@@ -30,6 +31,8 @@ public class GamePanelController implements ActionListener {
             AscendingStaircase.goUpstairs();
         } else if (e.getSource() == GamePanel.descendButton) {
             DescendingStaircase.goDownstairs();
+        } else if (e.getSource() == GamePanel.exitButton) {
+            Exit.leaveDungeon();
         }
 
     }

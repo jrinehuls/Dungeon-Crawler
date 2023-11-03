@@ -178,7 +178,7 @@ public class Player extends Entity {
     }
 
     public void die() {
-        Main.gameFrame.dispose();
+        Main.getMainGameFrame().dispose();
         SoundEffects.stopBattleMusic();
         SoundEffects.stopThemeMusic();
         MapPanel.loopRunning = false;
