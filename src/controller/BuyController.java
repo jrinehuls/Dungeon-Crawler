@@ -1,6 +1,7 @@
 package controller;
 
 import controller.game.ActionButtonController;
+import main.Main;
 import model.entity.player.Player;
 import model.item.Item;
 import model.item.consumable.AttackItem;
@@ -8,6 +9,7 @@ import model.item.consumable.Consumable;
 import model.item.consumable.HealingItem;
 import model.item.equipment.*;
 import view.frames.BuyFrame;
+import view.frames.MenuFrame;
 import view.panels.buy.*;
 import view.panels.game.PlayerPanel;
 
@@ -24,6 +26,7 @@ public class BuyController implements ActionListener, ListSelectionListener {
     BuyFrame buyFrame;
     BuyRadioButtonPanel radioPanel;
     BuyNewStatsPanel newStatsPanel;
+    BuyCurrentStatsPanel currentStatsPanel;
     BuyListPanel listPanel;
     BuyButtonPanel buttonPanel;
     public BuyController(BuyFrame buyFrame) {
@@ -35,6 +38,7 @@ public class BuyController implements ActionListener, ListSelectionListener {
         this.player = PlayerPanel.getPlayer();
         this.radioPanel = buyFrame.getRadioButtonPanel();
         this.newStatsPanel = buyFrame.getNewStatsPanel();
+        this.currentStatsPanel = buyFrame.getCurrentStatsPanel();
         this.listPanel = buyFrame.getListPanel();
         this.buttonPanel = buyFrame.getButtonPanel();
 
@@ -47,8 +51,8 @@ public class BuyController implements ActionListener, ListSelectionListener {
     }
 
     /*
-    * This method gets invoked whenever the value of the list selection changes
-    */
+     * This method gets invoked whenever the value of the list selection changes
+     */
     @Override
     public void valueChanged(ListSelectionEvent e) {
         this.player = PlayerPanel.getPlayer();
@@ -57,6 +61,7 @@ public class BuyController implements ActionListener, ListSelectionListener {
         this.newStatsPanel = buyFrame.getNewStatsPanel();
 
         // Without this if statement, event happens on both mouse click and un-click.
+        // Disables buy button if selected item too expensive for player.
         if (e.getValueIsAdjusting()) {
             String key = listPanel.getItemJList().getSelectedValue();
             int cost;
@@ -89,6 +94,9 @@ public class BuyController implements ActionListener, ListSelectionListener {
         }
     }
 
+    /*
+     * For things like Buy, Sell, and Exit
+     */
     private void handleButtonEvents(ActionEvent e) {
         if (e.getSource() == listPanel.getBuyButton() && !listPanel.getItemJList().isSelectionEmpty()) {
             String key = listPanel.getItemJList().getSelectedValue();
@@ -98,10 +106,14 @@ public class BuyController implements ActionListener, ListSelectionListener {
         } else if (e.getSource() == buttonPanel.getSellButton()) {
             System.out.println("You need to do something with this button.");
         } else if (e.getSource() == buttonPanel.getExitButton()) {
-            System.out.println("You need to make it exit to somewhere.");
+            Main.buyFrame.dispose();
+            Main.menuFrame = new MenuFrame();
         }
     }
 
+    /*
+     * Based on the radio button chosen, sets the JList with those types of items.
+     */
     private void setJListModel(ActionEvent e) {
         this.resetNewStats();
         if (e.getSource() == radioPanel.getWeaponButton()) {
@@ -123,44 +135,118 @@ public class BuyController implements ActionListener, ListSelectionListener {
         }
     }
 
+    /*
+     * Method for taking money and adding item to player inventory
+     */
     private void buyItem(String key, String actionCommand) {
-        this.resetNewStats();
-        HashMap<String, Equipment> equipmentMap;
-        HashMap<String, Consumable> itemMap;
-        int cost;
         if (actionCommand.equals(radioPanel.getWeaponButton().getActionCommand())) {
-            equipmentMap = listPanel.getShopCollection().getWeaponsMap();
-            cost = equipmentMap.get(key).getCost();
-            System.out.printf("You just bought %s which is a weapon! and costs %d gold%n", key, cost);
+            this.buyWeapon(key);
         } else if (actionCommand.equals(radioPanel.getHeadButton().getActionCommand())) {
-            equipmentMap = listPanel.getShopCollection().getHeadGearsMap();
-            cost = equipmentMap.get(key).getCost();
-            System.out.printf("You just bought %s which is a headgear! and costs %d gold%n", key, cost);
+            this.buyHeadgear(key);
         } else if (actionCommand.equals(radioPanel.getBodyButton().getActionCommand())) {
-            equipmentMap = listPanel.getShopCollection().getArmorMap();
-            cost = equipmentMap.get(key).getCost();
-            System.out.printf("You just bought %s which is an armor! and costs %d gold%n", key, cost);
+            this.buyArmor(key);
         } else if (actionCommand.equals(radioPanel.getArmButton().getActionCommand())) {
-            equipmentMap = listPanel.getShopCollection().getArmMap();
-            cost = equipmentMap.get(key).getCost();
-            System.out.printf("You just bought %s which is an arm guard! and costs %d gold%n", key, cost);
+            this.buyArm(key);
         } else if (actionCommand.equals(radioPanel.getFeetButton().getActionCommand())) {
-            equipmentMap = listPanel.getShopCollection().getFootWearsMap();
-            cost = equipmentMap.get(key).getCost();
-            System.out.printf("You just bought %s which is a footwear! and costs %d gold%n", key, cost);
+            this.buyFootwear(key);
         } else if (actionCommand.equals(radioPanel.getAccessoryButton().getActionCommand())) {
-            equipmentMap = listPanel.getShopCollection().getAccessoriesMap();
-            cost = equipmentMap.get(key).getCost();
-            System.out.printf("You just bought %s which is an accessory! and costs %d gold%n", key, cost);
+            this.buyAccessory(key);
         } else if (actionCommand.equals(radioPanel.getAttackButton().getActionCommand())) {
-            itemMap = listPanel.getShopCollection().getAttackItemsMap();
-            cost = itemMap.get(key).getCost();
-            System.out.printf("You just bought %s which is an attack item! and costs %d gold%n", key, cost);
+            this.buyAttackItem(key);
         } else if (actionCommand.equals(radioPanel.getHealingButton().getActionCommand())) {
-            itemMap = listPanel.getShopCollection().getHealingItemsMap();
-            cost = itemMap.get(key).getCost();
-            System.out.printf("You just bought %s which is a healing item! and costs %d gold%n", key, cost);
+            this.buyHealingItem(key);
         }
+        currentStatsPanel.updateLabels();
+        this.resetNewStats();
+    }
+
+    /*
+     * Take gold from player in exchange for a weapon.
+     */
+    private void buyWeapon(String key) {
+        HashMap<String, Equipment> equipmentMap = listPanel.getShopCollection().getWeaponsMap();
+        Weapon weapon = (Weapon) equipmentMap.get(key);
+        int cost = weapon.getCost();
+        player.setGold(player.getGold() - cost);
+        player.addWeapon(weapon);
+    }
+
+    /*
+     * Take gold from player in exchange for a headgear.
+     */
+    private void buyHeadgear(String key) {
+        HashMap<String, Equipment> equipmentMap = listPanel.getShopCollection().getHeadGearsMap();
+        Head headgear = (Head) equipmentMap.get(key);
+        int cost = headgear.getCost();
+        player.setGold(player.getGold() - cost);
+        player.addHeadgear(headgear);
+    }
+
+    /*
+     * Take gold from player in exchange for an armor.
+     */
+    private void buyArmor(String key) {
+        HashMap<String, Equipment> equipmentMap = listPanel.getShopCollection().getArmorMap();
+        Body armor = (Body) equipmentMap.get(key);
+        int cost = armor.getCost();
+        player.setGold(player.getGold() - cost);
+        player.addArmor(armor);
+    }
+
+    /*
+     * Take gold from player in exchange for an arm guard.
+     */
+    private void buyArm(String key) {
+        HashMap<String, Equipment> equipmentMap = listPanel.getShopCollection().getArmMap();
+        Arm arm = (Arm) equipmentMap.get(key);
+        int cost = arm.getCost();
+        player.setGold(player.getGold() - cost);
+        player.addArm(arm);
+    }
+
+    /*
+     * Take gold from player in exchange for a footwear.
+     */
+    private void buyFootwear(String key) {
+        HashMap<String, Equipment> equipmentMap = listPanel.getShopCollection().getFootWearsMap();
+        Feet footwear = (Feet) equipmentMap.get(key);
+        int cost = footwear.getCost();
+        player.setGold(player.getGold() - cost);
+        player.addFootwear(footwear);
+    }
+
+    /*
+     * Take gold from player in exchange for an accessory.
+     */
+    private void buyAccessory(String key) {
+        HashMap<String, Equipment> equipmentMap = listPanel.getShopCollection().getAccessoriesMap();
+        Accessory accessory = (Accessory) equipmentMap.get(key);
+        int cost = accessory.getCost();
+        player.setGold(player.getGold() - cost);
+        player.addAccessory(accessory);
+    }
+
+    /*
+     * Take gold from player in exchange for an attack item.
+     */
+    private void buyAttackItem(String key) {
+        HashMap<String, Consumable> itemMap = listPanel.getShopCollection().getAttackItemsMap();
+        Consumable item = itemMap.get(key);
+        int cost = item.getCost();
+        player.setGold(player.getGold() - cost);
+        player.addConsumableItem(item);
+    }
+
+    /*
+     * Take gold from player in exchange for a healing item.
+     */
+    private void buyHealingItem(String key) {
+        HashMap<String, Consumable> itemMap = listPanel.getShopCollection().getHealingItemsMap();
+        Consumable item = itemMap.get(key);
+        int cost = item.getCost();
+        player.setGold(player.getGold() - cost);
+        player.addConsumableItem(item);
+        currentStatsPanel.updateLabels();
     }
 
     // When a selection is highlighted, shows what the stats will be if that item is equipped

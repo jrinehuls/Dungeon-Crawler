@@ -58,7 +58,7 @@ public class BuyFrame extends JFrame {
         this.add(rightPanel);
 
         // --------------------------------------- Frame Stuff ----------------------------------------
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setIconImage(new ImageIcon("res/icons/Icon.png").getImage());
         this.setResizable(false);
         this.pack();

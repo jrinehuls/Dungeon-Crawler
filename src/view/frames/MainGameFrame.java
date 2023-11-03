@@ -56,6 +56,6 @@ public class MainGameFrame extends JFrame {
         this.setResizable(false);
         this.pack();
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
+        this.setVisible(false);
     }
 }

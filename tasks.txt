@@ -5,6 +5,9 @@ Add functionality to buy stuff in shop
 
 Add functionality to sell stuff in shop
 
+Make ITO for exiting dungeon
+Exit dungeon to MenuFrame (don't lose treasure and visited data)
+
 Create inn in over world
 Create title screen
 
@@ -15,8 +18,6 @@ Modify monster drops
 
 Create more player levels
 Create more floors
-
-Make ITO for exiting dungeon
 
 Rework how dungeon walls look
 

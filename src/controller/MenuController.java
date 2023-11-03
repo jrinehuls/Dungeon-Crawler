@@ -2,6 +2,7 @@ package controller;
 
 import main.Main;
 import util.SoundEffects;
+import view.frames.BuyFrame;
 import view.frames.GameOverFrame;
 import view.frames.MainGameFrame;
 import view.frames.MenuFrame;
@@ -35,12 +36,14 @@ public class MenuController implements ActionListener {
     }
 
     private void goToShop() {
-        System.out.println("Go to shop!");
+        Main.menuFrame.dispose();
+        Main.buyFrame = new BuyFrame();
     }
 
     private void goToDungeon() {
         Main.menuFrame.dispose();
-        Main.gameFrame = new MainGameFrame();
+        SoundEffects.playThemeMusic();
+        Main.gameFrame.setVisible(true);
     }
 
 }
