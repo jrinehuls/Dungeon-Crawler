@@ -1,12 +1,12 @@
 
-Add functionality to buy stuff in shop
-    Need buy item method to add item to player's inventory
-    Need buy item method to subtract gold from player
-
 Add functionality to sell stuff in shop
 
 Make ITO for exiting dungeon
 Exit dungeon to MenuFrame (don't lose treasure and visited data)
+    Maybe add button but only visible when at Exit ITO
+    Then set main game frame visible false
+    Stop game music
+    Then set new Menu Frame
 
 Create inn in over world
 Create title screen
