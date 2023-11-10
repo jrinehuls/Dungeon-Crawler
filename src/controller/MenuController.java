@@ -2,10 +2,7 @@ package controller;
 
 import main.Main;
 import util.SoundEffects;
-import view.frames.BuyFrame;
-import view.frames.GameOverFrame;
-import view.frames.MainGameFrame;
-import view.frames.MenuFrame;
+import view.frames.*;
 import view.panels.game.MapPanel;
 
 import java.awt.*;
@@ -32,7 +29,8 @@ public class MenuController implements ActionListener {
     }
 
     private void goToInn() {
-        System.out.println("Go to inn!");
+        Main.getMenuFrame().dispose();
+        Main.setInnFrame(new InnFrame());
     }
 
     private void goToShop() {
