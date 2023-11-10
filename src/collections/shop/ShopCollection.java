@@ -67,7 +67,7 @@ public class ShopCollection {
 
     private void setWeaponsMap() {
         for (Weapon weapon: this.weaponsArray) {
-            this.weaponsMap.put(this.generateKey(weapon), weapon);
+            this.weaponsMap.put(this.generateBuyKey(weapon), weapon);
         }
     }
 
@@ -82,7 +82,7 @@ public class ShopCollection {
 
     private void setHeadGearsMap() {
         for (Head headGear: this.headGearsArray) {
-            this.headGearsMap.put(this.generateKey(headGear), headGear);
+            this.headGearsMap.put(this.generateBuyKey(headGear), headGear);
         }
     }
 
@@ -97,7 +97,7 @@ public class ShopCollection {
 
     private void setArmorMap() {
         for (Body armor: this.armorArray) {
-            this.armorMap.put(this.generateKey(armor), armor);
+            this.armorMap.put(this.generateBuyKey(armor), armor);
         }
     }
 
@@ -112,7 +112,7 @@ public class ShopCollection {
 
     private void setArmMap() {
         for (Arm arm: this.armArray) {
-            this.armMap.put(this.generateKey(arm), arm);
+            this.armMap.put(this.generateBuyKey(arm), arm);
         }
     }
 
@@ -127,7 +127,7 @@ public class ShopCollection {
 
     private void setFootWearsMap() {
         for (Feet foot: this.footWearsArray) {
-            this.footWearsMap.put(this.generateKey(foot), foot);
+            this.footWearsMap.put(this.generateBuyKey(foot), foot);
         }
     }
 
@@ -142,7 +142,7 @@ public class ShopCollection {
 
     private void setAccessoriesMap() {
         for (Accessory accessory: this.accessoriesArray) {
-            this.accessoriesMap.put(this.generateKey(accessory), accessory);
+            this.accessoriesMap.put(this.generateBuyKey(accessory), accessory);
         }
     }
 
@@ -157,7 +157,7 @@ public class ShopCollection {
 
     private void setAttackItemsMap() {
         for (AttackItem attackItem: this.attackItemsArray) {
-            this.attackItemsMap.put(this.generateKey(attackItem), attackItem);
+            this.attackItemsMap.put(this.generateBuyKey(attackItem), attackItem);
         }
     }
 
@@ -172,13 +172,17 @@ public class ShopCollection {
 
     private void setHealingItemsMap() {
         for (HealingItem healingItem: this.healingItemsArray) {
-            this.healingItemsMap.put(this.generateKey(healingItem), healingItem);
+            this.healingItemsMap.put(this.generateBuyKey(healingItem), healingItem);
         }
     }
 
     // -------------------------------- Key Stuff --------------------------------
-    public String generateKey(Item item) {
+    public String generateBuyKey(Item item) {
         return item.getName() + " - Price: " + item.getCost();
+    }
+
+    public String generateSellKey(Item item) {
+        return item.getName() + " - Sale Price: " + item.getSalePrice();
     }
 
 }

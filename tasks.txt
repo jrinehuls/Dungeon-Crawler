@@ -1,5 +1,6 @@
 
 Add functionality to sell stuff in shop
+SellRadioButtonPanel may not need actioncommands
 
 Create inn in over world
 Create title screen that calls menu frame

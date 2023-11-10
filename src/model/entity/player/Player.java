@@ -75,6 +75,7 @@ public class Player extends Entity {
         // ------------------------------------------- Consumables -----------------------------------------------------
         this.addConsumableItem(HealingItemCollection.HEALING_HERB);
         this.addConsumableItem(HealingItemCollection.HEALING_HERB);
+        this.addConsumableItem(HealingItemCollection.HEALING_HERB);
         this.addConsumableItem(AttackItemCollection.BOMB);
     }
 

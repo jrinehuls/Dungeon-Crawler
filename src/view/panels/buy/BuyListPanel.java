@@ -104,7 +104,7 @@ public class BuyListPanel extends JPanel {
     public void loadWeaponsModel() {
         this.getWeaponsModel().clear();
         for (Weapon weapon: shopCollection.getWeaponsArray()) {
-            weaponsModel.addElement(shopCollection.generateKey(weapon));
+            weaponsModel.addElement(shopCollection.generateBuyKey(weapon));
         }
         itemJList.setModel(this.getWeaponsModel());
     }
@@ -112,7 +112,7 @@ public class BuyListPanel extends JPanel {
     public void loadHeadGearsModel() {
         this.getHeadGearsModel().clear();
         for (Head head: shopCollection.getHeadGearsArray()) {
-            headGearsModel.addElement(shopCollection.generateKey(head));
+            headGearsModel.addElement(shopCollection.generateBuyKey(head));
         }
         itemJList.setModel(this.getHeadGearsModel());
     }
@@ -120,7 +120,7 @@ public class BuyListPanel extends JPanel {
     public void loadArmorsModel() {
         this.getArmorsModel().clear();
         for (Body armor: shopCollection.getArmorArray()) {
-            armorsModel.addElement(shopCollection.generateKey(armor));
+            armorsModel.addElement(shopCollection.generateBuyKey(armor));
         }
         itemJList.setModel(this.getArmorsModel());
     }
@@ -128,7 +128,7 @@ public class BuyListPanel extends JPanel {
     public void loadArmsModel() {
         this.getArmsModel().clear();
         for (Arm arm: shopCollection.getArmArray()) {
-            armsModel.addElement(shopCollection.generateKey(arm));
+            armsModel.addElement(shopCollection.generateBuyKey(arm));
         }
         itemJList.setModel(this.getArmsModel());
     }
@@ -136,7 +136,7 @@ public class BuyListPanel extends JPanel {
     public void loadFootWearsModel() {
         this.getFootWearsModel().clear();
         for (Feet footWear: shopCollection.getFootWearsArray()) {
-            footWearsModel.addElement(shopCollection.generateKey(footWear));
+            footWearsModel.addElement(shopCollection.generateBuyKey(footWear));
         }
         itemJList.setModel(this.getFootWearsModel());
     }
@@ -144,7 +144,7 @@ public class BuyListPanel extends JPanel {
     public void loadAccessoriesModel() {
         this.getAccessoriesModel().clear();
         for (Accessory accessory: shopCollection.getAccessoriesArray()) {
-            accessoriesModel.addElement(shopCollection.generateKey(accessory));
+            accessoriesModel.addElement(shopCollection.generateBuyKey(accessory));
         }
         itemJList.setModel(this.getAccessoriesModel());
     }
@@ -152,7 +152,7 @@ public class BuyListPanel extends JPanel {
     public void loadAttackItemsModel() {
         this.getAttackItemsModel().clear();
         for (AttackItem attackItem: shopCollection.getAttackItemsArray()) {
-            attackItemsModel.addElement(shopCollection.generateKey(attackItem));
+            attackItemsModel.addElement(shopCollection.generateBuyKey(attackItem));
         }
         itemJList.setModel(this.getAttackItemsModel());
     }
@@ -160,7 +160,7 @@ public class BuyListPanel extends JPanel {
     public void loadHealItemsModel() {
         this.getHealItemsModel().clear();
         for (HealingItem healingItem: shopCollection.getHealingItemsArray()) {
-            healItemsModel.addElement(shopCollection.generateKey(healingItem));
+            healItemsModel.addElement(shopCollection.generateBuyKey(healingItem));
         }
         itemJList.setModel(this.getHealItemsModel());
     }

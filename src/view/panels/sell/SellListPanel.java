@@ -2,26 +2,29 @@ package view.panels.sell;
 
 import collections.shop.ShopCollection;
 import controller.SellController;
+import model.item.Item;
 import model.item.consumable.AttackItem;
+import model.item.consumable.Consumable;
 import model.item.consumable.HealingItem;
 import model.item.equipment.*;
 import view.frames.SellFrame;
+import view.panels.game.PlayerPanel;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class SellListPanel extends JPanel {
 
-    private DefaultListModel<String> weaponsModel = new DefaultListModel<>();
-    private DefaultListModel<String> headGearsModel = new DefaultListModel<>();
-    private DefaultListModel<String> armorsModel = new DefaultListModel<>();
-    private DefaultListModel<String> armsModel = new DefaultListModel<>();
-    private DefaultListModel<String> footWearsModel = new DefaultListModel<>();
-    private DefaultListModel<String> accessoriesModel = new DefaultListModel<>();
-    private DefaultListModel<String> attackItemsModel = new DefaultListModel<>();
-    private DefaultListModel<String> healItemsModel = new DefaultListModel<>();
+    private DefaultListModel<Item> weaponsModel = new DefaultListModel<>();
+    private DefaultListModel<Item> headGearsModel = new DefaultListModel<>();
+    private DefaultListModel<Item> armorsModel = new DefaultListModel<>();
+    private DefaultListModel<Item> armsModel = new DefaultListModel<>();
+    private DefaultListModel<Item> footWearsModel = new DefaultListModel<>();
+    private DefaultListModel<Item> accessoriesModel = new DefaultListModel<>();
+    private DefaultListModel<Item> attackItemsModel = new DefaultListModel<>();
+    private DefaultListModel<Item> healItemsModel = new DefaultListModel<>();
 
-    private JList<String> itemJList;
+    private JList<Item> itemJList;
     private JScrollPane itemJSP;
     private JButton sellButton = new JButton("Sell");
 
@@ -61,7 +64,7 @@ public class SellListPanel extends JPanel {
         return shopCollection;
     }
 
-    public JList<String> getItemJList() {
+    public JList<Item> getItemJList() {
         return itemJList;
     }
 
@@ -69,99 +72,103 @@ public class SellListPanel extends JPanel {
         return sellButton;
     }
 
-    public DefaultListModel<String> getWeaponsModel() {
+    public DefaultListModel<Item> getWeaponsModel() {
         return weaponsModel;
     }
 
-    public DefaultListModel<String> getHeadGearsModel() {
+    public DefaultListModel<Item> getHeadGearsModel() {
         return headGearsModel;
     }
 
-    public DefaultListModel<String> getArmorsModel() {
+    public DefaultListModel<Item> getArmorsModel() {
         return armorsModel;
     }
 
-    public DefaultListModel<String> getArmsModel() {
+    public DefaultListModel<Item> getArmsModel() {
         return armsModel;
     }
 
-    public DefaultListModel<String> getFootWearsModel() {
+    public DefaultListModel<Item> getFootWearsModel() {
         return footWearsModel;
     }
 
-    public DefaultListModel<String> getAccessoriesModel() {
+    public DefaultListModel<Item> getAccessoriesModel() {
         return accessoriesModel;
     }
 
-    public DefaultListModel<String> getAttackItemsModel() {
+    public DefaultListModel<Item> getAttackItemsModel() {
         return attackItemsModel;
     }
 
-    public DefaultListModel<String> getHealItemsModel() {
+    public DefaultListModel<Item> getHealItemsModel() {
         return healItemsModel;
     }
 
     // --------------------------------------------- Setters ---------------------------------------------
     public void loadWeaponsModel() {
         this.getWeaponsModel().clear();
-        for (Weapon weapon: shopCollection.getWeaponsArray()) {
-            weaponsModel.addElement(shopCollection.generateKey(weapon));
+        for (Weapon weapon: PlayerPanel.getPlayer().getWeapons()) {
+            weaponsModel.addElement(weapon);
         }
         itemJList.setModel(this.getWeaponsModel());
     }
 
     public void loadHeadGearsModel() {
         this.getHeadGearsModel().clear();
-        for (Head head: shopCollection.getHeadGearsArray()) {
-            headGearsModel.addElement(shopCollection.generateKey(head));
+        for (Head head: PlayerPanel.getPlayer().getHeadGears()) {
+            headGearsModel.addElement(head);
         }
         itemJList.setModel(this.getHeadGearsModel());
     }
 
     public void loadArmorsModel() {
         this.getArmorsModel().clear();
-        for (Body armor: shopCollection.getArmorArray()) {
-            armorsModel.addElement(shopCollection.generateKey(armor));
+        for (Body armor: PlayerPanel.getPlayer().getArmors()) {
+            armorsModel.addElement(armor);
         }
         itemJList.setModel(this.getArmorsModel());
     }
 
     public void loadArmsModel() {
         this.getArmsModel().clear();
-        for (Arm arm: shopCollection.getArmArray()) {
-            armsModel.addElement(shopCollection.generateKey(arm));
+        for (Arm arm: PlayerPanel.getPlayer().getArms()) {
+            armsModel.addElement(arm);
         }
         itemJList.setModel(this.getArmsModel());
     }
 
     public void loadFootWearsModel() {
         this.getFootWearsModel().clear();
-        for (Feet footWear: shopCollection.getFootWearsArray()) {
-            footWearsModel.addElement(shopCollection.generateKey(footWear));
+        for (Feet footWear: PlayerPanel.getPlayer().getFootWears()) {
+            footWearsModel.addElement(footWear);
         }
         itemJList.setModel(this.getFootWearsModel());
     }
 
     public void loadAccessoriesModel() {
         this.getAccessoriesModel().clear();
-        for (Accessory accessory: shopCollection.getAccessoriesArray()) {
-            accessoriesModel.addElement(shopCollection.generateKey(accessory));
+        for (Accessory accessory: PlayerPanel.getPlayer().getAccessories()) {
+            accessoriesModel.addElement(accessory);
         }
         itemJList.setModel(this.getAccessoriesModel());
     }
 
     public void loadAttackItemsModel() {
         this.getAttackItemsModel().clear();
-        for (AttackItem attackItem: shopCollection.getAttackItemsArray()) {
-            attackItemsModel.addElement(shopCollection.generateKey(attackItem));
+        for (Consumable consumable: PlayerPanel.getPlayer().getConsumableItems()) {
+            if (consumable instanceof AttackItem attackItem) {
+                attackItemsModel.addElement(attackItem);
+            }
         }
         itemJList.setModel(this.getAttackItemsModel());
     }
 
     public void loadHealItemsModel() {
         this.getHealItemsModel().clear();
-        for (HealingItem healingItem: shopCollection.getHealingItemsArray()) {
-            healItemsModel.addElement(shopCollection.generateKey(healingItem));
+        for (Consumable consumable: PlayerPanel.getPlayer().getConsumableItems()) {
+            if (consumable instanceof HealingItem healingItem) {
+                healItemsModel.addElement(healingItem);
+            }
         }
         itemJList.setModel(this.getHealItemsModel());
     }

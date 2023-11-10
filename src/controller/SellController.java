@@ -2,6 +2,7 @@ package controller;
 
 import main.Main;
 import model.entity.player.Player;
+import model.item.Item;
 import model.item.consumable.Consumable;
 import model.item.equipment.*;
 import view.frames.BuyFrame;
@@ -57,34 +58,33 @@ public class SellController implements ActionListener, ListSelectionListener {
         // Without this if statement, event happens on both mouse click and un-click.
         // Disables sell button if selected item too expensive for player.
         if (e.getValueIsAdjusting()) {
-            String key = listPanel.getItemJList().getSelectedValue();
+            Item item = listPanel.getItemJList().getSelectedValue();
             int cost;
             if (radioPanel.getWeaponButton().isSelected()) {
-                cost = listPanel.getShopCollection().getWeaponsMap().get(key).getCost();
-                newStatsPanel.setNewGoldLabel(-cost);
+                cost = item.getSalePrice();
+                newStatsPanel.setNewGoldLabel(cost);
             } else if (radioPanel.getHeadButton().isSelected()) {
-                cost = listPanel.getShopCollection().getHeadGearsMap().get(key).getCost();
-                newStatsPanel.setNewGoldLabel(-cost);
+                cost = item.getSalePrice();
+                newStatsPanel.setNewGoldLabel(cost);
             } else if (radioPanel.getBodyButton().isSelected()) {
-                cost = listPanel.getShopCollection().getArmorMap().get(key).getCost();
-                newStatsPanel.setNewGoldLabel(-cost);
+                cost = item.getSalePrice();
+                newStatsPanel.setNewGoldLabel(cost);
             } else if (radioPanel.getArmButton().isSelected()) {
-                cost = listPanel.getShopCollection().getArmMap().get(key).getCost();
-                newStatsPanel.setNewGoldLabel(-cost);
+                cost = item.getSalePrice();
+                newStatsPanel.setNewGoldLabel(cost);
             } else if (radioPanel.getFeetButton().isSelected()) {
-                cost = listPanel.getShopCollection().getFootWearsMap().get(key).getCost();
-                newStatsPanel.setNewGoldLabel(-cost);
+                cost = item.getSalePrice();
+                newStatsPanel.setNewGoldLabel(cost);
             } else if (radioPanel.getAccessoryButton().isSelected()) {
-                cost = listPanel.getShopCollection().getAccessoriesMap().get(key).getCost();
-                newStatsPanel.setNewGoldLabel(-cost);
+                cost = item.getSalePrice();
+                newStatsPanel.setNewGoldLabel(cost);
             } else if (radioPanel.getAttackButton().isSelected()) {
-                cost = listPanel.getShopCollection().getAttackItemsMap().get(key).getCost();
-                newStatsPanel.setNewGoldLabel(-cost);
+                cost = item.getSalePrice();
+                newStatsPanel.setNewGoldLabel(cost);
             } else {
-                cost = listPanel.getShopCollection().getHealingItemsMap().get(key).getCost();
-                newStatsPanel.setNewGoldLabel(-cost);
+                cost = item.getSalePrice();
+                newStatsPanel.setNewGoldLabel(cost);
             }
-            // listPanel.getSellButton().setEnabled(player.getGold() >= cost);
         }
     }
 
@@ -93,9 +93,8 @@ public class SellController implements ActionListener, ListSelectionListener {
      */
     private void handleButtonEvents(ActionEvent e) {
         if (e.getSource() == listPanel.getSellButton() && !listPanel.getItemJList().isSelectionEmpty()) {
-            String key = listPanel.getItemJList().getSelectedValue();
-            String actionCommand = radioPanel.getButtonGroup().getSelection().getActionCommand();
-            this.sellItem(key, actionCommand);
+            Item item = listPanel.getItemJList().getSelectedValue();
+            this.sellItem(item);
             listPanel.getItemJList().clearSelection();
         } else if (e.getSource() == buttonPanel.getBuyButton()) {
             Main.getSellFrame().dispose();
@@ -133,83 +132,32 @@ public class SellController implements ActionListener, ListSelectionListener {
     /*
      * Method for taking money and adding item to player inventory
      */
-    private void sellItem(String key, String actionCommand) {
-        if (actionCommand.equals(radioPanel.getWeaponButton().getActionCommand())) {
-            this.sellWeapon(key);
-        } else if (actionCommand.equals(radioPanel.getHeadButton().getActionCommand())) {
-            this.sellHeadgear(key);
-        } else if (actionCommand.equals(radioPanel.getBodyButton().getActionCommand())) {
-            this.sellArmor(key);
-        } else if (actionCommand.equals(radioPanel.getArmButton().getActionCommand())) {
-            this.sellArm(key);
-        } else if (actionCommand.equals(radioPanel.getFeetButton().getActionCommand())) {
-            this.sellFootwear(key);
-        } else if (actionCommand.equals(radioPanel.getAccessoryButton().getActionCommand())) {
-            this.sellAccessory(key);
-        } else if (actionCommand.equals(radioPanel.getAttackButton().getActionCommand())) {
-            this.sellAttackItem(key);
-        } else if (actionCommand.equals(radioPanel.getHealingButton().getActionCommand())) {
-            this.sellHealingItem(key);
+    private void sellItem(Item item) {
+        player.setGold(player.getGold() + item.getSalePrice());
+        if (item instanceof Weapon weapon) {
+            System.out.println(weapon);
+            player.disposeWeapon(weapon);
+        } else if (item instanceof Head head) {
+            System.out.println(head);
+            player.disposeHeadgear(head);
+        } else if (item instanceof Body armor) {
+            System.out.println(armor);
+            player.disposeArmor(armor);
+        } else if (item instanceof Arm arm) {
+            System.out.println(arm);
+            player.disposeArm(arm);
+        } else if (item instanceof Feet footwear) {
+            System.out.println(footwear);
+            player.disposeFootwear(footwear);
+        } else if (item instanceof Accessory accessory) {
+            System.out.println(accessory);
+            player.disposeAccessory(accessory);
+        } else if (item instanceof Consumable consumable) {
+            System.out.println(consumable);
+            player.disposeConsumableItem(consumable);
         }
         currentStatsPanel.updateLabels();
         this.resetNewStats();
-    }
-
-
-    /*
-     * Give gold to player in exchange for a weapon.
-     */
-    private void sellWeapon(String key) {
-        System.out.println(key);
-    }
-
-    /*
-     * Give gold to player in exchange for a headgear.
-     */
-    private void sellHeadgear(String key) {
-        System.out.println(key);
-    }
-
-    /*
-     * Give gold to player in exchange for an armor.
-     */
-    private void sellArmor(String key) {
-        System.out.println(key);
-    }
-
-    /*
-     * Give gold to player in exchange for an arm guard.
-     */
-    private void sellArm(String key) {
-        System.out.println(key);
-    }
-
-    /*
-     * Give gold to player in exchange for a footwear.
-     */
-    private void sellFootwear(String key) {
-        System.out.println(key);
-    }
-
-    /*
-     * Give gold to player in exchange for an accessory.
-     */
-    private void sellAccessory(String key) {
-        System.out.println(key);
-    }
-
-    /*
-     * Give gold to player in exchange for an attack item.
-     */
-    private void sellAttackItem(String key) {
-        System.out.println(key);
-    }
-
-    /*
-     * Give gold to player in exchange for a healing item.
-     */
-    private void sellHealingItem(String key) {
-        System.out.println(key);
     }
 
     // If a selection is highlighted, then player clicks another radio or sells the selection,
