@@ -49,41 +49,6 @@ public class SellNewStatsPanel extends JPanel {
         }
     }
 
-    public void setNewMaxHPLabel(int maxHP) {
-        setLabelColor(newMaxHPLabel, maxHP);
-        newMaxHPLabel.setText("Max HP: " + (PlayerPanel.getPlayer().getMaxHP() + maxHP));
-    }
-
-    public void setNewMaxMPLabel(int maxMP) {
-        setLabelColor(newMaxMPLabel, maxMP);
-        newMaxMPLabel.setText("Max MP: " + (PlayerPanel.getPlayer().getMaxMP() + maxMP));
-    }
-
-    public void setNewAttackLabel(int attack) {
-        setLabelColor(newAttackLabel, attack);
-        newAttackLabel.setText("Attack: " + (PlayerPanel.getPlayer().getAttack() + attack));
-    }
-
-    public void setNewDefenseLabel(int defense) {
-        setLabelColor(newDefenseLabel, defense);
-        newDefenseLabel.setText("Defense: " + (PlayerPanel.getPlayer().getDefense() + defense));
-    }
-
-    public void setNewMagicAttackLabel(int magicAttack) {
-        setLabelColor(newMagicAttackLabel, magicAttack);
-        newMagicAttackLabel.setText("Magic Attack: " + (PlayerPanel.getPlayer().getMagicAttack() + magicAttack));
-    }
-
-    public void setNewMagicDefenseLabel(int magicDefense) {
-        setLabelColor(newMagicDefenseLabel, magicDefense);
-        newMagicDefenseLabel.setText("Magic Defense: " + (PlayerPanel.getPlayer().getMagicDefense() + magicDefense));
-    }
-
-    public void setNewSpeedLabel(int speed) {
-        setLabelColor(newSpeedLabel, speed);
-        newSpeedLabel.setText("Speed: " + (PlayerPanel.getPlayer().getSpeed() + speed));
-    }
-
     public void setNewGoldLabel(int gold) {
         setLabelColor(newGoldLabel, gold);
         newGoldLabel.setText("Gold: " + (PlayerPanel.getPlayer().getGold() + gold));

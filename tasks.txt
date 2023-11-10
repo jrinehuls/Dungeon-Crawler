@@ -1,10 +1,15 @@
 
-Add functionality to sell stuff in shop
-SellRadioButtonPanel may not need actioncommands
-
 Create inn in over world
+    Have 2 rooms at 2 prices
+    One heals half of max HP/MP
+    One heals all max HP/MP
+
+
+
+
 Create title screen that calls menu frame
 
+Modify item prices
 Modify monster spells
 Modify monster items
 Modify monster actions

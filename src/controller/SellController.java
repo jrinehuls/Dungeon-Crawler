@@ -3,7 +3,9 @@ package controller;
 import main.Main;
 import model.entity.player.Player;
 import model.item.Item;
+import model.item.consumable.AttackItem;
 import model.item.consumable.Consumable;
+import model.item.consumable.HealingItem;
 import model.item.equipment.*;
 import view.frames.BuyFrame;
 import view.frames.MenuFrame;
@@ -44,6 +46,7 @@ public class SellController implements ActionListener, ListSelectionListener {
             this.handleButtonEvents(e);
         } else if (e.getSource() instanceof JRadioButton) {
             this.setJListModel(e);
+            listPanel.getSellButton().setText("Sell");
         }
 
     }
@@ -59,32 +62,8 @@ public class SellController implements ActionListener, ListSelectionListener {
         // Disables sell button if selected item too expensive for player.
         if (e.getValueIsAdjusting()) {
             Item item = listPanel.getItemJList().getSelectedValue();
-            int cost;
-            if (radioPanel.getWeaponButton().isSelected()) {
-                cost = item.getSalePrice();
-                newStatsPanel.setNewGoldLabel(cost);
-            } else if (radioPanel.getHeadButton().isSelected()) {
-                cost = item.getSalePrice();
-                newStatsPanel.setNewGoldLabel(cost);
-            } else if (radioPanel.getBodyButton().isSelected()) {
-                cost = item.getSalePrice();
-                newStatsPanel.setNewGoldLabel(cost);
-            } else if (radioPanel.getArmButton().isSelected()) {
-                cost = item.getSalePrice();
-                newStatsPanel.setNewGoldLabel(cost);
-            } else if (radioPanel.getFeetButton().isSelected()) {
-                cost = item.getSalePrice();
-                newStatsPanel.setNewGoldLabel(cost);
-            } else if (radioPanel.getAccessoryButton().isSelected()) {
-                cost = item.getSalePrice();
-                newStatsPanel.setNewGoldLabel(cost);
-            } else if (radioPanel.getAttackButton().isSelected()) {
-                cost = item.getSalePrice();
-                newStatsPanel.setNewGoldLabel(cost);
-            } else {
-                cost = item.getSalePrice();
-                newStatsPanel.setNewGoldLabel(cost);
-            }
+            listPanel.getSellButton().setText(String.format("Sell for %d Gold", item.getSalePrice()));
+            newStatsPanel.setNewGoldLabel(item.getSalePrice());
         }
     }
 
@@ -135,26 +114,29 @@ public class SellController implements ActionListener, ListSelectionListener {
     private void sellItem(Item item) {
         player.setGold(player.getGold() + item.getSalePrice());
         if (item instanceof Weapon weapon) {
-            System.out.println(weapon);
             player.disposeWeapon(weapon);
+            listPanel.loadWeaponsModel();
         } else if (item instanceof Head head) {
-            System.out.println(head);
             player.disposeHeadgear(head);
+            listPanel.loadHeadGearsModel();
         } else if (item instanceof Body armor) {
-            System.out.println(armor);
             player.disposeArmor(armor);
+            listPanel.loadArmorsModel();
         } else if (item instanceof Arm arm) {
-            System.out.println(arm);
             player.disposeArm(arm);
+            listPanel.loadArmsModel();
         } else if (item instanceof Feet footwear) {
-            System.out.println(footwear);
             player.disposeFootwear(footwear);
+            listPanel.loadFootWearsModel();
         } else if (item instanceof Accessory accessory) {
-            System.out.println(accessory);
             player.disposeAccessory(accessory);
-        } else if (item instanceof Consumable consumable) {
-            System.out.println(consumable);
-            player.disposeConsumableItem(consumable);
+            listPanel.loadAccessoriesModel();
+        } else if (item instanceof AttackItem attackItem) {
+            player.disposeConsumableItem(attackItem);
+            listPanel.loadHealItemsModel();
+        } else if (item instanceof HealingItem healingItem) {
+            player.disposeConsumableItem(healingItem);
+            listPanel.loadHealItemsModel();
         }
         currentStatsPanel.updateLabels();
         this.resetNewStats();
@@ -163,13 +145,6 @@ public class SellController implements ActionListener, ListSelectionListener {
     // If a selection is highlighted, then player clicks another radio or sells the selection,
     // set new stats to the same as player stats, also changes label colors back to black.
     private void resetNewStats() {
-        newStatsPanel.setNewMaxHPLabel(0);
-        newStatsPanel.setNewMaxMPLabel(0);
-        newStatsPanel.setNewAttackLabel(0);
-        newStatsPanel.setNewDefenseLabel(0);
-        newStatsPanel.setNewMagicAttackLabel(0);
-        newStatsPanel.setNewMagicDefenseLabel(0);
-        newStatsPanel.setNewSpeedLabel(0);
         newStatsPanel.setNewGoldLabel(0);
     }
 }

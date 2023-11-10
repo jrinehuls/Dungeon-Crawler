@@ -25,9 +25,6 @@ public class SellRadioButtonPanel extends JPanel {
     JRadioButton[] radioButtons = {weaponButton, headButton, bodyButton, armButton, feetButton,
             accessoryButton, attackButton, healingButton};
 
-    String [] commands = {"weaponButton", "headButton", "bodyButton", "armButton", "feetButton",
-            "accessoryButton", "attackButton", "healingButton"};
-
     public SellRadioButtonPanel(SellController bc) {
         super(new GridLayout(4, 2, 0, 0));
 
@@ -36,24 +33,17 @@ public class SellRadioButtonPanel extends JPanel {
         this.setBackground(Color.PINK);
 
         // Add components to panel. If component is a radio, add margins and stuffs.
-        int commandCounter = 0;
         for (JRadioButton button: radioButtons) {
             button.addActionListener(bc);
             button.setMargin(new Insets(0, JBUTTON_LEFT_INSET,0,0));
             button.setOpaque(false);
             button.setFocusable(false);
-            button.setActionCommand(commands[commandCounter]);
             buttonGroup.add(button);
             this.add(button);
-            commandCounter++;
         }
 
         // Default to weapon radio button being selected
         weaponButton.setSelected(true);
-    }
-
-    public ButtonGroup getButtonGroup() {
-        return buttonGroup;
     }
 
     public JRadioButton getWeaponButton() {
