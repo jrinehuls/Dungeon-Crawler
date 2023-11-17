@@ -32,7 +32,7 @@ public class SellRadioButtonPanel extends JPanel {
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.setBackground(Color.PINK);
 
-        // Add components to panel. If component is a radio, add margins and stuffs.
+        // Add components to panel. Add margins and stuffs.
         for (JRadioButton button: radioButtons) {
             button.addActionListener(bc);
             button.setMargin(new Insets(0, JBUTTON_LEFT_INSET,0,0));
