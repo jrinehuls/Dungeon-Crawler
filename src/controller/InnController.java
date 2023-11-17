@@ -74,21 +74,38 @@ public class InnController implements ActionListener {
 
     private void getRoom(Room room) {
         player.setGold(player.getGold() - room.getCost());
-        player.setHP(player.getHP() + (int) (player.getMaxHP() * room.getHpRate()));
-        player.setMP(player.getMP() + (int) (player.getMaxMP() * room.getMpRate()));
+        player.setHP(this.getRestedHpValue(room));
+        player.setMP(this.getRestedMpValue(room));
         radioPanel.getButtonGroup().clearSelection();
         currentStatsPanel.updateLabels();
         this.resetNewStats();
     }
 
-    private void exit() {
-        Main.getInnFrame().dispose();
-        Main.setMenuFrame(new MenuFrame());
+    private int getRestedHpValue(Room room) {
+        int calcHp = player.getHP() + (int) (player.getMaxHP() * room.getHpRate());
+        return Math.min(player.getMaxHP(), calcHp);
+    }
+
+    private int getRestedMpValue(Room room) {
+        int calcMp = player.getMP() + (int) (player.getMaxMP() * room.getMpRate());
+        return Math.min(player.getMaxMP(), calcMp);
+    }
+
+    private int getNewHpValueIncrease(Room room) {
+        int playerHpLoss = player.getMaxHP() - player.getHP();
+        int maxRoomHp = (int) (player.getMaxHP() * room.getHpRate());
+        return Math.min(playerHpLoss, maxRoomHp);
+    }
+
+    private int getNewMpValueIncrease(Room room) {
+        int playerMpLoss = player.getMaxMP() - player.getMP();
+        int maxRoomMp = (int) (player.getMaxMP() * room.getMpRate());
+        return Math.min(playerMpLoss, maxRoomMp);
     }
 
     private void updateNewStats(Room room) {
-        newStatsPanel.setNewHPLabel((int) (player.getMaxHP() * room.getHpRate()));
-        newStatsPanel.setNewMPLabel((int) (player.getMaxMP() * room.getMpRate()));
+        newStatsPanel.setNewHPLabel(this.getNewHpValueIncrease(room));
+        newStatsPanel.setNewMPLabel(this.getNewMpValueIncrease(room));
         newStatsPanel.setNewGoldLabel(-room.getCost());
     }
 
@@ -98,5 +115,10 @@ public class InnController implements ActionListener {
         newStatsPanel.setNewHPLabel(0);
         newStatsPanel.setNewMPLabel(0);
         newStatsPanel.setNewGoldLabel(0);
+    }
+
+    private void exit() {
+        Main.getInnFrame().dispose();
+        Main.setMenuFrame(new MenuFrame());
     }
 }
