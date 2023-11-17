@@ -4,6 +4,7 @@ import main.Main;
 import model.entity.player.Player;
 import model.inn.CrappyRoom;
 import model.inn.GoodRoom;
+import model.inn.MediocreRoom;
 import model.inn.Room;
 import model.item.equipment.*;
 import view.frames.InnFrame;
@@ -28,6 +29,7 @@ public class InnController implements ActionListener {
     InnRadioButtonPanel radioPanel;
     InnButtonPanel buttonPanel;
     CrappyRoom crappyRoom;
+    MediocreRoom mediocreRoom;
     GoodRoom goodRoom;
     public InnController(InnFrame innFrame) {
         this.innFrame = innFrame;
@@ -41,34 +43,42 @@ public class InnController implements ActionListener {
         this.radioPanel = innFrame.getRadioButtonPanel();
         this.buttonPanel = innFrame.getButtonPanel();
         this.crappyRoom = new CrappyRoom();
+        this.mediocreRoom = new MediocreRoom();
         this.goodRoom = new GoodRoom();
 
         if (e.getSource() == buttonPanel.getBuyButton()) {
-            this.getRoom();
+            this.getRoomByRadioButton();
         } if (e.getSource() == buttonPanel.getExitButton()) {
             this.exit();
         } if (e.getSource() == radioPanel.getCrappyButton()) {
             buttonPanel.getBuyButton().setEnabled(player.getGold() >= crappyRoom.getCost());
             updateNewStats(crappyRoom);
+        } if (e.getSource() == radioPanel.getMediocreButton()) {
+            buttonPanel.getBuyButton().setEnabled(player.getGold() >= mediocreRoom.getCost());
+            updateNewStats(mediocreRoom);
         } if (e.getSource() == radioPanel.getGoodButton()) {
             buttonPanel.getBuyButton().setEnabled(player.getGold() >= goodRoom.getCost());
             updateNewStats(goodRoom);
         }
     }
 
-    private void getRoom() {
+    private void getRoomByRadioButton() {
         if (radioPanel.getCrappyButton().isSelected()) {
-            System.out.println(radioPanel.getCrappyButton().getText());
-            player.setGold(player.getGold() - crappyRoom.getCost());
-            currentStatsPanel.updateLabels();
+            getRoom(crappyRoom);
+        } if (radioPanel.getMediocreButton().isSelected()) {
+            getRoom(mediocreRoom);
         } if (radioPanel.getGoodButton().isSelected()) {
-            System.out.println(radioPanel.getGoodButton().getText());
-            player.setGold(player.getGold() - goodRoom.getCost());
-            currentStatsPanel.updateLabels();
+            getRoom(goodRoom);
         }
-        currentStatsPanel.updateLabels();
-        resetNewStats();
+    }
+
+    private void getRoom(Room room) {
+        player.setGold(player.getGold() - room.getCost());
+        player.setHP(player.getHP() + (int) (player.getMaxHP() * room.getHpRate()));
+        player.setMP(player.getMP() + (int) (player.getMaxMP() * room.getMpRate()));
         radioPanel.getButtonGroup().clearSelection();
+        currentStatsPanel.updateLabels();
+        this.resetNewStats();
     }
 
     private void exit() {

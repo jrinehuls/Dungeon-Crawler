@@ -1,11 +1,6 @@
 
 Create inn in over world
-    Have 2 rooms at 2 prices
-    One heals half of max HP/MP
-    One heals all max HP/MP
-
-
-
+    Don't allow player to exceed max hp or mp
 
 Create title screen that calls menu frame
 
