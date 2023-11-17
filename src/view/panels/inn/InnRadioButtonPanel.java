@@ -1,6 +1,8 @@
 package view.panels.inn;
 
 import controller.InnController;
+import model.inn.CrappyRoom;
+import model.inn.GoodRoom;
 import view.frames.InnFrame;
 
 import javax.swing.*;
@@ -11,8 +13,8 @@ public class InnRadioButtonPanel extends JPanel {
     private final int PANEL_WIDTH = InnFrame.PANEL_WIDTH;
     private final int PANEL_HEIGHT = InnFrame.PANEL_HEIGHT / 2;
 
-    public static final int CRAPPY_COST = 40;
-    public static final int GOOD_COST = 100;
+    public static final int CRAPPY_COST = new CrappyRoom().getCost();
+    public static final int GOOD_COST = new GoodRoom().getCost();
 
     private ButtonGroup buttonGroup = new ButtonGroup();
 
@@ -30,8 +32,8 @@ public class InnRadioButtonPanel extends JPanel {
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.setBackground(Color.PINK);
 
-        crappyButton.setText("Crappy Room: " + CRAPPY_COST + " Gold");
-        goodButton.setText("Good Room: " + GOOD_COST + " Gold");
+        crappyButton.setText("Crappy Room:   " + CRAPPY_COST + " Gold");
+        goodButton.setText("Good Room:   " + GOOD_COST + " Gold");
 
         // Add components to panel. Add margins and stuffs.
         for (JRadioButton button: radioButtons) {
@@ -43,8 +45,10 @@ public class InnRadioButtonPanel extends JPanel {
             this.add(button);
         }
 
-        // Default to weapon radio button being selected
-        crappyButton.setSelected(true);
+    }
+
+    public ButtonGroup getButtonGroup() {
+        return buttonGroup;
     }
 
     public JRadioButton getCrappyButton() {

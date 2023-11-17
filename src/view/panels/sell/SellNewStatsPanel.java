@@ -10,8 +10,8 @@ public class SellNewStatsPanel extends JPanel {
 
     JLabel newStatsLabel = new JLabel("New Stats: ");
     JLabel newBlankLabel = new JLabel(""); // Needed for placeholder in GridLayout
-    JLabel newMaxHPLabel = new JLabel("Max HP: " + PlayerPanel.getPlayer().getHP());
-    JLabel newMaxMPLabel = new JLabel("Max MP: " + PlayerPanel.getPlayer().getMP());
+    JLabel newMaxHPLabel = new JLabel("Max HP: " + PlayerPanel.getPlayer().getMaxHP());
+    JLabel newMaxMPLabel = new JLabel("Max MP: " + PlayerPanel.getPlayer().getMaxMP());
     JLabel newAttackLabel = new JLabel("Attack: " + PlayerPanel.getPlayer().getAttack());
     JLabel newDefenseLabel = new JLabel("Defense: " + PlayerPanel.getPlayer().getDefense());
     JLabel newMagicAttackLabel = new JLabel("Magic Attack: " + PlayerPanel.getPlayer().getMagicAttack());

@@ -1,12 +1,8 @@
 package controller;
 
-import controller.game.ActionButtonController;
 import main.Main;
 import model.entity.player.Player;
-import model.item.Item;
-import model.item.consumable.AttackItem;
 import model.item.consumable.Consumable;
-import model.item.consumable.HealingItem;
 import model.item.equipment.*;
 import view.frames.BuyFrame;
 import view.frames.MenuFrame;
