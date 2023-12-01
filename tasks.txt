@@ -1,7 +1,4 @@
 
-Create inn in over world
-    Don't allow player to exceed max hp or mp
-
 Create title screen that calls menu frame
 
 Modify item prices
