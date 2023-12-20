@@ -1,8 +1,12 @@
 package view.frames;
 
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Objects;
 
 public class GameOverFrame extends JFrame {
 
@@ -11,6 +15,13 @@ public class GameOverFrame extends JFrame {
         super("GET REKT!!");
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        try {
+            String iconName = "/icons/Icon.png";
+            InputStream is = Objects.requireNonNull(getClass().getResourceAsStream(iconName));
+            this.setIconImage(ImageIO.read(is));
+        } catch (IOException e) {
+            this.setIconImage(null);
+        }
         this.setSize(new Dimension(400, 300));
         this.setLocationRelativeTo(null);
         this.setLayout(null);

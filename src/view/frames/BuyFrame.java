@@ -3,8 +3,12 @@ package view.frames;
 import controller.BuyController;
 import view.panels.buy.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Objects;
 
 public class BuyFrame extends JFrame {
 
@@ -59,7 +63,13 @@ public class BuyFrame extends JFrame {
 
         // --------------------------------------- Frame Stuff ----------------------------------------
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        this.setIconImage(new ImageIcon("res/icons/Icon.png").getImage());
+        try {
+            String iconName = "/icons/Icon.png";
+            InputStream is = Objects.requireNonNull(getClass().getResourceAsStream(iconName));
+            this.setIconImage(ImageIO.read(is));
+        } catch (IOException e) {
+            this.setIconImage(null);
+        }
         this.setResizable(false);
         this.pack();
         this.setLocationRelativeTo(null);

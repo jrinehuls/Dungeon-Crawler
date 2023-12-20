@@ -4,9 +4,13 @@ import controller.MenuController;
 import view.panels.menu.OptionPanel;
 import view.panels.menu.TitlePanel;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Objects;
 
 public class MenuFrame extends JFrame {
 
@@ -69,7 +73,13 @@ public class MenuFrame extends JFrame {
         // ------------------------------------ Set Frame Up --------------------------------------
         this.add(menuPanel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setIconImage(new ImageIcon("res/icons/Icon.png").getImage());
+        try {
+            String iconName = "/icons/Icon.png";
+            InputStream is = Objects.requireNonNull(getClass().getResourceAsStream(iconName));
+            this.setIconImage(ImageIO.read(is));
+        } catch (IOException e) {
+            this.setIconImage(null);
+        }
         this.setResizable(false);
         this.pack();
         this.setLocationRelativeTo(null);
