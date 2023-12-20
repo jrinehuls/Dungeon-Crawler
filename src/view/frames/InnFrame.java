@@ -6,8 +6,12 @@ import view.panels.inn.InnCurrentStatsPanel;
 import view.panels.inn.InnNewStatsPanel;
 import view.panels.inn.InnRadioButtonPanel;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Objects;
 
 public class InnFrame extends JFrame {
 
@@ -53,7 +57,13 @@ public class InnFrame extends JFrame {
 
         // --------------------------------------- Frame Stuff ----------------------------------------
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        this.setIconImage(new ImageIcon("res/icons/Icon.png").getImage());
+        try {
+            String iconName = "/icons/Icon.png";
+            InputStream is = Objects.requireNonNull(getClass().getResourceAsStream(iconName));
+            this.setIconImage(ImageIO.read(is));
+        } catch (IOException e) {
+            this.setIconImage(null);
+        }
         this.setResizable(false);
         this.pack();
         this.setLocationRelativeTo(null);

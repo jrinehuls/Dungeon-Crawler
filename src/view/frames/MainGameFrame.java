@@ -2,8 +2,12 @@ package view.frames;
 
 import view.panels.game.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Objects;
 
 public class MainGameFrame extends JFrame {
 
@@ -52,7 +56,13 @@ public class MainGameFrame extends JFrame {
         // ------------------------------<Frame Stuff>------------------------------------
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.ORANGE);
-        this.setIconImage(new ImageIcon("res/icons/Icon.png").getImage());
+        try {
+            String iconName = "/icons/Icon.png";
+            InputStream is = Objects.requireNonNull(getClass().getResourceAsStream(iconName));
+            this.setIconImage(ImageIO.read(is));
+        } catch (IOException e) {
+            this.setIconImage(null);
+        }
         this.setResizable(false);
         this.pack();
         this.setLocationRelativeTo(null);
