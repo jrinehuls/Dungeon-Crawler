@@ -11,4 +11,5 @@
 
 ## Here's the main menu when the game launches
 
-![img.png](screenshots/img.png)
+![image](https://github.com/jrinehuls/Dungeon-Crawler/assets/109096743/d6bd0641-1d80-440f-8175-98a30355982f)
+
